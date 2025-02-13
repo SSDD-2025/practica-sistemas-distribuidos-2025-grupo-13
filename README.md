@@ -5,15 +5,15 @@
 | Nombre | Apellidos | Correo Oficial | GitHub |
 |--------|----------|---------------|--------|
 | Jon | Mazcuñán Hernández | j.mazcunan.2022@alumnos.urjc.com | [GitHub1](https://github.com/jonmazh) |
-| Marcos | Álvarez Mansilla | m.alvarez.2022@alumnos.urjc.es | [GitHub2]**) |
-| Robert | Gabriel Mihai | rg.mihai.2022@alumnos.urjc.es | [GitHub3](**) |
+| Marcos | Álvarez Mansilla | m.alvarez.2022@alumnos.urjc.es | [GitHub2](**) |
+| Robert Gabriel | Mihai | rg.mihai.2022@alumnos.urjc.es | [GitHub3](*https://github.com/robert07112004*) |
 | Álvaro | Osuna Flores | a.osuna.2022@alumnos.urjc.es | [GitHub4](**) |
 
 ## Descripción del Proyecto
 
-El proyecto cosnsiste en una aplicación web basada en HTML, CSS y BDD que se empleará para la gestión de eventos,
+El proyecto consiste en una aplicación web basada en HTML, CSS y BDD que se empleará para la gestión de eventos,
 mostrando eventos disponibles en distintos espacios y la compra de entradas para estos, permitiendo dejar comentarios 
-en los que se hayan realizado. 
+en los eventos que se hayan realizado una compra. 
 
 ## Herramientas de Desarrollo
 
