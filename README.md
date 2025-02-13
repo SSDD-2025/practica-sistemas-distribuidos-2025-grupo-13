@@ -71,7 +71,7 @@ Las siguientes entidades podrán subir imágenes:
  
 ## Diagrama de Entidades
 
-![Diagrama ER](ruta_a_diagrama.png)
+![Diagrama ER](/img/DIAGRAMA RELACION ENTIDAD.png)
 
 ## Capturas de Pantalla
 
