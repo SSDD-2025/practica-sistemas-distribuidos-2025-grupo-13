@@ -1,4 +1,4 @@
-# Proyecto: Nombre de la Aplicación
+# Proyecto: ALASDOCE
 
 ## Integrantes del Equipo
 
