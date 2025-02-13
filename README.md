@@ -6,7 +6,7 @@
 |--------|----------|---------------|--------|
 | Jon | Mazcuñán Hernández | j.mazcunan.2022@alumnos.urjc.com | [GitHub1](https://github.com/jonmazh) |
 | Marcos | Álvarez Mansilla | m.alvarez.2022@alumnos.urjc.es | [GitHub2](**) |
-| Robert Gabriel | Mihai | rg.mihai.2022@alumnos.urjc.es | [GitHub3](*https://github.com/robert07112004*) |
+| Robert Gabriel | Mihai | rg.mihai.2022@alumnos.urjc.es | [GitHub3](https://github.com/robert07112004) |
 | Álvaro | Osuna Flores | a.osuna.2022@alumnos.urjc.es | [GitHub4](**) |
 
 ## Descripción del Proyecto
