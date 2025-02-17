@@ -3,13 +3,131 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport", content="width=device-width, initial-scale=1.0">
-    <title>Title of the web page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEATRO DAW</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
 </head>
-
 <body>
     
+    <!--CABECERA PÁGINA (EXTRAPOLABLE)-->
+    <nav class="top-navbar">
+        <div class="container-topnav">
+            <ul class="elementos-header align-items-lg-center ms-auto me-lg-5" id="elementos-cabecera">
+                <li class="nav-item">
+                    <a class="top-nav-section_1" href="section_1">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="top-nav-section_2" href="section_2">Clubbing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="top-nav-section_3" href="section_3">Conciertos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="top-nav-section_4" href="section_4">Eventos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="top-nav-section_5" href="section_5">Contactanos</a>
+                </li>
+                <li class="nav-item-login">
+                    <a href="#" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="20" fill="currentColor"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
+    <!-- Modal de login-->
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="titulo-login">Iniciar sesión</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="contraseña">
+                        </div>
+                        <div class="d-flex align-items-center margenGrande">
+                            <button type="submit" class="btn btn-login me-2">Confirmar</button>
+                            <p>
+                                <a href="#" class="switch-modal" data-bs-toggle="modal" data-bs-target="#modalSingUp">
+                                    <span style="color: white;">
+                                        Si aún no tienes cuenta,
+                                    </span>
+                                    Regístrate aquí
+                                </a>
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal de login-->
+
+    <!-- Modal de sing up-->
+    <div class="modal fade" id="modalSingUp" tabindex="-1" aria-labelledby="modalSingUp" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="titulo-singup">Registrarse</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form><div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                        <input type="email" class="form-control" id="name" >
+                        <label for="exampleInputEmail1" class="form-label">Apellidos</label>
+                        <input type="email" class="form-control" id="surname">
+                    </div>
+                    
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="contraseña">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
+                            <input type="password" class="form-control" id="contraseña">
+                        </div>
+                        <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los
+                        terminos y condiciones
+                        <br>
+                        <input type="checkbox" id="datos" name="datos" value="datos"> Permito el uso de mis datos
+                        personales para las estadisticas
+                        <p><button type="submit" class="btn btn-login">Confirmar</button></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal de sing up-->
+
+    <!--FIN CABECERA PÁGINA-->
 </body>
 
 
