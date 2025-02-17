@@ -36,7 +36,7 @@ h1 {
 }
 
 .top-navbar {
-    background: black !important;
+    background: transparent;
     z-index: 9;
     min-height: 80px;
     align-items: center;
