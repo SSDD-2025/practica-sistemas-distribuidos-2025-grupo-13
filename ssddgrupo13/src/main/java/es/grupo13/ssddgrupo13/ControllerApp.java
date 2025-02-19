@@ -6,23 +6,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ControllerApp {
 
-    @GetMapping("/section_1")
+    @GetMapping("/home")
     public String homeLink() {
         return "section_1";
     }
-    @GetMapping("/section_2")
+    @GetMapping("/clubbing")
     public String clubbingLink() {
         return "section_2";
     }
-    @GetMapping("/section_3")
+    @GetMapping("/conciertos")
     public String conciertosLink() {
         return "section_3";
     }
-    @GetMapping("/section_4")
+    @GetMapping("/eventos")
     public String eventosLink() {
         return "section_4";
     }
-    @GetMapping("/section_5")
+    @GetMapping("/contactanos")
     public String contactanosLink() {
         return "section_5";
     }
