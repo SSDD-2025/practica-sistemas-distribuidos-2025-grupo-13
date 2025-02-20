@@ -2,13 +2,15 @@ package es.grupo13.ssddgrupo13;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class ControllerApp {
 
     @GetMapping("/home")
     public String homeLink() {
-        return "section_1";
+        return "../Static/index";
     }
     @GetMapping("/clubbing")
     public String clubbingLink() {
@@ -26,6 +28,11 @@ public class ControllerApp {
     public String contactanosLink() {
         return "section_5";
     }
+    @GetMapping("/error")
+    public String getMethodName(@RequestParam String param) {
+        return "error";
+    }
+    
     
 
 }
