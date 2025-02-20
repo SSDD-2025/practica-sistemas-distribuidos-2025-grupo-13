@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Ssddgrupo13Application<ssddgrupo13>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "es.grupo13.ssddgrupo13.Ssddgrupo13Application",
+            "projectName": "ssddgrupo13",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

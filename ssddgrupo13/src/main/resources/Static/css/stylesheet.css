@@ -231,8 +231,7 @@ h1 {
     width: 80%;
     height: 150px;
     opacity: 1;
-    margin-bottom: 5px;
-    
+    margin-bottom: 5px;    
 }
 .club1-text{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -243,16 +242,14 @@ h1 {
     font-weight: 700;
     margin-bottom: 2px;
     text-decoration: double;
-    
-    
 }
+
 .btnclub{
     position: absolute;
     color: white;
     background-color: black;
     align-self: end;
     left: 85%
-   
 }
 
 .contenedor-conciertos {
@@ -286,4 +283,33 @@ h1 {
     margin-top: 10px;
     font-size: 18px;
     color: #000000;
+}
+
+.event {
+    background-color:#605f66 ;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 150px;
+    top: 160px;
+    margin-top: 30px;
+    width: 80%;
+    height: 150px;
+    opacity: 1;
+    margin-bottom: 5px; 
+}
+
+.event-text {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 20px;
+    text-align: start;
+    color: rgb(237, 235, 235);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    text-decoration: double;
+}
+
+.event-description {
+    margin-right: 20px;
 }
