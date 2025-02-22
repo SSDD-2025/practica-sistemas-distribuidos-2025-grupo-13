@@ -1,6 +1,5 @@
 package es.grupo13.ssddgrupo13.entities;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
@@ -29,6 +28,7 @@ public class Ticket {
     }
 
     public Ticket(String title, float price, LocalDateTime createdAt, TicketStatus status) {
+        super();
         this.title = title;
         this.price = price;
         this.createdAt = createdAt;
