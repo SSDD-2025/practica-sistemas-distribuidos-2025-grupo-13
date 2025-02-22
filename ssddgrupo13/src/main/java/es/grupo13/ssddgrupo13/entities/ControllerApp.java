@@ -1,4 +1,4 @@
-package es.grupo13.ssddgrupo13;
+package es.grupo13.ssddgrupo13.entities;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
