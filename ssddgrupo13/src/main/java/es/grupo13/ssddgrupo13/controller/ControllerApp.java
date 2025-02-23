@@ -4,12 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
+
 @Controller
 public class ControllerApp {
 
     @GetMapping("/home")
     public String homeLink() {
-        return "../Static/index";
+        return "index";
     }
     @GetMapping("/clubbing")
     public String clubbingLink() {
@@ -27,10 +28,15 @@ public class ControllerApp {
     public String contactanosLink() {
         return "section_5";
     }
-    @GetMapping("/error")
+    @GetMapping("/ticket")
+    public String ticketLink() {
+        return "ticket";
+    }
+    
+    /*@GetMapping("/error")
     public String errorLink() {
         return "error";
-    }
+    }*/
     
     
 
