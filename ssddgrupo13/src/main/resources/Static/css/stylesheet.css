@@ -316,13 +316,14 @@ h1 {
 
 .title-events {
     display: flex;
-    position: relative;
-    top: 5px;
-    margin-top: 10px;
-    height: 10px;
-    width: 50%;
-    width: 200px;
-    margin: 0 auto;
-    opacity: 1;
-    margin-bottom: 100px;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-left: 50px;
+}
+
+event-title {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white;
 }
