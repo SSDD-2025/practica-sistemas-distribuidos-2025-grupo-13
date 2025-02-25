@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 
 {{>header}}    
 
@@ -30,6 +29,110 @@
         </div>
     </div>
 </section>
+
+<!-- SECCION 2 : COMENTARIOS -->
+<section class="section_3">
+    <div class="container-section3">
+        <div class="comments-title">
+            <h1>Comentarios</h1>
+        </div>
+        <div class="container-btn-comment">
+            <button class="btn-change8 btn-comentario" type="button" data-bs-toggle="modal"
+                data-bs-target="#modalComentario">Añadir comentario</button>
+        </div>
+        <div class="container-comments">
+            <div class="comment-post">
+                <div class="comment-post_user">
+                    jonmazh
+                </div>
+                <div class="comment-post_content">
+                    <p>Increíble concierto, la sala es perfecta
+                        para disfrutar de la música en directo. ¡Volveré!</p>
+                </div>
+                <div class="comment-post_valoration">
+                    <p>&#9733 &#9733 &#9733 &#9733 &#9733</p>
+                </div>
+            </div>
+            <div class="comment-post">
+                <div class="comment-post_user">
+                    macas
+                </div>
+                <div class="comment-post_content">
+                    <p>
+                        He venido en vez de ir a sistemas distribuidos. 
+                        No me arrepiento, ha sido una experiencia increíble.
+                    </p>
+                </div>
+                <div class="comment-post_valoration">
+                    <p>&#9733 &#9733 &#9733</p>
+                </div>
+
+            </div>
+            <div class="comment-post">
+                <div class="comment-post_user">
+                    robber
+                </div>
+                <div class="comment-post_content">
+                    <p>No me gustó nada, no volveré.</p>
+                </div>
+                <div class="comment-post_valoration">
+                    <p>&#9733</p>
+                </div>
+            </div>
+            <div class="comment-post">
+                <div class="comment-post_user">
+                    alvarete
+                </div>
+                <div class="comment-post_content">
+                    <p>Chuli</p>
+                </div>
+                <div class="comment-post_valoration">
+                    <p>&#9733 &#9733 &#9733</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- MODAL COMENTARIO -->
+
+<div class="modal fade" id="modalComentario" tabindex="-1" aria-labelledby="modalComentario" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="titulo-comment">Añadir comentario</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="mb-2">
+                        <div class="star-rating animated-stars">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5" class="bi bi-star-fill"></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4" class="bi bi-star-fill"></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3" class="bi bi-star-fill"></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2" class="bi bi-star-fill"></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1" class="bi bi-star-fill"></label>
+                        </div>
+                    </div>
+                    <div class="mb-2 ">
+                        <label for="inputComentario">Comentario</label>
+                        <textarea class="form-control" id="inputComentario" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-publicar">Publicar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {{>footer}}
 
