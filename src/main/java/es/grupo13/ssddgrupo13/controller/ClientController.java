@@ -11,7 +11,6 @@ import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 
-
 @Controller
 public class ClientController {
     @Autowired
@@ -31,11 +30,12 @@ public class ClientController {
         clientRepository.save(client);
     }
 
-    @PostMapping("/home")
+    @PostMapping("/sign-up")
     public String singUp(@RequestParam String name, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) {
+        System.out.println("Name: " + name + " Last Name: " + lastName + " Email: " + email + " Password: " + password);
         Client client = new Client(name, lastName, email, password);
         clientRepository.save(client);
-        return "index";
+        return "/index";
     }
     
 }

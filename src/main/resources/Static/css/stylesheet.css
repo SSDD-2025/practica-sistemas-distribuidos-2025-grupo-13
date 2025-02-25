@@ -335,5 +335,113 @@ h1 {
     margin-bottom: 100px;
 }
 
+/***********************************
+            CSS PARA DETALLE 
+
+************************************/
 
 
+@font-face {
+    font-family: 'Skrappa-bold';
+    src: url('./fonts/SK.woff') format('woff'); /* Usa ./ en lugar de .. */
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sans Custom';
+    src: url('./fonts/Sans.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.containerDetail {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 20px ; 
+    margin-left: 40px ; 
+}
+
+.headDetailEvent {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.titleDetailEvent{
+    font-size: 100px;
+    font-weight: 500;
+    text-shadow: #605f66 3px 3px 3px;
+    color: white;
+    font-stretch: extra-condensed !important;
+    font-family: 'Skrappa-bold' , 'Sans Custom', sans-serif;
+}
+
+.subtitleDetailEvent{
+    font-size: 50px;
+    font-weight: 300;
+    color: white;
+    font-stretch: extra-condensed !important;
+    font-family: 'Skrappa-bold' , 'Sans Custom', sans-serif;
+}
+
+.singleElement.title{
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    font-stretch: extra-condensed !important;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.buttonDetailEvent {
+    width: 100px;
+    background-color: #d5e33e;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.btn-change8{
+    margin-top:10px ; 
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    background: #d5e33e;
+    float: left;
+    border:0px;
+    color: black; 
+    box-shadow: 0 0 1px #ccc;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-timing-function: linear;
+    box-shadow:0px 0 0 #faffc7 inset;
+}
+.btn-change8:hover{
+    -webkit-box-shadow: -100px 0 0 #fcfb9b inset;
+}
+
+.detailContent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pictureAndDescription {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px; 
+    width: 30%;
+}
+
+.pictureDetailEvent {
+    width: 40%;
+    border-radius: 10px;
+    margin-right: 20px;
+}
