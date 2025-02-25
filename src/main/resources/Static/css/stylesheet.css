@@ -210,14 +210,14 @@ h1 {
 }
 
 .line-title-clubbing {
-    top: 5px;
-    width: 100%;
-    border: 5px#ea56de solid;
-    background-color: #ea56de solid;
-    width: 70px;
-    margin: 0 auto;
+    border: 5px #ea56de solid;
+    background-color: #ea56de; /* Corrección del background-color */
+    width: 50px;
+    margin: 0; /* Elimina el auto para alineación izquierda */
     opacity: 1;
     margin-bottom: 30px;
+    padding-right: 0px; 
+    display: block; /* No es necesario flex aquí */
 }
 
 .club1 {
@@ -314,16 +314,26 @@ h1 {
     margin-right: 20px;
 }
 
-.title-events {
+.headEventosContainer {
+    margin-left:40px;
     display: flex;
-    flex-wrap: wrap;
+    align-items: left;
     justify-content: left;
-    margin-left: 50px;
+    flex-direction:column;
 }
 
-event-title {
-    font-size: 50px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: white;
+.h1.titleEventos {
+
+    position: relative;
+    top: 5px;
+    margin-top: 10px;
+    height: 10px;
+    width: 50%;
+    width: 200px;
+    margin: 0 auto;
+    opacity: 1;
+    margin-bottom: 100px;
 }
+
+
+
