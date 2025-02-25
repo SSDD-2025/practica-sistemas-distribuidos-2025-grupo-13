@@ -21,7 +21,7 @@ a {
 }
 
 a:hover {
-    color: #d5e33e;
+    color: #ff00ea;
 }
 
 p {
@@ -198,22 +198,22 @@ h1 {
 }
 
 .titleClubbing {
+    text-align: center;
     position: relative;
     top: 5px;
     margin-top: 10px;
     height: 10px;
-    width: 50%;
-    width: 200px;
     margin: 0 auto;
     opacity: 1;
     margin-bottom: 100px;
 }
 
 .line-title-clubbing {
-    border: 5px #ea56de solid;
-    background-color: #ea56de; /* Corrección del background-color */
-    width: 50px;
-    margin: 0; /* Elimina el auto para alineación izquierda */
+    border: 5px #ff00ea solid;
+    background-color: #ff00ea; /* Corrección del background-color */
+    margin-top: 10px;
+    width: 75px;
+    margin: 0 auto;
     opacity: 1;
     margin-bottom: 30px;
     padding-right: 0px; 
@@ -336,6 +336,51 @@ h1 {
 }
 
 /***********************************
+            CSS PARA CONTACTANOS
+
+************************************/
+
+
+.container-contactanos{
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+input, textarea {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+button {
+    background: #ff00ea;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover {
+    background: #ff00ea9a;
+}
+.social-links a {
+    margin: 10px;
+    text-decoration: none;
+    color: #ff00ea;
+}
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+/***********************************
             CSS PARA DETALLE 
 
 ************************************/
@@ -436,12 +481,12 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px; 
+    margin-top: 150px; 
     width: 30%;
 }
 
 .pictureDetailEvent {
     width: 40%;
     border-radius: 10px;
-    margin-right: 20px;
+    margin-right: 100px;
 }
