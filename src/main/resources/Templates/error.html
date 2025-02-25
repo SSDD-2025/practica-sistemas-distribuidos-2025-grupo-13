@@ -3,9 +3,13 @@
 
 {{>header}}
 
-<div class="error"> 
-    <h1>404</h1> 
-    <h2>Page not found</h2> 
-    <p>Lo siento, la página que buscas no existe.</p> 
+<div class="errorDisplay"> 
+    <h1>Ha habido un problema</h1> 
+    {{#errorMessage}}
+    <div class="alert alert-danger errorMessage" role="alert">
+        {{errorMessage}}
+    </div>
+    {{/errorMessage}}
+
     <a href="/">Volver</a>
 </div>

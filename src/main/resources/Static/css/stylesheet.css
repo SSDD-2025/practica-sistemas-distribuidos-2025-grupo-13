@@ -490,3 +490,22 @@ button:hover {
     border-radius: 10px;
     margin-right: 100px;
 }
+
+/***************************************************
+
+            CSS PARA EL ERROR
+
+****************************************************/
+
+.errorDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    color: white;
+}
+
+.alert.alert-danger.errorMessage{
+    margin-top: 20px;
+}

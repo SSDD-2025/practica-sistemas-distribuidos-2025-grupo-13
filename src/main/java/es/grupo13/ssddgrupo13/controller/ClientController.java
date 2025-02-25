@@ -1,7 +1,10 @@
 package es.grupo13.ssddgrupo13.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,8 +34,20 @@ public class ClientController {
     }
 
     @PostMapping("/sign-up")
-    public String singUp(@RequestParam String name, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) {
-        System.out.println("Name: " + name + " Last Name: " + lastName + " Email: " + email + " Password: " + password);
+    public String singUp(@RequestParam String name, 
+                         @RequestParam String lastName, 
+                         @RequestParam String email, 
+                         @RequestParam String password,
+                         Model model) {
+        
+        // Comprueba si el email ya existe
+        Optional<Client> existingClient = clientRepository.findByEmail(email);
+        
+        if (existingClient.isPresent()) {
+            model.addAttribute("errorMessage", "Este correo ya existe. Por favor, emplea otro");
+            return "error";
+        }
+
         Client client = new Client(name, lastName, email, password);
         clientRepository.save(client);
         return "/index";
