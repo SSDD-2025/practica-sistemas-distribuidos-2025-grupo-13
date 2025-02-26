@@ -37,6 +37,9 @@ public class Event {
     @Column(nullable = false)
     private LocalDateTime timeFinish;
 
+	@Column(nullable = false)
+    private String type;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
@@ -47,13 +50,14 @@ public class Event {
 
     }
 
-    public Event(String title, int capacity, String description, LocalDateTime timeStart, LocalDateTime timeFinish, String address) {
+    public Event(String title, int capacity, String description, LocalDateTime timeStart, LocalDateTime timeFinish, String address, String type) {
         this.title = title;
         this.capacity = capacity;
         this.description = description;
         this.timeStart = timeStart;
         this.timeFinish = timeFinish;
 		this.address = address;
+		this.type = type;
     }
 
     public Long getId() {
@@ -62,6 +66,14 @@ public class Event {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
     public String getTitle() {

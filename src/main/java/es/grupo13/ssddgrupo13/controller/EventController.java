@@ -36,7 +36,8 @@ public class EventController {
                                 "Largas noches de música latina acompañado de buen ambiente",
                                 start, 
                                 finish,
-                                "Sala Shoko Madrid");
+                                "Sala Shoko Madrid",
+                                "club");
 
         eventRepository.save(shoko);
         
@@ -45,7 +46,8 @@ public class EventController {
                                 "Descubre un nuevo universo con el reservado ambiente de nustra discoteca",
                                 start, 
                                 finish,
-                                "C/Rosario Pino 14");
+                                "C/Rosario Pino 14",
+                                "club");
         
         eventRepository.save(ohmyclub);
 
@@ -54,7 +56,8 @@ public class EventController {
                                 "Música de ambienta acompañada de gente dispuesta a pasarselo bien",
                                 start, 
                                 finish,
-                                "El Corral De Chamartin");
+                                "El Corral De Chamartin",
+                                "club");
         
         eventRepository.save(liberata);
 
@@ -62,9 +65,11 @@ public class EventController {
     }
 
     @GetMapping("/clubbing")
-    public String showEvents(Model model) {
-        List<Event> events = eventRepository.findAll(); // Obtiene los eventos de la BD
-        model.addAttribute("section_2", events); // Agrega la lista al modelo
+    public String showClubs(Model model) {
+        List<Event> clubs = eventRepository.findByType("club"); // Obtiene los eventos de la BD
+        model.addAttribute("section_2", clubs); // Agrega la lista al modelo
         return "section_2"; // Nombre de la plantilla (sin .html)
     }
+
+    
 }
