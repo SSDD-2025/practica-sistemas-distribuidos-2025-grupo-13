@@ -64,11 +64,11 @@ public class EventController {
     @PostConstruct
 	public void init() {
         // Create a event
-        Blob shokoImage = loadImage("img/shoko.jpg");
-        Blob ohmyclubImage = loadImage("img/OH MY CLUB.jpg");
-        Blob liberataImage = loadImage("img/liberata.jpg");
+        Blob shokoImage = loadImage("img/shoko.png");
+        Blob ohmyclubImage = loadImage("img/OH MY CLUB.png");
+        Blob liberataImage = loadImage("img/liberata.png");
 
-        Blob madcoolImage = loadImage("img/mad cool.jpg");
+        Blob madcoolImage = loadImage("img/mad cool 2025.jpg");
         Blob blackworksImage = loadImage("img/blackworks.jpg");
         Blob madridSalvajeImage = loadImage("img/madrid salvaje.jpg");
         Blob rioBabelImage = loadImage("img/rio babel.jpg");
@@ -90,9 +90,9 @@ public class EventController {
                                 "club", 23, shokoImage);
 
         for (int i = 0; i < 10; i++){
-            Ticket ticketShoko = new Ticket(shoko.getTitle(), shoko.getPrecio(), finish, TicketStatus.OPEN);
-            shoko.getTickets().add(ticketShoko);
-            //ticketRepository.save(ticketShoko);
+            Ticket ticketShoko = new Ticket(shoko.getTitle(), shoko.getPrecio(), shoko.getTimeFinish(), TicketStatus.OPEN);
+            //shoko.getTickets().add(ticketShoko);
+            ticketRepository.save(ticketShoko);//Mejor opcion según el teacher
         }
         
         eventRepository.save(shoko);
@@ -104,6 +104,11 @@ public class EventController {
                                 finish,
                                 "C/Rosario Pino 14",
                                 "club", 24, ohmyclubImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketohmyclub = new Ticket(ohmyclub.getTitle(), ohmyclub.getPrecio(), ohmyclub.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketohmyclub);
+                                }
+                                
         
         eventRepository.save(ohmyclub);
 
@@ -114,6 +119,10 @@ public class EventController {
                                 finish,
                                 "El Corral De Chamartin",
                                 "club", 19, liberataImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketliberata = new Ticket(liberata.getTitle(), liberata.getPrecio(), liberata.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketliberata);
+                                }
         
         eventRepository.save(liberata);
 
@@ -124,6 +133,10 @@ public class EventController {
                                 finish,
                                 "Espacio Iberdrola Music",
                                 "festival", 69, madcoolImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketmadcool = new Ticket(madcool.getTitle(), madcool.getPrecio(), madcool.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketmadcool);
+                                }
 
         eventRepository.save(madcool);
 
@@ -134,6 +147,10 @@ public class EventController {
                                 finish,
                                 "Ifema Madrid",
                                 "festival", 120, blackworksImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketblackworks = new Ticket(blackworks.getTitle(), blackworks.getPrecio(), blackworks.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketblackworks);
+                                }
 
         eventRepository.save(blackworks);
 
@@ -144,6 +161,10 @@ public class EventController {
                                 finish,
                                 "Ifema Madrid",
                                 "festival", 80, madridSalvajeImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketmadridsalvaje = new Ticket(madridSalvaje.getTitle(), madridSalvaje.getPrecio(), madridSalvaje.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketmadridsalvaje);
+                                }
 
         eventRepository.save(madridSalvaje);
 
@@ -154,6 +175,10 @@ public class EventController {
                                 finish,
                                 "Caja Mágica de Madrid",
                                 "festival", 99, rioBabelImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketriobabel = new Ticket(rioBabel.getTitle(), rioBabel.getPrecio(), rioBabel.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketriobabel);
+                                }
 
         eventRepository.save(rioBabel); 
 
@@ -164,6 +189,10 @@ public class EventController {
                                 finish,
                                 "Movistar Arena",
                                 "concierto", 42, natosywaorImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketnatosywaor = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio(), natosywaor.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketnatosywaor);
+                                }
 
         eventRepository.save(natosywaor);
 
@@ -174,6 +203,10 @@ public class EventController {
                                 finish,
                                 "Las Ventas",
                                 "concierto", 29, alsafirImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketalsafir = new Ticket(alsafir.getTitle(), alsafir.getPrecio(), alsafir.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketalsafir);
+                                }
 
         eventRepository.save(alsafir);
 
@@ -184,6 +217,10 @@ public class EventController {
                                 finish,
                                 "Sala Changó",
                                 "concierto", 15, pekeImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketpekeno = new Ticket(pekeno.getTitle(), pekeno.getPrecio(), pekeno.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketpekeno);
+                                }
 
         eventRepository.save(pekeno);
 
@@ -194,6 +231,10 @@ public class EventController {
                                 finish,
                                 "Teatro Barceló",
                                 "concierto", 58, cruzziImage);
+                                for (int i = 0; i < 10; i++){
+                                    Ticket ticketcruzzi = new Ticket(cruzzi.getTitle(), cruzzi.getPrecio(), cruzzi.getTimeFinish(), TicketStatus.OPEN);
+                                    ticketRepository.save(ticketcruzzi);
+                                }
 
         eventRepository.save(cruzzi);
 
