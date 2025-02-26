@@ -1,9 +1,16 @@
 package es.grupo13.ssddgrupo13.entities;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Event {
@@ -21,6 +28,9 @@ public class Event {
     @Column(nullable = false)
     private String description;
 
+	@Column(nullable = false)
+    private String address;
+
     @Column(nullable = false)
     private LocalDateTime timeStart;
 
@@ -37,12 +47,13 @@ public class Event {
 
     }
 
-    public Event(String title, int capacity, String description, LocalDateTime timeStart, LocalDateTime timeFinish) {
+    public Event(String title, int capacity, String description, LocalDateTime timeStart, LocalDateTime timeFinish, String address) {
         this.title = title;
         this.capacity = capacity;
         this.description = description;
         this.timeStart = timeStart;
         this.timeFinish = timeFinish;
+		this.address = address;
     }
 
     public Long getId() {
@@ -59,6 +70,14 @@ public class Event {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getAdress() {
+		return address;
+	}
+
+	public void setAdress(String address) {
+		this.address = address;
 	}
 
     public int getCapacity() {

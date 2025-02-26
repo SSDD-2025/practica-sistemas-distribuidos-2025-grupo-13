@@ -8,46 +8,21 @@
         </hr>
     </div>
 
+    {{#section_2}}
     <div class="club1">
         <div class="img">
-            <img src="img/shoko.jpg" height="160px" width="185px" alt="Club 1">
+            <img src="img/{{title}}.jpg" height="150px" width="185px" alt="{{title}}">
         </div>
-        
         <div class="club1-text">
-            <h2>SHOKO</h2>
-            <p>Sala Shoko Madrid</p>
-            <p >Largas noches de música latina acompañado de buen ambiente</p>
-            <p >dd/mm/aaaa</p>
+            <h2>{{title}}</h2>
+            <p>{{address}}</p>
+            <p>{{description}}</p>
+            <p>{{timeStart}} {{timeFinish}}</p>
         </div>
         <button type="button" class="btnclub">Ver más</button>
     </div>
+    {{/section_2}}
 
-    <div class="club1">
-        <div class="img">
-            <img src="img/ohmyclub.jpg" height="105px" width="175px" " alt="Club 1">
-        </div>
-        <div class="club1-text">
-            <h2>OH MY CLUB</h2>
-            <p>C/Rosario Pino 14</p>
-            <p >Descubre un nuevo universo con el reservado ambiente de nustra discoteca</p>
-            <p >dd/mm/aaaa</p>
-        </div>
-        <button type="button" class="btnclub">Ver más</button>
-    </div>
-
-    <div class="club1">
-        <div class="img">
-            <img src="img/liberata.jpg" height="105px" width="175px" " alt="Club 1">
-        </div>
-        <div class="club1-text">
-            <h2>LIBERATA</h2>
-            <p>El Corral De Chamartin</p>
-            <p >Música de ambienta acompañada de gente dispuesta a pasarselo bien</p>
-            <p >dd/mm/aaaa</p>
-        </div>
-        <button type="button" class="btnclub">Ver más</button>
-        
-    </div>
     {{>footer}}
 
 </body>
