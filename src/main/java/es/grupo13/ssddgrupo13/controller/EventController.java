@@ -1,9 +1,19 @@
 package es.grupo13.ssddgrupo13.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +38,34 @@ public class EventController {
 
     @Autowired
     private CommentRepository commentRepository;
+    
+    private Blob loadImage(String path) {
+        try {
+            
+            InputStream inputStream = new ClassPathResource("static/" + path).getInputStream();
+            return BlobProxy.generateProxy(inputStream, inputStream.available());
+        } catch (IOException e) {
+            System.err.println("⚠ No se pudo cargar la imagen: " + path + ". Usando imagen por defecto.");
+            return loadDefaultImage();
+        }
+    }
+    
+    private Blob loadDefaultImage() {
+        try {
+            InputStream inputStream = new ClassPathResource("img/default.jpg").getInputStream();
+            return BlobProxy.generateProxy(inputStream, inputStream.available());
+        } catch (IOException e) {
+            System.err.println("⚠ No se pudo cargar la imagen por defecto. Se usará un Blob vacío.");
+            return BlobProxy.generateProxy(new byte[0]); // ✅ Usa un Blob vacío en lugar de null
+        }
+    }
+    
 
     @PostConstruct
 	public void init() {
         // Create a event
+        Blob shokoImage = loadImage("img/shoko.jpg");
+        Blob ohmyclubImage = loadImage("ohmyclub.jpg");
         LocalDateTime start = LocalDateTime.of(2025, 02, 26, 23, 00, 00);
         LocalDateTime finish = LocalDateTime.of(2025, 02, 27, 06, 00, 00);
 
@@ -41,7 +75,7 @@ public class EventController {
                                 start, 
                                 finish,
                                 "Sala Shoko Madrid",
-                                "club", 23);
+                                "club", 23, shokoImage);
 
         for (int i = 0; i < 10; i++){
             Ticket ticketShoko = new Ticket(shoko.getTitle(), shoko.getPrecio(), finish, TicketStatus.OPEN);
@@ -57,7 +91,7 @@ public class EventController {
                                 start, 
                                 finish,
                                 "C/Rosario Pino 14",
-                                "club", 24);
+                                "club", 24, shokoImage);
         
         eventRepository.save(ohmyclub);
 
@@ -67,7 +101,7 @@ public class EventController {
                                 start, 
                                 finish,
                                 "El Corral De Chamartin",
-                                "club", 19);
+                                "club", 19, shokoImage);
         
         eventRepository.save(liberata);
 
@@ -77,7 +111,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Espacio Iberdrola Music",
-                                "festival", 69);
+                                "festival", 69, shokoImage);
 
         eventRepository.save(madcool);
 
@@ -87,7 +121,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Ifema Madrid",
-                                "festival", 120);
+                                "festival", 120, shokoImage);
 
         eventRepository.save(blackworks);
 
@@ -97,7 +131,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Ifema Madrid",
-                                "festival", 80);
+                                "festival", 80, shokoImage);
 
         eventRepository.save(madridSalvaje);
 
@@ -107,7 +141,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Caja Mágica de Madrid",
-                                "festival", 99);
+                                "festival", 99, shokoImage);
 
         eventRepository.save(rioBabel); 
 
@@ -117,7 +151,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Movistar Arena",
-                                "concierto", 82);
+                                "concierto", 82, shokoImage);
 
         eventRepository.save(duki);
 
@@ -127,7 +161,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Sala But",
-                                "concierto", 24);
+                                "concierto", 24, shokoImage);
 
         eventRepository.save(cro);
 
@@ -137,7 +171,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Movistar Arena",
-                                "concierto", 25);
+                                "concierto", 25, shokoImage);
 
         eventRepository.save(hoke);
 
@@ -147,7 +181,8 @@ public class EventController {
                                 start,
                                 finish,
                                 "The Heaven Club",
-                                "concierto", 1000);
+                                "concierto", 1000 , shokoImage
+                                );
 
         eventRepository.save(juiceWRLD);
 
@@ -157,7 +192,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Movistar Arena",
-                                "concierto", 36);
+                                "concierto", 36, shokoImage);
 
         eventRepository.save(kiddkeo);
 
@@ -167,7 +202,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Movistar Arena",
-                                "concierto", 42);
+                                "concierto", 42, shokoImage);
 
         eventRepository.save(natosywaor);
 
@@ -177,7 +212,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Las Ventas",
-                                "concierto", 29);
+                                "concierto", 29, shokoImage);
 
         eventRepository.save(alsafir);
 
@@ -187,7 +222,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Sala Changó",
-                                "concierto", 15);
+                                "concierto", 15, shokoImage);
 
         eventRepository.save(pekeno);
 
@@ -197,11 +232,24 @@ public class EventController {
                                 start,
                                 finish,
                                 "Teatro Barceló",
-                                "concierto", 58);
+                                "concierto", 58, shokoImage);
 
         eventRepository.save(cruzzi);
 
         
+    }
+
+    
+    @GetMapping("/event-image/{id}")
+    public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+        Optional<Event> op = eventRepository.findById(id);
+        if (op.isPresent() && op.get().getImage() != null) {
+            Blob image = op.get().getImage();
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+            .body(new InputStreamResource(op.get().getImage().getBinaryStream()));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/clubbing")
