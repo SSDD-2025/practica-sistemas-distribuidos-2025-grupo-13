@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Ssddgrupo13Application",
+            "request": "launch",
+            "mainClass": "es.grupo13.ssddgrupo13.Ssddgrupo13Application",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-Ssddgrupo13Application<ssddgrupo13>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

@@ -1,6 +1,9 @@
 package es.grupo13.ssddgrupo13.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Comment {
@@ -8,7 +11,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    private String autor;
     private String text;
     private int rating;
 
@@ -16,8 +19,9 @@ public class Comment {
 
     }
 
-    public Comment(String text, int rating) {
+    public Comment(String autor ,String text, int rating) {
         super();
+        this.autor = autor;
         this.text = text;
         this.rating = rating;
     }
@@ -28,6 +32,14 @@ public class Comment {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+    public String getAutor() {
+		return autor;
+	}
+
+	public void setIAutor(String autor) {
+        this.autor = autor;
+		
 	}
 
     public String getText() {

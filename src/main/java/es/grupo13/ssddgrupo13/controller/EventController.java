@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import es.grupo13.ssddgrupo13.entities.Comment;
 import es.grupo13.ssddgrupo13.entities.Event;
 import es.grupo13.ssddgrupo13.entities.Ticket;
 import es.grupo13.ssddgrupo13.entities.TicketStatus;
@@ -281,7 +282,10 @@ public class EventController {
         if (optionalEvent.isPresent()) {
             Event event = optionalEvent.get();
             System.out.println("Event: " + event.getTitle());
-            
+            for (Comment comment : event.getComments()) {
+                model.addAttribute("comment", comment);
+                
+            }
             model.addAttribute("ticket", event); 
             return "ticket";
         } else {

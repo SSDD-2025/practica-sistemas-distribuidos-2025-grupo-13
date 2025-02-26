@@ -40,6 +40,8 @@
         <div class="container-btn-comment">
             <button class="btn-change8 btn-comentario" type="button" data-bs-toggle="modal"
                 data-bs-target="#modalComentario">Añadir comentario</button>
+        <-- Modal para agregar comentario -->
+        <-- Mantengo este como ejemplo/referencia-->
         </div>
         <div class="container-comments">
             <div class="comment-post">
@@ -54,41 +56,16 @@
                     <p>&#9733 &#9733 &#9733 &#9733 &#9733</p>
                 </div>
             </div>
-            <div class="comment-post">
-                <div class="comment-post_user">
-                    macas
-                </div>
-                <div class="comment-post_content">
-                    <p>
-                        He venido en vez de ir a sistemas distribuidos. 
-                        No me arrepiento, ha sido una experiencia increíble.
-                    </p>
-                </div>
-                <div class="comment-post_valoration">
-                    <p>&#9733 &#9733 &#9733</p>
-                </div>
 
-            </div>
             <div class="comment-post">
                 <div class="comment-post_user">
-                    robber
+                    {{comment.autor}}
                 </div>
                 <div class="comment-post_content">
-                    <p>No me gustó nada, no volveré.</p>
+                    <p>{{comment.text}}</p>
                 </div>
                 <div class="comment-post_valoration">
-                    <p>&#9733</p>
-                </div>
-            </div>
-            <div class="comment-post">
-                <div class="comment-post_user">
-                    alvarete
-                </div>
-                <div class="comment-post_content">
-                    <p>Chuli</p>
-                </div>
-                <div class="comment-post_valoration">
-                    <p>&#9733 &#9733 &#9733</p>
+                    <p>{{comment.rating}}</p>
                 </div>
             </div>
         </div>
@@ -107,7 +84,7 @@
             </div>
 
             <div class="modal-body">
-                <form>
+                <form action ="/comment-in" method="post">
                     <div class="mb-2">
                         <div class="star-rating animated-stars">
                             <input type="radio" id="star5" name="rating" value="5">
@@ -124,7 +101,7 @@
                     </div>
                     <div class="mb-2 ">
                         <label for="inputComentario">Comentario</label>
-                        <textarea class="form-control" id="inputComentario" rows="3"></textarea>
+                        <textarea class="form-control" id="inputComentario" rows="3" name="text"></textarea>
                     </div>
                     <button type="submit" class="btn btn-publicar">Publicar</button>
 
