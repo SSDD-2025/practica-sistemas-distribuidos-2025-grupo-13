@@ -21,10 +21,10 @@ public class ControllerApp {
     public String conciertosLink() {
         return "section_3";
     }
-    @GetMapping("/eventos")
+    /*@GetMapping("/eventos")
     public String eventosLink() {
         return "section_4";
-    }
+    }*/
     @GetMapping("/contactanos")
     public String contactanosLink() {
         return "section_5";

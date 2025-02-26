@@ -61,7 +61,45 @@ public class EventController {
         
         eventRepository.save(liberata);
 
-        
+        Event madcool = new Event("MAD COOL 2025",
+                                3000,
+                                "Uno de los festivales musicales más importantes del mundo se celebra en el espacio Iberdrola Music en su octava edición con grandes grupos y artistas del panorama musical",
+                                start,
+                                finish,
+                                "Espacio Iberdrola Music",
+                                "festival");
+
+        eventRepository.save(madcool);
+
+        Event blackworks = new Event("BLACKWORKS",
+                                3000,
+                                "Con esta edición, Blackworks propone una experiencia introspectiva que combina lo mejor de la música electrónica con un enfoque en el espíritu colectivo. ",
+                                start,
+                                finish,
+                                "Ifema Madrid",
+                                "festival");
+
+        eventRepository.save(blackworks);
+
+        Event madridSalvaje = new Event("MADRID SALVAJE",
+                                3000,
+                                "IFEMA MADRID se convierte en punto de encuentro de la música urbana durante dos días de festival, con artistas de rap y trap del país actuando en varios escenarios.",
+                                start,
+                                finish,
+                                "Ifema Madrid",
+                                "festival");
+
+        eventRepository.save(madridSalvaje);
+
+        Event rioBabel = new Event("RIO BABEL",
+                                3000,
+                                "Un heterogéneo festival de música iberoamericana que contará con la presencia de grupos y artistas nacionales e internacionales.",
+                                start,
+                                finish,
+                                "Caja Mágica de Madrid",
+                                "festival");
+
+        eventRepository.save(rioBabel);
     }
 
     @GetMapping("/clubbing")
@@ -71,5 +109,10 @@ public class EventController {
         return "section_2"; // Nombre de la plantilla (sin .html)
     }
 
-    
+    @GetMapping("/eventos")
+    public String showEvents(Model model) {
+        List<Event> events = eventRepository.findByType("festival"); // Obtiene los eventos de la BD
+        model.addAttribute("section_4", events); // Agrega la lista al modelo
+        return "section_4"; // Nombre de la plantilla (sin .html)
+    }    
 }
