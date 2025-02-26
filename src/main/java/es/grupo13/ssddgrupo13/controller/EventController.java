@@ -37,8 +37,10 @@ public class EventController {
                                 start, 
                                 finish,
                                 "Sala Shoko Madrid",
-                                "club");
+                                "club", 23);
 
+        // Ticket ticketClub = new Ticket(TicketStatus.OPEN, shoko);
+        // shoko.getTickets().add(ticketClub);
         eventRepository.save(shoko);
         
         Event ohmyclub = new Event("OH MY CLUB", 
@@ -47,7 +49,7 @@ public class EventController {
                                 start, 
                                 finish,
                                 "C/Rosario Pino 14",
-                                "club");
+                                "club", 24);
         
         eventRepository.save(ohmyclub);
 
@@ -57,7 +59,7 @@ public class EventController {
                                 start, 
                                 finish,
                                 "El Corral De Chamartin",
-                                "club");
+                                "club", 19);
         
         eventRepository.save(liberata);
 
@@ -67,7 +69,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Espacio Iberdrola Music",
-                                "festival");
+                                "festival", 69);
 
         eventRepository.save(madcool);
 
@@ -77,7 +79,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Ifema Madrid",
-                                "festival");
+                                "festival", 120);
 
         eventRepository.save(blackworks);
 
@@ -87,7 +89,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Ifema Madrid",
-                                "festival");
+                                "festival", 80);
 
         eventRepository.save(madridSalvaje);
 
@@ -97,7 +99,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Caja Mágica de Madrid",
-                                "festival");
+                                "festival", 99);
 
         eventRepository.save(rioBabel); 
 
@@ -107,7 +109,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Movistar Arena",
-                                "concierto");
+                                "concierto", 82);
 
         eventRepository.save(duki);
 
@@ -117,7 +119,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Sala But",
-                                "concierto");
+                                "concierto", 24);
 
         eventRepository.save(cro);
 
@@ -127,7 +129,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Movistar Arena",
-                                "concierto");
+                                "concierto", 25);
 
         eventRepository.save(hoke);
 
@@ -137,7 +139,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "The Heaven Club",
-                                "concierto");
+                                "concierto", 1000);
 
         eventRepository.save(juiceWRLD);
 
@@ -147,7 +149,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Movistar Arena",
-                                "concierto");
+                                "concierto", 36);
 
         eventRepository.save(kiddkeo);
 
@@ -157,7 +159,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Movistar Arena",
-                                "concierto");
+                                "concierto", 42);
 
         eventRepository.save(natosywaor);
 
@@ -167,7 +169,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Las Ventas",
-                                "concierto");
+                                "concierto", 29);
 
         eventRepository.save(alsafir);
 
@@ -177,7 +179,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Sala Changó",
-                                "concierto");
+                                "concierto", 15);
 
         eventRepository.save(pekeno);
 
@@ -187,9 +189,11 @@ public class EventController {
                                 start,
                                 finish,
                                 "Teatro Barceló",
-                                "concierto");
+                                "concierto", 58);
 
         eventRepository.save(cruzzi);
+
+        
     }
 
     @GetMapping("/clubbing")

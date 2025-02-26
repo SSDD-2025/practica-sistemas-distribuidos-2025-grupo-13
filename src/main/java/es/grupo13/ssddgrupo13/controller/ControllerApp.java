@@ -13,11 +13,6 @@ public class ControllerApp {
         return "index";
     }
 
-    /*@GetMapping("/conciertos")
-    public String conciertosLink() {
-        return "section_3";
-    }*/
-
     @GetMapping("/contactanos")
     public String contactanosLink() {
         return "section_5";
