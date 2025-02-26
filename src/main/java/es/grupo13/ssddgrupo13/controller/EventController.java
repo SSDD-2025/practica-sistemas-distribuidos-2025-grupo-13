@@ -99,7 +99,97 @@ public class EventController {
                                 "Caja Mágica de Madrid",
                                 "festival");
 
-        eventRepository.save(rioBabel);
+        eventRepository.save(rioBabel); 
+
+        Event duki = new Event("DUKI",
+                                3000,
+                                "",
+                                start,
+                                finish,
+                                "Movistar Arena",
+                                "concierto");
+
+        eventRepository.save(duki);
+
+        Event cro = new Event("C.R.O",
+                                3000,
+                                "",
+                                start,
+                                finish,
+                                "Sala But",
+                                "concierto");
+
+        eventRepository.save(cro);
+
+        Event hoke = new Event("HOKE",
+                                3000,
+                                "",
+                                start,
+                                finish,
+                                "Movistar Arena",
+                                "concierto");
+
+        eventRepository.save(hoke);
+
+        Event juiceWRLD = new Event("JUICE WRLD",
+                                3000,
+                                "",
+                                start,
+                                finish,
+                                "The Heaven Club",
+                                "concierto");
+
+        eventRepository.save(juiceWRLD);
+
+        Event kiddkeo = new Event("KIDD KEO",
+                                3000,
+                                "",
+                                start,
+                                finish,
+                                "Movistar Arena",
+                                "concierto");
+
+        eventRepository.save(kiddkeo);
+
+        Event natosywaor = new Event("NATOS Y WAOR",
+                                3000,
+                                "",
+                                start,
+                                finish,
+                                "Movistar Arena",
+                                "concierto");
+
+        eventRepository.save(natosywaor);
+
+        Event alsafir = new Event("AL SAFIR",
+                                3000,
+                                "",
+                                start,
+                                finish,
+                                "Las Ventas",
+                                "concierto");
+
+        eventRepository.save(alsafir);
+
+        Event pekeno = new Event("ILL PEKEÑO & ERGO PRO",
+                                3000,
+                                "",
+                                start,
+                                finish,
+                                "Sala Changó",
+                                "concierto");
+
+        eventRepository.save(pekeno);
+
+        Event cruzzi = new Event("CRUZZI",
+                                3000,
+                                "",
+                                start,
+                                finish,
+                                "Teatro Barceló",
+                                "concierto");
+
+        eventRepository.save(cruzzi);
     }
 
     @GetMapping("/clubbing")
@@ -109,10 +199,17 @@ public class EventController {
         return "section_2"; // Nombre de la plantilla (sin .html)
     }
 
-    @GetMapping("/eventos")
-    public String showEvents(Model model) {
+    @GetMapping("/festivales")
+    public String showFestivales(Model model) {
         List<Event> events = eventRepository.findByType("festival"); // Obtiene los eventos de la BD
         model.addAttribute("section_4", events); // Agrega la lista al modelo
         return "section_4"; // Nombre de la plantilla (sin .html)
-    }    
+    }
+
+    @GetMapping("/conciertos")
+    public String showConciertos(Model model) {
+        List<Event> events = eventRepository.findByType("concierto"); // Obtiene los eventos de la BD
+        model.addAttribute("section_3", events); // Agrega la lista al modelo
+        return "section_3"; // Nombre de la plantilla (sin .html)
+    }  
 }
