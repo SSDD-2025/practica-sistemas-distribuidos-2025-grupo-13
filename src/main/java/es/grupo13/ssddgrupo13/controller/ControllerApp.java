@@ -17,10 +17,11 @@ public class ControllerApp {
     public String contactanosLink() {
         return "section_5";
     }
-    @GetMapping("/ticket")
+    
+    /*@GetMapping("/ticket")
     public String ticketLink() {
         return "ticket";
-    }
+    }*/
     
     /*@GetMapping("/error")
     public String errorLink() {

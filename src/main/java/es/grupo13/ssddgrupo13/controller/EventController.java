@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import es.grupo13.ssddgrupo13.entities.Event;
+import es.grupo13.ssddgrupo13.entities.Ticket;
+import es.grupo13.ssddgrupo13.entities.TicketStatus;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.repository.EventRepository;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
+
 
 @Controller
 public class EventController {
@@ -39,8 +43,12 @@ public class EventController {
                                 "Sala Shoko Madrid",
                                 "club", 23);
 
-        // Ticket ticketClub = new Ticket(TicketStatus.OPEN, shoko);
-        // shoko.getTickets().add(ticketClub);
+        for (int i = 0; i < 10; i++){
+            Ticket ticketShoko = new Ticket(shoko.getTitle(), shoko.getPrecio(), finish, TicketStatus.OPEN);
+            shoko.getTickets().add(ticketShoko);
+            //ticketRepository.save(ticketShoko);
+        }
+        
         eventRepository.save(shoko);
         
         Event ohmyclub = new Event("OH MY CLUB", 
@@ -216,4 +224,13 @@ public class EventController {
         model.addAttribute("section_3", events); // Agrega la lista al modelo
         return "section_3"; // Nombre de la plantilla (sin .html)
     }  
+
+    @GetMapping("/ticket")
+    public String showTicket(Model model, @PathVariable String title) {
+        List<Event> events = eventRepository.findByTitle(title);
+        model.addAttribute("ticket", events.getFirst());
+        return "ticket";
+    }
+    
+
 }
