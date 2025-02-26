@@ -65,7 +65,19 @@ public class EventController {
 	public void init() {
         // Create a event
         Blob shokoImage = loadImage("img/shoko.jpg");
-        Blob ohmyclubImage = loadImage("ohmyclub.jpg");
+        Blob ohmyclubImage = loadImage("img/OH MY CLUB.jpg");
+        Blob liberataImage = loadImage("img/liberata.jpg");
+
+        Blob madcoolImage = loadImage("img/mad cool.jpg");
+        Blob blackworksImage = loadImage("img/blackworks.jpg");
+        Blob madridSalvajeImage = loadImage("img/madrid salvaje.jpg");
+        Blob rioBabelImage = loadImage("img/rio babel.jpg");
+
+
+        Blob cruzziImage = loadImage("img/cruzzi.jpg");
+        Blob natosywaorImage = loadImage("img/natos y waor.jpg");
+        Blob alsafirImage = loadImage("img/al safir.jpg");
+        Blob pekeImage = loadImage("img/ill pekeno & ergo pro.jpg"); ; 
         LocalDateTime start = LocalDateTime.of(2025, 02, 26, 23, 00, 00);
         LocalDateTime finish = LocalDateTime.of(2025, 02, 27, 06, 00, 00);
 
@@ -91,7 +103,7 @@ public class EventController {
                                 start, 
                                 finish,
                                 "C/Rosario Pino 14",
-                                "club", 24, shokoImage);
+                                "club", 24, ohmyclubImage);
         
         eventRepository.save(ohmyclub);
 
@@ -101,7 +113,7 @@ public class EventController {
                                 start, 
                                 finish,
                                 "El Corral De Chamartin",
-                                "club", 19, shokoImage);
+                                "club", 19, liberataImage);
         
         eventRepository.save(liberata);
 
@@ -111,7 +123,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Espacio Iberdrola Music",
-                                "festival", 69, shokoImage);
+                                "festival", 69, madcoolImage);
 
         eventRepository.save(madcool);
 
@@ -121,7 +133,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Ifema Madrid",
-                                "festival", 120, shokoImage);
+                                "festival", 120, blackworksImage);
 
         eventRepository.save(blackworks);
 
@@ -131,7 +143,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Ifema Madrid",
-                                "festival", 80, shokoImage);
+                                "festival", 80, madridSalvajeImage);
 
         eventRepository.save(madridSalvaje);
 
@@ -141,60 +153,9 @@ public class EventController {
                                 start,
                                 finish,
                                 "Caja Mágica de Madrid",
-                                "festival", 99, shokoImage);
+                                "festival", 99, rioBabelImage);
 
         eventRepository.save(rioBabel); 
-
-        Event duki = new Event("DUKI",
-                                3000,
-                                "",
-                                start,
-                                finish,
-                                "Movistar Arena",
-                                "concierto", 82, shokoImage);
-
-        eventRepository.save(duki);
-
-        Event cro = new Event("C.R.O",
-                                3000,
-                                "",
-                                start,
-                                finish,
-                                "Sala But",
-                                "concierto", 24, shokoImage);
-
-        eventRepository.save(cro);
-
-        Event hoke = new Event("HOKE",
-                                3000,
-                                "",
-                                start,
-                                finish,
-                                "Movistar Arena",
-                                "concierto", 25, shokoImage);
-
-        eventRepository.save(hoke);
-
-        Event juiceWRLD = new Event("JUICE WRLD",
-                                3000,
-                                "",
-                                start,
-                                finish,
-                                "The Heaven Club",
-                                "concierto", 1000 , shokoImage
-                                );
-
-        eventRepository.save(juiceWRLD);
-
-        Event kiddkeo = new Event("KIDD KEO",
-                                3000,
-                                "",
-                                start,
-                                finish,
-                                "Movistar Arena",
-                                "concierto", 36, shokoImage);
-
-        eventRepository.save(kiddkeo);
 
         Event natosywaor = new Event("NATOS Y WAOR",
                                 3000,
@@ -202,7 +163,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Movistar Arena",
-                                "concierto", 42, shokoImage);
+                                "concierto", 42, natosywaorImage);
 
         eventRepository.save(natosywaor);
 
@@ -212,7 +173,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Las Ventas",
-                                "concierto", 29, shokoImage);
+                                "concierto", 29, alsafirImage);
 
         eventRepository.save(alsafir);
 
@@ -222,7 +183,7 @@ public class EventController {
                                 start,
                                 finish,
                                 "Sala Changó",
-                                "concierto", 15, shokoImage);
+                                "concierto", 15, pekeImage);
 
         eventRepository.save(pekeno);
 
@@ -232,11 +193,10 @@ public class EventController {
                                 start,
                                 finish,
                                 "Teatro Barceló",
-                                "concierto", 58, shokoImage);
+                                "concierto", 58, cruzziImage);
 
         eventRepository.save(cruzzi);
 
-        
     }
 
     
