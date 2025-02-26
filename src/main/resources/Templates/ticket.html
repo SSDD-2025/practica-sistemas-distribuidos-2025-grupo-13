@@ -1,16 +1,17 @@
 <!DOCTYPE html>
+<html lang="en">
 
 {{>header}}    
 
 <section class="detailContent"> 
     <div class="containerDetail"> 
         <li class="headDetailEvent">
-            <h1 class="titleDetailEvent">{{title}}</h1>
-            <h2 class="subtitleDetailEvent">{{type}}</h2>
+            <h1 class="titleDetailEvent">{{ticket.title}}</h1>
+            <h2 class="subtitleDetailEvent">{{ticket.type}}</h2>
             <li class="columnElementsEvent">
                 <div class="elementDetailEvent">
                     <i class="singleElement title">Fecha</i>
-                        <p class="singleElement content">{{timeStart}}  {{timeFinish}}</p>
+                        <p class="singleElement content">{{ticket.timeStart}}  {{ticket.timeFinish}}</p>
                 </div>
                 <div class="elementDetailEvent">
                     <i class="singleElement title">Hora</i>
@@ -18,14 +19,14 @@
                 </div>
                 <div class="elementDetailEvent">
                     <i class="singleElement title">Precio</i>
-                        <p>{{precio}}</p>
+                        <p>{{ticket.precio}}</p>
                 </div>
                 <button class="btn-change8">Comprar</button>
             </li>
     </div>
     <div class="pictureAndDescription">
         <div class="pictureDetailEvent"> 
-        <img src="img/{{title}}.jpg" alt="{{title}}">
+        <img src="img/{{ticket.title}}.jpg" alt="{{ticket.title}}">
         </div>
     </div>
 </section>

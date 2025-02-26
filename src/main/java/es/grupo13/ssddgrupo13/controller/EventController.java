@@ -233,11 +233,19 @@ public class EventController {
         return "section_3"; // Nombre de la plantilla (sin .html)
     }  
 
-    @GetMapping("/ticket")
-    public String showTicket(Model model, @PathVariable String title) {
-        List<Event> events = eventRepository.findByTitle(title);
-        model.addAttribute("ticket", events.getFirst());
-        return "ticket";
+    @GetMapping("/ticket/{id}")
+    public String showTicket(Model model, @PathVariable long id) {
+        System.out.println("ID: " + id);
+        Optional<Event> optionalEvent = eventRepository.findById(id);
+        if (optionalEvent.isPresent()) {
+            Event event = optionalEvent.get();
+            System.out.println("Event: " + event.getTitle());
+            
+            model.addAttribute("ticket", event); 
+            return "ticket";
+        } else {
+            return "error";
+        }
     }
     
 
