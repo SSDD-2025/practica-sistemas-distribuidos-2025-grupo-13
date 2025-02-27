@@ -18,15 +18,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import es.grupo13.ssddgrupo13.entities.Client;
 import es.grupo13.ssddgrupo13.entities.Comment;
 import es.grupo13.ssddgrupo13.entities.Event;
 import es.grupo13.ssddgrupo13.entities.Ticket;
 import es.grupo13.ssddgrupo13.entities.TicketStatus;
+import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.repository.EventRepository;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -39,6 +44,9 @@ public class EventController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private ClientRepository clientRepository;
     
     private Blob loadImage(String path) {
         try {
@@ -82,52 +90,35 @@ public class EventController {
         LocalDateTime start = LocalDateTime.of(2025, 02, 26, 23, 00, 00);
         LocalDateTime finish = LocalDateTime.of(2025, 02, 27, 06, 00, 00);
 
-        Event shoko = new Event("SHOKO", 
-                                200,
-                                "Largas noches de música latina acompañado de buen ambiente",
-                                start, 
-                                finish,
-                                "Sala Shoko Madrid",
-                                "club", 23, shokoImage);
+        Event shoko = new Event("SHOKO", 200, "Largas noches de música latina acompañado de buen ambiente", start, finish, "Sala Shoko Madrid", "club", 23, shokoImage);
 
         for (int i = 0; i < 10; i++){
             Ticket ticketShoko = new Ticket(shoko.getTitle(), shoko.getPrecio(), shoko.getTimeFinish(), TicketStatus.OPEN);
-            //shoko.getTickets().add(ticketShoko);
             ticketRepository.save(ticketShoko);//Mejor opcion según el teacher
         }
-        Comment comment = new Comment("Robert", "soy mariquita", 5, shoko.getTitle());
-        Comment comment1 = new Comment("Robert", "soy mariquita", 4, shoko.getTitle());
+        Comment comment = new Comment("Robert", "soy mariquita", "5", shoko.getTitle());
+        Comment comment1 = new Comment("Robert", "soy mariquita", "4", shoko.getTitle());
         shoko.addComments(comment);
         shoko.addComments(comment1);
         
         eventRepository.save(shoko);
         
-        Event ohmyclub = new Event("OH MY CLUB", 
-                                200,
-                                "Descubre un nuevo universo con el reservado ambiente de nustra discoteca",
-                                start, 
-                                finish,
-                                "C/Rosario Pino 14",
-                                "club", 24, ohmyclubImage);
-                                for (int i = 0; i < 10; i++){
-                                    Ticket ticketohmyclub = new Ticket(ohmyclub.getTitle(), ohmyclub.getPrecio(), ohmyclub.getTimeFinish(), TicketStatus.OPEN);
-                                    ticketRepository.save(ticketohmyclub);
-                                }
+        Event ohmyclub = new Event("OH MY CLUB", 200, "Descubre un nuevo universo con el reservado ambiente de nustra discoteca", start, finish, "C/Rosario Pino 14", "club", 24, ohmyclubImage);
+
+        for (int i = 0; i < 10; i++){
+            Ticket ticketohmyclub = new Ticket(ohmyclub.getTitle(), ohmyclub.getPrecio(), ohmyclub.getTimeFinish(), TicketStatus.OPEN);
+            ticketRepository.save(ticketohmyclub);
+        }
                                 
         
         eventRepository.save(ohmyclub);
 
-        Event liberata = new Event("LIBERATA", 
-                                200,
-                                "Música de ambienta acompañada de gente dispuesta a pasarselo bien",
-                                start, 
-                                finish,
-                                "El Corral De Chamartin",
-                                "club", 19, liberataImage);
-                                for (int i = 0; i < 10; i++){
-                                    Ticket ticketliberata = new Ticket(liberata.getTitle(), liberata.getPrecio(), liberata.getTimeFinish(), TicketStatus.OPEN);
-                                    ticketRepository.save(ticketliberata);
-                                }
+        Event liberata = new Event("LIBERATA", 200, "Música de ambienta acompañada de gente dispuesta a pasarselo bien", start, finish, "El Corral De Chamartin", "club", 19, liberataImage);
+
+        for (int i = 0; i < 10; i++){
+            Ticket ticketliberata = new Ticket(liberata.getTitle(), liberata.getPrecio(), liberata.getTimeFinish(), TicketStatus.OPEN);
+            ticketRepository.save(ticketliberata);
+        }
         
         eventRepository.save(liberata);
 
@@ -293,6 +284,30 @@ public class EventController {
             return "error";
         }
     }
+
+    @PostMapping("/comment_in")
+    public String comment_in(HttpSession session, @RequestParam String text, @RequestParam String rating, @RequestParam Long ticketID) {
+        Client client = (Client) session.getAttribute("client");
+        
+        if (client == null) {
+            return "/error"; // Si no hay cliente en sesión, redirigir a error
+        }
+        
+        Event event = eventRepository.findById(ticketID).orElse(null); // Obtener el evento usando el ticketID
+        
+        if (event == null) {
+            return "/error"; // Si no se encuentra el evento, redirigir a error
+        }
+        
+        Comment comment = new Comment(client.getName(), text, rating, event.getTitle());
+        event.getComments().add(comment);  // Asociar el comentario con el evento
+        commentRepository.save(comment);   // Guardar el comentario
+        eventRepository.save(event);       // Guardar el evento con el comentario agregado
+        
+        return "redirect:/ticket/" + ticketID;  // Redirigir a la página del evento
+    }
+
+
     
 
 }

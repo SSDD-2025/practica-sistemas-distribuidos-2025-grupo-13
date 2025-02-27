@@ -73,7 +73,8 @@
             </div>
 
             <div class="modal-body">
-                <form >
+                <form action = "/comment_in" method = "post">
+                    <input type="hidden" name="ticketID" value="{{ticket.id}}">
                     <div class="mb-2">
                         <div class="star-rating animated-stars">
                             <input type="radio" id="star5" name="rating" value="5">
@@ -93,12 +94,12 @@
                         <textarea class="form-control" id="inputComentario" rows="3" name="text"></textarea>
                     </div>
                     <button type="submit" class="btn btn-publicar">Publicar</button>
-
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 
 
 {{>footer}}

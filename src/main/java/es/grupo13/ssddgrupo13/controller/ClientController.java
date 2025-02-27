@@ -35,7 +35,7 @@ public class ClientController {
     }
 
     @PostMapping("/sign-up")
-    public String singUp(@RequestParam String name, 
+    public String signUp(@RequestParam String name, 
                         @RequestParam String lastName, 
                         @RequestParam String email, 
                         @RequestParam String password,
@@ -65,5 +65,7 @@ public class ClientController {
             return "/error";
         }
     }
+
+    
     
 }

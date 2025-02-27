@@ -1,5 +1,6 @@
 package es.grupo13.ssddgrupo13.entities;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,13 +15,13 @@ public class Comment {
     private String title;
     private String autor;
     private String text;
-    private int rating;
+    private String rating;
 
     protected Comment() {
 
     }
 
-    public Comment(String autor ,String text, int rating, String title) {
+    public Comment(String autor, String text, String rating, String title) {
         super();
         this.autor = autor;
         this.text = text;
@@ -52,12 +53,20 @@ public class Comment {
         this.text = text;
     }
 
-    public int getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
+
+    public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 }

@@ -10,5 +10,5 @@ import es.grupo13.ssddgrupo13.entities.Event;
 public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByType(String type);
     List<Event> findByTitle(String title);
-    Optional<Event> findById(Integer id);
+    Optional<Event> findById(long id);
 }
