@@ -28,9 +28,6 @@ public class Event {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    private int capacity;
-
     @Column(nullable = false, length = 5000)
     private String description;
 
@@ -59,9 +56,8 @@ public class Event {
 
     }
 
-    public Event(String title, int capacity, String description, LocalDateTime timeStart, LocalDateTime timeFinish, String address, String type, Integer precio, Blob imageFile) {
+    public Event(String title, String description, LocalDateTime timeStart, LocalDateTime timeFinish, String address, String type, Integer precio, Blob imageFile) {
         this.title = title;
-        this.capacity = capacity;
         this.description = description;
         this.timeStart = timeStart;
         this.timeFinish = timeFinish;
@@ -120,14 +116,6 @@ public class Event {
 
 	public void setAdress(String address) {
 		this.address = address;
-	}
-
-    public int getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
 	}
 
     public String getDescription() {

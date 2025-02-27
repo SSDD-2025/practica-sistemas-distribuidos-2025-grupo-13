@@ -6,12 +6,12 @@
 <section class="detailContent"> 
     <div class="containerDetail"> 
         <li class="headDetailEvent">
-            <h1 class="titleDetailEvent">{{ticket.title}}</h1>
-            <h2 class="subtitleDetailEvent">{{ticket.type}}</h2>
+            <h1 class="titleDetailEvent">{{event.title}}</h1>
+            <h2 class="subtitleDetailEvent">{{event.type}}</h2>
             <li class="columnElementsEvent">
                 <div class="elementDetailEvent">
                     <i class="singleElement title">Fecha</i>
-                        <p class="singleElement content">{{ticket.timeStart}}  {{ticket.timeFinish}}</p>
+                        <p class="singleElement content">{{event.timeStart}}  {{event.timeFinish}}</p>
                 </div>
                 <div class="elementDetailEvent">
                     <i class="singleElement title">Hora</i>
@@ -19,14 +19,14 @@
                 </div>
                 <div class="elementDetailEvent">
                     <i class="singleElement title">Precio</i>
-                        <p>{{ticket.precio}}</p>
+                        <p>{{event.precio}}</p>
                 </div>
                 <button class="btn-change8">Comprar</button>
             </li>
     </div>
     <div class="pictureAndDescription">
         <div class="pictureDetailEvent"> 
-        <img src="/event-image/{{ticket.id}}" alt="{{ticket.title}}" height="250" width="250">
+        <img src="/event-image/{{event.id}}" alt="{{event.title}}" height="250" width="250">
         </div>
     </div>
 </section>
@@ -74,7 +74,7 @@
 
             <div class="modal-body">
                 <form action = "/comment_in" method = "post">
-                    <input type="hidden" name="ticketID" value="{{ticket.id}}">
+                    <input type="hidden" name="eventID" value="{{event.id}}">
                     <div class="mb-2">
                         <div class="star-rating animated-stars">
                             <input type="radio" id="star5" name="rating" value="5">

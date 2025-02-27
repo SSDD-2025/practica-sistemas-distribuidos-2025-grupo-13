@@ -23,11 +23,6 @@ public class ControllerApp {
         return "mydata";
     }
     
-    /*@GetMapping("/ticket")
-    public String ticketLink() {
-        return "ticket";
-    }*/
-    
     /*@GetMapping("/error")
     public String errorLink() {
         return "error";
