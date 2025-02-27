@@ -125,8 +125,8 @@ public class EventController {
             ticketRepository.save(new Ticket(cruzzi.getTitle(), cruzzi.getPrecio(), cruzzi.getTimeFinish(), TicketStatus.OPEN));
         }
 
-        Comment comment = new Comment("Robert", "soy mariquita", "5", shoko.getTitle());
-        Comment comment1 = new Comment("Robert", "soy mariquita", "4", shoko.getTitle());
+        Comment comment = new Comment("Robert", "soy mariquita", 5, shoko.getTitle());
+        Comment comment1 = new Comment("Robert", "soy mariquita", 4, shoko.getTitle());
 
         shoko.addComments(comment);
         shoko.addComments(comment1);
@@ -188,7 +188,7 @@ public class EventController {
             Event event = optionalEvent.get();
             System.out.println("Event: " + event.getTitle());
             model.addAttribute("comment", event.getComments());
-            model.addAttribute("event", event); 
+            model.addAttribute("event", event);
             return "ticket";
         } else {
             return "error";
@@ -209,7 +209,7 @@ public class EventController {
             return "/error"; // Si no se encuentra el evento, redirigir a error
         }
         
-        Comment comment = new Comment(client.getName(), text, rating, event.getTitle());
+        Comment comment = new Comment(client.getName(), text, Integer.valueOf(rating), event.getTitle());
         event.getComments().add(comment);  // Asociar el comentario con el evento
         commentRepository.save(comment);   // Guardar el comentario
         eventRepository.save(event);       // Guardar el evento con el comentario agregado

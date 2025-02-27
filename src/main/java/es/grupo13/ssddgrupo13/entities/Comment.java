@@ -21,11 +21,15 @@ public class Comment {
 
     }
 
-    public Comment(String autor, String text, String rating, String title) {
+    public Comment(String autor, String text, int rating, String title) {
         super();
         this.autor = autor;
         this.text = text;
-        this.rating = rating;
+        String estrella = " &#9733";
+        this.rating = "";  // Inicializamos la cadena
+        for (int i = 0; i < rating; i++) {
+            this.rating += estrella;  // Concatenamos correctamente
+        }
         this.title = title;
     }
 
