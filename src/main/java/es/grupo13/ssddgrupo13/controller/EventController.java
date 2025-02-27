@@ -217,7 +217,12 @@ public class EventController {
         return "redirect:/ticket/" + eventID;  // Redirigir a la página del evento
     }
 
+    @GetMapping("/data")
+    public String myData(Model model) {
+        
 
+        return "mydata";
+    }
     
 
 }

@@ -12,7 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Client {
@@ -22,11 +21,11 @@ public class Client {
     private Long id;
 
     @Column(nullable = false)
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "The name can only have letters")
+    //@Pattern(regexp = "^[a-zA-Z]+$", message = "The name can only have letters")
     private String name;
 
     @Column(nullable = false)
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "The last name can only have letters")
+    //@Pattern(regexp = "^[a-zA-Z]+$", message = "The last name can only have letters")
     private String lastName;
 
     @Column(nullable = false)

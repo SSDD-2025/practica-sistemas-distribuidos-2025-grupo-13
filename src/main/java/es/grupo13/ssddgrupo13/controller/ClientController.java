@@ -42,7 +42,7 @@ public class ClientController {
                         Model model) {
         
         // Comprueba si el email ya existe
-        Optional<Client> existingClient = clientRepository.findByEmail(email);
+       Optional<Client> existingClient = clientRepository.findByEmail(email);
         
         if (existingClient.isPresent()) {
             model.addAttribute("errorMessage", "Este correo ya existe. Por favor, emplea otro");
@@ -50,7 +50,8 @@ public class ClientController {
         }
 
         Client client = new Client(name, lastName, email, password);
-        clientRepository.save(client);
+        System.out.println(client.getEmail() + " " + client.getPassword() + " " + client.getName() + " " + client.getLastName());
+        this.clientRepository.save(client);
         return "/index";
     }
 
