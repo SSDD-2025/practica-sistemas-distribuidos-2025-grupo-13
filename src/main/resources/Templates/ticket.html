@@ -40,8 +40,8 @@
         <div class="container-btn-comment">
             <button class="btn-change8 btn-comentario" type="button" data-bs-toggle="modal"
                 data-bs-target="#modalComentario">Añadir comentario</button>
-        <-- Modal para agregar comentario -->
-        <-- Mantengo este como ejemplo/referencia-->
+        <!-- Modal para agregar comentario -->
+        <!-- Mantengo este como ejemplo/referencia-->
         </div>
         <div class="container-comments">
             <div class="comment-post">
@@ -57,16 +57,7 @@
                 </div>
             </div>
 
-            <div class="comment-post">
-                <div class="comment-post_user">
-                    {{comment.autor}}
-                </div>
-                <div class="comment-post_content">
-                    <p>{{comment.text}}</p>
-                </div>
-                <div class="comment-post_valoration">
-                    <p>{{comment.rating}}</p>
-                </div>
+            >
             </div>
         </div>
 
@@ -84,7 +75,7 @@
             </div>
 
             <div class="modal-body">
-                <form action ="/comment-in" method="post">
+                <form >
                     <div class="mb-2">
                         <div class="star-rating animated-stars">
                             <input type="radio" id="star5" name="rating" value="5">
