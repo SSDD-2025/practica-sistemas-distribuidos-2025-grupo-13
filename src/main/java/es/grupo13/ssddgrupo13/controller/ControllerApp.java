@@ -17,6 +17,11 @@ public class ControllerApp {
     public String contactanosLink() {
         return "section_5";
     }
+
+    @GetMapping("/data")
+    public String myData() {
+        return "mydata";
+    }
     
     /*@GetMapping("/ticket")
     public String ticketLink() {
