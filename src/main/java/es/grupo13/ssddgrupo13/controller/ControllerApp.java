@@ -18,10 +18,7 @@ public class ControllerApp {
         return "section_5";
     }
 
-    @GetMapping("/data")
-    public String myData() {
-        return "mydata";
-    }
+    
     
     /*@GetMapping("/error")
     public String errorLink() {
