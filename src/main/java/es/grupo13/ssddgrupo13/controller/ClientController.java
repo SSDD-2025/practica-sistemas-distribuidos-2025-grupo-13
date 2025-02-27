@@ -13,6 +13,7 @@ import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ClientController {
@@ -35,10 +36,10 @@ public class ClientController {
 
     @PostMapping("/sign-up")
     public String singUp(@RequestParam String name, 
-                         @RequestParam String lastName, 
-                         @RequestParam String email, 
-                         @RequestParam String password,
-                         Model model) {
+                        @RequestParam String lastName, 
+                        @RequestParam String email, 
+                        @RequestParam String password,
+                        Model model) {
         
         // Comprueba si el email ya existe
         Optional<Client> existingClient = clientRepository.findByEmail(email);
@@ -51,6 +52,18 @@ public class ClientController {
         Client client = new Client(name, lastName, email, password);
         clientRepository.save(client);
         return "/index";
+    }
+
+    @PostMapping("/sign-in")
+    public String signIn(HttpSession session, @RequestParam String email) {
+        Optional<Client> clientLogin = clientRepository.findByEmail(email);
+        System.out.println(clientLogin.get().getEmail());
+        if (clientLogin.isPresent()) {
+            session.setAttribute("client", clientLogin.get());
+            return "/index";
+        } else {
+            return "/error";
+        }
     }
     
 }
