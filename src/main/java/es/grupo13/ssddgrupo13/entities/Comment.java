@@ -11,6 +11,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String title;
     private String autor;
     private String text;
     private int rating;
@@ -19,11 +20,12 @@ public class Comment {
 
     }
 
-    public Comment(String autor ,String text, int rating) {
+    public Comment(String autor ,String text, int rating, String title) {
         super();
         this.autor = autor;
         this.text = text;
         this.rating = rating;
+        this.title = title;
     }
 
     public Long getId() {

@@ -5,9 +5,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.engine.jdbc.BlobProxy;
-import org.springframework.web.multipart.MultipartFile;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -163,6 +160,10 @@ public class Event {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public void addComments(Comment comment){
+		this.comments.add(comment);
 	}
 
     public List<Ticket> getTickets() {

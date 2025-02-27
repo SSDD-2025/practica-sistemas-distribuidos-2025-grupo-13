@@ -78,7 +78,7 @@ public class EventController {
         Blob cruzziImage = loadImage("img/cruzzi.jpg");
         Blob natosywaorImage = loadImage("img/natos y waor.jpg");
         Blob alsafirImage = loadImage("img/al safir.jpg");
-        Blob pekeImage = loadImage("img/ill pekeno & ergo pro.jpg"); ; 
+        Blob pekeImage = loadImage("img/ill pekeño & ergo pro.jpg"); ; 
         LocalDateTime start = LocalDateTime.of(2025, 02, 26, 23, 00, 00);
         LocalDateTime finish = LocalDateTime.of(2025, 02, 27, 06, 00, 00);
 
@@ -95,6 +95,10 @@ public class EventController {
             //shoko.getTickets().add(ticketShoko);
             ticketRepository.save(ticketShoko);//Mejor opcion según el teacher
         }
+        Comment comment = new Comment("Robert", "soy mariquita", 5, shoko.getTitle());
+        Comment comment1 = new Comment("Robert", "soy mariquita", 4, shoko.getTitle());
+        shoko.addComments(comment);
+        shoko.addComments(comment1);
         
         eventRepository.save(shoko);
         
@@ -282,10 +286,7 @@ public class EventController {
         if (optionalEvent.isPresent()) {
             Event event = optionalEvent.get();
             System.out.println("Event: " + event.getTitle());
-            for (Comment comment : event.getComments()) {
-                model.addAttribute("comment", comment);
-                
-            }
+            model.addAttribute("comment", event.getComments());
             model.addAttribute("ticket", event); 
             return "ticket";
         } else {

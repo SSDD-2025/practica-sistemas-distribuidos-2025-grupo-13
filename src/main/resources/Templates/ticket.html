@@ -26,7 +26,7 @@
     </div>
     <div class="pictureAndDescription">
         <div class="pictureDetailEvent"> 
-        <img src="/event-image/{{ticket.id}}" alt="{{ticket.title}}">
+        <img src="/event-image/{{ticket.id}}" alt="{{ticket.title}}" height="250" width="250">
         </div>
     </div>
 </section>
@@ -44,21 +44,19 @@
         <!-- Mantengo este como ejemplo/referencia-->
         </div>
         <div class="container-comments">
+            {{#comment}}
             <div class="comment-post">
                 <div class="comment-post_user">
-                    jonmazh
+                    {{autor}}
                 </div>
                 <div class="comment-post_content">
-                    <p>Increíble concierto, la sala es perfecta
-                        para disfrutar de la música en directo. ¡Volveré!</p>
+                    <p>{{text}}</p>
                 </div>
                 <div class="comment-post_valoration">
-                    <p>&#9733 &#9733 &#9733 &#9733 &#9733</p>
+                    <p>{{rating}}</p>
                 </div>
             </div>
-
-            >
-            </div>
+            {{/comment}}
         </div>
 
     </div>
