@@ -2,6 +2,7 @@ package es.grupo13.ssddgrupo13.entities;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,12 @@ public class Event {
     private LocalDateTime timeFinish;
 
 	@Column(nullable = false)
+    private String timeStartFormat;
+
+    @Column(nullable = false)
+    private String timeFinishFormat;
+
+	@Column(nullable = false)
     private String type;
 
 	@Column(nullable = false)
@@ -57,10 +64,15 @@ public class Event {
     }
 
     public Event(String title, String description, LocalDateTime timeStart, LocalDateTime timeFinish, String address, String type, Integer precio, Blob imageFile) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy, HH:mm");
+		String formattedStart = timeStart.format(formatter);
+		String formattedEnd = timeFinish.format(formatter);
+		this.timeStartFormat = formattedStart;
+        this.timeFinishFormat = formattedEnd;
         this.title = title;
         this.description = description;
-        this.timeStart = timeStart;
-        this.timeFinish = timeFinish;
+		this.timeStart = timeStart;
+		this.timeFinish = timeFinish;
 		this.address = address;
 		this.type = type;
 		this.precio = precio;
@@ -140,6 +152,22 @@ public class Event {
 
 	public void setTimeFinish(LocalDateTime timeFinish) {
 		this.timeFinish = timeFinish;
+	}
+
+	public String getTimeStartFormat() {
+		return timeStartFormat;
+	}
+
+	public void setTimeStartFormat(String timeStartFormat) {
+		this.timeStartFormat = timeStartFormat;
+	}
+
+    public String getTimeFinishFormat() {
+		return timeFinishFormat;
+	}
+
+	public void setTimeFinishFormat(String timeFinishFormat) {
+		this.timeFinishFormat = timeFinishFormat;
 	}
 
     public List<Comment> getComments() {
