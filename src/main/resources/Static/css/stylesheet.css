@@ -81,7 +81,7 @@ h1 {
 }
 
 .nav-item-login a:hover {
-    color: #d5e33e;
+    color: #ff00ea;
 }
 
 .nav-item-login .btn svg {
@@ -119,8 +119,8 @@ h1 {
 
 .line-title {
     width: 100%;
-    border: 5px#f2f526 solid;
-    background-color: #f2f526;
+    border: 5px#ff00ea solid;
+    background-color: #ff00ea;
     width: 70px;
     margin: 0 auto;
     opacity: 1;
@@ -159,13 +159,13 @@ h1 {
 }
 
 .modal-backdrop {
-    background-color: rgba(230, 223, 85, 0.9) !important;
+    background-color: #ff00ea !important;
     display: none !important;
 }
 
 
 .modal-header {
-    background: rgba(178, 190, 0, 0.9);
+    background: #ff00ea;
     color: rgb(255, 255, 255);
 }
 
@@ -174,12 +174,12 @@ h1 {
     color: white;
 }
 .header{
-    border: solid 5px yellow
+    border: solid 5px #ff00ea
 }
 .btn-login:hover {
-    background-color: #d5e33e;
+    background-color: #ff00ea;
     color: #000000;
-    border-color: #80882c;
+    border-color: #ff00ea9a;
 }
 
 .btn-close {
@@ -444,7 +444,7 @@ button:hover {
 
 .buttonDetailEvent {
     width: 100px;
-    background-color: #d5e33e;
+    background-color: #ff00ea;
     color: black;
     border: none;
     border-radius: 5px;
@@ -459,17 +459,17 @@ button:hover {
     font-weight: bold;
     height: 50px;
     width: 100px;
-    background: #d5e33e;
+    background: #ff00ea;
     float: left;
     border:0px;
     color: black; 
     box-shadow: 0 0 1px #ccc;
     -webkit-transition-duration: 0.5s;
     -webkit-transition-timing-function: linear;
-    box-shadow:0px 0 0 #faffc7 inset;
+    box-shadow:0px 0 0 #ff00ea91 inset;
 }
 .btn-change8:hover{
-    -webkit-box-shadow: -100px 0 0 #fcfb9b inset;
+    -webkit-box-shadow: -100px 0 0 #ff00ea9a inset;
 }
 
 .detailContent {
@@ -511,14 +511,14 @@ button:hover {
     font-weight: bold;
 }
 .comments-title {
-    text-decoration: underline;
-    font-size: 2rem;
-    line-height: 1.25;
-    font-weight: 400;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
     margin-left: 50px;
     margin-right: 150px;
     margin-bottom: 20px;
+    font-size: 50px;
+    font-weight: 300;
+    color: white;
+    font-stretch: extra-condensed !important;
+    font-family: 'Skrappa-bold' , 'Sans Custom', sans-serif;
 }
 
 .container-comments {
@@ -563,13 +563,13 @@ button:hover {
 }
 
 .modal-backdrop {
-    background-color: #d5e33e !important;
+    background-color: #ff00ea !important;
     display: none !important;
 }
 
 
 .modal-header {
-    background: rgba(146, 157, 25, 0.9);
+    background: #ff00ea;
     color: rgb(255, 255, 255);
 }
 
@@ -580,9 +580,9 @@ button:hover {
 }
 
 .btn-login:hover {
-    background-color: #d5e33e;
+    background-color: #ff00ea;
     color: #000000;
-    border-color: #80882c;
+    border-color: #ff00ea9a;
 }
 
 .btn-close {
@@ -593,13 +593,13 @@ button:hover {
 
 .btn-publicar
 {
-    background-color: #d5e33e;
+    background-color: #ff00ea;
     color: black;
-    border-color: #d5e33e;
+    border-color: #ff00ea;
 }
 
 .btn-publicar:hover{
-    background-color: black;
+    background-color: #ff00ea85;
     color: white;
     border-color: black;
 }

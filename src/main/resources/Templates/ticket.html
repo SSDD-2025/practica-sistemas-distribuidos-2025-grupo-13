@@ -10,16 +10,12 @@
             <h2 class="subtitleDetailEvent">{{event.type}}</h2>
             <li class="columnElementsEvent">
                 <div class="elementDetailEvent">
-                    <i class="singleElement title">Fecha</i>
+                    <i class="singleElement title">Fecha y Hora</i>
                         <p class="singleElement content">{{event.timeStartFormat}}  ----  {{event.timeFinishFormat}}</p>
                 </div>
                 <div class="elementDetailEvent">
-                    <i class="singleElement title">Hora</i>
-                        <p>20:00</p>    
-                </div>
-                <div class="elementDetailEvent">
                     <i class="singleElement title">Precio</i>
-                        <p>{{event.precio}}</p>
+                        <p>{{event.precio}} &euro;</p>
                 </div>
                 <form action="/saveTicket" method="post">
                     <button class="btn-change8">Comprar</button>
