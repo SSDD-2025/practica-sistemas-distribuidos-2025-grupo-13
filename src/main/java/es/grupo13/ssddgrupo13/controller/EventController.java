@@ -44,6 +44,9 @@ public class EventController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private ClientRepository clientRepository;
     
     private Blob loadImage(String path) {
         try {
@@ -197,11 +200,17 @@ public class EventController {
 
     @PostMapping("/comment_in")
     public String comment_in(HttpSession session, @RequestParam String text, @RequestParam String rating, @RequestParam Long eventID) {
-        Client client = (Client) session.getAttribute("client");
-        
+        Client sessionclient = (Client) session.getAttribute("client");
+        if (sessionclient == null) {
+            return "/createCuenta"; // Si no hay cliente en sesión, redirigir a error
+        }
+        System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
+        // Importante encontrar el cliente en la base de datos porque si no da error
+        Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
         if (client == null) {
             return "/error"; // Si no hay cliente en sesión, redirigir a error
         }
+        System.out.println("Correo del cliente"+client.getEmail());
         
         Event event = eventRepository.findById(eventID).orElse(null); // Obtener el evento usando el ticketID
         
@@ -211,9 +220,11 @@ public class EventController {
         
         Comment comment = new Comment(client.getName(), text, Integer.valueOf(rating), event.getTitle());
         event.getComments().add(comment);  // Asociar el comentario con el evento
+        client.getComments().add(comment); // Asociar el comentario con el cliente
         commentRepository.save(comment);   // Guardar el comentario
         eventRepository.save(event);       // Guardar el evento con el comentario agregado
-        
+        clientRepository.save(client);     // Guardar el cliente con el comentario agregado
+
         return "redirect:/ticket/" + eventID;  // Redirigir a la página del evento
     }
     
