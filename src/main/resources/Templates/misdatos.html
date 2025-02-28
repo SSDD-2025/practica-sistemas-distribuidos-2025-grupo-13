@@ -4,8 +4,7 @@
 
     <div class="titleClubbing">
         <h1>MIS DATOS</h1>
-        <hr class="line-title-clubbing" href="#">
-        </hr>
+        <hr class="line-title-clubbing" href="#"></hr>
     </div>
 
     <div class="container">
@@ -42,6 +41,12 @@
                 <div class="comment-post_valoration">
                     <p>{{{rating}}}</p>
                 </div>
+                <div class="comment-actions">
+                    <!-- Formulario para eliminar el comentario -->
+                    <form action="/comment_out/{{id}}" method="POST">
+                        <button type="submit" class="delete-comment">Eliminar</button>
+                    </form>
+                </div>
             </div>
             {{/comments}}
         </div>
@@ -50,7 +55,4 @@
     {{>footer}}
 
 </body>
-
-
 </html>
-
