@@ -17,11 +17,6 @@ public class ControllerApp {
     public String contactanosLink() {
         return "contactanos";
     }
-
-    @GetMapping("/data")
-    public String misDatosLink() {
-        return "misdatos";
-    }
     
     /*@GetMapping("/error")
     public String errorLink() {

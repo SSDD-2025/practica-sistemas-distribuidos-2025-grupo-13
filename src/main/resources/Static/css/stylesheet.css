@@ -701,12 +701,6 @@ button:hover {
     padding: 15px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-}
-
-.ticket:hover {
-    transform: scale(1.05);
 }
 
 .ticket img {

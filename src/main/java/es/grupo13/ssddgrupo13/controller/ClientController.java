@@ -1,5 +1,6 @@
 package es.grupo13.ssddgrupo13.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 
 @Controller
@@ -97,4 +100,24 @@ public class ClientController {
         return "ticketComprado";
     }
     
+    @GetMapping("/data")
+    public String getMyTickets(HttpSession session, Model model) {
+        Client sessionclient = (Client) session.getAttribute("client");
+        if (sessionclient == null) {
+            return "/createCuenta"; // Si no hay cliente en sesión, redirigir a error
+        }
+        System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
+        // Importante encontrar el cliente en la base de datos porque si no da error
+        Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
+        if (client == null) {
+            return "/error"; // Si no hay cliente en sesión, redirigir a error
+        }
+        System.out.println("Correo del cliente"+client.getEmail());
+
+        List<Ticket> tickets = client.getTickets();
+        model.addAttribute("tickets", tickets);
+        return "misdatos";
+    }
+    
+
 }

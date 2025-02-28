@@ -1,6 +1,7 @@
 package es.grupo13.ssddgrupo13.entities;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,6 +27,9 @@ public class Ticket {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    private String timeStartFormat;
+
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
 
@@ -35,6 +39,9 @@ public class Ticket {
 
     public Ticket(String title, float price, LocalDateTime createdAt, TicketStatus status) {
         super();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy, HH:mm");
+		String formattedStart = createdAt.format(formatter);
+        this.timeStartFormat = formattedStart;
         this.title = title;
         this.price = price;
         this.createdAt = createdAt;
@@ -80,5 +87,13 @@ public class Ticket {
     public void setStatus(TicketStatus status) {
         this.status = status;
     }
+
+    public String getTimeStartFormat() {
+		return timeStartFormat;
+	}
+
+	public void setTimeStartFormat(String timeStartFormat) {
+		this.timeStartFormat = timeStartFormat;
+	}
 
 }
