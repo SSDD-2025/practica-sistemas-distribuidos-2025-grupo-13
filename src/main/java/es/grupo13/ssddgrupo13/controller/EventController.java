@@ -181,8 +181,6 @@ public class EventController {
         return "festivales"; // Nombre de la plantilla (sin .html)
     }
 
-    
-
     @GetMapping("/ticket/{id}")
     public String showTicket(Model model, @PathVariable long id) {
         System.out.println("ID: " + id);

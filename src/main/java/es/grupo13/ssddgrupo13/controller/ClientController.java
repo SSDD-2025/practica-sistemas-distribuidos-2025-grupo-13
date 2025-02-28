@@ -78,7 +78,7 @@ public class ClientController {
     public String saveTicket(HttpSession session, @RequestParam Long eventID) {
         Client sessionclient = (Client) session.getAttribute("client");
         if (sessionclient == null) {
-            return "/error"; // Si no hay cliente en sesión, redirigir a error
+            return "/createCuenta"; // Si no hay cliente en sesión, redirigir a error
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
         // Importante encontrar el cliente en la base de datos porque si no da error
