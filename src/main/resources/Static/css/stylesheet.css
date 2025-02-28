@@ -677,7 +677,13 @@ button:hover {
     margin-right: auto;
 }
 
-.ticket-container {
+.main-container {
+    display: flex; /* Activa el modelo flexbox */
+    justify-content: space-between; /* Separa los elementos */
+    align-items: flex-start; /* Alinea los elementos arriba */
+}
+
+.data-container {
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -721,4 +727,24 @@ button:hover {
     margin-top: 5px;
     font-size: 1em;
     color: #555;
+}
+
+.container-comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    gap: 20px;
+    margin-top: 40px;  /* Ajuste el margen superior para dar espacio entre los eventos y los tickets */
+    margin-right: 300px;
+    clear: both;  /* Asegura que se coloque debajo de los elementos anteriores */
+}
+
+.comment {
+    background-color: #272020d0;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 250px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
