@@ -219,8 +219,6 @@ public class EventController {
         
         return "redirect:/ticket/" + eventID;  // Redirigir a la página del evento
     }
-
-
     
 
 }
