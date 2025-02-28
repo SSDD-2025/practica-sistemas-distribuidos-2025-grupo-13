@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<body lang="en">
+
+{{>header}}
+        
+<section class="section-1" id="section_1">
+    <div class="container-section1">
+        <div class="row">
+
+            <div class="texto-principal">
+                <h1>ALASDOCE</h1>
+                <hr class="line-title-clubbing" href="#">
+                </hr>
+                <p>Mis datos personales:</p>
+                <p>Nombre: {{client.name}}</p>
+                <p>Apellidos: {{client.lastName}}</p>
+                <p>Correo electrónico: {{client.email}}</p>
+                <form action="/log_out" method="post">
+                    <button class="btn" style="color: rgb(255, 255, 255);" >Cerrar sesión</button>
+                    
+                </form>   
+            </div>
+        </div>
+    </div>
+</section>
+
+{{>footer}}
+
+</body>
+
+</html>
