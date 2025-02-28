@@ -162,23 +162,26 @@ public class EventController {
     @GetMapping("/clubbing")
     public String showClubs(Model model) {
         List<Event> clubs = eventRepository.findByType("club"); // Obtiene los eventos de la BD
-        model.addAttribute("section_2", clubs); // Agrega la lista al modelo
-        return "section_2"; // Nombre de la plantilla (sin .html)
-    }
-
-    @GetMapping("/festivales")
-    public String showFestivales(Model model) {
-        List<Event> events = eventRepository.findByType("festival"); // Obtiene los eventos de la BD
-        model.addAttribute("section_4", events); // Agrega la lista al modelo
-        return "section_4"; // Nombre de la plantilla (sin .html)
+        model.addAttribute("club", clubs); // Agrega la lista al modelo
+        return "clubbing"; // Nombre de la plantilla (sin .html)
+        
     }
 
     @GetMapping("/conciertos")
     public String showConciertos(Model model) {
         List<Event> events = eventRepository.findByType("concierto"); // Obtiene los eventos de la BD
-        model.addAttribute("section_3", events); // Agrega la lista al modelo
-        return "section_3"; // Nombre de la plantilla (sin .html)
+        model.addAttribute("concierto", events); // Agrega la lista al modelo
+        return "concierto"; // Nombre de la plantilla (sin .html)
     }  
+
+    @GetMapping("/festivales")
+    public String showFestivales(Model model) {
+        List<Event> events = eventRepository.findByType("festival"); // Obtiene los eventos de la BD
+        model.addAttribute("festivales", events); // Agrega la lista al modelo
+        return "festivales"; // Nombre de la plantilla (sin .html)
+    }
+
+    
 
     @GetMapping("/ticket/{id}")
     public String showTicket(Model model, @PathVariable long id) {

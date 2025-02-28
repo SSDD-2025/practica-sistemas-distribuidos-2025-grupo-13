@@ -15,19 +15,17 @@ public class ControllerApp {
 
     @GetMapping("/contactanos")
     public String contactanosLink() {
-        return "section_5";
+        return "contactanos";
     }
 
     @GetMapping("/data")
-    public String myData() {
-        return "mydata";
+    public String misDatosLink() {
+        return "misdatos";
     }
     
     /*@GetMapping("/error")
     public String errorLink() {
         return "error";
     }*/
-    
-    
 
 }

@@ -51,7 +51,7 @@ public class ClientController {
 
         Client client = new Client(name, lastName, email, password);
         clientRepository.save(client);
-        return "/index";
+        return "/registroSesion";
     }
 
     @PostMapping("/sign-in")
@@ -60,7 +60,7 @@ public class ClientController {
         System.out.println(clientLogin.get().getEmail());
         if (clientLogin.isPresent()) {
             session.setAttribute("client", clientLogin.get());
-            return "/index";
+            return "/inicioSesion";
         } else {
             return "/error";
         }
