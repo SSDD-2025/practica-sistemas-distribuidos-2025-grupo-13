@@ -21,7 +21,10 @@
                     <i class="singleElement title">Precio</i>
                         <p>{{event.precio}}</p>
                 </div>
-                <button class="btn-change8">Comprar</button>
+                <form action="/saveTicket" method="post">
+                    <button class="btn-change8">Comprar</button>
+                    <input type="hidden" name="eventID" value="{{event.id}}">
+                </form>        
             </li>
     </div>
     <div class="pictureAndDescription">

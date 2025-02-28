@@ -9,11 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.grupo13.ssddgrupo13.entities.Client;
+import es.grupo13.ssddgrupo13.entities.Comment;
+import es.grupo13.ssddgrupo13.entities.Event;
+import es.grupo13.ssddgrupo13.entities.Ticket;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class ClientController {
@@ -64,6 +69,32 @@ public class ClientController {
         } else {
             return "/error";
         }
+    }
+
+    @PostMapping("/saveTicket")
+    public String saveTicket(HttpSession session, @RequestParam Long eventID) {
+        Client sessionclient = (Client) session.getAttribute("client");
+        if (sessionclient == null) {
+            return "/error"; // Si no hay cliente en sesión, redirigir a error
+        }
+        System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
+        // Importante encontrar el cliente en la base de datos porque si no da error
+        Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
+        if (client == null) {
+            return "/error"; // Si no hay cliente en sesión, redirigir a error
+        }
+        System.out.println("Correo del cliente"+client.getEmail());
+
+        Ticket ticket = ticketRepository.findById(eventID).orElse(null); // Obtener el evento usando el ticketID
+        if (ticket == null) {
+            return "/error"; // Si no se encuentra el evento, redirigir a error
+        }
+        System.out.println("Titulo del ticket"+ticket.getTitle());
+
+        client.getTickets().add(ticket);  // Asociar el ticket con el cliente
+        clientRepository.save(client);   // Guardar el cliente con el ticket agregado
+
+        return "ticketComprado";
     }
     
 }

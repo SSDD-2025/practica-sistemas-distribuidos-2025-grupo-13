@@ -44,9 +44,6 @@ public class EventController {
 
     @Autowired
     private CommentRepository commentRepository;
-
-    @Autowired
-    private ClientRepository clientRepository;
     
     private Blob loadImage(String path) {
         try {
