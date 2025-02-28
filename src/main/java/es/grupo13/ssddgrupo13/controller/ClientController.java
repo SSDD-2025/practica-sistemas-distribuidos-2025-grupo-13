@@ -51,7 +51,7 @@ public class ClientController {
 
         Client client = new Client(name, lastName, email, password);
         clientRepository.save(client);
-        return "/index";
+        return "/registroSesion";
     }
 
     @PostMapping("/sign-in")

@@ -170,8 +170,8 @@ public class EventController {
     @GetMapping("/conciertos")
     public String showConciertos(Model model) {
         List<Event> events = eventRepository.findByType("concierto"); // Obtiene los eventos de la BD
-        model.addAttribute("concierto", events); // Agrega la lista al modelo
-        return "concierto"; // Nombre de la plantilla (sin .html)
+        model.addAttribute("conciertos", events); // Agrega la lista al modelo
+        return "conciertos"; // Nombre de la plantilla (sin .html)
     }  
 
     @GetMapping("/festivales")

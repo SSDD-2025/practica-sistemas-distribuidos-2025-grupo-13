@@ -10,12 +10,12 @@
     </div>
 
     <div class="contenedor-conciertos">
-        {{#concierto}}
+        {{#conciertos}}
         <button class="concierto" onclick="window.location.href='ticket/{{id}}';">
             <img src="img/{{title}}.jpg" alt="{{title}}">
             <h3>{{title}}</h3>
         </button>
-        {{/concierto}}
+        {{/conciertos}}
     </div>
 
     {{>footer}}
