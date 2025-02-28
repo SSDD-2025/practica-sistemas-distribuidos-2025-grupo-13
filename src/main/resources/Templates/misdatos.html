@@ -31,28 +31,19 @@
         </div>
     
         <div class="container-comments-mydata">
+            {{#comments}}
             <div class="comment">
                 <div class="comment-post_user">
-                    <p>Autor</p>
+                    {{autor}}
                 </div>
                 <div class="comment-post_content">
-                    <p>Texto</p>
+                    <p>{{text}}</p>
                 </div>
                 <div class="comment-post_valoration">
-                    <p>3</p>
+                    <p>{{{rating}}}</p>
                 </div>
             </div>
-            <div class="comment">
-                <div class="comment-post_user">
-                    <p>Autor</p>
-                </div>
-                <div class="comment-post_content">
-                    <p>Texto</p>
-                </div>
-                <div class="comment-post_valoration">
-                    <p>3</p>
-                </div>
-            </div>
+            {{/comments}}
         </div>
     </div>
 

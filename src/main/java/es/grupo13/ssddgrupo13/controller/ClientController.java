@@ -115,7 +115,9 @@ public class ClientController {
         System.out.println("Correo del cliente"+client.getEmail());
 
         List<Ticket> tickets = client.getTickets();
+        List<Comment> comments = client.getComments();
         model.addAttribute("tickets", tickets);
+        model.addAttribute("comments", comments);
         return "misdatos";
     }
     
