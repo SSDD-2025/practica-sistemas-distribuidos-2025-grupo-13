@@ -729,7 +729,7 @@ button:hover {
     color: #555;
 }
 
-.container-comments {
+.container-comments-mydata {
     display: flex;
     flex-direction: column;
     justify-content: right;
