@@ -226,14 +226,19 @@ public class EventController {
         return "redirect:/ticket/" + eventID;  // Redirigir a la página del evento
     }
 
-    @PostMapping("/comment_out/{commentId}")
-    public String eliminarComentario(HttpSession session, @PathVariable Long commentId){
+    @PostMapping("/comment_out/{commentId}/{titleEvento}")
+    public String eliminarComentario(HttpSession session, @PathVariable Long commentId, @PathVariable String titleEvento){
         Client sessionclient = (Client) session.getAttribute("client");
-        Comment comment = commentRepository.findById(commentId).orElse(null);
         Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
 
+        Comment comment = commentRepository.findById(commentId).orElse(null);
+
+        Event event = eventRepository.findByTitle(titleEvento).getFirst();
+
+        event.getComments().remove(comment);
         client.getComments().remove(comment);
         clientRepository.save(client);
+        eventRepository.save(event);
         return "commentEliminado";
     }
 }
