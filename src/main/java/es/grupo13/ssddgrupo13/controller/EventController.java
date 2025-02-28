@@ -200,7 +200,7 @@ public class EventController {
     public String comment_in(HttpSession session, @RequestParam String text, @RequestParam String rating, @RequestParam Long eventID) {
         Client sessionclient = (Client) session.getAttribute("client");
         if (sessionclient == null) {
-            return "/createCuenta"; // Si no hay cliente en sesión, redirigir a error
+            return "/comentarSinCuenta"; // Si no hay cliente en sesión, redirigir a error
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
         // Importante encontrar el cliente en la base de datos porque si no da error
