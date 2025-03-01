@@ -579,6 +579,33 @@ button:hover {
     color: white;
 }
 
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre el checkbox y el texto */
+    color: white;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.checkbox-container input {
+    margin: 0;
+    width: 16px; /* Tamaño estándar del checkbox */
+    height: 16px;
+}
+
+.checkbox-container label {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Ajuste para que los checkboxes queden alineados con los inputs de texto */
+.form-check-group {
+    display: flex;
+    flex-direction: column;
+    align-items: start; /* Alinea los checkboxes a la izquierda del formulario */
+    margin-top: 10px; /* Espacio entre los campos de texto y los checkboxes */
+}
+
 .btn-login:hover {
     background-color: #ff00ea;
     color: #000000;

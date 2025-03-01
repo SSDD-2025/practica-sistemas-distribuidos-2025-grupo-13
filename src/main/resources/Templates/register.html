@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<body lang="en">
+
+{{>header}}
+        
+<section class="section-1" id="section_1">
+    <div class="texto-principal">
+        <h1>ALASDOCE</h1>
+        <hr class="line-title-clubbing" href="#">
+        </hr>
+        
+    </div>
+    <div class="container-section1">
+        <form action="/sign-up" method="post">
+            <div class="mb-3">
+                <label for="inputName" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="name" required>
+    
+                <label for="inputSurname" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" name="lastName" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
+                <input type="password" class="form-control" id="contraseña" required>
+            </div>
+    
+            <!-- Checkboxes alineados -->
+            <div class="form-check-group">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="terminos" name="terminos" value="terminos" required>
+                    <label for="terminos">Acepto los términos y condiciones</label>
+                </div>
+                <p></p>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="datos" name="datos" value="datos">
+                    <label for="datos">Permito el uso de mis datos personales para estadísticas</label>
+                </div>
+                <p></p>
+            </div>
+    
+            <button type="submit" class="btn btn-login me-2">Confirmar</button>
+        </form>
+    </div>
+         
+    <!-- Fin Modal de login-->
+</section>
+
+{{>footer}}
+
+</body>
+
+</html>

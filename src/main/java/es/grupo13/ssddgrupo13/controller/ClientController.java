@@ -120,6 +120,7 @@ public class ClientController {
         model.addAttribute("comments", comments);
         return "misdatos";
     }
+
     @GetMapping("/profile")
     public String profileLink(HttpSession session, Model model) {
         if(!isLogged)return "/profile";
@@ -128,12 +129,12 @@ public class ClientController {
              return "/profile_out";
         }
     }
+    
     @PostMapping("/log_out")
     public String logout(HttpSession session) {
         isLogged = false;
         session.invalidate();
         return "/index";
     }
-    
 
 }
