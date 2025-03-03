@@ -14,6 +14,11 @@ import es.grupo13.ssddgrupo13.entities.Client;
 import es.grupo13.ssddgrupo13.entities.Comment;
 import es.grupo13.ssddgrupo13.entities.Ticket;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
+<<<<<<< HEAD
+import es.grupo13.ssddgrupo13.repository.CommentRepository;
+import es.grupo13.ssddgrupo13.repository.EventRepository;
+=======
+>>>>>>> b96deead21063bc0995e25c6db60394c9697f6f9
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
@@ -27,13 +32,26 @@ public class ClientController {
 	
 	@Autowired
 	private TicketRepository ticketRepository;
+<<<<<<< HEAD
+
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
+    
+=======
+>>>>>>> b96deead21063bc0995e25c6db60394c9697f6f9
     
     private Boolean isLogged = false;
+    private Boolean isAdmin = false;
     
 	@PostConstruct
 	public void init() {
         // Create a client
         Client client = new Client("John", "Doe", "johndoe@urjc.es", "123");
+        Client admn = new Client("admin", "1", "admin@urjc.es", "admin");
+        clientRepository.save(admn);
         clientRepository.save(client);
     }
 
@@ -64,6 +82,7 @@ public class ClientController {
         if (clientLogin.isPresent()) {
             session.setAttribute("client", clientLogin.get());
             isLogged = true;
+            isAdmin = clientLogin.get().isAdmin();
             return "/inicioSesion";
         } else {
             return "/error";
@@ -119,8 +138,13 @@ public class ClientController {
 
     @GetMapping("/profile")
     public String profileLink(HttpSession session, Model model) {
-        if(!isLogged)return "/profile";
-        else{
+        if(!isLogged && !isAdmin)return "/profile";
+        else if(isLogged && isAdmin){
+            model.addAttribute("client", session.getAttribute("client"));
+            model.addAttribute("comment", commentRepository.findAll());
+            model.addAttribute("event", eventRepository.findAll());
+            return "/profile_admin";
+        }else{
             model.addAttribute("client", session.getAttribute("client"));
              return "/profile_out";
         }
@@ -129,6 +153,7 @@ public class ClientController {
     @PostMapping("/log_out")
     public String logout(HttpSession session) {
         isLogged = false;
+        isAdmin = false;
         session.invalidate();
         return "/index";
     }

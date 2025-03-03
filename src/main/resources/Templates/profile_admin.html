@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<body lang="en">
+
+{{>header}}
+        
+<section class="section-1" id="section_1">
+    <div class="texto-principal">
+        <h1>ALASDOCE</h1>
+        <hr class="line-title-clubbing" href="#">
+        </hr>
+        
+    </div>
+</section>
+
+<section class="section_3">
+    <div class="container-section3">
+        <div class="comments-title">
+            <h1>Comentarios</h1>
+        </div>
+        <div class="container-comments">
+            {{#comment}}
+            <div class="comment-post">
+                <div class="comment-post_user">
+                    {{autor}}
+                </div>
+                <div class="comment-post_content">
+                    <p>{{text}}</p>
+                </div>
+                <div class="comment-post_valoration">
+                    <p>{{{rating}}}</p>
+                </div>
+                <form action="/delete_comment" method="post">
+                    <input type="hidden" name="commentID" value="{{comment.id}}">
+                    <button type="submit" class="btn">Eliminar</button>
+                </form>
+            </div>
+            {{/comment}}
+        </div>
+    </div>
+</section>
+<section class="section_3">
+    <div class="container-section3">
+        <div class="comments-title">
+            <h1>Eventos</h1>
+            <button type="button">Añadir</button>
+        </div>
+        {{#event}}
+    <div class="club1">
+        <div class="img">
+            <img src="event-image/{{id}}" height="150px" width="185px" alt="{{title}}">
+        </div>
+        <div class="club1-text">
+            <h2>{{title}}</h2>
+            <p>{{address}}</p>
+            <p>{{description}}</p>
+            <p>{{timeStartFormat}}  ----  {{timeFinishFormat}}</p>
+        </div>
+        <form action="/delete_event" method="post">
+            <input type="hidden" name="eventID" value="{{event.id}}">
+            <button type="submit" class="btnclub">Eliminar</button>
+        </form>
+        
+    </div>
+    {{/event}}
+    </div>
+</section>
+<form action="/log_out" method="post">
+    <button type="submit" class="btn btn-login me-2">Cerrar sesión</button>
+    
+</form>  
+{{>footer}}
+
+</body>

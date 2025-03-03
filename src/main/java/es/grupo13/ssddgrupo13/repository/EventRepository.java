@@ -12,4 +12,10 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByType(String type);
     List<Event> findByTitle(String title);
     Optional<Event> findById(long id);
+    default void deleteById(long id) {
+        Optional<Event> event = findById(id);
+        if(event.isPresent()) {
+            delete(event.get());
+        }
+    }
 }
