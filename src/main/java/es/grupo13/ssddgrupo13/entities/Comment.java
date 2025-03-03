@@ -26,9 +26,9 @@ public class Comment {
         this.autor = autor;
         this.text = text;
         String estrella = " &#9733";
-        this.rating = "";  // Inicializamos la cadena
+        this.rating = "";  // Initialize the string 
         for (int i = 0; i < rating; i++) {
-            this.rating += estrella;  // Concatenamos correctamente
+            this.rating += estrella;  // Concatenate well
         }
         this.title = title;
     }
