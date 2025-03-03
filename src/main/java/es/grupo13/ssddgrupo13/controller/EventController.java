@@ -14,6 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +34,6 @@ import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 
-
-
 @Controller
 public class EventController {
     @Autowired
@@ -48,6 +47,9 @@ public class EventController {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
     
     private Blob loadImage(String path) {
         try {
@@ -245,20 +247,18 @@ public class EventController {
         eventRepository.save(event);
         return "commentEliminado";
     }
+
     @PostMapping("/delete_event")
-    public String deleteEvent(@PathVariable Long eventID) { 
+    public String deleteEvent(@RequestParam Long eventID) { 
         eventRepository.deleteById(eventID);
-        
         return "/eventEliminado";
     }
+
     @PostMapping("/delete_comment")
-    public String deleteComment(@PathVariable Long commentID) {
+    public String deleteComment(@RequestParam Long commentID) {
+        jdbcTemplate.update("DELETE FROM event_comments WHERE comments_id = ?", commentID);
         commentRepository.deleteById(commentID);
-        
-        
         return "/commentEliminado";
     }
-    
-    
     
 }
