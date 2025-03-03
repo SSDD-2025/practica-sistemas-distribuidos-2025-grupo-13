@@ -256,7 +256,9 @@ public class EventController {
 
     @PostMapping("/delete_comment")
     public String deleteComment(@RequestParam Long commentID) {
+        // Eliminar todas las referencias del comentario en event_comments
         jdbcTemplate.update("DELETE FROM event_comments WHERE comments_id = ?", commentID);
+        // Posteriormente se procede a eliminar el comentario
         commentRepository.deleteById(commentID);
         return "/commentEliminado";
     }
