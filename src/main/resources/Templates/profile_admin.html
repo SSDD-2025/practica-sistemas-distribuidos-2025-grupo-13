@@ -30,7 +30,7 @@
                     <p>{{{rating}}}</p>
                 </div>
                 <form action="/delete_comment" method="post">
-                    <input type="hidden" name="commentID" value="{{comment.id}}">
+                    <input type="hidden" name="commentID" value="{{id}}">
                     <button type="submit" class="btn">Eliminar</button>
                 </form>
             </div>
@@ -56,7 +56,7 @@
             <p>{{timeStartFormat}}  ----  {{timeFinishFormat}}</p>
         </div>
         <form action="/delete_event" method="post">
-            <input type="hidden" name="eventID" value="{{event.id}}">
+            <input type="hidden" name="eventID" value="{{id}}">
             <button type="submit" class="btnclub">Eliminar</button>
         </form>
         
@@ -71,3 +71,5 @@
 {{>footer}}
 
 </body>
+
+</html>

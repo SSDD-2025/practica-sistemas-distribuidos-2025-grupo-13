@@ -14,11 +14,8 @@ import es.grupo13.ssddgrupo13.entities.Client;
 import es.grupo13.ssddgrupo13.entities.Comment;
 import es.grupo13.ssddgrupo13.entities.Ticket;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
-<<<<<<< HEAD
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.repository.EventRepository;
-=======
->>>>>>> b96deead21063bc0995e25c6db60394c9697f6f9
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
@@ -32,7 +29,6 @@ public class ClientController {
 	
 	@Autowired
 	private TicketRepository ticketRepository;
-<<<<<<< HEAD
 
     @Autowired
     private CommentRepository commentRepository;
@@ -40,8 +36,6 @@ public class ClientController {
     @Autowired
     private EventRepository eventRepository;
     
-=======
->>>>>>> b96deead21063bc0995e25c6db60394c9697f6f9
     
     private Boolean isLogged = false;
     private Boolean isAdmin = false;
@@ -146,7 +140,7 @@ public class ClientController {
             return "/profile_admin";
         }else{
             model.addAttribute("client", session.getAttribute("client"));
-             return "/profile_out";
+            return "/profile_out";
         }
     }
     
