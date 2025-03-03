@@ -34,6 +34,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 
 
+
 @Controller
 public class EventController {
     @Autowired
@@ -241,4 +242,20 @@ public class EventController {
         eventRepository.save(event);
         return "commentEliminado";
     }
+    @PostMapping("/delete_event")
+    public String deleteEvent(@PathVariable Long eventID) { 
+        eventRepository.deleteById(eventID);
+        
+        return "/eventEliminado";
+    }
+    @PostMapping("/delete_comment")
+    public String deleteComment(@PathVariable Long commentID) {
+        commentRepository.deleteById(commentID);
+        
+        
+        return "/commentEliminado";
+    }
+    
+    
+    
 }

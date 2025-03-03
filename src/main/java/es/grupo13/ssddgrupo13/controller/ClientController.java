@@ -15,6 +15,7 @@ import es.grupo13.ssddgrupo13.entities.Comment;
 import es.grupo13.ssddgrupo13.entities.Ticket;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
+import es.grupo13.ssddgrupo13.repository.EventRepository;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
@@ -31,13 +32,20 @@ public class ClientController {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
+    
     
     private Boolean isLogged = false;
+    private Boolean isAdmin = false;
     
 	@PostConstruct
 	public void init() {
         // Create a client
         Client client = new Client("John", "Doe", "johndoe@urjc.es", "123");
+        Client admn = new Client("admin", "1", "admin@urjc.es", "admin");
+        clientRepository.save(admn);
         clientRepository.save(client);
     }
 
@@ -68,6 +76,7 @@ public class ClientController {
         if (clientLogin.isPresent()) {
             session.setAttribute("client", clientLogin.get());
             isLogged = true;
+            isAdmin = clientLogin.get().isAdmin();
             return "/inicioSesion";
         } else {
             return "/error";
@@ -123,8 +132,13 @@ public class ClientController {
 
     @GetMapping("/profile")
     public String profileLink(HttpSession session, Model model) {
-        if(!isLogged)return "/profile";
-        else{
+        if(!isLogged && !isAdmin)return "/profile";
+        else if(isLogged && isAdmin){
+            model.addAttribute("client", session.getAttribute("client"));
+            model.addAttribute("comment", commentRepository.findAll());
+            model.addAttribute("event", eventRepository.findAll());
+            return "/profile_admin";
+        }else{
             model.addAttribute("client", session.getAttribute("client"));
              return "/profile_out";
         }
@@ -133,6 +147,7 @@ public class ClientController {
     @PostMapping("/log_out")
     public String logout(HttpSession session) {
         isLogged = false;
+        isAdmin = false;
         session.invalidate();
         return "/index";
     }

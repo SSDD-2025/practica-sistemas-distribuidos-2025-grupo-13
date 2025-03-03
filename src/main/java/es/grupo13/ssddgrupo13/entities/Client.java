@@ -21,11 +21,10 @@ public class Client {
     private Long id;
 
     @Column(nullable = false)
-    //@Pattern(regexp = "^[a-zA-Z]+$", message = "The name can only have letters")
     private String name;
 
     @Column(nullable = false)
-    //@Pattern(regexp = "^[a-zA-Z]+$", message = "The last name can only have letters")
+
     private String lastName;
 
     @Column(nullable = false)
@@ -107,6 +106,9 @@ public class Client {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+    public boolean isAdmin() {
+        return this.getEmail().equals("admin@urjc.es");
     }
 
 }
