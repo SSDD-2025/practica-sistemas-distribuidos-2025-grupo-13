@@ -81,6 +81,8 @@ Las siguientes entidades podrán subir imágenes:
 Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Jon
+- **header.html** → Uso de boostrap para una página top-nav y modales de registro e inicio de sesión
+- **Página detalle** → Página detalle para eventos con comentarios y detalles de cada elemento
 
 ### Robert
 
