@@ -5,32 +5,31 @@
 | Nombre | Apellidos | Correo Oficial | GitHub |
 |--------|----------|---------------|--------|
 | Jon | Mazcuñán Hernández | j.mazcunan.2022@alumnos.urjc.com | [GitHub1](https://github.com/jonmazh) |
-| Marcos | Álvarez Mansilla | m.alvarez.2022@alumnos.urjc.es | [GitHub2](**) |
+| Marcos | Álvarez Mansilla | m.alvarez.2022@alumnos.urjc.es | [GitHub2](https://github.com/MarcosAlvarezMansilla) |
 | Robert Gabriel | Mihai | rg.mihai.2022@alumnos.urjc.es | [GitHub3](https://github.com/robert07112004) |
-| Álvaro | Osuna Flores | a.osuna.2022@alumnos.urjc.es | [GitHub4](**) |
+| Álvaro | Osuna Flores | a.osuna.2022@alumnos.urjc.es | [GitHub4](https://github.com/AlvaroOsunaFlores) |
 
 ## Descripción del Proyecto
 
-El proyecto consiste en una aplicación web basada en HTML, CSS y BDD que se empleará para la gestión de eventos,
-mostrando eventos disponibles en distintos espacios y la compra de entradas para estos, permitiendo dejar comentarios 
-en los eventos que se hayan realizado una compra. 
+El proyecto consiste en una aplicación web basada en HTML, CSS, Java con Spring y BBDD (MySQL) diseñada para la gestión de eventos,
+mostrando aquellos eventos (conciertos, discotecas y festivales) disponibles y la compra de entradas para estos. Además, es posible
+realizar modificaciones en los comentarios y consultar las entradas a los eventos.
 
 ## Herramientas de Desarrollo
 
 - **Lenguaje principal:** HTML, CSS, Java con Spring Boot
 - **Base de datos:** MySQL
-- **Control de versiones:** GitHub ([Repositorio](https://github.com/tu-repo))
-- **Entorno de desarrollo:** Visual Studio Code / Eclipse
-- **Gestión del equipo:** Trello / GitHub Projects ([Tablero](https://trello.com/tu-tablero))
+- **Control de versiones:** GitHub ([Repositorio](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13.git))
+- **Entorno de desarrollo:** Visual Studio Code
 
 ## Entidades y Relaciones
 
 La aplicación maneja las siguientes entidades principales:
 
-1. **Usuario** (ID, nombre, email, contraseña, tipo de usuario)
-2. **Evento** (Fecha_fin, Fecha_Inicio, Nombre, Capacidad, Descripción)
-3. **Ticket** (n_tickets_vendidos, Precio)
-4. **Comentario** (Contenido, Valoración)
+1. **Usuario** (id, nombre, apellido, correo, contraseña)
+2. **Evento** (id, titulo, descripción, dirección, fechaComienzo, fechaFin, tipo, precio)
+3. **Ticket** (id, titulo, precio, horaCreación, formatoTiempo, estado)
+4. **Comentario** (id, titulo, autor, texto, valoración)
 
 ### Relaciones entre entidades
 
@@ -51,9 +50,7 @@ La aplicación maneja las siguientes entidades principales:
 
 Las siguientes entidades podrán subir imágenes:
 
-- **Usuarios** → Avatar
-- **Entidad 1** → Imagen destacada
-- **Entidad 3** → Galería de imágenes
+- **Adminsitrador** → Imagen portada de eventos
 
 ## Instrucciones de Ejecución
 
