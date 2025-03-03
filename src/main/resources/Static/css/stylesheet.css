@@ -114,7 +114,7 @@ h1 {
     height: 100%;
     object-fit: cover;
     z-index: -10000;
-    /* Asegura que el video esté detrás del contenido */
+    /* Assure that the video stays at the background */
 }
 
 .line-title {
@@ -210,14 +210,14 @@ h1 {
 
 .line-title-clubbing {
     border: 5px #ff00ea solid;
-    background-color: #ff00ea; /* Corrección del background-color */
+    background-color: #ff00ea; /* Corrrection of the background-color */
     margin-top: 10px;
     width: 75px;
     margin: 0 auto;
     opacity: 1;
     margin-bottom: 30px;
     padding-right: 0px; 
-    display: block; /* No es necesario flex aquí */
+    display: block; /* Flex isn´t neccesary */
 }
 
 .club1 {
@@ -336,7 +336,7 @@ h1 {
 }
 
 /***********************************
-            CSS PARA CONTACTANOS
+            CSS FOR CONTACTANOS
 
 ************************************/
 
@@ -381,14 +381,14 @@ button:hover {
 }
 
 /***********************************
-            CSS PARA DETALLE 
+            CSS FOR DETAIL 
 
 ************************************/
 
 
 @font-face {
     font-family: 'Skrappa-bold';
-    src: url('./fonts/SK.woff') format('woff'); /* Usa ./ en lugar de .. */
+    src: url('./fonts/SK.woff') format('woff'); /* Use ./ instead of .. */
     font-weight: bold;
     font-style: normal;
 }
@@ -492,7 +492,10 @@ button:hover {
 }
 
 
- /*         SECCION 2 : COMENTARIOS .... */
+/***********************************
+            CSS FOR COMMENTS 
+
+************************************/
 
 .section_3 {
     margin-top: 40px;
@@ -544,7 +547,10 @@ button:hover {
     font-weight: bold;
 }
 
-/*         MODAL */
+/***********************************
+            CSS FOR MODAL 
+
+************************************/
 .modal-content {
     margin-top: 25px;
     background: transparent;
@@ -582,14 +588,14 @@ button:hover {
 .checkbox-container {
     display: flex;
     align-items: center;
-    gap: 8px; /* Espacio entre el checkbox y el texto */
+    gap: 8px;
     color: white;
-    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    white-space: nowrap;
 }
 
 .checkbox-container input {
     margin: 0;
-    width: 16px; /* Tamaño estándar del checkbox */
+    width: 16px;
     height: 16px;
 }
 
@@ -598,12 +604,12 @@ button:hover {
     font-size: 14px;
 }
 
-/* Ajuste para que los checkboxes queden alineados con los inputs de texto */
+
 .form-check-group {
     display: flex;
     flex-direction: column;
-    align-items: start; /* Alinea los checkboxes a la izquierda del formulario */
-    margin-top: 10px; /* Espacio entre los campos de texto y los checkboxes */
+    align-items: start;
+    margin-top: 10px;
 }
 
 .btn-login:hover {
@@ -656,7 +662,7 @@ button:hover {
 
 /***************************************************
 
-            CSS PARA EL ERROR
+            CSS FOR ERROR
 
 ****************************************************/
 
@@ -675,7 +681,7 @@ button:hover {
 
 /***************************************************
 
-            CSS PARA EL MYDATA
+            CSS FOR MYDATA
 
 ****************************************************/
 
@@ -683,7 +689,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%; /* Controla la distancia desde los bordes */
+    width: 80%;
     gap: 200px;
 }
 
@@ -705,9 +711,9 @@ button:hover {
 }
 
 .main-container {
-    display: flex; /* Activa el modelo flexbox */
-    justify-content: space-between; /* Separa los elementos */
-    align-items: flex-start; /* Alinea los elementos arriba */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .data-container {
@@ -715,9 +721,9 @@ button:hover {
     flex-direction: column;
     justify-content: left;
     gap: 20px;
-    margin-top: 40px;  /* Ajuste el margen superior para dar espacio entre los eventos y los tickets */
+    margin-top: 40px;
     margin-left: 300px;
-    clear: both;  /* Asegura que se coloque debajo de los elementos anteriores */
+    clear: both;
 }
 
 .ticket {
@@ -755,9 +761,9 @@ button:hover {
     flex-direction: column;
     justify-content: right;
     gap: 20px;
-    margin-top: 40px;  /* Ajuste el margen superior para dar espacio entre los eventos y los tickets */
+    margin-top: 40px;
     margin-right: 300px;
-    clear: both;  /* Asegura que se coloque debajo de los elementos anteriores */
+    clear: both;
 }
 
 .comment {

@@ -66,14 +66,14 @@ public class EventController {
             return BlobProxy.generateProxy(inputStream, inputStream.available());
         } catch (IOException e) {
             System.err.println("⚠ No se pudo cargar la imagen por defecto. Se usará un Blob vacío.");
-            return BlobProxy.generateProxy(new byte[0]); // ✅ Usa un Blob vacío en lugar de null
+            return BlobProxy.generateProxy(new byte[0]); // Uses an empty Blob instead of null
         }
     }
     
 
     @PostConstruct
 	public void init() {
-        // Create a event
+        // Load images to the database
         Blob shokoImage = loadImage("img/shoko.png");
         Blob ohmyclubImage = loadImage("img/OH MY CLUB.png");
         Blob liberataImage = loadImage("img/liberata.png");
@@ -112,6 +112,7 @@ public class EventController {
         Event pekeno = new Event("ILL PEKEÑO & ERGO PRO", "", startConcert, finishConcert, "Sala Changó", "concierto", 15, pekeImage);
         Event cruzzi = new Event("CRUZZI", "", startConcert, finishConcert, "Teatro Barceló", "concierto", 58, cruzziImage);
 
+        // Add tickets to the database
         for (int i = 0; i < 10; i++){
             ticketRepository.save(new Ticket(shoko.getTitle(), shoko.getPrecio(), shoko.getTimeFinish(), TicketStatus.OPEN));
             ticketRepository.save(new Ticket(ohmyclub.getTitle(), ohmyclub.getPrecio(), ohmyclub.getTimeFinish(), TicketStatus.OPEN));
@@ -129,9 +130,11 @@ public class EventController {
         Comment comment = new Comment("Robert", "soy mariquita", 5, shoko.getTitle());
         Comment comment1 = new Comment("Robert", "soy mariquita", 4, shoko.getTitle());
 
+        // Add comments to the database
         shoko.addComments(comment);
         shoko.addComments(comment1);
         
+        // Add events to the database
         eventRepository.save(shoko);
         eventRepository.save(ohmyclub);
         eventRepository.save(liberata);
@@ -162,24 +165,24 @@ public class EventController {
 
     @GetMapping("/clubbing")
     public String showClubs(Model model) {
-        List<Event> clubs = eventRepository.findByType("club"); // Obtiene los eventos de la BD
-        model.addAttribute("club", clubs); // Agrega la lista al modelo
-        return "clubbing"; // Nombre de la plantilla (sin .html)
+        List<Event> clubs = eventRepository.findByType("club"); // Obtain the clubs from the database
+        model.addAttribute("club", clubs); // Add the list to the model
+        return "clubbing"; // Name of the template with out .html
         
     }
 
     @GetMapping("/conciertos")
     public String showConciertos(Model model) {
-        List<Event> events = eventRepository.findByType("concierto"); // Obtiene los eventos de la BD
-        model.addAttribute("conciertos", events); // Agrega la lista al modelo
-        return "conciertos"; // Nombre de la plantilla (sin .html)
+        List<Event> events = eventRepository.findByType("concierto"); // Obtain the concerts from the database
+        model.addAttribute("conciertos", events); // Add the list to the model
+        return "conciertos"; // Name of the template with out .html
     }  
 
     @GetMapping("/festivales")
     public String showFestivales(Model model) {
-        List<Event> events = eventRepository.findByType("festival"); // Obtiene los eventos de la BD
-        model.addAttribute("festivales", events); // Agrega la lista al modelo
-        return "festivales"; // Nombre de la plantilla (sin .html)
+        List<Event> events = eventRepository.findByType("festival"); // Obtain the festivals from the database
+        model.addAttribute("festivales", events); // Add the list to the model
+        return "festivales"; // Name of the template with out .html
     }
 
     @GetMapping("/ticket/{id}")
@@ -201,30 +204,30 @@ public class EventController {
     public String comment_in(HttpSession session, @RequestParam String text, @RequestParam String rating, @RequestParam Long eventID) {
         Client sessionclient = (Client) session.getAttribute("client");
         if (sessionclient == null) {
-            return "/comentarSinCuenta"; // Si no hay cliente en sesión, redirigir a error
+            return "/comentarSinCuenta"; // If there is no client redirect to error
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
-        // Importante encontrar el cliente en la base de datos porque si no da error
+        // Must find the client in the repository, otherwise will give an error
         Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
         if (client == null) {
-            return "/error"; // Si no hay cliente en sesión, redirigir a error
+            return "/error"; // If there is no client redirect to error
         }
         System.out.println("Correo del cliente"+client.getEmail());
         
-        Event event = eventRepository.findById(eventID).orElse(null); // Obtener el evento usando el ticketID
+        Event event = eventRepository.findById(eventID).orElse(null); // Obtain the event with the eventID
         
         if (event == null) {
-            return "/error"; // Si no se encuentra el evento, redirigir a error
+            return "/error"; // If the event is not found send an error
         }
         
         Comment comment = new Comment(client.getName(), text, Integer.valueOf(rating), event.getTitle());
-        event.getComments().add(comment);  // Asociar el comentario con el evento
-        client.getComments().add(comment); // Asociar el comentario con el cliente
-        commentRepository.save(comment);   // Guardar el comentario
-        eventRepository.save(event);       // Guardar el evento con el comentario agregado
-        clientRepository.save(client);     // Guardar el cliente con el comentario agregado
+        event.getComments().add(comment);  // Associate the comment with the event
+        client.getComments().add(comment); // Associate the comment with the client
+        commentRepository.save(comment);   // Save the comment in the repository
+        eventRepository.save(event);       // Save the event with the comment added
+        clientRepository.save(client);     // Save the client with the comment added
 
-        return "redirect:/ticket/" + eventID;  // Redirigir a la página del evento
+        return "redirect:/ticket/" + eventID;  // Redirect to the event page
     }
 
     @PostMapping("/comment_out/{commentId}/{titleEvento}")

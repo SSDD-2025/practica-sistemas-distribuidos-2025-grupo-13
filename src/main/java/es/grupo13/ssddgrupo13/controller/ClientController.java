@@ -14,8 +14,11 @@ import es.grupo13.ssddgrupo13.entities.Client;
 import es.grupo13.ssddgrupo13.entities.Comment;
 import es.grupo13.ssddgrupo13.entities.Ticket;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
+<<<<<<< HEAD
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.repository.EventRepository;
+=======
+>>>>>>> b96deead21063bc0995e25c6db60394c9697f6f9
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +32,7 @@ public class ClientController {
 	
 	@Autowired
 	private TicketRepository ticketRepository;
+<<<<<<< HEAD
 
     @Autowired
     private CommentRepository commentRepository;
@@ -36,6 +40,8 @@ public class ClientController {
     @Autowired
     private EventRepository eventRepository;
     
+=======
+>>>>>>> b96deead21063bc0995e25c6db60394c9697f6f9
     
     private Boolean isLogged = false;
     private Boolean isAdmin = false;
@@ -56,7 +62,7 @@ public class ClientController {
                         @RequestParam String password,
                         Model model) {
         
-        // Comprueba si el email ya existe
+        // Checks if the client exists
         Optional<Client> existingClient = clientRepository.findByEmail(email);
         
         if (existingClient.isPresent()) {
@@ -87,24 +93,24 @@ public class ClientController {
     public String saveTicket(HttpSession session, @RequestParam Long eventID) {
         Client sessionclient = (Client) session.getAttribute("client");
         if (sessionclient == null) {
-            return "/comprarSinCuenta"; // Si no hay cliente en sesión, redirigir a error
+            return "/comprarSinCuenta"; // If there is no client redirect to error
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
-        // Importante encontrar el cliente en la base de datos porque si no da error
+        // Find client un bbdd if not will give an error
         Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
         if (client == null) {
-            return "/error"; // Si no hay cliente en sesión, redirigir a error
+            return "/error"; // If no client is in session, redirect to error
         }
         System.out.println("Correo del cliente"+client.getEmail());
 
-        Ticket ticket = ticketRepository.findById(eventID).orElse(null); // Obtener el evento usando el ticketID
+        Ticket ticket = ticketRepository.findById(eventID).orElse(null); // Gets the event from the eventID
         if (ticket == null) {
-            return "/error"; // Si no se encuentra el evento, redirigir a error
+            return "/error"; // If there is no event, redirect to error
         }
         System.out.println("Titulo del ticket"+ticket.getTitle());
 
-        client.getTickets().add(ticket);  // Asociar el ticket con el cliente
-        clientRepository.save(client);   // Guardar el cliente con el ticket agregado
+        client.getTickets().add(ticket);  // Associate the ticket with client
+        clientRepository.save(client);   // Save the client with the ticket added
 
         return "ticketComprado";
     }
@@ -113,13 +119,13 @@ public class ClientController {
     public String getMyTickets(HttpSession session, Model model) {
         Client sessionclient = (Client) session.getAttribute("client");
         if (sessionclient == null) {
-            return "/createCuenta"; // Si no hay cliente en sesión, redirigir a error
+            return "/createCuenta"; // If no client is in session, redirect to error
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
-        // Importante encontrar el cliente en la base de datos porque si no da error
+        // Must find the client in the repository, otherwise will give an error
         Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
         if (client == null) {
-            return "/error"; // Si no hay cliente en sesión, redirigir a error
+            return "/error"; // If no client is in session, redirect to error
         }
         System.out.println("Correo del cliente"+client.getEmail());
 
