@@ -110,29 +110,34 @@ Ve a https://localhost/8080/
 ## Capturas de Pantalla
 
 - Página de inicio:
+
 ![Pagina Inicio](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaInicio.png)
 
 Descripción: es la pantalla inicial, se muestra al acceder a la página web. Muestra un video de fondo y se pueden acceder a todas las secciones
 de arriba a la derecha (Home, Clubbing, Conciertos, Festivales, Contactanos, Mis Datos, Icono cuenta).
 
 
-- Página de registro:
+- Página de registro:  
+
 ![Pagina Registro](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaRegistro.png)
 
 Descripción: pantalla utilizada para registrar un usuario, posteriormente podrá iniciar sesión y comprar eventos y publicar comentarios.
 
 - Página de inicio de sesión:
+
 ![Pagina Inicio Sesion](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaInicioSesion.png)
 
 Descripción: pantalla utilizada para iniciar sesión una vez creada la cuenta. En esta pantalla si inicias sesión con la cuenta del administrador,
 al pulsar otra vez en el icono de Iniciar sesión podrás modificar los eventos y los comentarios.
 
 - Página de cerrar sesión:
+
 ![Pagina Cierre Sesion](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaCerrarSesion.png)
 
 Descripción: pantalla utilizada para cerrar sesión del usuario.
 
 - Página de administrador:
+
 ![Pagina Administrador](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaAdminComentario.png)
 
 ![Pagina Administrador](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaAdminEvento.png)
@@ -140,21 +145,25 @@ Descripción: pantalla utilizada para cerrar sesión del usuario.
 Descripción: pantalla utilizada únicamente con la cuenta del administrador para eliminar comentarios, añadir y eliminar eventos.
 
 - Página de Clubbing:
+
 ![Pagina Clubbing](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaClubbing.png)
 
 Descripción: se muestran los eventos de tipo discoteca y se pueden acceder a ellos.
 
 - Página de Conciertos:
+
 ![Pagina Conciertos](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaConciertos.png)
 
 Descripción: se muestran los eventos de tipo concierto y se pueden acceder a ellos.
 
 - Página de Festivales:
+
 ![Pagina Festivales](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaFestivales.png)
 
 Descripción: se muestran los eventos de tipo festival y se pueden acceder a ellos.
 
 - Página de ticket:
+
 ![Pagina Ticket](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaTicketComprar.png)
 
 ![Pagina Ticket](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaTicketComentar.png)
@@ -162,11 +171,13 @@ Descripción: se muestran los eventos de tipo festival y se pueden acceder a ell
 Descripción: se muestra la pantalla para comprar el evento y poder publicar algún comentario de tu experiencia.
 
 - Página de Contactanos:
+
 ![Pagina Contactanos](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaContactar.png)
 
 Descripción: pantalla para contactar con nostros rellenando el formulario.
 
 - Página de Mis Datos:
+
 ![Pagina Mis Datos](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaMisDatos.png)
 
 Descripción: pantalla que solo se puede acceder al estar con la sesión iniciada y te muestra los tickets a los eventos que has comprado y los
