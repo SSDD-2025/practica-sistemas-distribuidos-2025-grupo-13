@@ -113,12 +113,13 @@ Ve a https://localhost/8080/
 ![Pagina Inicio](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaInicio.png)
 
 Descripción: es la pantalla inicial, se muestra al acceder a la página web. Muestra un video de fondo y se pueden acceder a todas las secciones
-de arriba a la derecha (Home, Clubbing, Conciertos, Festivales, Contactanos, Mis Datos, Icono cuenta)
+de arriba a la derecha (Home, Clubbing, Conciertos, Festivales, Contactanos, Mis Datos, Icono cuenta).
+
 
 - Página de registro:
 ![Pagina Registro](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaRegistro.png)
 
-Descripción: pantalla utilizada para registrar un usuario, posteriormente podrá iniciar sesión y comprar eventos y publicar comentarios
+Descripción: pantalla utilizada para registrar un usuario, posteriormente podrá iniciar sesión y comprar eventos y publicar comentarios.
 
 - Página de inicio de sesión:
 ![Pagina Inicio Sesion](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaInicioSesion.png)
