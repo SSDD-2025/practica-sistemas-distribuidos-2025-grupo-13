@@ -225,11 +225,11 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
    - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ce9d442f35964173bfee4c2df482a840461235e1)
    - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f0f603b3a351ae113e145b7c054138aeab85be74)
 - 5 ficheros en los que se ha participado:
-   - [Fichero 1]()
-   - [Fichero 2]()
-   - [Fichero 3]()
-   - [Fichero 4]()
-   - [](src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
+   - [profile_admin.html](src/main/resources/Templates/profile_admin.html)
+   - [profile.html](src/main/resources/Templates/profile.html)
+   - [clubbing.html](src/main/resources/Templates/clubbing.html)
+   - [ClientController.java](src/main/java/es/grupo13/ssddgrupo13/controller/ClientController.java)
+   - [EventController.java](src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
 
 ### Marcos
 
