@@ -225,10 +225,10 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Marcos
 
-- Tareas: He creado la pestaña conciertos en html con una plantilla con mustache. Además de añadir sus ejemplos, tanto de festivales como de conciertos, a la BBDD junto con los
-controladores respectivos para que la plantilla mustache funcione. También he creado el metodo dentro del clientControler para que funcione el añadir un comentario, que se vea en
-la página, que se añada correctamente a la BBDD junto con las dependencias con el cliente y el evento. También, actualizé la base de datos, upgradeamos de h2 a sql. Por útlimo,
-me he encargado de actualizar todo el código al inglés y he modificado muchos css para que la web tuviese una estandarización adecuada tanto de colores como de tipografías
+- Tareas: Creación la pestaña conciertos en html con una plantilla con mustache. Adición de ejemplos, tanto de festivales como de conciertos, a la BBDD junto con los
+controladores respectivos para que la plantilla mustache funcione. Creación del metodo dentro del clientController para que funcione el añadir un comentario, que se vea en
+la página, que se añada correctamente a la BBDD junto con las dependencias con el cliente y el evento. Actualización de la base de datos, upgradeamos de h2 a sql. Por útlimo,
+se ha actualizado todo el código al inglés y  modificado muchos css para que la web tuviese una estandarización adecuada tanto de colores como de tipografías
 
 - 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
    - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/1c32397bba08337940850ace51ba583674cb66ba)
