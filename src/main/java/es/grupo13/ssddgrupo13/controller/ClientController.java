@@ -20,8 +20,6 @@ import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 
-
-
 @Controller
 public class ClientController {
     @Autowired

@@ -301,7 +301,6 @@ public class EventController {
         LocalDateTime startEvent = LocalDateTime.parse(timeStart);
         LocalDateTime finishEvent = LocalDateTime.parse(timeEnd);
         
-        
         Blob imageBlob;
         try {
             // // Converts the MultipartFile to Blob if the image isn´t empty
@@ -325,8 +324,5 @@ public class EventController {
 
         return "/createdEvent";
     }
-    
-    
-    
 
 }
