@@ -166,9 +166,10 @@ Descripción: se muestra la pantalla para comprar el evento y poder publicar alg
 Descripción: pantalla para contactar con nostros rellenando el formulario.
 
 - Página de Mis Datos:
-![Pagina Contactanos](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaMisDatos.png)
+![Pagina Mis Datos](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/pantallaMisDatos.png)
 
-
+Descripción: pantalla que solo se puede acceder al estar con la sesión iniciada y te muestra los tickets a los eventos que has comprado y los
+comentarios que has publicado.
 
 ## Participación de los Miembros
 
