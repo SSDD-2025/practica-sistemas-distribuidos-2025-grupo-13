@@ -132,6 +132,19 @@ public class EventController {
             ticketRepository.save(new Ticket(pekeno.getTitle(), pekeno.getPrecio(), pekeno.getTimeFinish(), TicketStatus.OPEN));
             ticketRepository.save(new Ticket(cruzzi.getTitle(), cruzzi.getPrecio(), cruzzi.getTimeFinish(), TicketStatus.OPEN));
         }
+        Ticket tcktejmpl = new Ticket(shoko.getTitle(), shoko.getPrecio(), shoko.getTimeFinish(), TicketStatus.OPEN);
+        ticketRepository.save(tcktejmpl);
+        Client clntejmpl = new Client("Juan", "Pérez", "juan.perez@correo.com","123");
+        clientRepository.save(clntejmpl);
+        Comment cmmntejmpl = new Comment(clntejmpl.getName(),"Este evento es muy divertido", 4, natosywaor.getTitle());
+
+        Ticket tcktejmpl2 = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio(), natosywaor.getTimeFinish(), TicketStatus.OPEN);
+        ticketRepository.save(tcktejmpl2);
+        clntejmpl.getTickets().add(tcktejmpl2);
+        clntejmpl.getTickets().add(tcktejmpl);
+        clntejmpl.getComments().add(cmmntejmpl);
+        clientRepository.save(clntejmpl);
+
 
         Comment comment = new Comment("Robert", "Muy guay", 5, shoko.getTitle());
         Comment comment1 = new Comment("Mar", "Increible", 4, shoko.getTitle());
@@ -178,6 +191,9 @@ public class EventController {
         eventRepository.save(alsafir);
         eventRepository.save(pekeno);
         eventRepository.save(cruzzi);
+
+        natosywaor.addComments(cmmntejmpl);
+        eventRepository.save(natosywaor);
     }
 
     
