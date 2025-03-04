@@ -48,8 +48,6 @@
 			<version>4.0.2</version>
 		</dependency>
 		<!--Termina las dependencias para la validación del email-->
-
-		
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

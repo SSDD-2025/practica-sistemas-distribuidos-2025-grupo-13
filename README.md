@@ -74,6 +74,29 @@ CREATE SCHEMA grupo_13;
 4. **Acceder a la aplicación:**  
 Ve a https://localhost/8080/
 
+### Se necesita
+
+- Java: JDK 21
+   - Windows: https://www.oracle.com/java/technologies/downloads/#jdk21-windows
+   - Linux:  
+      ```sh
+      sudo apt install openjdk-21   
+      ```
+
+- MySQL: v.8.0.33
+   - Windows: https://dev.mysql.com/downloads/installer/
+   - Linux:  
+      ```sh
+      sudo apt install mysql-server=8.0.33
+      ```
+
+- Maven: 4.0.0
+   - Windows: https://maven.apache.org/download.cgi
+
+- Spring Boot 3.4.2
+
+- VSCode + SpringBoot
+
 ## Diagrama de Entidades
 
 ![Diagrama ER](img/diagramaer.png)
