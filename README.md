@@ -195,6 +195,23 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Robert
 
+- Tareas: realizar la sección de festivales (en un principio se llamaba eventos), empezar con la creación de la BBDD (en un principio fue h2, luego MySQL) creando los ficheros
+  necesarios de entidades, repositorios y controladores y modificando el pom.xml. Se ha ayudado a construir las entidades de la BBDD (Client, Event, Ticket y Comment). Se ha
+  implementado algunas pantallas para aceptar la compra de tickets, publicación de comentarios... Se ha realizado la sección de Mis Datos junto con las operaciones que tiene
+  que realizar la base de datos para mostrar esa sección, además se ha implementado que un cliente pueda comprar un ticket y publicar un comentario y que eso se muestre en la BBDD.
+  En el apartado de administrador se ha implementado que se puedan eliminar tanto eventos como comentarios y que los cambios se muestren en la BBDD. Por último, se ha ayudado en
+  el readme.
+
+- 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/6068a793b0c2ec1fdbe0f82e6cc2a0107bf66aaf)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/c75e85a4836989030d44d7886e753e92d0c3bf25)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f80d518a7a6c19c004c190c7c8c0f683df0b3011)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ceca4170154482b09f8a0d9101476f5fc955938a)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/7097fd02a55c77eea78ec2fafd9971a0679f2e70)
+
+- 5 ficheros en los que se ha participado:
+   - [] 
+
 ### Álvaro
 - **Añadir ejemplos** → Creación de entidades de ejemplo para que se puedan ver el servicio en pleno funcinamiento
 - **Página de clubbing** → Página de eventos con los diferentes tipos de clubs
