@@ -217,11 +217,19 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
    - [Client.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/entities/Client.java) 
 
 ### Álvaro
-- **Añadir ejemplos** → Creación de entidades de ejemplo para que se puedan ver el servicio en pleno funcinamiento
-- **Página de clubbing** → Página de eventos con los diferentes tipos de clubs
-- **Cerrar sesión** → Método y otras utilidades necesarias para cerrar sesión 
-- **Mapping header** → Los diferentes mapeos para el header de la página 
-- **Metodo creación de evento** → Creación del método en Java para crear un evento (Plantilla en html ya realizada)
+- Tareas: Realizar la sección de clubbing , creación de los principales mapeos.Cración del administrador, con su respectivo cierre de sesión, añadir eventos, mapeado borrar eventos y mapeado borrar comentarios. Creación del cierre de sesión y ,por consecuencia, la diferenciacion dentro de otras clases de usuario iniciado o no. Primeras creaciones de entidades comentarios. Inicios del Client Controller y páguina de compra. Diferenciacion del header y el footer, es decir, creación de los ficheros y poner el código que se encontraba al inicio y final de todos los htmls. Mapeo de las secciones del header. Ayuda en otros métodos de Event Controller.
+- 5 commits más significativos :
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ab1b7ae2a8f39ea3739c49cc8bd1b818e1b469e5)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/b84971f19f1d9727f6e15e711812358613223f5c)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f5d358fa9db7c2111cefe304dd6ad5e8a3054dc4)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ce9d442f35964173bfee4c2df482a840461235e1)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f0f603b3a351ae113e145b7c054138aeab85be74)
+- 5 ficheros en los que se ha participado:
+   - [Fichero 1]()
+   - [Fichero 2]()
+   - [Fichero 3]()
+   - [Fichero 4]()
+   - [](src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
 
 ### Marcos
 
