@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import javax.sql.rowset.serial.SerialBlob;
+
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.grupo13.ssddgrupo13.entities.Client;
 import es.grupo13.ssddgrupo13.entities.Comment;
@@ -281,9 +284,10 @@ public class EventController {
 
     @PostMapping("/delete_comment")
     public String deleteComment(@RequestParam Long commentID) {
-        // Eliminar todas las referencias del comentario en event_comments
+        // Delete all the references related with the comment in the event_comments
         jdbcTemplate.update("DELETE FROM event_comments WHERE comments_id = ?", commentID);
-        // Posteriormente se procede a eliminar el comentario
+
+        // Delete the comment
         commentRepository.deleteById(commentID);
         return "/commentEliminado";
     }
@@ -293,16 +297,32 @@ public class EventController {
         return "newEvent";
     }
     @PostMapping("/addNewEvent")
-    public String addNewEvent(@RequestParam String titleEvent, @RequestParam String description, @RequestParam String typeOptions, @RequestParam String timeStart, @RequestParam String timeEnd, @RequestParam String addressEvent, @RequestParam int priceEvent) {
+    public String addNewEvent(@RequestParam String titleEvent, @RequestParam String description, @RequestParam String typeOptions, @RequestParam String timeStart, @RequestParam String timeEnd, @RequestParam String addressEvent, @RequestParam int priceEvent, @RequestParam MultipartFile image) {
         LocalDateTime startEvent = LocalDateTime.parse(timeStart);
         LocalDateTime finishEvent = LocalDateTime.parse(timeEnd);
-        Blob shokoImage = loadImage("img/shoko.png");
-        Event event = new Event(titleEvent, description, startEvent, finishEvent, addressEvent, typeOptions, priceEvent, shokoImage);
-        eventRepository.save(event);
-        for (int i = 0; i < 10; i++) {
-         Ticket newTicket = new Ticket(event.getTitle(), event.getPrecio(), event.getTimeFinish(), TicketStatus.OPEN);
-         ticketRepository.save(newTicket);   
+        
+        
+        Blob imageBlob;
+        try {
+            // // Converts the MultipartFile to Blob if the image isn´t empty
+            if (image != null && !image.isEmpty()) {
+                imageBlob = new SerialBlob(image.getBytes());
+            } else {
+                imageBlob = loadDefaultImage();
+            }
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+            return "error"; // Redirect to the error page
         }
+
+        Event event = new Event(titleEvent, description, startEvent, finishEvent, addressEvent, typeOptions, priceEvent, imageBlob);
+        eventRepository.save(event);
+
+        for (int i = 0; i < 10; i++) {
+            Ticket newTicket = new Ticket(event.getTitle(), event.getPrecio(), event.getTimeFinish(), TicketStatus.OPEN);
+            ticketRepository.save(newTicket);   
+        }
+
         return "/createdEvent";
     }
     
