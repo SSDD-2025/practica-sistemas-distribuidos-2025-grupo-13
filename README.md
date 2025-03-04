@@ -98,7 +98,7 @@ Ve a https://localhost/8080/
 - VSCode + SpringBoot
 
 ## Diagrama de navegación
-
+![Diagrama Navegacion](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/diagramaNavegacion.png)
 
 ## Diagrama de Entidades
 
