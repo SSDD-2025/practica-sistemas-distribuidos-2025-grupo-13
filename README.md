@@ -102,7 +102,7 @@ Ve a https://localhost/8080/
 
 ## Diagrama de Entidades
 
-![Diagrama ER](img/diagramaEntidades.png)
+![Diagrama Entidades](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/img/diagramaEntidades.png)
 
 ## Diagrama de clases y templates
 
