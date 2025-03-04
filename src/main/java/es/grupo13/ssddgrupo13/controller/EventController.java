@@ -34,6 +34,7 @@ import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 
+
 @Controller
 public class EventController {
     @Autowired
@@ -139,11 +140,26 @@ public class EventController {
         Comment comment7 = new Comment("Mar", "Normalito", 2, rioBabel.getTitle());
         Comment comment8 = new Comment("Alvaro", "Me esperaba más", 2, natosywaor.getTitle());
         Comment comment9 = new Comment("Mario", "Increiblemente ", 4, alsafir.getTitle());
+        Comment comment10 = new Comment("Harry", "Super magico", 4, alsafir.getTitle());
+        Comment comment11 = new Comment("Ruslana", "Muy malo", 0, pekeno.getTitle());
+        Comment comment12 = new Comment("Daniel", "Espectacular!!!!", 5, cruzzi.getTitle());
         
 
         // Add comments to the database
         shoko.addComments(comment);
         shoko.addComments(comment1);
+        ohmyclub.addComments(comment2);
+        liberata.addComments(comment3);
+        madcool.addComments(comment4);
+        blackworks.addComments(comment5);
+        blackworks.addComments(comment6);
+        rioBabel.addComments(comment7);
+        natosywaor.addComments(comment8);
+        alsafir.addComments(comment9);
+        alsafir.addComments(comment10);
+        pekeno.addComments(comment11);
+        cruzzi.addComments(comment12);
+
         
         // Add events to the database
         eventRepository.save(shoko);
@@ -254,7 +270,7 @@ public class EventController {
         client.getComments().remove(comment);
         clientRepository.save(client);
         eventRepository.save(event);
-        return "commentEliminado";
+        return "/commentEliminado";
     }
 
     @PostMapping("/delete_event")
@@ -276,6 +292,21 @@ public class EventController {
     public String getNewEvent() {
         return "newEvent";
     }
+    @PostMapping("/addNewEvent")
+    public String addNewEvent(@RequestParam String titleEvent, @RequestParam String description, @RequestParam String typeOptions, @RequestParam String timeStart, @RequestParam String timeEnd, @RequestParam String addressEvent, @RequestParam int priceEvent) {
+        LocalDateTime startEvent = LocalDateTime.parse(timeStart);
+        LocalDateTime finishEvent = LocalDateTime.parse(timeEnd);
+        Blob shokoImage = loadImage("img/shoko.png");
+        Event event = new Event(titleEvent, description, startEvent, finishEvent, addressEvent, typeOptions, priceEvent, shokoImage);
+        eventRepository.save(event);
+        for (int i = 0; i < 10; i++) {
+         Ticket newTicket = new Ticket(event.getTitle(), event.getPrecio(), event.getTimeFinish(), TicketStatus.OPEN);
+         ticketRepository.save(newTicket);   
+        }
+        return "/createdEvent";
+    }
+    
+    
     
 
 }
