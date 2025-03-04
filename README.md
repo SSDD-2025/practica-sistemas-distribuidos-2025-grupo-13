@@ -210,7 +210,11 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
    - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/7097fd02a55c77eea78ec2fafd9971a0679f2e70)
 
 - 5 ficheros en los que se ha participado:
-   - [] 
+   - [mydata.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/myData.html)
+   - [newEvent.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/newEvent.html)
+   - [festivals.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/festivals.html)
+   - [EventController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
+   - [Client.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/entities/Client.java) 
 
 ### Álvaro
 - **Añadir ejemplos** → Creación de entidades de ejemplo para que se puedan ver el servicio en pleno funcinamiento
