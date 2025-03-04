@@ -196,6 +196,11 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 ### Robert
 
 ### Álvaro
+- **Añadir ejemplos** → Creación de entidades de ejemplo para que se puedan ver el servicio en pleno funcinamiento
+- **Página de clubbing** → Página de eventos con los diferentes tipos de clubs
+- **Cerrar sesión** → Método y otras utilidades necesarias para cerrar sesión 
+- **Mapping header** → Los diferentes mapeos para el header de la página 
+- **Metodo creación de evento** → Creación del método en Java para crear un evento (Plantilla en html ya realizada)
 
 ### Marcos
 
