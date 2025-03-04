@@ -225,5 +225,23 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Marcos
 
+- Tareas: He creado la pestaña conciertos en html con una plantilla con mustache. Además de añadir sus ejemplos, tanto de festivales como de conciertos, a la BBDD junto con los
+controladores respectivos para que la plantilla mustache funcione. También he creado el metodo dentro del clientControler para que funcione el añadir un comentario, que se vea en
+la página, que se añada correctamente a la BBDD junto con las dependencias con el cliente y el evento. También, actualizé la base de datos, upgradeamos de h2 a sql. Por útlimo,
+me he encargado de actualizar todo el código al inglés y he modificado muchos css para que la web tuviese una estandarización adecuada tanto de colores como de tipografías
+
+- 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/1c32397bba08337940850ace51ba583674cb66ba)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/13a4b0ec47e84b87db2d564646f607a8f52f9922)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/7dbe94a7196fd3862fe8be1b08a920c27b64cc0c)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/221a18e987bc75dd91e4d63efac8c53da8975ecb)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f9da51124394295731186e6964cb183d9dcc1fc2)
+
+   - 5 ficheros en los que se ha participado:
+   - [ClientController](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/ClientController.java)
+   - [EventController](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
+   - [Concerts](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/concerts.html)
+   - [Ticket](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/ticket.html)
+   - [Contact](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/contact.html)
 
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/D1C1HU9V)
