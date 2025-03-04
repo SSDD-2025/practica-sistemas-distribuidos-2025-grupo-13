@@ -59,19 +59,19 @@ Las siguientes entidades podrán subir imágenes:
 git clone https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13.git
 ```
 
-2. **Configurar la base de datos:**
-Descargar MySQL WorkBench
-Usuario: `root` | Contraseña: `password` | Puerto: `3306`
-Crear un esquema llamado: grupo_13
+2. **Configurar la base de datos:**  
+Descargar MySQL WorkBench  
+Usuario: `root` | Contraseña: `password` | Puerto: `3306`  
+Crear un esquema llamado: grupo_13  
 ```sql
 CREATE SCHEMA grupo_13;
 ```
 
-3. **Compilar y ejecutar la aplicación:**
-   Abrir el MySQL WorkBench y meterse en la conexión creada anteriormente
-   Run Application en VSCode
+3. **Compilar y ejecutar la aplicación:**  
+   Abrir el MySQL WorkBench y meterse en la conexión creada anteriormente  
+   Run Application en VSCode  
 
-4. **Acceder a la aplicación:**
+4. **Acceder a la aplicación:**  
 Ve a https://localhost/8080/
 
 ## Diagrama de Entidades
