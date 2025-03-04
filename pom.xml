@@ -31,7 +31,7 @@
 	</properties>
 	<dependencies>
 		
-		<!--Para la validación del email (si no va a hacer falta se quita)-->
+		<!--For email validations-->
 		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
@@ -47,7 +47,7 @@
 			<artifactId>jakarta.el</artifactId>
 			<version>4.0.2</version>
 		</dependency>
-		<!--Termina las dependencias para la validación del email-->
+		<!--Dependencies for email validations END-->
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
