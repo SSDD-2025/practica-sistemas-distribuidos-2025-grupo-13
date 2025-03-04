@@ -97,9 +97,15 @@ Ve a https://localhost/8080/
 
 - VSCode + SpringBoot
 
+## Diagrama de navegación
+
+
 ## Diagrama de Entidades
 
-![Diagrama ER](img/diagramaer.png)
+![Diagrama ER](img/diagramaEntidades.png)
+
+## Diagrama de clases y templates
+
 
 ## Capturas de Pantalla
 
