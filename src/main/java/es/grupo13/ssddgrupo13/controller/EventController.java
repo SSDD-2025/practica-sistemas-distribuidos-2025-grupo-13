@@ -129,8 +129,17 @@ public class EventController {
             ticketRepository.save(new Ticket(cruzzi.getTitle(), cruzzi.getPrecio(), cruzzi.getTimeFinish(), TicketStatus.OPEN));
         }
 
-        Comment comment = new Comment("Robert", "soy mariquita", 5, shoko.getTitle());
-        Comment comment1 = new Comment("Robert", "soy mariquita", 4, shoko.getTitle());
+        Comment comment = new Comment("Robert", "Muy guay", 5, shoko.getTitle());
+        Comment comment1 = new Comment("Mar", "Increible", 4, shoko.getTitle());
+        Comment comment2 = new Comment("Juan", "Impresionante", 3, ohmyclub.getTitle());
+        Comment comment3 = new Comment("Jose", "Increible", 5, liberata.getTitle());
+        Comment comment4 = new Comment("Robert", "Nada del otro mundo", 1, madcool.getTitle());
+        Comment comment5 = new Comment("Martin", "Super interesante", 4, blackworks.getTitle());
+        Comment comment6 = new Comment("Ruben", "Muy sorpresivo", 3, blackworks.getTitle());
+        Comment comment7 = new Comment("Mar", "Normalito", 2, rioBabel.getTitle());
+        Comment comment8 = new Comment("Alvaro", "Me esperaba más", 2, natosywaor.getTitle());
+        Comment comment9 = new Comment("Mario", "Increiblemente ", 4, alsafir.getTitle());
+        
 
         // Add comments to the database
         shoko.addComments(comment);
