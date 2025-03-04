@@ -15,6 +15,10 @@
                 <p>Nombre: {{client.name}}</p>
                 <p>Apellidos: {{client.lastName}}</p>
                 <p>Correo electrónico: {{client.email}}</p>
+                <form action="/editprofilepage" method="get">
+                    <button type="submit" class="btn btn-login me-2">Editar perfil</button>
+                    
+                </form>   
                 <form action="/log_out" method="post">
                     <button type="submit" class="btn btn-login me-2">Cerrar sesión</button>
                     

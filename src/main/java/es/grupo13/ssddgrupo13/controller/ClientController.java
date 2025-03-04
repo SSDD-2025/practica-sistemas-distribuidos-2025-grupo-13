@@ -153,5 +153,34 @@ public class ClientController {
         session.invalidate();
         return "/loguedOut";
     }
+    @GetMapping("/editprofilepage")
+    public String editProfilePage() {
+        return "/editprofile";
+    }
+    @PostMapping("/edit-profile")
+    public String editProfile(HttpSession session, @RequestParam("name") String name, @RequestParam ("email") String email , @RequestParam("lastName") String lastName) {
+        Client sessionclient = (Client) session.getAttribute("client");
+        if (sessionclient == null) {
+            return "/error"; // If no client is in session, redirect to error
+        }
+        System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
+        // Must find the client in the repository, otherwise will give an error
+        Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
+        if (client == null) {
+            return "/error"; // If no client is in session, redirect to error
+        }
+        System.out.println("Correo del cliente"+client.getEmail());
+        client.setName(name);
+        client.setEmail(email);
+        client.setEmail(email);
+        sessionclient.setEmail(email);
+        sessionclient.setLastName(lastName);
+        sessionclient.setName(name);
+        
+        
+        clientRepository.save(client);
+        return "/profile_edited";
+    }
+    
 
 }
