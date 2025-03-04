@@ -2,53 +2,53 @@
 <html lang="en">
 {{>header}}
 
-    <div class="titleClubbing">
-        <h1>MIS DATOS</h1>
-        <hr class="line-title-clubbing" href="#"></hr>
+<div class="titleClubbing">
+    <h1>MIS DATOS</h1>
+    <hr class="line-title-clubbing" href="#"></hr>
+</div>
+
+<div class="container">
+    <h2 class="subtitleDetailEvent">Mis tickets</h2>
+    <h2 class="subtitleDetailEvent">Mis comentarios</h2>
+</div>
+
+<div class="main-container">
+    <div class="data-container">
+        {{#tickets}}
+        <button class="ticket">
+            <img src="img/{{title}}.jpg" alt="{{title}}">
+            <h3>{{title}}</h3>
+            <p>Precio: {{price}}</p>
+            <p>{{timeStartFormat}}</p>
+            <p>{{status}}</p>
+        </button>
+        {{/tickets}}
     </div>
 
-    <div class="container">
-        <h2 class="subtitleDetailEvent">Mis tickets</h2>
-        <h2 class="subtitleDetailEvent">Mis comentarios</h2>
-    </div>
-    
-    <div class="main-container">
-        <div class="data-container">
-            {{#tickets}}
-            <button class="ticket">
-                <img src="img/{{title}}.jpg" alt="{{title}}">
-                <h3>{{title}}</h3>
-                <p>Precio: {{price}}</p>
-                <p>{{timeStartFormat}}</p>
-                <p>{{status}}</p>
-            </button>
-            {{/tickets}}
-        </div>
-    
-        <div class="container-comments-mydata">
-            {{#comments}}
-            <div class="comment">
-                <div class="comment-post_user">
-                    {{autor}}
-                </div>
-                <div class="comment-post_content">
-                    <p>{{text}}</p>
-                </div>
-                <div class="comment-post_valoration">
-                    <p>{{{rating}}}</p>
-                </div>
-                <div class="comment-actions">
-                    <!-- Forms to delete the comment -->
-                    <form action="/comment_out/{{id}}/{{title}}" method="POST">
-                        <button type="submit" class="delete-comment">Eliminar</button>
-                    </form>
-                </div>
+    <div class="container-comments-mydata">
+        {{#comments}}
+        <div class="comment">
+            <div class="comment-post_user">
+                {{autor}}
             </div>
-            {{/comments}}
+            <div class="comment-post_content">
+                <p>{{text}}</p>
+            </div>
+            <div class="comment-post_valoration">
+                <p>{{{rating}}}</p>
+            </div>
+            <div class="comment-actions">
+                <!-- Forms to delete the comment -->
+                <form action="/comment_out/{{id}}/{{title}}" method="POST">
+                    <button type="submit" class="delete-comment">Eliminar</button>
+                </form>
+            </div>
         </div>
+        {{/comments}}
     </div>
+</div>
 
-    {{>footer}}
+{{>footer}}
 
 </body>
 </html>

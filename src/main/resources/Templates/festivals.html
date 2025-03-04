@@ -3,27 +3,28 @@
 
 {{>header}}
 
-    <div class="titleClubbing">
-        <h1 class="titleEventos">FESTIVALES</h1>
-        <hr class="line-title-clubbing"></hr>
-    </div>
+<div class="titleClubbing">
+    <h1 class="titleEventos">FESTIVALES</h1>
+    <hr class="line-title-clubbing"></hr>
+</div>
 
-    {{#festivales}}
-    <div class="club1">
-        <div class="img">
-            <img src="img/{{title}}.jpg" height="150px" width="185px" alt="{{title}}">
-        </div>
-        <div class="club1-text">
-            <h2>{{title}}</h2>
-            <p>{{address}}</p>
-            <p>{{description}}</p>
-            <p>{{timeStartFormat}}  ----  {{timeFinishFormat}}</p>
-        </div>
-        <button type="button" class="btnclub" onclick="window.location.href='ticket/{{id}}';">Ver más</button>
+{{#festivales}}
+<div class="club1">
+    <div class="img">
+        <img src="img/{{title}}.jpg" height="150px" width="185px" alt="{{title}}">
     </div>
-    {{/festivales}}
+    <div class="club1-text">
+        <h2>{{title}}</h2>
+        <p>{{address}}</p>
+        <p>{{description}}</p>
+        <p>{{timeStartFormat}}  ----  {{timeFinishFormat}}</p>
+    </div>
+    <button type="button" class="btnclub" onclick="window.location.href='ticket/{{id}}';">Ver más</button>
+</div>
+{{/festivales}}
 
-    {{>footer}}
+{{>footer}}
+
 </body>
 
 </html>
