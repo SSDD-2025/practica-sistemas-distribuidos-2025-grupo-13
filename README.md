@@ -217,13 +217,15 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
    - [Client.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/entities/Client.java) 
 
 ### Álvaro
-- Tareas: Realizar la sección de clubbing , creación de los principales mapeos.Cración del administrador, con su respectivo cierre de sesión, añadir eventos, mapeado borrar eventos y mapeado borrar comentarios. Creación del cierre de sesión y ,por consecuencia, la diferenciacion dentro de otras clases de usuario iniciado o no. Primeras creaciones de entidades comentarios. Inicios del Client Controller y páguina de compra. Diferenciacion del header y el footer, es decir, creación de los ficheros y poner el código que se encontraba al inicio y final de todos los htmls. Mapeo de las secciones del header. Ayuda en otros métodos de Event Controller.
+- Tareas: realizar la sección de clubbing, creación de los principales mapeos. Creación del administrador, con su respectivo cierre de sesión, añadir eventos, mapeado borrar eventos y mapeado borrar comentarios. Creación del cierre de sesión y, por consecuencia, la diferenciación dentro de otras clases de usuario iniciado o no. Primeras creaciones de entidades comentarios. Inicios del Client Controller y página de compra. Diferenciación del header y el footer, es decir, creación de los ficheros y poner el código que se encontraba al inicio y final de todos los htmls. Mapeo de las secciones del header. Ayuda en otros métodos de Event Controller.
+
 - 5 commits más significativos :
    - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ab1b7ae2a8f39ea3739c49cc8bd1b818e1b469e5)
    - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/b84971f19f1d9727f6e15e711812358613223f5c)
    - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f5d358fa9db7c2111cefe304dd6ad5e8a3054dc4)
    - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ce9d442f35964173bfee4c2df482a840461235e1)
    - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f0f603b3a351ae113e145b7c054138aeab85be74)
+
 - 5 ficheros en los que se ha participado:
    - [profile_admin.html](src/main/resources/Templates/profile_admin.html)
    - [profile.html](src/main/resources/Templates/profile.html)
@@ -245,11 +247,10 @@ se ha actualizado todo el código al inglés y  modificado muchos css para que l
    - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/221a18e987bc75dd91e4d63efac8c53da8975ecb)
    - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f9da51124394295731186e6964cb183d9dcc1fc2)
 
-   - 5 ficheros en los que se ha participado:
+- 5 ficheros en los que se ha participado:
    - [ClientController](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/ClientController.java)
    - [EventController](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
    - [Concerts](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/concerts.html)
    - [Ticket](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/ticket.html)
    - [Contact](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/contact.html)
 
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/D1C1HU9V)
