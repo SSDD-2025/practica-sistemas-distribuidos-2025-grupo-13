@@ -44,9 +44,13 @@ public class ClientController {
 	public void init() {
         // Create a client
         Client client = new Client("John", "Doe", "johndoe@urjc.es", "123");
+        Client client2 = new Client("Harry", "Potter", "potterharry@urjc.es", "321");
+        Client client3 = new Client("Barry", "Allen", "b.allen@urjc.es", "111");
         Client admn = new Client("admin", "1", "admin@urjc.es", "admin");
         clientRepository.save(admn);
         clientRepository.save(client);
+        clientRepository.save(client2);
+        clientRepository.save(client3);
     }
 
     @PostMapping("/sign-up")
