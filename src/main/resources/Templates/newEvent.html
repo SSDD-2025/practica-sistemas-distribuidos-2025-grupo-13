@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<body lang="en">
+
+{{>header}}
+
+<section class="section-1" id="section_1">
+    <div class="texto-principal">
+        <h1>ALASDOCE</h1>
+        <hr class="line-title-clubbing" href="#">
+        </hr>
+        
+    </div>
+</section>
+
+<section class="sectionEvent">
+    <div class="container-section1">
+        <form action="/addNewEvent" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Titulo del evento</label>
+                <input type="text" class="form-control" name="titleEvent" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Descripción del evento</label>
+                <textarea name="description" rows="4" cols="50" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha y hora de comienzo del evento</label>
+                <input type="datetime-local" name="timeStart" min="2025-03-01T00:00" max="2025-12-31T23:59" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha y hora final del evento</label>
+                <input type="datetime-local" name="timeStart" min="2025-03-01T00:00" max="2025-12-31T23:59" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Dirección del evento</label>
+                <input type="text" class="form-control" name="addressEvent" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tipo del evento</label>
+                <select name="typeOptions" required>
+                    <option value="club">Club</option>
+                    <option value="concert">Concierto</option>
+                    <option value="festival">Festival</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Precio del evento</label>
+                <input type="number" class="form-control" name="priceEvent" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Imagen del evento</label>
+                <input type="file" name="image" accept="image/*">
+            </div>
+            <div class="d-flex align-items-center margenGrande">
+                <button type="submit" class="btn btn-login me-2">Confirmar</button>
+            </div>
+            <br>
+            <br>
+        </form>
+    </div>
+</section>
+
+{{>footer}}
+
+</body>
+
+</html>

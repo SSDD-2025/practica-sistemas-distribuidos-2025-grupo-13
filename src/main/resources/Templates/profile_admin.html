@@ -42,31 +42,32 @@
     <div class="container-section3">
         <div class="comments-title">
             <h1>Eventos</h1>
-            <button type="button">Añadir</button>
+            <a href="/newEvent">
+                <button type="button">Añadir</button>
+            </a>
         </div>
         {{#event}}
-    <div class="club1">
-        <div class="img">
-            <img src="event-image/{{id}}" height="150px" width="185px" alt="{{title}}">
+        <div class="club1">
+            <div class="img">
+                <img src="event-image/{{id}}" height="150px" width="185px" alt="{{title}}">
+            </div>
+            <div class="club1-text">
+                <h2>{{title}}</h2>
+                <p>{{address}}</p>
+                <p>{{description}}</p>
+                <p>{{timeStartFormat}}  ----  {{timeFinishFormat}}</p>
+            </div>
+            <form action="/delete_event" method="post">
+                <input type="hidden" name="eventID" value="{{id}}">
+                <button type="submit" class="btnclub">Eliminar</button>
+            </form>
+            
         </div>
-        <div class="club1-text">
-            <h2>{{title}}</h2>
-            <p>{{address}}</p>
-            <p>{{description}}</p>
-            <p>{{timeStartFormat}}  ----  {{timeFinishFormat}}</p>
-        </div>
-        <form action="/delete_event" method="post">
-            <input type="hidden" name="eventID" value="{{id}}">
-            <button type="submit" class="btnclub">Eliminar</button>
-        </form>
-        
-    </div>
-    {{/event}}
+        {{/event}}
     </div>
 </section>
 <form action="/log_out" method="post">
     <button type="submit" class="btn btn-login me-2">Cerrar sesión</button>
-    
 </form>  
 {{>footer}}
 

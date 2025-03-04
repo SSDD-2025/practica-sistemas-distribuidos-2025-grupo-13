@@ -263,4 +263,10 @@ public class EventController {
         return "/commentEliminado";
     }
     
+    @GetMapping("/newEvent")
+    public String getNewEvent() {
+        return "newEvent";
+    }
+    
+
 }

@@ -20,7 +20,7 @@ public class Event {
     
 	@Lob
 	@Column(nullable = false)
- 	private Blob imageFile;
+	private Blob imageFile;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
