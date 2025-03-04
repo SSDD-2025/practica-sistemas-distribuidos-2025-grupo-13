@@ -2,6 +2,7 @@ package es.grupo13.ssddgrupo13.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 
@@ -13,13 +14,18 @@ public class ControllerApp {
         return "index";
     }
 
-    @GetMapping("/contactanos")
+    @GetMapping("/contact")
     public String contactanosLink() {
-        return "contactanos";
+        return "contact";
     }
 
     @GetMapping("/register")
     public String registerLink() {
         return "register";
+    }
+
+    @PostMapping("/contact_recieved")
+    public String contact_recievedLink() {
+        return "contact_recieved";
     }
 }

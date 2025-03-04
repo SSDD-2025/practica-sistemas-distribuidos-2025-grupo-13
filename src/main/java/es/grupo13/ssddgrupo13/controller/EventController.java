@@ -201,18 +201,18 @@ public class EventController {
         
     }
 
-    @GetMapping("/conciertos")
+    @GetMapping("/concerts")
     public String showConciertos(Model model) {
         List<Event> events = eventRepository.findByType("concierto"); // Obtain the concerts from the database
         model.addAttribute("conciertos", events); // Add the list to the model
-        return "conciertos"; // Name of the template with out .html
+        return "concerts"; // Name of the template with out .html
     }  
 
-    @GetMapping("/festivales")
+    @GetMapping("/festivals")
     public String showFestivales(Model model) {
         List<Event> events = eventRepository.findByType("festival"); // Obtain the festivals from the database
         model.addAttribute("festivales", events); // Add the list to the model
-        return "festivales"; // Name of the template with out .html
+        return "festivals"; // Name of the template with out .html
     }
 
     @GetMapping("/ticket/{id}")
@@ -234,7 +234,7 @@ public class EventController {
     public String comment_in(HttpSession session, @RequestParam String text, @RequestParam String rating, @RequestParam Long eventID) {
         Client sessionclient = (Client) session.getAttribute("client");
         if (sessionclient == null) {
-            return "/comentarSinCuenta"; // If there is no client redirect to error
+            return "/commentNoAcount"; // If there is no client redirect to error
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
         // Must find the client in the repository, otherwise will give an error
@@ -273,13 +273,13 @@ public class EventController {
         client.getComments().remove(comment);
         clientRepository.save(client);
         eventRepository.save(event);
-        return "/commentEliminado";
+        return "/commentRemoved";
     }
 
     @PostMapping("/delete_event")
     public String deleteEvent(@RequestParam Long eventID) { 
         eventRepository.deleteById(eventID);
-        return "/eventEliminado";
+        return "/eventRemoved";
     }
 
     @PostMapping("/delete_comment")
@@ -289,7 +289,7 @@ public class EventController {
 
         // Delete the comment
         commentRepository.deleteById(commentID);
-        return "/commentEliminado";
+        return "/commentRemoved";
     }
     
     @GetMapping("/newEvent")

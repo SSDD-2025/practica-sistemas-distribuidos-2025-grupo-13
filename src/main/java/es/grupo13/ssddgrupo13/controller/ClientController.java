@@ -70,7 +70,7 @@ public class ClientController {
 
         Client client = new Client(name, lastName, email, password);
         clientRepository.save(client);
-        return "/registroSesion";
+        return "/loggedIn";
     }
 
     @PostMapping("/sign-in")
@@ -81,7 +81,7 @@ public class ClientController {
             session.setAttribute("client", clientLogin.get());
             isLogged = true;
             isAdmin = clientLogin.get().isAdmin();
-            return "/inicioSesion";
+            return "/signIn";
         } else {
             return "/error";
         }
@@ -91,7 +91,7 @@ public class ClientController {
     public String saveTicket(HttpSession session, @RequestParam Long eventID) {
         Client sessionclient = (Client) session.getAttribute("client");
         if (sessionclient == null) {
-            return "/comprarSinCuenta"; // If there is no client redirect to error
+            return "/buyNoAccount"; // If there is no client redirect to error
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
         // Find client un bbdd if not will give an error
@@ -110,14 +110,14 @@ public class ClientController {
         client.getTickets().add(ticket);  // Associate the ticket with client
         clientRepository.save(client);   // Save the client with the ticket added
 
-        return "ticketComprado";
+        return "buyedTicket";
     }
     
     @GetMapping("/data")
     public String getMyTickets(HttpSession session, Model model) {
         Client sessionclient = (Client) session.getAttribute("client");
         if (sessionclient == null) {
-            return "/createCuenta"; // If no client is in session, redirect to error
+            return "/createsAnAccount"; // If no client is in session, redirect to error
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
         // Must find the client in the repository, otherwise will give an error
@@ -131,7 +131,7 @@ public class ClientController {
         List<Comment> comments = client.getComments();
         model.addAttribute("tickets", tickets);
         model.addAttribute("comments", comments);
-        return "misdatos";
+        return "myData";
     }
 
     @GetMapping("/profile")
@@ -153,7 +153,7 @@ public class ClientController {
         isLogged = false;
         isAdmin = false;
         session.invalidate();
-        return "/index";
+        return "/loguedOut";
     }
 
 }
