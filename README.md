@@ -52,6 +52,11 @@ Las siguientes entidades podrán subir imágenes:
 
 - **Adminsitrador** → Imagen portada de eventos
 
+Las siguientes entidades podrán mostrar imágenes:
+
+- **Evento** -> Imagen de cada tipo de evento
+- **Ticket** -> Imagen de la portada de cada ticket
+
 ## Instrucciones de Ejecución
 
 1. **Clonar el repositorio:**
@@ -190,8 +195,25 @@ comentarios que has publicado.
 Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Jon
-- **header.html** → Uso de boostrap para una página top-nav y modales de registro e inicio de sesión
-- **Página detalle** → Página detalle para eventos con comentarios y detalles de cada elemento
+
+- Tareas: realizada la mayoría del readme con su debida estructura. Además, he implementado toda la parte del CSS de la página web, uso de boostrap para una página
+  top-nav y modales de registro e inicio de sesión. Página detalle para las páginas de los tickets con comentarios y detalles de cada elemento.
+  He realizado la subida de las imagenes a la BBDD. A parte, también se ha realizado la interacción de la base de datos con los eventos para que cuando se haga click
+  en alguno te muestre el ticket del debido evento.
+
+- 5 commits más significativos:
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/bc379b522f981c263e3c8e6d0fb603dc43f8a37d)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/9314d9516b5b1e2fe733b15ee3fb2ddca382b221)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/fe8f13cb8341354bade0c8469180fc591df5a0bb)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/466ecd478553c141798e45f54700c581d6f0c7f0)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/1b98da9b8f259fb0423aaac78b46a74fa9f600ea)
+
+- 5 ficheros en los que he participado:
+   - [EventController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
+   - [stylesheet.css](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/css/stylesheet.css)
+   - [ticket.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/ticket.html)
+   - [Event.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/entities/Event.java)
+   - [header.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/header.html)
 
 ### Robert
 
@@ -248,9 +270,9 @@ se ha actualizado todo el código al inglés y  modificado muchos css para que l
    - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f9da51124394295731186e6964cb183d9dcc1fc2)
 
 - 5 ficheros en los que se ha participado:
-   - [ClientController](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/ClientController.java)
-   - [EventController](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
-   - [Concerts](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/concerts.html)
-   - [Ticket](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/ticket.html)
-   - [Contact](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/contact.html)
+   - [ClientController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/ClientController.java)
+   - [EventController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
+   - [concerts.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/concerts.html)
+   - [ticket.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/ticket.html)
+   - [contact.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/contact.html)
 
