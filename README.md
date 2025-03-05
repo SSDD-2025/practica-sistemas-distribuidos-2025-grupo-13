@@ -52,6 +52,11 @@ Las siguientes entidades podrán subir imágenes:
 
 - **Adminsitrador** → Imagen portada de eventos
 
+Las siguientes entidades podrán mostrar imágenes:
+
+- **Evento** -> Imagen de cada tipo de evento
+- **Ticket** -> Imagen de la portada de cada ticket
+
 ## Instrucciones de Ejecución
 
 1. **Clonar el repositorio:**
