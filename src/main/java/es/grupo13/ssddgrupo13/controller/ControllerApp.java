@@ -26,4 +26,9 @@ public class ControllerApp {
     public String contact_recievedLink() {
         return "contact_recieved";
     }
+
+    @GetMapping("/editprofilepage")
+    public String editProfilePage() {
+        return "editprofile";
+    }
 }
