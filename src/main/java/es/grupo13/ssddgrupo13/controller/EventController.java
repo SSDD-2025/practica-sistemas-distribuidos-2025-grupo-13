@@ -219,15 +219,15 @@ public class EventController {
 
     @GetMapping("/concerts")
     public String showConciertos(Model model) {
-        List<Event> events = eventRepository.findByType("concierto"); // Obtain the concerts from the database
-        model.addAttribute("conciertos", events); // Add the list to the model
+        List<Event> concerts = eventRepository.findByType("concierto"); // Obtain the concerts from the database
+        model.addAttribute("conciertos", concerts); // Add the list to the model
         return "concerts"; // Name of the template with out .html
     }  
 
     @GetMapping("/festivals")
     public String showFestivales(Model model) {
-        List<Event> events = eventRepository.findByType("festival"); // Obtain the festivals from the database
-        model.addAttribute("festivales", events); // Add the list to the model
+        List<Event> festivals = eventRepository.findByType("festival"); // Obtain the festivals from the database
+        model.addAttribute("festivales", festivals); // Add the list to the model
         return "festivals"; // Name of the template with out .html
     }
 
