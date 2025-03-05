@@ -154,6 +154,11 @@ public class ClientController {
         return "/loguedOut";
     }
     
+    @GetMapping("/editprofilepage")
+    public String editProfilePage() {
+        return "editprofile";
+    }
+
     @PostMapping("/edit-profile")
     public String editProfile(HttpSession session, @RequestParam("name") String name, @RequestParam ("email") String email , @RequestParam("lastName") String lastName) {
         Client sessionclient = (Client) session.getAttribute("client");
