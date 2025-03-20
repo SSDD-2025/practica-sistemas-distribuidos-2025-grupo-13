@@ -12,31 +12,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.grupo13.ssddgrupo13.entities.Client;
 import es.grupo13.ssddgrupo13.entities.Comment;
+import es.grupo13.ssddgrupo13.entities.Event;
 import es.grupo13.ssddgrupo13.entities.Ticket;
-import es.grupo13.ssddgrupo13.repository.ClientRepository;
-import es.grupo13.ssddgrupo13.repository.CommentRepository;
-import es.grupo13.ssddgrupo13.repository.EventRepository;
-import es.grupo13.ssddgrupo13.repository.TicketRepository;
-import jakarta.annotation.PostConstruct;
+import es.grupo13.ssddgrupo13.entities.TicketStatus;
+import es.grupo13.ssddgrupo13.services.ClientService;
+import es.grupo13.ssddgrupo13.services.CommentService;
+import es.grupo13.ssddgrupo13.services.EventService;
+import es.grupo13.ssddgrupo13.services.TicketService;
 import jakarta.servlet.http.HttpSession;
-import services.ClientService;
-import services.CommentService;
-import services.EventService;
-import services.TicketService;
 
 @Controller
 public class ClientController {
-    @Autowired
-	private ClientService clientService;
-	
-	@Autowired
-	private TicketService ticketService;
+    private final ClientService clientService;
+    private final TicketService ticketService;
+    private final CommentService commentService;
+    private final EventService eventService;
 
     @Autowired
-    private CommentService commentService;
-
-    @Autowired
-    private EventService eventService;
+    public ClientController(ClientService clientService, TicketService ticketService, CommentService commentService, EventService eventService) {
+        this.clientService = clientService;
+        this.ticketService = ticketService;
+        this.commentService = commentService;
+        this.eventService = eventService;
+    }
     
     
     private Boolean isLogged = false;
@@ -87,18 +85,31 @@ public class ClientController {
         // Find client un bbdd if not will give an error
         Client client = clientService.findById(sessionclient.getId()).orElse(null);
         if (client == null) {
-            return "/error"; // If no client is in session, redirect to error
+            return "/erro"; // If no client is in session, redirect to error
         }
         System.out.println("Correo del cliente"+client.getEmail());
-
-        Ticket ticket = ticketService.findById(eventID).orElse(null); // Gets the event from the eventID
-        if (ticket == null) {
+        Event event = eventService.findById(eventID).orElse(null); // Gets the event from the eventID
+        if (event == null) {
             return "/error"; // If there is no event, redirect to error
         }
+        Ticket ticket = null;
+        for (Ticket t : eventService.findById(eventID).get().getTickets()) {
+            if (t.getStatus() == TicketStatus.OPEN) {
+                ticket = t;
+                break;
+            }
+            
+        }
+        if (ticket == null) {
+            return "/error"; // If there is no ticket, redirect to error
+        }
+        
+        
         System.out.println("Titulo del ticket"+ticket.getTitle());
-
+        ticket.setStatus(TicketStatus.CLOSED); // Change the status of the ticket to closed
         client.getTickets().add(ticket);  // Associate the ticket with client
         clientService.save(client);   // Save the client with the ticket added
+        ticketService.save(ticket);   // Save the ticket in the repository
 
         return "buyedTicket";
     }
@@ -147,12 +158,17 @@ public class ClientController {
     }
     
     @GetMapping("/editprofilepage")
-    public String editProfilePage() {
+    public String editProfilePage(HttpSession session, Model model) {
+        Client sessionclient = (Client) session.getAttribute("client");
+        if (sessionclient == null) {
+            return "/error"; // If no client is in session, redirect to error
+        }
+        model.addAttribute("client", sessionclient);
         return "editprofile";
     }
 
     @PostMapping("/edit-profile")
-    public String editProfile(HttpSession session, @RequestParam("name") String name, @RequestParam ("email") String email , @RequestParam("lastName") String lastName) {
+    public String editProfile(HttpSession session, @RequestParam("name") String name, @RequestParam("lastName") String lastName) {
         Client sessionclient = (Client) session.getAttribute("client");
         if (sessionclient == null) {
             return "/error"; // If no client is in session, redirect to error
@@ -163,11 +179,9 @@ public class ClientController {
         if (client == null) {
             return "/error"; // If no client is in session, redirect to error
         }
-        System.out.println("Correo del cliente"+client.getEmail());
+       
         client.setName(name);
-        client.setEmail(email);
-        client.setEmail(email);
-        sessionclient.setEmail(email);
+        client.setLastName(lastName);
         sessionclient.setLastName(lastName);
         sessionclient.setName(name);
         

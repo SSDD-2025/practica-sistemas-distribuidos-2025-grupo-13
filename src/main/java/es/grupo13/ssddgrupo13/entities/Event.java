@@ -53,7 +53,7 @@ public class Event {
 	@Column(nullable = false)
     private Integer precio;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)

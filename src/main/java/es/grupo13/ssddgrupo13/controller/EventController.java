@@ -27,10 +27,10 @@ import es.grupo13.ssddgrupo13.entities.Comment;
 import es.grupo13.ssddgrupo13.entities.Event;
 import es.grupo13.ssddgrupo13.entities.Ticket;
 import es.grupo13.ssddgrupo13.entities.TicketStatus;
-import es.grupo13.ssddgrupo13.repository.ClientRepository;
-import es.grupo13.ssddgrupo13.repository.CommentRepository;
-import es.grupo13.ssddgrupo13.repository.EventRepository;
-import es.grupo13.ssddgrupo13.repository.TicketRepository;
+import es.grupo13.ssddgrupo13.services.ClientService;
+import es.grupo13.ssddgrupo13.services.CommentService;
+import es.grupo13.ssddgrupo13.services.EventService;
+import es.grupo13.ssddgrupo13.services.TicketService;
 import es.grupo13.ssddgrupo13.utils.ImageUtils;
 import jakarta.servlet.http.HttpSession;
 
@@ -38,16 +38,16 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class EventController {
     @Autowired
-    private EventRepository eventRepository;
+    private EventService eventService;
 
     @Autowired
-    private  TicketRepository ticketRepository;
+    private  TicketService ticketService;
 
     @Autowired
-    private CommentRepository commentRepository;
+    private CommentService commentService;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -57,7 +57,7 @@ public class EventController {
     
     @GetMapping("/event-image/{id}")
     public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
-        Optional<Event> op = eventRepository.findById(id);
+        Optional<Event> op = eventService.findById(id);
         if (op.isPresent() && op.get().getImage() != null) {
             Blob image = op.get().getImage();
             return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
@@ -69,7 +69,7 @@ public class EventController {
 
     @GetMapping("/clubbing")
     public String showClubs(Model model) {
-        List<Event> clubs = eventRepository.findByType("club"); // Obtain the clubs from the database
+        List<Event> clubs = eventService.findByType("club"); // Obtain the clubs from the database
         model.addAttribute("club", clubs); // Add the list to the model
         return "clubbing"; // Name of the template with out .html
         
@@ -77,14 +77,14 @@ public class EventController {
 
     @GetMapping("/concerts")
     public String showConciertos(Model model) {
-        List<Event> concerts = eventRepository.findByType("concierto"); // Obtain the concerts from the database
+        List<Event> concerts = eventService.findByType("concierto"); // Obtain the concerts from the database
         model.addAttribute("conciertos", concerts); // Add the list to the model
         return "concerts"; // Name of the template with out .html
     }  
 
     @GetMapping("/festivals")
     public String showFestivales(Model model) {
-        List<Event> festivals = eventRepository.findByType("festival"); // Obtain the festivals from the database
+        List<Event> festivals = eventService.findByType("festival"); // Obtain the festivals from the database
         model.addAttribute("festivales", festivals); // Add the list to the model
         return "festivals"; // Name of the template with out .html
     }
@@ -92,7 +92,7 @@ public class EventController {
     @GetMapping("/ticket/{id}")
     public String showTicket(Model model, @PathVariable long id) {
         System.out.println("ID: " + id);
-        Optional<Event> optionalEvent = eventRepository.findById(id);
+        Optional<Event> optionalEvent = eventService.findById(id);
         if (optionalEvent.isPresent()) {
             Event event = optionalEvent.get();
             System.out.println("Event: " + event.getTitle());
@@ -112,13 +112,13 @@ public class EventController {
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
         // Must find the client in the repository, otherwise will give an error
-        Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
+        Client client = clientService.findById(sessionclient.getId()).orElse(null);
         if (client == null) {
             return "/error"; // If there is no client redirect to error
         }
         System.out.println("Correo del cliente"+client.getEmail());
         
-        Event event = eventRepository.findById(eventID).orElse(null); // Obtain the event with the eventID
+        Event event = eventService.findById(eventID).orElse(null); // Obtain the event with the eventID
         
         if (event == null) {
             return "/error"; // If the event is not found send an error
@@ -127,9 +127,9 @@ public class EventController {
         Comment comment = new Comment(client.getName(), text, Integer.valueOf(rating), event.getTitle());
         event.getComments().add(comment);  // Associate the comment with the event
         client.getComments().add(comment); // Associate the comment with the client
-        commentRepository.save(comment);   // Save the comment in the repository
-        eventRepository.save(event);       // Save the event with the comment added
-        clientRepository.save(client);     // Save the client with the comment added
+        commentService.save(comment);   // Save the comment in the repository
+        eventService.save(event);       // Save the event with the comment added
+        clientService.save(client);     // Save the client with the comment added
 
         return "redirect:/ticket/" + eventID;  // Redirect to the event page
     }
@@ -137,22 +137,22 @@ public class EventController {
     @PostMapping("/comment_out/{commentId}/{titleEvento}")
     public String eliminarComentario(HttpSession session, @PathVariable Long commentId, @PathVariable String titleEvento){
         Client sessionclient = (Client) session.getAttribute("client");
-        Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
+        Client client = clientService.findById(sessionclient.getId()).orElse(null);
 
-        Comment comment = commentRepository.findById(commentId).orElse(null);
+        Comment comment = commentService.findById(commentId).orElse(null);
 
-        Event event = eventRepository.findByTitle(titleEvento).getFirst();
+        Event event = eventService.findByTitle(titleEvento).getFirst();
 
         event.getComments().remove(comment);
         client.getComments().remove(comment);
-        clientRepository.save(client);
-        eventRepository.save(event);
+        clientService.save(client);
+        eventService.save(event);
         return "/commentRemoved";
     }
 
     @PostMapping("/delete_event")
     public String deleteEvent(@RequestParam Long eventID) { 
-        eventRepository.deleteById(eventID);
+        eventService.deleteById(eventID);
         return "/eventRemoved";
     }
 
@@ -162,7 +162,7 @@ public class EventController {
         jdbcTemplate.update("DELETE FROM event_comments WHERE comments_id = ?", commentID);
 
         // Delete the comment
-        commentRepository.deleteById(commentID);
+        commentService.deleteById(commentID);
         return "/commentRemoved";
     }
     
@@ -189,13 +189,14 @@ public class EventController {
         }
 
         Event event = new Event(titleEvent, description, startEvent, finishEvent, addressEvent, typeOptions, priceEvent, imageBlob);
-        eventRepository.save(event);
+        eventService.save(event);
 
         for (int i = 0; i < 10; i++) {
             Ticket newTicket = new Ticket(event.getTitle(), event.getPrecio(), event.getTimeFinish(), TicketStatus.OPEN);
-            ticketRepository.save(newTicket);   
+            ticketService.save(newTicket);   
+            event.getTickets().add(newTicket);
         }
-
+        eventService.save(event);
         return "/createdEvent";
     }
 

@@ -1,4 +1,4 @@
-package services;
+package es.grupo13.ssddgrupo13.services;
 
 import java.util.Optional;
 
@@ -18,6 +18,12 @@ public class CommentService {
     }
     public void deleteById(long id){
         commentRepository.deleteById(id);
+    }
+    public Comment save(Comment comment){
+        return commentRepository.save(comment);
+    }
+    public Iterable<Comment> findAll(){
+        return commentRepository.findAll();
     }
 
 }

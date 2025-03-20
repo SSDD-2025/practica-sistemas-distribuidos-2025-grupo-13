@@ -1,4 +1,4 @@
-package services;
+package es.grupo13.ssddgrupo13.services;
 
 import java.util.Optional;
 
@@ -13,9 +13,16 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    public Optional<Client> findById(long id){
+        return clientRepository.findById(id);
+    }
+
     public Optional<Client> findByEmail(String email){
         return clientRepository.findByEmail(email);
-    };
+    }
+    public Client save(Client client){
+        return clientRepository.save(client);
+    }
 
 
 

@@ -10,6 +10,6 @@ import es.grupo13.ssddgrupo13.entities.Event;
 import es.grupo13.ssddgrupo13.entities.Ticket;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
-    List<Event> findByTitle(String title);
-    Optional<Event> findById(long id);
+    List<Ticket> findByTitle(String title);
+    Optional<Ticket> findById(long id);
 }

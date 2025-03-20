@@ -15,6 +15,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     default void deleteById(long id) {
         Optional<Event> event = findById(id);
         if(event.isPresent()) {
+            event.get().getComments().clear();
             delete(event.get());
         }
     }

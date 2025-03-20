@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Comment {
@@ -16,6 +17,12 @@ public class Comment {
     private String autor;
     private String text;
     private String rating;
+
+    @ManyToOne
+    private Client client;
+    //LOs comentarios no tiene una relacion N-1 con los clientes, es 1 a 1
+    @ManyToOne
+    private Event event;
 
     protected Comment() {
 
@@ -40,14 +47,14 @@ public class Comment {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
     public String getAutor() {
 		return autor;
 	}
 
-	public void setIAutor(String autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
-		
-	}
+    }
 
     public String getText() {
         return text;
@@ -72,5 +79,21 @@ public class Comment {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+    public Client getClient() {
+        return this.client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Event getEvent() {
+        return this.event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
 
 }

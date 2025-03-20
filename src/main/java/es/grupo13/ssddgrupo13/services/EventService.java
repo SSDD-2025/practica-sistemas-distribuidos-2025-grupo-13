@@ -1,4 +1,4 @@
-package services;
+package es.grupo13.ssddgrupo13.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,5 +26,11 @@ public class EventService {
     public void deleteById(long id){
         eventRepository.deleteById(id);
     } 
+    public Event save(Event event){
+        return eventRepository.save(event);
+    }
+    public Iterable<Event> findAll(){
+        return eventRepository.findAll();
+    }
 
 }
