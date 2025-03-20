@@ -19,37 +19,29 @@ import es.grupo13.ssddgrupo13.repository.EventRepository;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
+import services.ClientService;
+import services.CommentService;
+import services.EventService;
+import services.TicketService;
 
 @Controller
 public class ClientController {
     @Autowired
-	private ClientRepository clientRepository;
+	private ClientService clientService;
 	
 	@Autowired
-	private TicketRepository ticketRepository;
+	private TicketService ticketService;
 
     @Autowired
-    private CommentRepository commentRepository;
+    private CommentService commentService;
 
     @Autowired
-    private EventRepository eventRepository;
+    private EventService eventService;
     
     
     private Boolean isLogged = false;
     private Boolean isAdmin = false;
     
-	@PostConstruct
-	public void init() {
-        // Create a client
-        Client client = new Client("John", "Doe", "johndoe@urjc.es", "123");
-        Client client2 = new Client("Harry", "Potter", "potterharry@urjc.es", "321");
-        Client client3 = new Client("Barry", "Allen", "b.allen@urjc.es", "111");
-        Client admn = new Client("admin", "1", "admin@urjc.es", "admin");
-        clientRepository.save(admn);
-        clientRepository.save(client);
-        clientRepository.save(client2);
-        clientRepository.save(client3);
-    }
 
     @PostMapping("/sign-up")
     public String signUp(@RequestParam String name, 
@@ -59,7 +51,7 @@ public class ClientController {
                         Model model) {
         
         // Checks if the client exists
-        Optional<Client> existingClient = clientRepository.findByEmail(email);
+        Optional<Client> existingClient = clientService.findByEmail(email);
         
         if (existingClient.isPresent()) {
             model.addAttribute("errorMessage", "Este correo ya existe. Por favor, emplea otro");
@@ -67,13 +59,13 @@ public class ClientController {
         }
 
         Client client = new Client(name, lastName, email, password);
-        clientRepository.save(client);
+        clientService.save(client);
         return "/loggedIn";
     }
 
     @PostMapping("/sign-in")
     public String signIn(HttpSession session, @RequestParam String email) {
-        Optional<Client> clientLogin = clientRepository.findByEmail(email);
+        Optional<Client> clientLogin = clientService.findByEmail(email);
         System.out.println(clientLogin.get().getEmail());
         if (clientLogin.isPresent()) {
             session.setAttribute("client", clientLogin.get());
@@ -93,20 +85,20 @@ public class ClientController {
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
         // Find client un bbdd if not will give an error
-        Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
+        Client client = clientService.findById(sessionclient.getId()).orElse(null);
         if (client == null) {
             return "/error"; // If no client is in session, redirect to error
         }
         System.out.println("Correo del cliente"+client.getEmail());
 
-        Ticket ticket = ticketRepository.findById(eventID).orElse(null); // Gets the event from the eventID
+        Ticket ticket = ticketService.findById(eventID).orElse(null); // Gets the event from the eventID
         if (ticket == null) {
             return "/error"; // If there is no event, redirect to error
         }
         System.out.println("Titulo del ticket"+ticket.getTitle());
 
         client.getTickets().add(ticket);  // Associate the ticket with client
-        clientRepository.save(client);   // Save the client with the ticket added
+        clientService.save(client);   // Save the client with the ticket added
 
         return "buyedTicket";
     }
@@ -119,7 +111,7 @@ public class ClientController {
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
         // Must find the client in the repository, otherwise will give an error
-        Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
+        Client client = clientService.findById(sessionclient.getId()).orElse(null);
         if (client == null) {
             return "/error"; // If no client is in session, redirect to error
         }
@@ -137,8 +129,8 @@ public class ClientController {
         if(!isLogged && !isAdmin)return "/profile";
         else if(isLogged && isAdmin){
             model.addAttribute("client", session.getAttribute("client"));
-            model.addAttribute("comment", commentRepository.findAll());
-            model.addAttribute("event", eventRepository.findAll());
+            model.addAttribute("comment", commentService.findAll());
+            model.addAttribute("event", eventService.findAll());
             return "/profile_admin";
         }else{
             model.addAttribute("client", session.getAttribute("client"));
@@ -167,7 +159,7 @@ public class ClientController {
         }
         System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
         // Must find the client in the repository, otherwise will give an error
-        Client client = clientRepository.findById(sessionclient.getId()).orElse(null);
+        Client client = clientService.findById(sessionclient.getId()).orElse(null);
         if (client == null) {
             return "/error"; // If no client is in session, redirect to error
         }
@@ -180,7 +172,7 @@ public class ClientController {
         sessionclient.setName(name);
         
         
-        clientRepository.save(client);
+        clientService.save(client);
         return "/profile_edited";
     }
     
