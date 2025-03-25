@@ -28,7 +28,7 @@ public class PageController {
     @Autowired
     private EventService eventService;
 
-
+    @GetMapping("/")
     public String indexForm(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication != null && authentication.isAuthenticated()
@@ -55,7 +55,7 @@ public class PageController {
     }
 
     // Controller method to go to the profile page
-    @GetMapping("/profile")
+    @GetMapping("/profilePage")
     public String profile(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -68,23 +68,22 @@ public class PageController {
 
         if (isUserLogged) {
             Object principal = authentication.getPrincipal();
-            String username = "";
             Client user = null;
 
-            if (principal instanceof UserDetails) {
-                username = ((UserDetails) principal).getUsername();
-            } else if (principal instanceof Client) {
-                username = ((Client) principal).getEmail();
-                user = ((Client) principal);
+            if (principal instanceof Client) {
+                user = (Client) principal;
+            } else if (principal instanceof UserDetails) {
+                String email = ((UserDetails) principal).getUsername();
+                user = clientService.findByEmail(email).orElse(null); // <- importante si no existe
             }
 
             model.addAttribute("userLogged", user);
-            model.addAttribute("client", session.getAttribute("client"));
+            model.addAttribute("client", user); // Si ya tienes el Client, úsalo directamente
             model.addAttribute("comment", commentService.findAll());
             model.addAttribute("event", eventService.findAll());
         }
 
-        return "profile";
+        return "profilePage";
     }
 
     @GetMapping("/contact")
