@@ -7,9 +7,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,8 @@ import es.grupo13.ssddgrupo13.services.TicketService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class ClientController {
@@ -165,19 +169,41 @@ public class ClientController {
         return "myData";
     }
 
+    /* ON HOLD UNTIL PROFILE REDIRECTION IS DONE (IF IS LOGGED -> PROFILE)
     @GetMapping("/profile")
     public String profileLink(HttpSession session, Model model) {
         if(!isLogged && !isAdmin)return "/profile";
         else if(isLogged && isAdmin){
-            model.addAttribute("client", session.getAttribute("client"));
-            model.addAttribute("comment", commentService.findAll());
-            model.addAttribute("event", eventService.findAll());
+          
             return "/profile_admin";
         }else{
             model.addAttribute("client", session.getAttribute("client"));
             return "/profile_out";
         }
+    } */
+
+    @PostMapping("authenticate")
+    public String loginUser(@RequestParam("email") String email, 
+                            @RequestParam("password") String password, 
+                            HttpServletRequest request) {
+        Client client = clientService.findByEmail(email)
+                        .orElseThrow(() -> new RuntimeException("User not found")); //TODO change to custom exception
+        if (!passwordEncoder.matches(password, client.getEncodedPassword())) {
+            return "redirect:/login?error=true";
+        }
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String role : client.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        }
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(client, null, authorities);
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        request.getSession().setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+        if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+            return "redirect:/"; //TODO change to admin page
+        }
+        return "redirect:/";
     }
+
     
     @PostMapping("/log_out")
     public String logout(HttpSession session) {
