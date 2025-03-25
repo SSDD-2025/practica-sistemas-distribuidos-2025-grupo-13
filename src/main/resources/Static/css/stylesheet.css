@@ -776,6 +776,397 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style-type: none;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+a:hover {
+    color: #d5e33e;
+}
+
+p {
+    color: white;
+}
+
+small {
+    color: white;
+}
+
+h1 {
+    color: white;
+}
+
+.top-navbar {
+    background: transparent;
+    z-index: 9;
+    min-height: 80px;
+    align-items: center;
+    background-color: transparent;
+    display: grid;
+}
+
+.nombre-logo {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.top-navbar .container-topnav {
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px;
+}
+
+.top-navbar .elementos-header {
+    align-items: center !important;
+    justify-content: space-between;
+    padding: 0 20px;
+    display: flex;
+    margin-top: 10px;
+    z-index: 3;
+}
+
+.nav-item {
+    padding: 10px;
+    color: white;
+}
+
+.nav-item-login {
+    color: white;
+}
+
+.nav-item-login a:hover {
+    color: #d5e33e;
+}
+
+.nav-item-login .btn svg {
+    fill: white !important;
+    min-width: 20px;
+}
+
+.container-section1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px;
+    min-height: calc(100vh - 92px);
+    background-size: cover;
+    z-index: 2;
+}
+.video-container{
+    position: relative;
+    overflow: hidden;
+    
+}
+
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -10000;
+    /* Asegura que el video esté detrás del contenido */
+}
+
+.line-title {
+    width: 100%;
+    border: 5px#f2f526 solid;
+    background-color: #f2f526;
+    width: 70px;
+    margin: 0 auto;
+    opacity: 1;
+    margin-bottom: 5px;
+
+}
+
+.texto-principal {
+    width: 100%;
+    margin-top: auto !important;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.texto-principal h1 {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: rgb(83, 83, 83);
+}
+
+/***** NavBar Local *****/ 
+.navbar-nav .nav-link {
+    
+    position: relative;
+    font-weight: normal;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bold; /* Poner en negrita */
+}
+
+.navbar-nav .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px; /* Ajusta la distancia de la línea */
+    width: 100%;
+    height: 2px; /* Grosor de la línea */
+    background-color: white; /* Color de la línea */
+}
+
+.navbar {
+    
+    background-color: black !important; /* Fondo negro */
+    border-bottom: 1px solid gray; /* Línea fina en gris */
+}
+
+.container-profile-info {
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    height: 100vh;
+    width: 30%;
+    margin-top: 35px ;
+    margin-left: 40px;  
+    display: flex;
+    flex-direction: column;
+
+
+}
+.container-profile-img {
+    align-items: center;
+    justify-content: center;
+}
+.profile-img {
+   width: 80%;
+   border-radius: 200%;
+}
+
+.container-profile-data {
+    row-gap: 20px;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.profile-name {
+    font-size: 1.75em;
+    word-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+.profile-username {
+    width: 150px;
+    font-weight: 1;
+    font-stretch: condensed !important; /* Asegúrate de que la fuente soporte esta propiedad */
+    font-size: 1.5em; /* Ajusta el tamaño de la fuente */
+    letter-spacing: -0.05em; /* Ajusta el espaciado entre letras */
+}
+
+.butcontainer {
+    display: flex ; 
+}
+
+.container-profile-pag1 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container-profile-activity {
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    height: 100vh;
+    margin-top: 50px ; 
+    margin-left: 40px;
+}
+
+.content-tab {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+.content-tab[style*="display: none"] {
+    opacity: 0;
+}
+
+.navbar-nav .nav-link {
+    font-weight: normal;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.navbar-nav .nav-link.active-tab {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.container-tickets{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.content-tab.activity {
+    display: flex;
+    width: 60%;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/**********************************
+    * Tickets style css
+    **********************************/
+
+
+.card {
+    max-height: 200px; 
+    overflow: hidden;
+    border-radius: 15px; 
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card-img {
+    height: 100%; 
+    max-height: 200px; 
+    object-fit: cover; 
+    filter: brightness(0.7); 
+    object-fit: cover;
+}
+
+.card-img-overlay {
+    padding: 10px; 
+    background: rgba(0, 0, 0, 0.4); 
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+.btn-dark {
+    background-color: #343a40;
+    border: 2px solid #ffffff;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+.btn-dark:hover {
+    background-color: #212529;
+    transform: scale(1.05);
+}
+
+
+.card-title {
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+    color: #fff; 
+}
+
+
+.card-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #a0a0a0; 
+}
+
+.card-text small {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); 
+}
+
+.card:hover .card-img {
+    filter: brightness(0.6); 
+}
+
+
+/*---------------------------------------
+    css para el formulario
+-----------------------------------------*/
+/* Hace el fondo del modal translúcido */
+.modal-content {
+    margin-top: 25px;
+    background: transparent;
+    backdrop-filter: blur(12px);
+    color: white;
+    min-height: 500px;
+    border: 1px solid #000000;
+    background-color: rgb(0, 0, 0, 0.7);
+
+}
+
+.modal-dialog {
+    max-width: 500px;
+    margin-top: -1vh;
+}
+
+.modal-backdrop {
+    background-color: #f2f526 !important;
+    display: none !important;
+}
+
+
+.modal-header {
+    background: #f2f526;
+    color: black;
+    font-weight: 900;
+}
+
+.btn-login {
+    background-color: #d5e33e;
+    color: black;
+}
+
+.header {
+    border: solid 5px yellow
+}
+
+.btn-login:hover {
+    background-color: black;
+    color: #d5e33e;
+    border-color: #d5e33e;
+}
+
+.form-label {
+    color: white;
+}
 
 /*******************************************
 

@@ -111,7 +111,7 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(authorize -> authorize
 						// PUBLIC PAGES
-						.requestMatchers("/", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**", "/event-image/**").permitAll()
+						.requestMatchers("/**", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**", "/event-image/**").permitAll()
 						.requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
 						.requestMatchers("/login", "/loginError").permitAll()
 						.requestMatchers("/clubbing/**").permitAll()

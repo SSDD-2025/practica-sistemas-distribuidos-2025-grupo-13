@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.model.Ticket;
+import es.grupo13.ssddgrupo13.services.ClientService;
 import es.grupo13.ssddgrupo13.services.CommentService;
 import es.grupo13.ssddgrupo13.services.EventService;
 import jakarta.servlet.http.HttpSession;
@@ -19,13 +20,15 @@ import jakarta.servlet.http.HttpSession;
 public class PageController {
 
     @Autowired
+    private ClientService clientService;
+
+    @Autowired
     private CommentService commentService;
 
     @Autowired
     private EventService eventService;
 
 
-    @GetMapping("/")
     public String indexForm(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication != null && authentication.isAuthenticated()
@@ -34,25 +37,24 @@ public class PageController {
         model.addAttribute("isUserLogged", isUserLogged);
 
         if (isUserLogged) {
-            Object principal = null;
-            if (authentication != null) {
-                principal = authentication.getPrincipal();
-            }
-            String username = "";
+            Object principal = authentication.getPrincipal();
             Client client = null;
 
-            if (principal instanceof UserDetails) {
-                username = ((UserDetails) principal).getUsername();
-            } else if (principal instanceof Client) {
-                username = ((Client) principal).getEmail();
-                client = ((Client) principal);
+            if (principal instanceof Client) {
+                client = (Client) principal;
+            } else if (principal instanceof UserDetails) {
+                // Buscar el Client a partir del username
+                String email = ((UserDetails) principal).getUsername();
+                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
             }
+
             model.addAttribute("userLogged", client);
         }
+
         return "index";
     }
 
-     // Controller method to go to the profile page
+    // Controller method to go to the profile page
     @GetMapping("/profile")
     public String profile(HttpSession session, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -84,7 +86,6 @@ public class PageController {
 
         return "profile";
     }
-
 
     @GetMapping("/contact")
     public String contactanosLink() {
