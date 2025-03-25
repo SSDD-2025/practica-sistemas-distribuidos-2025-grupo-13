@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import es.grupo13.ssddgrupo13.entities.Client;
-import es.grupo13.ssddgrupo13.entities.Comment;
-import es.grupo13.ssddgrupo13.entities.Event;
-import es.grupo13.ssddgrupo13.entities.Ticket;
-import es.grupo13.ssddgrupo13.entities.TicketStatus;
+import es.grupo13.ssddgrupo13.model.Client;
+import es.grupo13.ssddgrupo13.model.Comment;
+import es.grupo13.ssddgrupo13.model.Event;
+import es.grupo13.ssddgrupo13.model.Ticket;
+import es.grupo13.ssddgrupo13.model.TicketStatus;
 import es.grupo13.ssddgrupo13.services.ClientService;
 import es.grupo13.ssddgrupo13.services.CommentService;
 import es.grupo13.ssddgrupo13.services.EventService;

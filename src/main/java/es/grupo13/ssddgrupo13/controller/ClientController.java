@@ -1,24 +1,35 @@
 package es.grupo13.ssddgrupo13.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.grupo13.ssddgrupo13.entities.Client;
-import es.grupo13.ssddgrupo13.entities.Comment;
-import es.grupo13.ssddgrupo13.entities.Event;
-import es.grupo13.ssddgrupo13.entities.Ticket;
-import es.grupo13.ssddgrupo13.entities.TicketStatus;
+import es.grupo13.ssddgrupo13.model.Client;
+import es.grupo13.ssddgrupo13.model.Comment;
+import es.grupo13.ssddgrupo13.model.Event;
+import es.grupo13.ssddgrupo13.model.Ticket;
+import es.grupo13.ssddgrupo13.model.TicketStatus;
+import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.services.ClientService;
 import es.grupo13.ssddgrupo13.services.CommentService;
 import es.grupo13.ssddgrupo13.services.EventService;
 import es.grupo13.ssddgrupo13.services.TicketService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -27,6 +38,13 @@ public class ClientController {
     private final TicketService ticketService;
     private final CommentService commentService;
     private final EventService eventService;
+
+
+    @Autowired
+    private ClientRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public ClientController(ClientService clientService, TicketService ticketService, CommentService commentService, EventService eventService) {
@@ -46,19 +64,31 @@ public class ClientController {
                         @RequestParam String lastName, 
                         @RequestParam String email, 
                         @RequestParam String password,
-                        Model model) {
+                        Model model,
+                        HttpServletRequest request) {
         
-        // Checks if the client exists
-        Optional<Client> existingClient = clientService.findByEmail(email);
-        
-        if (existingClient.isPresent()) {
-            model.addAttribute("errorMessage", "Este correo ya existe. Por favor, emplea otro");
-            return "error";
+    
+       if (userRepository.findByName(email).isPresent()) {
+            return "redirect:/register?error=user_exists"; // Redirect error page
+        }
+        Client user = new Client(name, lastName, email, passwordEncoder.encode(password), Arrays.asList("USER"));
+        userRepository.save(user);
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String role : user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
         }
 
-        Client client = new Client(name, lastName, email, password);
-        clientService.save(client);
-        return "/loggedIn";
+        // Make authentiucaion token
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, authorities);
+
+        // Save in security context
+        SecurityContextHolder.getContext().setAuthentication(auth);
+
+        // Associate security context to session
+        request.getSession().setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
+        return "redirect:/"; // Go to home page
     }
 
     @PostMapping("/sign-in")

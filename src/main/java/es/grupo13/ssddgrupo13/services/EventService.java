@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.grupo13.ssddgrupo13.entities.Event;
+import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.repository.EventRepository;
 
 @Service

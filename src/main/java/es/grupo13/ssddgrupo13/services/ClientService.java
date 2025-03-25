@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.grupo13.ssddgrupo13.entities.Client;
+import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
 
 @Service

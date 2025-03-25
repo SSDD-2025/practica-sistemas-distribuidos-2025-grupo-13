@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.grupo13.ssddgrupo13.entities.Comment;
+import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
 
 @Service

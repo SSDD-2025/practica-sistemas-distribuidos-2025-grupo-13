@@ -1,11 +1,13 @@
-package es.grupo13.ssddgrupo13.entities;
+package es.grupo13.ssddgrupo13.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,8 +29,7 @@ public class Client {
 
     private String lastName;
 
-    @Column(nullable = false)
-    private String password;
+    private String encodedPassword; 
 
     @Email(message = "The email has to be valid")
     @NotBlank(message = "The email cannot be empty")
@@ -41,15 +42,19 @@ public class Client {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Ticket> tickets = new ArrayList<>();
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
+
     protected Client() {
 
     }
 
-    public Client(String name, String lastName, String email, String password) {
+    public Client(String name, String lastName, String email, String encodedPassword, List<String> roles) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.roles = roles; 
+        this.encodedPassword = encodedPassword;
     }
 
     public Long getId() {
@@ -84,12 +89,12 @@ public class Client {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEncodedPassword() {
+        return encodedPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEncodedPassword(String encodedPassword) {
+        this.encodedPassword = encodedPassword;
     }
 
     public List<Comment> getComments() {
@@ -110,5 +115,13 @@ public class Client {
     public boolean isAdmin() {
         return this.getEmail().equals("admin@urjc.es");
     }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }	
 
 }

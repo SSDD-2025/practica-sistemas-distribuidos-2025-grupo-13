@@ -2,25 +2,30 @@ package es.grupo13.ssddgrupo13.services;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
-
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import es.grupo13.ssddgrupo13.entities.Client;
-import es.grupo13.ssddgrupo13.entities.Comment;
-import es.grupo13.ssddgrupo13.entities.Event;
-import es.grupo13.ssddgrupo13.entities.Ticket;
-import es.grupo13.ssddgrupo13.entities.TicketStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import es.grupo13.ssddgrupo13.model.Client;
+import es.grupo13.ssddgrupo13.model.Comment;
+import es.grupo13.ssddgrupo13.model.Event;
+import es.grupo13.ssddgrupo13.model.Ticket;
+import es.grupo13.ssddgrupo13.model.TicketStatus;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.repository.EventRepository;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import es.grupo13.ssddgrupo13.utils.ImageUtils;
+
 import jakarta.annotation.PostConstruct;
 
 @Component
 public class DataBaseInitializer {
+
+
+        @Autowired
+        private PasswordEncoder passwordEncoder;
 
         @Autowired
         private EventRepository eventRepository;
@@ -40,8 +45,24 @@ public class DataBaseInitializer {
         @Autowired
         private ImageUtils imageUtils;
 
+
+        
         @PostConstruct
         public void init() {
+
+                Client admin = new Client("admin", "admin", "admin@admin.com", passwordEncoder.encode("admin"),
+                                Arrays.asList("ADMIN", "USER"));
+
+                Client user = new Client("user", "user", "user@user.com", passwordEncoder.encode("user"),
+                                Arrays.asList("USER"));
+                // SAMPLE USERS
+                if (clientRepository.findByName(admin.getName()).isEmpty()
+                                && clientRepository.findByName(user.getName()).isEmpty()) {
+                        clientRepository.save(admin);
+
+                }
+
+
                 // Load images to the database
                 Blob shokoImage = imageUtils.loadImage("img/shoko.png");
                 Blob ohmyclubImage = imageUtils.loadImage("img/OH MY CLUB.png");
@@ -171,16 +192,15 @@ public class DataBaseInitializer {
 
                 Ticket tcktejmpl = new Ticket(shoko.getTitle(), shoko.getPrecio().floatValue(), shoko.getTimeFinish(),TicketStatus.OPEN);
                 ticketRepository.save(tcktejmpl);
-                Client clntejmpl = new Client("Juan", "Pérez", "juan.perez@correo.com", "123");
-                clientRepository.save(clntejmpl);
-                Comment cmmntejmpl = new Comment(clntejmpl.getName(), "Este evento es muy divertido", 4,natosywaor.getTitle());
+                clientRepository.save(user);
+                Comment cmmntejmpl = new Comment(user.getName(), "Este evento es muy divertido", 4,natosywaor.getTitle());
 
                 Ticket tcktejmpl2 = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio(), natosywaor.getTimeFinish(), TicketStatus.OPEN);
                 ticketRepository.save(tcktejmpl2);
-                clntejmpl.getTickets().add(tcktejmpl2);
-                clntejmpl.getTickets().add(tcktejmpl);
-                clntejmpl.getComments().add(cmmntejmpl);
-                clientRepository.save(clntejmpl);
+                user.getTickets().add(tcktejmpl2);
+                user.getTickets().add(tcktejmpl);
+                user.getComments().add(cmmntejmpl);
+                clientRepository.save(user);
 
                 Comment comment = new Comment("Robert", "Muy guay", 5, shoko.getTitle());
                 Comment comment1 = new Comment("Mar", "Increible", 4, shoko.getTitle());
@@ -228,15 +248,9 @@ public class DataBaseInitializer {
 
                 natosywaor.addComments(cmmntejmpl);
                 eventRepository.save(natosywaor);
-                // Create a client
-                Client client = new Client("John", "Doe", "johndoe@urjc.es", "123");
-                Client client2 = new Client("Harry", "Potter", "potterharry@urjc.es", "321");
-                Client client3 = new Client("Barry", "Allen", "b.allen@urjc.es", "111");
-                Client admn = new Client("admin", "1", "admin@urjc.es", "admin");
-                clientRepository.save(admn);
-                clientRepository.save(client);
-                clientRepository.save(client2);
-                clientRepository.save(client3);
+
+
+                
         }
 
 }

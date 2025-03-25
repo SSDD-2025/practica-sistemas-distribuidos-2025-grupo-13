@@ -26,4 +26,19 @@ public class ControllerApp {
     public String contact_recievedLink() {
         return "contact_recieved";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/loginError")
+    public String loginError() {
+        return "/";
+    }
+
+    @GetMapping("/private")
+    public String privateLink() {
+        return "private";
+    }
 }

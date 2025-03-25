@@ -1,4 +1,4 @@
-package es.grupo13.ssddgrupo13.entities;
+package es.grupo13.ssddgrupo13.model;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
