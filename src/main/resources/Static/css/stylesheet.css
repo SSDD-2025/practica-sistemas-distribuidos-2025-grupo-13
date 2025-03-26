@@ -865,13 +865,13 @@ h1 {
     min-width: 20px;
 }
 
-.container-section1 {
+.container-profile-data {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: flex-start;
     position: relative;
     overflow: hidden;
-    padding-top: 100px;
+    padding-top: 10px;
     min-height: calc(100vh - 92px);
     background-size: cover;
     z-index: 2;
@@ -952,7 +952,7 @@ h1 {
     height: 100vh;
     width: 30%;
     margin-top: 35px ;
-    margin-left: 40px;  
+    margin-left: 100px;  
     display: flex;
     flex-direction: column;
 
@@ -968,13 +968,12 @@ h1 {
 }
 
 .container-profile-data {
-    row-gap: 20px;
+    row-gap: 5px;
     width: 100%;
     flex-direction: column;
     margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
-    
 }
 
 .profile-name {
@@ -994,6 +993,10 @@ h1 {
 
 .butcontainer {
     display: flex ; 
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: column;
 }
 
 .container-profile-pag1 {

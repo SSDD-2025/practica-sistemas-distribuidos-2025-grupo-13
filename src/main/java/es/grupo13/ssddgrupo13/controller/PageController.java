@@ -74,16 +74,20 @@ public class PageController {
                 user = (Client) principal;
             } else if (principal instanceof UserDetails) {
                 String email = ((UserDetails) principal).getUsername();
-                user = clientService.findByEmail(email).orElse(null); // <- importante si no existe
+                user = clientService.findByEmail(email).orElse(null); 
             }
 
             model.addAttribute("userLogged", user);
-            model.addAttribute("client", user); // Si ya tienes el Client, úsalo directamente
+            model.addAttribute("client", user); 
             model.addAttribute("comment", commentService.findAll());
             model.addAttribute("event", eventService.findAll());
+
+            System.out.println("Usuario autenticado: " + (user != null));
+            System.out.println("Redirigiendo a profileTest");
+           
         }
 
-        return "profilePage";
+        return "profile";
     }
 
     @GetMapping("/contact")

@@ -120,12 +120,13 @@ public class SecurityConfig {
 						.requestMatchers("/festivals/**").permitAll()
 						.requestMatchers("/sign-in/**").permitAll()
 						.requestMatchers("/logout/**").permitAll()
+						.requestMatchers("/register/**").permitAll()
+						.requestMatchers("/profileTest").permitAll()
 						
 						// PRIVATE PAGES
 
 						.requestMatchers("/data/**").hasAnyRole("USER", "ADMIN")
-						.requestMatchers("/profile/**").hasAnyRole("USER", "ADMIN")
-
+						.requestMatchers("/profilePage/**").authenticated()
 				// We have to make an admin page (/admin/**)
 				)
 				.formLogin(formLogin -> formLogin
