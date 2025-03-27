@@ -189,13 +189,11 @@ public class DataBaseInitializer {
                 eventRepository.save(liberata);
                 eventRepository.save(madcool);
                 eventRepository.save(blackworks);
-
-
+                
                 Ticket tcktejmpl = new Ticket(shoko.getTitle(), shoko.getPrecio().floatValue(), shoko.getTimeFinish(),TicketStatus.OPEN);
                 ticketRepository.save(tcktejmpl);
                 clientRepository.save(user);
                 Comment cmmntejmpl = new Comment(user.getName(), "Este evento es muy divertido", 4,natosywaor.getTitle());
-
                 Ticket tcktejmpl2 = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio(), natosywaor.getTimeFinish(), TicketStatus.OPEN);
                 ticketRepository.save(tcktejmpl2);
                 user.getTickets().add(tcktejmpl2);
@@ -204,18 +202,31 @@ public class DataBaseInitializer {
                 clientRepository.save(user);
 
                 Comment comment = new Comment("Robert", "Muy guay", 5, shoko.getTitle());
+                comment.setEvent(shoko);
                 Comment comment1 = new Comment("Mar", "Increible", 4, shoko.getTitle());
+                comment1.setEvent(shoko);
                 Comment comment2 = new Comment("Juan", "Impresionante", 3, ohmyclub.getTitle());
+                comment2.setEvent(ohmyclub);
                 Comment comment3 = new Comment("Jose", "Increible", 5, liberata.getTitle());
+                comment3.setEvent(liberata);
                 Comment comment4 = new Comment("Robert", "Nada del otro mundo", 1, madcool.getTitle());
+                comment4.setEvent(madcool);
                 Comment comment5 = new Comment("Martin", "Super interesante", 4, blackworks.getTitle());
+                comment5.setEvent(blackworks);
                 Comment comment6 = new Comment("Ruben", "Muy sorpresivo", 3, blackworks.getTitle());
+                comment6.setEvent(blackworks);
                 Comment comment7 = new Comment("Mar", "Normalito", 2, rioBabel.getTitle());
+                comment7.setEvent(rioBabel);
                 Comment comment8 = new Comment("Alvaro", "Me esperaba más", 2, natosywaor.getTitle());
+                comment8.setEvent(natosywaor);
                 Comment comment9 = new Comment("Mario", "Increiblemente ", 4, alsafir.getTitle());
+                comment9.setEvent(alsafir);
                 Comment comment10 = new Comment("Harry", "Super magico", 4, alsafir.getTitle());
+                comment10.setEvent(alsafir);
                 Comment comment11 = new Comment("Ruslana", "Muy malo", 0, pekeno.getTitle());
+                comment11.setEvent(pekeno);
                 Comment comment12 = new Comment("Daniel", "Espectacular!!!!", 5, cruzzi.getTitle());
+                comment12.setEvent(cruzzi);
 
                 // Add comments to the database
                 shoko.addComments(comment);
