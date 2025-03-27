@@ -90,7 +90,7 @@
     </li>
 </ul>
 
-<!-- PESTAÑA PERFIL (changed for profile.html) -->
+<!-- PROFILE PAGE (changed for profile.html) -->
 <div id="perfil" class="content-tab">
     <section class="section-1" id="section_1">
         <div class="container-profile-data">
@@ -158,6 +158,10 @@
                 </div>
             </div>
             {{/comments}}
+            {{^comments}}
+            <p>No has hecho ningún comentario aún.</p>
+            {{/comments}}
+            
         </div>
     </div>
 </div>

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import es.grupo13.ssddgrupo13.model.Client;
+import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.model.Ticket;
 import es.grupo13.ssddgrupo13.services.ClientService;
@@ -81,8 +82,16 @@ public class PageController {
 
             model.addAttribute("userLogged", user);
             model.addAttribute("client", user); 
-            model.addAttribute("comment", commentService.findAll());
-            model.addAttribute("event", eventService.findAll());
+            
+            Client managedClient = clientService.findByEmail(user.getEmail()).orElse(null);
+
+            //Logic to add my comments and my tickets
+            List<Ticket> myTickets = managedClient.getTickets();
+            List<Comment> myComments = managedClient.getComments();
+
+            model.addAttribute("tickets", myTickets);
+            model.addAttribute("comments", myComments);
+           
 
             System.out.println("Usuario autenticado: " + (user != null));
             System.out.println("Redirigiendo a profileTest");
