@@ -37,7 +37,8 @@ public class CommentController {
 
         // Check if the user is logged
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication.isAuthenticated();
+        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String);
 
         if (!isUserLogged) {
             return "redirect:/login";
