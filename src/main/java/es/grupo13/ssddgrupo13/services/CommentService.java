@@ -26,4 +26,9 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
+    public Comment delete(Comment comment){
+        commentRepository.delete(comment);
+        return comment;
+    }
+
 }

@@ -107,6 +107,7 @@ public class CommentController {
             Event event = eventService.findByTitle(titleEvento).getFirst();
             event.getComments().remove(comment);
             managedClient.getComments().remove(comment);
+            commentService.delete(comment);
             clientService.save(managedClient);
             eventService.save(event);
         }
