@@ -14,10 +14,8 @@
  package es.grupo13.ssddgrupo13.controller;
 
  import java.util.ArrayList;
- import java.util.Arrays;
  import java.util.List;
  import java.util.Optional;
- 
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
  import org.springframework.security.core.Authentication;
@@ -29,16 +27,12 @@
  import org.springframework.stereotype.Controller;
  import org.springframework.ui.Model;
  import org.springframework.web.bind.annotation.*;
- 
  import es.grupo13.ssddgrupo13.model.Client;
- import es.grupo13.ssddgrupo13.model.Comment;
- import es.grupo13.ssddgrupo13.model.Ticket;
  import es.grupo13.ssddgrupo13.repository.ClientRepository;
  import es.grupo13.ssddgrupo13.services.ClientService;
  import es.grupo13.ssddgrupo13.services.CommentService;
  import es.grupo13.ssddgrupo13.services.EventService;
  import es.grupo13.ssddgrupo13.services.TicketService;
- 
  import jakarta.servlet.http.HttpServletRequest;
  import jakarta.servlet.http.HttpSession;
  
@@ -46,9 +40,6 @@
  public class ClientController {
  
      private final ClientService clientService;
-     private final TicketService ticketService;
-     private final CommentService commentService;
-     private final EventService eventService;
  
      @Autowired
      private ClientRepository clientRepository;
@@ -60,9 +51,6 @@
      public ClientController(ClientService clientService, TicketService ticketService,
                              CommentService commentService, EventService eventService) {
          this.clientService = clientService;
-         this.ticketService = ticketService;
-         this.commentService = commentService;
-         this.eventService = eventService;
      }
  
      /**
