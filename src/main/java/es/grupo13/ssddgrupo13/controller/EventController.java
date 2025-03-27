@@ -119,6 +119,27 @@ public class EventController {
 
     @GetMapping("/concerts")
     public String showConciertos(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String);
+
+        model.addAttribute("isUserLogged", isUserLogged);
+
+        if (isUserLogged) {
+            Object principal = authentication.getPrincipal();
+            Client client = null;
+
+            if (principal instanceof Client) {
+                client = (Client) principal;
+            } else if (principal instanceof UserDetails) {
+                // Buscar el Client a partir del username
+                String email = ((UserDetails) principal).getUsername();
+                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
+            }
+
+            model.addAttribute("userLogged", client);
+        }
+
         List<Event> concerts = eventService.findByType("concierto"); // Obtain the concerts from the database
         model.addAttribute("conciertos", concerts); // Add the list to the model
         return "concerts"; // Name of the template with out .html
