@@ -14,10 +14,10 @@
         <form action="/edit-profile" method="post">
             <div class="mb-3">
                 <label for="inputName" class="form-label">Nombre</label>
-                <input type="text" value="{{client.name}}" class="form-control" name="name" required>
+                <input type="text" value="{{userLogged.name}}" class="form-control" name="name" required>
     
                 <label for="inputSurname" class="form-label">Apellidos</label>
-                <input type="text" class="form-control" value="{{client.lastName}}"  name="lastName" required>
+                <input type="text" class="form-control" value="{{userLogged.lastName}}"  name="lastName" required>
             </div>
             
             <button type="submit" class="btn btn-login me-2">Confirmar</button>

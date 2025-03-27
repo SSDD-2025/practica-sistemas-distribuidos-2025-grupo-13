@@ -130,6 +130,8 @@ public class SecurityConfig {
 						.requestMatchers("/data/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/profilePage/**").authenticated()
 						.requestMatchers("/buyTicket/**").authenticated()
+						.requestMatchers("/editprofilepage").authenticated()
+						.requestMatchers("/edit-profile").authenticated()
 				// We have to make an admin page (/admin/**)
 				)
 				.formLogin(formLogin -> formLogin
