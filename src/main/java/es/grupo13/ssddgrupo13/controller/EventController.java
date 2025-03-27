@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +35,8 @@ import es.grupo13.ssddgrupo13.services.CommentService;
 import es.grupo13.ssddgrupo13.services.EventService;
 import es.grupo13.ssddgrupo13.services.TicketService;
 import es.grupo13.ssddgrupo13.utils.ImageUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class EventController {
@@ -207,6 +206,22 @@ public class EventController {
             return "error";
         }
     }
+    /**
+      * Loads the admin editing page.
+      */
+        @GetMapping("/admin")
+        public String adminPage(HttpServletRequest request,Model model) {
+                List<Event> events = (List<Event>) eventService.findAll();
+                List<Comment> comments = (List<Comment>) commentService.findAll();
+                model.addAttribute("comment", comments);
+                model.addAttribute("event", events);
+                return "/profile_admin";
+                
+            
+            
+            
+
+        }
 
     //Created CommentController to handle the comments
 

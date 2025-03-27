@@ -1,7 +1,7 @@
 package es.grupo13.ssddgrupo13.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.model.Event;
@@ -17,7 +18,7 @@ import es.grupo13.ssddgrupo13.model.Ticket;
 import es.grupo13.ssddgrupo13.services.ClientService;
 import es.grupo13.ssddgrupo13.services.CommentService;
 import es.grupo13.ssddgrupo13.services.EventService;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class PageController {
@@ -59,7 +60,7 @@ public class PageController {
 
     // Controller method to go to the profile page
     @GetMapping("/profilePage")
-    public String profile(HttpSession session, Model model) {
+    public String profile(HttpServletRequest request, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         System.out.println("Autenticación: " + authentication);
@@ -91,6 +92,8 @@ public class PageController {
 
             model.addAttribute("tickets", myTickets);
             model.addAttribute("comments", myComments);
+
+            model.addAttribute("isAdmin", user.getRoles().contains("ADMIN"));
            
 
             System.out.println("Usuario autenticado: " + (user != null));

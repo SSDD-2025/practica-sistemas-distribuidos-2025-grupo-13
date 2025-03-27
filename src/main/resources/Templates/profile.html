@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEATRO DAW</title>
+    <title>ALASDOCE</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -113,6 +113,12 @@
                         <form action="/logout" method="post">
                             <input type="submit" class="btn btn-login me-2" value="Sign out"/>
                         </form>
+                        {{#isAdmin}}
+                        <form action="/admin" method="get">
+                            <button type="submit" class="btn btn-login me-2">Página de administrador</button>
+                            
+                        </form>
+                        {{/isAdmin}}
                     </div>
                 </div>
             </div>

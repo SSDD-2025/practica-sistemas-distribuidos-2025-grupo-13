@@ -16,14 +16,17 @@
  import org.springframework.security.core.userdetails.UserDetails;
  import org.springframework.stereotype.Controller;
  import org.springframework.ui.Model;
- import org.springframework.web.bind.annotation.*;
+ import org.springframework.web.bind.annotation.PathVariable;
+ import org.springframework.web.bind.annotation.PostMapping;
+ import org.springframework.web.bind.annotation.RequestParam;
+
  import es.grupo13.ssddgrupo13.model.Client;
  import es.grupo13.ssddgrupo13.model.Comment;
  import es.grupo13.ssddgrupo13.model.Event;
  import es.grupo13.ssddgrupo13.services.ClientService;
- import es.grupo13.ssddgrupo13.services.CommentService;
- import es.grupo13.ssddgrupo13.services.EventService;
- import jakarta.servlet.http.HttpSession;
+import es.grupo13.ssddgrupo13.services.CommentService;
+import es.grupo13.ssddgrupo13.services.EventService;
+import jakarta.servlet.http.HttpServletRequest;
  
  @Controller
  public class CommentController {
@@ -41,7 +44,7 @@
       * Adds a new comment to the specified event.
       */
      @PostMapping("/comment_in")
-     public String addComment(HttpSession session,
+     public String addComment(HttpServletRequest request,
                                @RequestParam String text,
                                @RequestParam(required = false, defaultValue = "0") String rating,
                                @RequestParam Long eventID) {
@@ -81,7 +84,7 @@
       */
      @PostMapping("/comment_out/{commentId}/{eventTitle}")
      public String deleteComment(Model model,
-                                 HttpSession session,
+                                 HttpServletRequest request,
                                  @PathVariable Long commentId,
                                  @PathVariable String eventTitle) {
  

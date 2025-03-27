@@ -15,7 +15,7 @@
 
  import java.util.ArrayList;
  import java.util.List;
- import java.util.Optional;
+
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
  import org.springframework.security.core.Authentication;
@@ -26,15 +26,17 @@
  import org.springframework.security.crypto.password.PasswordEncoder;
  import org.springframework.stereotype.Controller;
  import org.springframework.ui.Model;
- import org.springframework.web.bind.annotation.*;
+ import org.springframework.web.bind.annotation.GetMapping;
+ import org.springframework.web.bind.annotation.PostMapping;
+ import org.springframework.web.bind.annotation.RequestParam;
+
  import es.grupo13.ssddgrupo13.model.Client;
- import es.grupo13.ssddgrupo13.repository.ClientRepository;
- import es.grupo13.ssddgrupo13.services.ClientService;
- import es.grupo13.ssddgrupo13.services.CommentService;
+import es.grupo13.ssddgrupo13.repository.ClientRepository;
+import es.grupo13.ssddgrupo13.services.ClientService;
+import es.grupo13.ssddgrupo13.services.CommentService;
  import es.grupo13.ssddgrupo13.services.EventService;
  import es.grupo13.ssddgrupo13.services.TicketService;
  import jakarta.servlet.http.HttpServletRequest;
- import jakarta.servlet.http.HttpSession;
  
  @Controller
  public class ClientController {
@@ -109,8 +111,8 @@
       * Shows the user's tickets and comments.
       */
      @GetMapping("/data")
-     public String getUserData(HttpSession session, Model model) {
-         Client sessionClient = (Client) session.getAttribute("client");
+     public String getUserData(HttpServletRequest request, Model model) {
+         Client sessionClient = (Client) request.getSession().getAttribute("client");
          if (sessionClient == null) {
              return "/createsAnAccount";
          }
@@ -166,6 +168,7 @@
  
          return "editprofile";
      }
+     
  
      /**
       * Handles profile updates (name and last name).

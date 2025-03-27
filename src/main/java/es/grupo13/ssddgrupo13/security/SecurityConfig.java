@@ -4,17 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import es.grupo13.ssddgrupo13.security.jwt.JwtRequestFilter;
 import es.grupo13.ssddgrupo13.security.jwt.UnauthorizedHandlerJwt;
@@ -126,6 +123,7 @@ public class SecurityConfig {
 						
 						// PRIVATE PAGES
 						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.requestMatchers("/newEvent/**").hasAnyRole( "ADMIN")
 						.requestMatchers("/comment_out/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/data/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/profilePage/**").authenticated()
