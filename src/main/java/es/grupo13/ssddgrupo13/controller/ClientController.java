@@ -92,7 +92,7 @@
  
      /**
       * Legacy or alternative sign-in method (non-secure).
-      */
+      
      @PostMapping("/sign-in")
      public String signIn(HttpSession session, @RequestParam String email) {
          Optional<Client> client = clientService.findByEmail(email);
@@ -103,7 +103,7 @@
          } else {
              return "/error";
          }
-     }
+     }*/
  
      /**
       * Shows the user's tickets and comments.
@@ -147,15 +147,6 @@
          }
  
          return "redirect:/";
-     }
- 
-     /**
-      * Logs the user out and invalidates the session.
-      */
-     @PostMapping("/log_out")
-     public String logout(HttpSession session) {
-         session.invalidate();
-         return "/loguedOut";
      }
  
      /**

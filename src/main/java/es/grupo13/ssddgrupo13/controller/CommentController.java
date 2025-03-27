@@ -43,7 +43,7 @@
      @PostMapping("/comment_in")
      public String addComment(HttpSession session,
                                @RequestParam String text,
-                               @RequestParam String rating,
+                               @RequestParam(required = false, defaultValue = "0") String rating,
                                @RequestParam Long eventID) {
  
          Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -59,7 +59,8 @@
  
          Client client = clientService.findByEmail(email).orElse(null);
          if (client == null) return "/error";
- 
+         
+         
          Comment comment = new Comment(client.getName(), text, Integer.parseInt(rating), event.getTitle());
          comment.setEvent(event);
  
