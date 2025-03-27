@@ -1,5 +1,6 @@
 package es.grupo13.ssddgrupo13.controller;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import es.grupo13.ssddgrupo13.model.Client;
+import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.model.Ticket;
 import es.grupo13.ssddgrupo13.services.ClientService;
 import es.grupo13.ssddgrupo13.services.CommentService;
@@ -88,6 +90,37 @@ public class PageController {
         }
 
         return "profile";
+    }
+
+
+    //Clubbing method to show the clubs, used to be in the EventController
+    @GetMapping("/clubbing")
+    public String clubbingRedirection(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String);
+
+        model.addAttribute("isUserLogged", isUserLogged);
+
+        if (isUserLogged) {
+            Object principal = authentication.getPrincipal();
+            Client client = null;
+
+            if (principal instanceof Client) {
+                client = (Client) principal;
+            } else if (principal instanceof UserDetails) {
+                // Buscar el Client a partir del username
+                String email = ((UserDetails) principal).getUsername();
+                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
+            }
+
+            model.addAttribute("userLogged", client);
+        }
+
+        List<Event> clubs = eventService.findByType("club");
+        model.addAttribute("club", clubs);
+        return "clubbing"; 
+        
     }
 
     @GetMapping("/contact")

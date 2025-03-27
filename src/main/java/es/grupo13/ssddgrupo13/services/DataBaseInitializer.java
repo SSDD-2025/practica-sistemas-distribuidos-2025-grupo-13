@@ -23,6 +23,11 @@ import jakarta.annotation.PostConstruct;
 @Component
 public class DataBaseInitializer {
 
+        @Autowired
+        private EventService eventService;
+
+        @Autowired
+        private CommentService commentService;
 
         @Autowired
         private PasswordEncoder passwordEncoder;
@@ -45,8 +50,6 @@ public class DataBaseInitializer {
         @Autowired
         private ImageUtils imageUtils;
 
-
-        
         @PostConstruct
         public void init() {
 
@@ -61,7 +64,6 @@ public class DataBaseInitializer {
                         clientRepository.save(admin);
 
                 }
-
 
                 // Load images to the database
                 Blob shokoImage = imageUtils.loadImage("img/shoko.png");
@@ -122,64 +124,63 @@ public class DataBaseInitializer {
                 Event cruzzi = new Event("CRUZZI", "", startConcert, finishConcert, "Teatro Barceló", "concierto", 58,
                                 cruzziImage);
 
-                                eventRepository.save(shoko);
-                                eventRepository.save(ohmyclub);
-                                eventRepository.save(liberata);
-                
-                                eventRepository.save(madcool);
-                                eventRepository.save(blackworks);
-                                eventRepository.save(madridSalvaje);
-                                eventRepository.save(rioBabel);
-                
-                                eventRepository.save(natosywaor);
-                                eventRepository.save(alsafir);
-                                eventRepository.save(pekeno);
-                                eventRepository.save(cruzzi);
-                                
+                eventRepository.save(shoko);
+                eventRepository.save(ohmyclub);
+                eventRepository.save(liberata);
+
+                eventRepository.save(madcool);
+                eventRepository.save(blackworks);
+                eventRepository.save(madridSalvaje);
+                eventRepository.save(rioBabel);
+
+                eventRepository.save(natosywaor);
+                eventRepository.save(alsafir);
+                eventRepository.save(pekeno);
+                eventRepository.save(cruzzi);
 
                 // Add tickets to the database
                 for (int i = 0; i < 5; i++) {
                         Ticket ts = new Ticket(shoko.getTitle(), shoko.getPrecio().floatValue(), shoko.getTimeFinish(), TicketStatus.OPEN);
-                        
+
                         shoko.getTickets().add(ts);
-                        
+
                         Ticket to = new Ticket(ohmyclub.getTitle(), ohmyclub.getPrecio().floatValue(), ohmyclub.getTimeFinish(),TicketStatus.OPEN);
-                        
+
                         ohmyclub.getTickets().add(to);
-                        
+
                         Ticket tl = new Ticket(liberata.getTitle(), liberata.getPrecio().floatValue(), liberata.getTimeFinish(),TicketStatus.OPEN);
-                        
+
                         liberata.getTickets().add(tl);
-                        
+
                         Ticket tm = new Ticket(madcool.getTitle(), madcool.getPrecio().floatValue(), madcool.getTimeFinish(),TicketStatus.OPEN);
-                        
+
                         madcool.getTickets().add(tm);
-                        
+
                         Ticket tb = new Ticket(blackworks.getTitle(), blackworks.getPrecio(),blackworks.getTimeFinish(),TicketStatus.OPEN);
-                        
+
                         blackworks.getTickets().add(tb);
-                        
+
                         Ticket tms = new Ticket(madridSalvaje.getTitle(), madridSalvaje.getPrecio(),madridSalvaje.getTimeFinish(), TicketStatus.OPEN);
-                        
+
                         madridSalvaje.getTickets().add(tms);
                         Ticket trb = new Ticket(rioBabel.getTitle(), rioBabel.getPrecio().floatValue(), rioBabel.getTimeFinish(), TicketStatus.OPEN);
-                        
+
                         rioBabel.getTickets().add(trb);
 
                         Ticket tnw = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio().floatValue(),natosywaor.getTimeFinish(),TicketStatus.OPEN);
-                        
+
                         natosywaor.getTickets().add(tnw);
 
                         Ticket tas = new Ticket(alsafir.getTitle(), alsafir.getPrecio().floatValue(), alsafir.getTimeFinish(),TicketStatus.OPEN);
-                        
+
                         alsafir.getTickets().add(tas);
 
                         Ticket tpk = new Ticket(pekeno.getTitle(), pekeno.getPrecio().floatValue(), pekeno.getTimeFinish(),TicketStatus.OPEN);
-                        
+
                         pekeno.getTickets().add(tpk);
 
                         Ticket tcz = new Ticket(cruzzi.getTitle(), cruzzi.getPrecio().floatValue(), cruzzi.getTimeFinish(),TicketStatus.OPEN);
-                        
+
                         cruzzi.getTickets().add(tcz);
 
                 }
@@ -249,8 +250,12 @@ public class DataBaseInitializer {
                 natosywaor.addComments(cmmntejmpl);
                 eventRepository.save(natosywaor);
 
+                // Add comments to the database (Test) Working
+                Comment testComment = new Comment("User", "text", 5, shoko.getTitle());
+                testComment.setEvent(shoko);
+                commentService.save(testComment);
+                eventService.save(shoko);
 
-                
         }
 
 }

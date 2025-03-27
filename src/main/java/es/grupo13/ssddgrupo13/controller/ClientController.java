@@ -70,8 +70,7 @@ public class ClientController {
                         @RequestParam String password,
                         Model model,
                         HttpServletRequest request) {
-        
-    
+
        if (userRepository.findByName(email).isPresent()) {
             return "redirect:/register?error=user_exists"; // Redirect error page
         }
@@ -82,14 +81,9 @@ public class ClientController {
         for (String role : user.getRoles()) {
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
         }
-
-        // Make authentiucaion token
+    
         UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, authorities);
-
-        // Save in security context
         SecurityContextHolder.getContext().setAuthentication(auth);
-
-        // Associate security context to session
         request.getSession().setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
 
         return "redirect:/"; // Go to home page
@@ -108,46 +102,8 @@ public class ClientController {
             return "/error";
         }
     }
-
-    @PostMapping("/saveTicket")
-    public String saveTicket(HttpSession session, @RequestParam Long eventID) {
-        Client sessionclient = (Client) session.getAttribute("client");
-        if (sessionclient == null) {
-            return "/buyNoAccount"; // If there is no client redirect to error
-        }
-        System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
-        // Find client un bbdd if not will give an error
-        Client client = clientService.findById(sessionclient.getId()).orElse(null);
-        if (client == null) {
-            return "/erro"; // If no client is in session, redirect to error
-        }
-        System.out.println("Correo del cliente"+client.getEmail());
-        Event event = eventService.findById(eventID).orElse(null); // Gets the event from the eventID
-        if (event == null) {
-            return "/error"; // If there is no event, redirect to error
-        }
-        Ticket ticket = null;
-        for (Ticket t : eventService.findById(eventID).get().getTickets()) {
-            if (t.getStatus() == TicketStatus.OPEN) {
-                ticket = t;
-                break;
-            }
-            
-        }
-        if (ticket == null) {
-            return "/error"; // If there is no ticket, redirect to error
-        }
-        
-        
-        System.out.println("Titulo del ticket"+ticket.getTitle());
-        ticket.setStatus(TicketStatus.CLOSED); // Change the status of the ticket to closed
-        client.getTickets().add(ticket);  // Associate the ticket with client
-        clientService.save(client);   // Save the client with the ticket added
-        ticketService.save(ticket);   // Save the ticket in the repository
-
-        return "buyedTicket";
-    }
     
+
     @GetMapping("/data")
     public String getMyTickets(HttpSession session, Model model) {
         Client sessionclient = (Client) session.getAttribute("client");
@@ -168,19 +124,6 @@ public class ClientController {
         model.addAttribute("comments", comments);
         return "myData";
     }
-
-    /* ON HOLD UNTIL PROFILE REDIRECTION IS DONE (IF IS LOGGED -> PROFILE)
-    @GetMapping("/profile")
-    public String profileLink(HttpSession session, Model model) {
-        if(!isLogged && !isAdmin)return "/profile";
-        else if(isLogged && isAdmin){
-          
-            return "/profile_admin";
-        }else{
-            model.addAttribute("client", session.getAttribute("client"));
-            return "/profile_out";
-        }
-    } */
 
     @PostMapping("authenticate")
     public String loginUser(@RequestParam("email") String email, 

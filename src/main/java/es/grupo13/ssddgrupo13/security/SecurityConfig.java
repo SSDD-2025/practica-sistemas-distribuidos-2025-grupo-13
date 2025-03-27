@@ -122,11 +122,13 @@ public class SecurityConfig {
 						.requestMatchers("/logout/**").permitAll()
 						.requestMatchers("/register/**").permitAll()
 						.requestMatchers("/profileTest").permitAll()
+						.requestMatchers("/comment_in").permitAll()
 						
 						// PRIVATE PAGES
 
 						.requestMatchers("/data/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/profilePage/**").authenticated()
+						.requestMatchers("/buyTicket/**").authenticated()
 				// We have to make an admin page (/admin/**)
 				)
 				.formLogin(formLogin -> formLogin
