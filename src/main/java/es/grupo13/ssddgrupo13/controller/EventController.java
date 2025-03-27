@@ -76,7 +76,7 @@ public class EventController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication.isAuthenticated();
         if (authentication == null || !isUserLogged || authentication.getPrincipal().equals("anonymousUser")) {
-            return "redirect:/error"; // TODO USER NOT LOGGED IN
+            return "redirect:/login"; // TODO USER NOT LOGGED IN
         }
 
         Object principal = authentication.getPrincipal();
