@@ -209,22 +209,7 @@ public class EventController {
     }
 
     //Created CommentController to handle the comments
-    
-    @PostMapping("/comment_out/{commentId}/{titleEvento}")
-    public String eliminarComentario(HttpSession session, @PathVariable Long commentId, @PathVariable String titleEvento){
-        Client sessionclient = (Client) session.getAttribute("client");
-        Client client = clientService.findById(sessionclient.getId()).orElse(null);
 
-        Comment comment = commentService.findById(commentId).orElse(null);
-
-        Event event = eventService.findByTitle(titleEvento).getFirst();
-
-        event.getComments().remove(comment);
-        client.getComments().remove(comment);
-        clientService.save(client);
-        eventService.save(event);
-        return "/commentRemoved";
-    }
 
     @PostMapping("/delete_event")
     public String deleteEvent(@RequestParam Long eventID) {

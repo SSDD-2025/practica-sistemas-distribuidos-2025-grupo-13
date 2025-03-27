@@ -125,7 +125,8 @@ public class SecurityConfig {
 						.requestMatchers("/comment_in").permitAll()
 						
 						// PRIVATE PAGES
-
+						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.requestMatchers("/comment_out/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/data/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/profilePage/**").authenticated()
 						.requestMatchers("/buyTicket/**").authenticated()
