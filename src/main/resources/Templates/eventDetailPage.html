@@ -20,6 +20,7 @@
                 <form action="/buyTicket" method="post">
                     <button class="btn-change8">Comprar</button>
                     <input type="hidden" name="eventID" value="{{event.id}}">
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                 </form>        
             </li>
     </div>
@@ -91,6 +92,7 @@
                         <textarea class="form-control" id="inputComentario" rows="3" name="text"></textarea>
                     </div>
                     <button type="submit" class="btn btn-publicar">Publicar</button>
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                 </form>
             </div>
         </div>

@@ -16,6 +16,7 @@
         <input type="email" name="email" placeholder="Tu correo electrónico" required>
         <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
         <button type="submit">Enviar</button>
+        <input type="hidden" name="_csrf" value="{{token}}"/>
     </form>
     <p></p>
     <p>Email: </p>

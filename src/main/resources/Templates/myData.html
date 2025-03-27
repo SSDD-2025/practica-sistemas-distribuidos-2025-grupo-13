@@ -41,6 +41,7 @@
                 <!-- Forms to delete the comment -->
                 <form action="/comment_out/{{id}}/{{title}}" method="POST">
                     <button type="submit" class="delete-comment">Eliminar</button>
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                 </form>
             </div>
         </div>

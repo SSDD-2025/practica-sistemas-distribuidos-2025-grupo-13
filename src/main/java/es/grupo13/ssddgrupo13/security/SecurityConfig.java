@@ -125,6 +125,8 @@ public class SecurityConfig {
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.requestMatchers("/newEvent/**").hasAnyRole( "ADMIN")
 						.requestMatchers("/comment_out/**").hasAnyRole("USER", "ADMIN")
+						.requestMatchers("/delete_event/**").hasAnyRole("USER", "ADMIN")
+						.requestMatchers("/delete_comment/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/data/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/profilePage/**").authenticated()
 						.requestMatchers("/buyTicket/**").authenticated()
@@ -145,7 +147,7 @@ public class SecurityConfig {
 						.logoutSuccessUrl("/")
 						.permitAll());
 
-		http.csrf(csrf -> csrf.disable());
+		//http.csrf(csrf -> csrf.disable());
 
 		return http.build();
 	}

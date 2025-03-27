@@ -32,6 +32,7 @@
                 <form action="/delete_comment" method="post">
                     <input type="hidden" name="commentID" value="{{id}}">
                     <button type="submit" class="btn">Eliminar</button>
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                 </form>
             </div>
             {{/comment}}
@@ -61,6 +62,7 @@
             <form action="/delete_event" method="post">
                 <input type="hidden" name="eventID" value="{{id}}">
                 <button type="submit" class="btnclub">Eliminar</button>
+                <input type="hidden" name="_csrf" value="{{token}}"/>
             </form>
             
         </div>
@@ -70,6 +72,7 @@
 
 <form action="/log_out" method="post">
     <button type="submit" class="btn btn-login me-2">Cerrar sesión</button>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
 </form>  
 
 {{>footer}}
