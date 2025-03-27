@@ -167,36 +167,8 @@ public class EventController {
         }
     }
 
-    @PostMapping("/comment_in")
-    public String comment_in(HttpSession session, @RequestParam String text, @RequestParam String rating, @RequestParam Long eventID) {
-        Client sessionclient = (Client) session.getAttribute("client");
-        if (sessionclient == null) {
-            return "/commentNoAcount"; // If there is no client redirect to error
-        }
-        System.out.println("Correo de la sesion del cliente"+sessionclient.getEmail());
-        // Must find the client in the repository, otherwise will give an error
-        Client client = clientService.findById(sessionclient.getId()).orElse(null);
-        if (client == null) {
-            return "/error"; // If there is no client redirect to error
-        }
-        System.out.println("Correo del cliente"+client.getEmail());
-
-        Event event = eventService.findById(eventID).orElse(null); // Obtain the event with the eventID
-
-        if (event == null) {
-            return "/error"; // If the event is not found send an error
-        }
-
-        Comment comment = new Comment(client.getName(), text, Integer.valueOf(rating), event.getTitle());
-        event.getComments().add(comment);  // Associate the comment with the event
-        client.getComments().add(comment); // Associate the comment with the client
-        commentService.save(comment);   // Save the comment in the repository
-        eventService.save(event);       // Save the event with the comment added
-        clientService.save(client);     // Save the client with the comment added
-
-        return "redirect:/eventDetailPage/" + eventID; // Redirect to the event page
-    }
-
+    //Created CommentController to handle the comments
+    
     @PostMapping("/comment_out/{commentId}/{titleEvento}")
     public String eliminarComentario(HttpSession session, @PathVariable Long commentId, @PathVariable String titleEvento){
         Client sessionclient = (Client) session.getAttribute("client");
