@@ -33,7 +33,7 @@ public class PageController {
     public String profile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!auth.isAuthenticated()) {
-            model.addAttribute("title", "❌ Acceso denegado");
+            model.addAttribute("title", "Acceso denegado");
             model.addAttribute("message", "Inicia sesión o regístrate para acceder a tu perfil.");
             model.addAttribute("linkText", "Aceptar");
             model.addAttribute("linkUrl", "/");
@@ -71,7 +71,7 @@ public class PageController {
 
     @PostMapping("/contact_recieved")
     public String contactRecievedLink(Model model) {
-        model.addAttribute("title", "✅ OK");
+        model.addAttribute("title", "Pregunta recibida");
         model.addAttribute("message", "Tu pregunta ha sido recibida");
         model.addAttribute("linkText", "Aceptar");
         model.addAttribute("linkUrl", "/");

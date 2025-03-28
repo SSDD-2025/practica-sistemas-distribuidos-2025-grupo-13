@@ -41,7 +41,7 @@ public class AdminController {
     public String deleteEvent(@PathVariable Long eventID, Model model) {
         eventService.deleteById(eventID);
 
-        model.addAttribute("title", "✅ OK");
+        model.addAttribute("title", "Evento borrado");
         model.addAttribute("message", "¡Has borrado este evento correctamente!");
         model.addAttribute("linkText", "Aceptar");
         model.addAttribute("linkUrl", "/admin/");
@@ -54,7 +54,7 @@ public class AdminController {
     @PostMapping("/deleteComment/{commentID}")
     public String deleteComment(@RequestParam Long commentID, Model model) {
         commentService.deleteById(commentID);
-        model.addAttribute("title", "✅ OK");
+        model.addAttribute("title", "Comentario borrado");
         model.addAttribute("message", "¡Has borrado este comentario correctamente!");
         model.addAttribute("linkText", "Aceptar");
         model.addAttribute("linkUrl", "/admin/");

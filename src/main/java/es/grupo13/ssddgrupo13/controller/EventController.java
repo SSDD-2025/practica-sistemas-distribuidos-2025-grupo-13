@@ -85,7 +85,7 @@ public class EventController {
 
         ticketService.buyTicket(client, event, ticket);
 
-        model.addAttribute("title", "✅ OK");
+        model.addAttribute("title", "Ticket comprado");
         model.addAttribute("message", "¡Se ha comprado el ticket correctamente!");
         model.addAttribute("linkText", "Aceptar");
         model.addAttribute("linkUrl", "/");
@@ -172,7 +172,7 @@ public class EventController {
 
         eventService.save(event);
 
-        model.addAttribute("title", "✅ OK");
+        model.addAttribute("title", "Evento creado");
         model.addAttribute("message", "¡El evento se ha creado con éxito!");
         model.addAttribute("linkText", "Aceptar");
         model.addAttribute("linkUrl", "/admin/");

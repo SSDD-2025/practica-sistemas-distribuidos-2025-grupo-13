@@ -52,7 +52,7 @@ import jakarta.servlet.http.HttpServletRequest;
  
          Authentication auth = SecurityContextHolder.getContext().getAuthentication();
          if (!isAuthenticatedUser(auth)) {
-            model.addAttribute("title", "❌ Acceso denegado");
+            model.addAttribute("title", "Acceso denegado");
             model.addAttribute("message", "Necesitas iniciar sesión para comentar.");
             model.addAttribute("linkText", "Aceptar");
             model.addAttribute("linkUrl", "/");
@@ -123,7 +123,7 @@ import jakarta.servlet.http.HttpServletRequest;
          clientService.save(client);
          eventService.save(event);
          
-         model.addAttribute("title", "✅ OK");
+         model.addAttribute("title", "Comentario borrado");
          model.addAttribute("message", "¡Has borrado este comentario correctamente!");
          model.addAttribute("linkText", "Aceptar");
          model.addAttribute("linkUrl", "/profilePage");

@@ -73,7 +73,7 @@ public class ClientController {
 
         authenticateUser(newUser, request);
 
-        model.addAttribute("title", "✅ OK");
+        model.addAttribute("title", "Registrado");
         model.addAttribute("message", "¡Te has registrado correctamente!");
         model.addAttribute("linkText", "Aceptar");
         model.addAttribute("linkUrl", "/");
@@ -113,7 +113,7 @@ public class ClientController {
 
         authenticateUser(client, request);
  
-        model.addAttribute("title", "✅ OK");
+        model.addAttribute("title", "Iniciado sesión");
         model.addAttribute("message", "¡Has iniciado sesión correctamente!");
         model.addAttribute("linkText", "Aceptar");
         model.addAttribute("linkUrl", "/");
@@ -123,9 +123,9 @@ public class ClientController {
     /**
      * Handles user logout and displays a success message.
      */
-    @GetMapping("/logoutSucess")
+    @GetMapping("/logoutSuccess")
     public String logoutSuccess(Model model) {
-        model.addAttribute("title", "✅ OK");
+        model.addAttribute("title", "Cerrado sesión");
         model.addAttribute("message", "Has cerrado sesión correctamente.");
         model.addAttribute("linkText", "Aceptar");
         model.addAttribute("linkUrl", "/");
@@ -173,7 +173,7 @@ public class ClientController {
             }
         }
         
-        model.addAttribute("title", "✅ OK");
+        model.addAttribute("title", "Perfil editado");
         model.addAttribute("message", "¡Perfil editado con éxito!");
         model.addAttribute("linkText", "Aceptar");
         model.addAttribute("linkUrl", "/");
