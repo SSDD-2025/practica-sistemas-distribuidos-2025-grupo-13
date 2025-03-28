@@ -13,21 +13,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import es.grupo13.ssddgrupo13.model.Client;
-import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.model.Event;
-import es.grupo13.ssddgrupo13.model.Ticket;
 import es.grupo13.ssddgrupo13.services.ClientService;
 import es.grupo13.ssddgrupo13.services.EventService;
 import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * Handles navigation between static and dynamic pages.
+ */
 @Controller
 public class PageController {
-    @Autowired
-    private ClientService clientService;
 
-    @Autowired
-    private EventService eventService;
+    @Autowired private ClientService clientService;
+    @Autowired private EventService eventService;
 
+    /**
+     * Adds user/session-related attributes to every model automatically.
+     */
     @ModelAttribute
     public void addAttributes(Model model, HttpServletRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -37,147 +39,44 @@ public class PageController {
         model.addAttribute("isUserLogged", isUserLogged);
 
         if (isUserLogged) {
-            Object principal = authentication.getPrincipal();
-            Client client = null;
-
-            if (principal instanceof Client) {
-                client = (Client) principal;
-            } else if (principal instanceof UserDetails) {
-                // Buscar el Client a partir del username
-                String email = ((UserDetails) principal).getUsername();
-                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
-            }
+            Client client = extractClientFromPrincipal(authentication.getPrincipal());
             model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
             model.addAttribute("userLogged", client);
         }
     }
-    
+
     @GetMapping("/")
-    public String indexForm(Model model, HttpServletRequest request) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
-                && !(authentication.getPrincipal() instanceof String);
-
-        model.addAttribute("isUserLogged", isUserLogged);
-
-        if (isUserLogged) {
-            Object principal = authentication.getPrincipal();
-            Client client = null;
-
-            if (principal instanceof Client) {
-                client = (Client) principal;
-            } else if (principal instanceof UserDetails) {
-                // Buscar el Client a partir del username
-                String email = ((UserDetails) principal).getUsername();
-                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
-            }
-            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-            model.addAttribute("userLogged", client);
-        }
-
+    public String indexForm() {
         return "index";
     }
 
-    // Controller method to go to the profile page
     @GetMapping("/profilePage")
-    public String profile(HttpServletRequest request, Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    public String profile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!auth.isAuthenticated()) return "redirect:/login";
 
-        System.out.println("Autenticación: " + authentication);
-        System.out.println("Principal: " + authentication.getPrincipal());
-        System.out.println("¿Autenticado?: " + authentication.isAuthenticated());
+        Client user = extractClientFromPrincipal(auth.getPrincipal());
+        if (user == null) return "error";
 
-        boolean isUserLogged = authentication.isAuthenticated();
-        model.addAttribute("isUserLogged", isUserLogged);
+        Client managedClient = clientService.findByEmail(user.getEmail()).orElse(null);
+        if (managedClient == null) return "error";
 
-        if (isUserLogged) {
-            Object principal = authentication.getPrincipal();
-            Client user = null;
-
-            if (principal instanceof Client) {
-                user = (Client) principal;
-            } else if (principal instanceof UserDetails) {
-                String email = ((UserDetails) principal).getUsername();
-                user = clientService.findByEmail(email).orElse(null); 
-            }
-
-            model.addAttribute("userLogged", user);
-            model.addAttribute("client", user); 
-            
-            Client managedClient = clientService.findByEmail(user.getEmail()).orElse(null);
-
-            //Logic to add my comments and my tickets
-            List<Ticket> myTickets = managedClient.getTickets();
-            List<Comment> myComments = managedClient.getComments();
-
-            model.addAttribute("tickets", myTickets);
-            model.addAttribute("comments", myComments);
-
-            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-           
-
-            System.out.println("Usuario autenticado: " + (user != null));
-            System.out.println("Redirigiendo a profileTest");
-           
-        }
+        model.addAttribute("client", managedClient);
+        model.addAttribute("tickets", managedClient.getTickets());
+        model.addAttribute("comments", managedClient.getComments());
 
         return "profile";
     }
 
-
-    //Clubbing method to show the clubs, used to be in the EventController
     @GetMapping("/clubbing")
-    public String clubbingRedirection(HttpServletRequest request, Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
-                && !(authentication.getPrincipal() instanceof String);
-
-        model.addAttribute("isUserLogged", isUserLogged);
-
-        if (isUserLogged) {
-            Object principal = authentication.getPrincipal();
-            Client client = null;
-
-            if (principal instanceof Client) {
-                client = (Client) principal;
-            } else if (principal instanceof UserDetails) {
-                // Buscar el Client a partir del username
-                String email = ((UserDetails) principal).getUsername();
-                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
-            }
-
-            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-            model.addAttribute("userLogged", client);
-        }
-
+    public String clubbingRedirection(Model model) {
         List<Event> clubs = eventService.findByType("club");
         model.addAttribute("club", clubs);
-        return "clubbing"; 
-        
+        return "clubbing";
     }
 
     @GetMapping("/contact")
-    public String contactanosLink(HttpServletRequest request, Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
-                && !(authentication.getPrincipal() instanceof String);
-
-        model.addAttribute("isUserLogged", isUserLogged);
-
-        if (isUserLogged) {
-            Object principal = authentication.getPrincipal();
-            Client client = null;
-
-            if (principal instanceof Client) {
-                client = (Client) principal;
-            } else if (principal instanceof UserDetails) {
-                // Buscar el Client a partir del username
-                String email = ((UserDetails) principal).getUsername();
-                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
-            }
-            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-            model.addAttribute("userLogged", client);
-        }
+    public String contactanosLink() {
         return "contact";
     }
 
@@ -187,7 +86,7 @@ public class PageController {
     }
 
     @PostMapping("/contact_recieved")
-    public String contact_recievedLink() {
+    public String contactRecievedLink() {
         return "contact_recieved";
     }
 
@@ -198,11 +97,21 @@ public class PageController {
 
     @GetMapping("/loginError")
     public String loginError() {
-        return "/";
+        return "redirect:/";
     }
 
     @GetMapping("/private")
     public String privateLink() {
         return "private";
+    }
+
+    /**
+     * Utility method to extract a Client from principal.
+     */
+    private Client extractClientFromPrincipal(Object principal) {
+        if (principal instanceof Client client) return client;
+        if (principal instanceof UserDetails userDetails)
+            return clientService.findByEmail(userDetails.getUsername()).orElse(null);
+        return null;
     }
 }
