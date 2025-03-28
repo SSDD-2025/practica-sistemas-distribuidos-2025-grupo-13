@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,7 +25,7 @@ import es.grupo13.ssddgrupo13.services.EventService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/admin/")
+@RequestMapping("/admin")
 /**
  * This controller is responsible for handling admin actions such as deleting events and comments.
  * It provides endpoints to delete events and comments from the system.
@@ -43,12 +45,11 @@ public class AdminController {
         this.clientService = clientService;
         this.jdbcTemplate = new JdbcTemplate();
     }
-    
-   
 
     
-    @DeleteMapping("/deleteEvent/{eventID}")
-    public String deleteEvent(@RequestParam Long eventID) {
+    @PostMapping("/deleteEvent/{eventID}")
+    public String deleteEvent(@PathVariable Long eventID) {
+        System.out.println("Intentando eliminar el evento con ID: " + eventID);
         eventService.deleteById(eventID);
         return "/eventRemoved";
     }
@@ -56,7 +57,7 @@ public class AdminController {
     @DeleteMapping("/delete_comment/{commentID}")
     public String deleteComment(@RequestParam Long commentID) {
         commentService.deleteById(commentID);
-        return "/commentRemoved";
+        return "commentRemoved";
     }
 
     /**
@@ -65,6 +66,7 @@ public class AdminController {
     @GetMapping("/")
     public String adminPage(HttpServletRequest request, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("Roles del usuario: " + authentication.getAuthorities());
         boolean isUserLogged = authentication != null && authentication.isAuthenticated()
                 && !(authentication.getPrincipal() instanceof String);
         model.addAttribute("isUserLogged", isUserLogged);

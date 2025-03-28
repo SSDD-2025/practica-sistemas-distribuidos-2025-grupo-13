@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import es.grupo13.ssddgrupo13.security.jwt.JwtRequestFilter;
 import es.grupo13.ssddgrupo13.security.jwt.UnauthorizedHandlerJwt;
@@ -108,7 +109,10 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(authorize -> authorize
 						// PUBLIC PAGES
-						.requestMatchers("/", "/css/**", "/event-image/**", "/img/**", "/js/**", "/videos/**").permitAll()
+						.requestMatchers("/admin/deleteEvent/**").hasRole("ADMIN")
+						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.requestMatchers("/", "/css/**", "/event-image/**", "/img/**", "/js/**", "/videos/**")
+						.permitAll()
 						.requestMatchers("/authenticate", "/favicon/**").permitAll()
 						.requestMatchers("/login", "/loginError").permitAll()
 						.requestMatchers("/clubbing/**", "/events/**", "/festivals/**", "/sign-in/**").permitAll()
@@ -120,14 +124,12 @@ public class SecurityConfig {
 						.requestMatchers("/comment_out/**").permitAll()
 						.requestMatchers("/contact").permitAll()
 						.requestMatchers("/ticket/**").permitAll()
-						
+
 						// PRIVATE PAGES
-						.requestMatchers("/admin/**").hasRole("ADMIN")
-						.requestMatchers("/admin/**").hasAuthority("ADMIN") 
-						.requestMatchers("/newEvent/**").hasAnyRole( "ADMIN")
+
+						.requestMatchers("/event/**").hasAnyRole("USER", "ADMIN")
+						.requestMatchers("/newEvent/**").hasAnyRole("ADMIN")
 						.requestMatchers("/comment_out/**").hasAnyRole("USER", "ADMIN")
-						.requestMatchers("/delete_event/**").hasAnyRole("USER", "ADMIN")
-						.requestMatchers("/delete_comment/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/data/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/profilePage/**").authenticated()
 						.requestMatchers("/buyTicket/**").authenticated()
@@ -146,9 +148,11 @@ public class SecurityConfig {
 				.logout(logout -> logout
 						.logoutUrl("/logout")
 						.logoutSuccessUrl("/")
-						.permitAll());
-
-		//http.csrf(csrf -> csrf.disable());
+						.permitAll()
+				)
+				.csrf(csrf -> csrf
+   						.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+				);
 
 		return http.build();
 	}

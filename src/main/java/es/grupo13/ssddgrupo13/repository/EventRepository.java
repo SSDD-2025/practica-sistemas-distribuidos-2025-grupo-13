@@ -13,10 +13,16 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByTitle(String title);
     Optional<Event> findById(long id);
     default void deleteById(long id) {
-        Optional<Event> event = findById(id);
-        if(event.isPresent()) {
-            event.get().getComments().clear();
-            delete(event.get());
+        Optional<Event> eventOpt = findById(id);
+        if (eventOpt.isPresent()) {
+            Event event = eventOpt.get();
+            
+            if (event.getComments() != null) {
+                event.getComments().forEach(c -> c.setEvent(null));
+                event.getComments().clear();
+            }
+    
+            delete(event);
         }
     }
 }

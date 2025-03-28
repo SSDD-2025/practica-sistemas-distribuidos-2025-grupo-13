@@ -29,10 +29,11 @@
                 <div class="comment-post_valoration">
                     <p>{{{rating}}}</p>
                 </div>
-                <form action="/delete_comment" method="post">
+                <form action="/admin/delete_comment/{{id}}" method="post">
                     <input type="hidden" name="commentID" value="{{id}}">
-                    <button type="submit" class="btn">Eliminar</button>
                     <input type="hidden" name="_csrf" value="{{token}}"/>
+                    <button type="submit" class="btn">Eliminar</button>
+
                 </form>
             </div>
             {{/comment}}
@@ -59,10 +60,10 @@
                 <p>{{description}}</p>
                 <p>{{timeStartFormat}}  ----  {{timeFinishFormat}}</p>
             </div>
-            <form action="/delete_event" method="post">
+            <form action="/admin/deleteEvent/{{id}}" method="post">
                 <input type="hidden" name="eventID" value="{{id}}">
-                <button type="submit" class="btnclub">Eliminar</button>
                 <input type="hidden" name="_csrf" value="{{token}}"/>
+                <button type="submit" class="btnclub">Eliminar</button>
             </form>
             
         </div>
