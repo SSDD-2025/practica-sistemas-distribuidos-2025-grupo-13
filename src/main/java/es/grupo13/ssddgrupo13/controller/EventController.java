@@ -53,9 +53,6 @@ public class EventController {
     private ClientService clientService;
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private ImageUtils imageUtils;
 
     @GetMapping("/event-image/{id}")
@@ -207,52 +204,11 @@ public class EventController {
             return "error";
         }
     }
-    /**
-      * Loads the admin editing page.
-      */
-        @GetMapping("/admin")
-        public String adminPage(HttpServletRequest request,Model model) {
-                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-                boolean isUserLogged = authentication != null && authentication.isAuthenticated()
-                                && !(authentication.getPrincipal() instanceof String);
-                model.addAttribute("isUserLogged", isUserLogged);
-                if (isUserLogged) {
-                        Object principal = authentication.getPrincipal();
-                        Client client = null;
-                        if (principal instanceof Client) {
-                                client = (Client) principal;
-                        } else if (principal instanceof UserDetails) {
-                                String email = ((UserDetails) principal).getUsername();
-                                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
-                        }
-                        model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-                        model.addAttribute("userLogged", client);
-                }
-                List<Event> events = (List<Event>) eventService.findAll();
-                List<Comment> comments = (List<Comment>) commentService.findAll();
-                model.addAttribute("comment", comments);
-                model.addAttribute("event", events);
-                return "/profile_admin";
-        }
+    
 
     //Created CommentController to handle the comments
 
-
-    @PostMapping("/delete_event")
-    public String deleteEvent(@RequestParam Long eventID) {
-        eventService.deleteById(eventID);
-        return "/eventRemoved";
-    }
-
-    @PostMapping("/delete_comment")
-    public String deleteComment(@RequestParam Long commentID) {
-        // Delete all the references related with the comment in the event_comments
-        jdbcTemplate.update("DELETE FROM event_comments WHERE comments_id = ?", commentID);
-
-        // Delete the comment
-        commentService.deleteById(commentID);
-        return "/commentRemoved";
-    }
+    //Created AdminController to handle the admin functions
 
     @GetMapping("/newEvent")
     public String getNewEvent() {
