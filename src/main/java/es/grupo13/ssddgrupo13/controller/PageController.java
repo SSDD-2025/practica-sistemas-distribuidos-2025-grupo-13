@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import es.grupo13.ssddgrupo13.model.Client;
@@ -16,22 +17,41 @@ import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.model.Ticket;
 import es.grupo13.ssddgrupo13.services.ClientService;
-import es.grupo13.ssddgrupo13.services.CommentService;
 import es.grupo13.ssddgrupo13.services.EventService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class PageController {
-
     @Autowired
     private ClientService clientService;
 
     @Autowired
-    private CommentService commentService;
-
-    @Autowired
     private EventService eventService;
 
+    @ModelAttribute
+    public void addAttributes(Model model, HttpServletRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String);
+
+        model.addAttribute("isUserLogged", isUserLogged);
+
+        if (isUserLogged) {
+            Object principal = authentication.getPrincipal();
+            Client client = null;
+
+            if (principal instanceof Client) {
+                client = (Client) principal;
+            } else if (principal instanceof UserDetails) {
+                // Buscar el Client a partir del username
+                String email = ((UserDetails) principal).getUsername();
+                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
+            }
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
+            model.addAttribute("userLogged", client);
+        }
+    }
+    
     @GetMapping("/")
     public String indexForm(Model model, HttpServletRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
