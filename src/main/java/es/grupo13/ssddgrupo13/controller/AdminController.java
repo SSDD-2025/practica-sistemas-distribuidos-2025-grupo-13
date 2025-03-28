@@ -53,7 +53,8 @@ public class AdminController {
      */
     @PostMapping("/deleteComment/{commentID}")
     public String deleteComment(@RequestParam Long commentID, Model model) {
-        commentService.deleteById(commentID);
+        System.out.println("Esta borrando un commentario con ID: " + commentID);
+        commentService.detachAndDelete(commentID); 
         model.addAttribute("title", "Comentario borrado");
         model.addAttribute("message", "¡Has borrado este comentario correctamente!");
         model.addAttribute("linkText", "Aceptar");

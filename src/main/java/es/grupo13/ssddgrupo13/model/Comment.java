@@ -22,6 +22,7 @@ public class Comment {
     @ManyToOne
     private Client client;
     //LOs comentarios no tiene una relacion N-1 con los clientes, es 1 a 1
+    
     @ManyToOne
     private Event event;
 

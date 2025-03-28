@@ -112,6 +112,7 @@ public class SecurityConfig {
 						.requestMatchers("/logoutSuccess").permitAll()
 						.requestMatchers("addNewEvent").hasRole("ADMIN")
 						.requestMatchers("/admin/deleteEvent/**").hasRole("ADMIN")
+						.requestMatchers("/admin/deleteComment/**").hasRole("ADMIN")
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.requestMatchers("/", "/css/**", "/event-image/**", "/img/**", "/js/**", "/videos/**")
 						.permitAll()

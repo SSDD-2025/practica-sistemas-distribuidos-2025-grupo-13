@@ -53,16 +53,21 @@ public class DataBaseInitializer {
         @PostConstruct
         public void init() {
 
+                // Sample users
                 Client admin = new Client("admin", "admin", "admin@admin.com", passwordEncoder.encode("admin"),
                                 Arrays.asList("ADMIN", "USER"));
 
                 Client user = new Client("user", "user", "user@user.com", passwordEncoder.encode("user"),
                                 Arrays.asList("USER"));
-                // SAMPLE USERS
+
                 if (clientRepository.findByName(admin.getName()).isEmpty()
                                 && clientRepository.findByName(user.getName()).isEmpty()) {
-                        clientRepository.save(admin);
 
+                        clientRepository.save(admin);
+                        clientRepository.save(user);
+
+                } else {
+                        user = clientRepository.findByName("user").orElse(user); // Recuperar usuario si ya existe
                 }
 
                 // Load images to the database
@@ -124,150 +129,113 @@ public class DataBaseInitializer {
                 Event cruzzi = new Event("CRUZZI", "", startConcert, finishConcert, "Teatro Barceló", "concierto", 58,
                                 cruzziImage);
 
+                // Save events to the database
                 eventRepository.save(shoko);
                 eventRepository.save(ohmyclub);
                 eventRepository.save(liberata);
-
                 eventRepository.save(madcool);
                 eventRepository.save(blackworks);
                 eventRepository.save(madridSalvaje);
                 eventRepository.save(rioBabel);
-
                 eventRepository.save(natosywaor);
                 eventRepository.save(alsafir);
                 eventRepository.save(pekeno);
                 eventRepository.save(cruzzi);
 
+                // Save comments to the database
+                for (Event event : Arrays.asList(shoko, madcool, ohmyclub, liberata, blackworks,
+                                madridSalvaje, rioBabel, natosywaor, alsafir, pekeno, cruzzi)) {
+                        Comment comment = new Comment(user.getName(), "Great event!", 5, event.getTitle());
+                        comment.setClient(user);
+                        comment.setEvent(event);
+
+                        event.getComments().add(comment);
+                        user.getComments().add(comment);
+
+                        commentRepository.save(comment);
+                }
                 // Add tickets to the database
                 for (int i = 0; i < 5; i++) {
-                        Ticket ts = new Ticket(shoko.getTitle(), shoko.getPrecio().floatValue(), shoko.getTimeFinish(), TicketStatus.OPEN);
+                        Ticket ts = new Ticket(shoko.getTitle(), shoko.getPrecio().floatValue(), shoko.getTimeFinish(),
+                                        TicketStatus.OPEN);
 
                         shoko.getTickets().add(ts);
 
-                        Ticket to = new Ticket(ohmyclub.getTitle(), ohmyclub.getPrecio().floatValue(), ohmyclub.getTimeFinish(),TicketStatus.OPEN);
+                        Ticket to = new Ticket(ohmyclub.getTitle(), ohmyclub.getPrecio().floatValue(),
+                                        ohmyclub.getTimeFinish(), TicketStatus.OPEN);
 
                         ohmyclub.getTickets().add(to);
 
-                        Ticket tl = new Ticket(liberata.getTitle(), liberata.getPrecio().floatValue(), liberata.getTimeFinish(),TicketStatus.OPEN);
+                        Ticket tl = new Ticket(liberata.getTitle(), liberata.getPrecio().floatValue(),
+                                        liberata.getTimeFinish(), TicketStatus.OPEN);
 
                         liberata.getTickets().add(tl);
 
-                        Ticket tm = new Ticket(madcool.getTitle(), madcool.getPrecio().floatValue(), madcool.getTimeFinish(),TicketStatus.OPEN);
+                        Ticket tm = new Ticket(madcool.getTitle(), madcool.getPrecio().floatValue(),
+                                        madcool.getTimeFinish(), TicketStatus.OPEN);
 
                         madcool.getTickets().add(tm);
 
-                        Ticket tb = new Ticket(blackworks.getTitle(), blackworks.getPrecio(),blackworks.getTimeFinish(),TicketStatus.OPEN);
+                        Ticket tb = new Ticket(blackworks.getTitle(), blackworks.getPrecio(),
+                                        blackworks.getTimeFinish(), TicketStatus.OPEN);
 
                         blackworks.getTickets().add(tb);
 
-                        Ticket tms = new Ticket(madridSalvaje.getTitle(), madridSalvaje.getPrecio(),madridSalvaje.getTimeFinish(), TicketStatus.OPEN);
+                        Ticket tms = new Ticket(madridSalvaje.getTitle(), madridSalvaje.getPrecio(),
+                                        madridSalvaje.getTimeFinish(), TicketStatus.OPEN);
 
                         madridSalvaje.getTickets().add(tms);
-                        Ticket trb = new Ticket(rioBabel.getTitle(), rioBabel.getPrecio().floatValue(), rioBabel.getTimeFinish(), TicketStatus.OPEN);
+                        Ticket trb = new Ticket(rioBabel.getTitle(), rioBabel.getPrecio().floatValue(),
+                                        rioBabel.getTimeFinish(), TicketStatus.OPEN);
 
                         rioBabel.getTickets().add(trb);
 
-                        Ticket tnw = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio().floatValue(),natosywaor.getTimeFinish(),TicketStatus.OPEN);
+                        Ticket tnw = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio().floatValue(),
+                                        natosywaor.getTimeFinish(), TicketStatus.OPEN);
 
                         natosywaor.getTickets().add(tnw);
 
-                        Ticket tas = new Ticket(alsafir.getTitle(), alsafir.getPrecio().floatValue(), alsafir.getTimeFinish(),TicketStatus.OPEN);
+                        Ticket tas = new Ticket(alsafir.getTitle(), alsafir.getPrecio().floatValue(),
+                                        alsafir.getTimeFinish(), TicketStatus.OPEN);
 
                         alsafir.getTickets().add(tas);
 
-                        Ticket tpk = new Ticket(pekeno.getTitle(), pekeno.getPrecio().floatValue(), pekeno.getTimeFinish(),TicketStatus.OPEN);
+                        Ticket tpk = new Ticket(pekeno.getTitle(), pekeno.getPrecio().floatValue(),
+                                        pekeno.getTimeFinish(), TicketStatus.OPEN);
 
                         pekeno.getTickets().add(tpk);
 
-                        Ticket tcz = new Ticket(cruzzi.getTitle(), cruzzi.getPrecio().floatValue(), cruzzi.getTimeFinish(),TicketStatus.OPEN);
+                        Ticket tcz = new Ticket(cruzzi.getTitle(), cruzzi.getPrecio().floatValue(),
+                                        cruzzi.getTimeFinish(), TicketStatus.OPEN);
 
                         cruzzi.getTickets().add(tcz);
 
                 }
-                eventRepository.save(shoko);
-                eventRepository.save(ohmyclub);
-                eventRepository.save(liberata);
-                eventRepository.save(madcool);
-                eventRepository.save(blackworks);
+
+                //Assign tickets to user
+                Ticket ticket1 = natosywaor.getTickets().get(0);
+                Ticket ticket2 = madcool.getTickets().get(0);
                 
-                Ticket tcktejmpl = new Ticket(shoko.getTitle(), shoko.getPrecio().floatValue(), shoko.getTimeFinish(),TicketStatus.OPEN);
-                ticketRepository.save(tcktejmpl);
+                user.getTickets().add(ticket1);
+                user.getTickets().add(ticket2);
+
+                // Save tickets
+                ticketRepository.save(ticket1);
+                ticketRepository.save(ticket2);
+
+
                 clientRepository.save(user);
-                Comment cmmntejmpl = new Comment(user.getName(), "Este evento es muy divertido", 4,natosywaor.getTitle());
-                cmmntejmpl.setEvent(natosywaor);
-                Ticket tcktejmpl2 = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio(), natosywaor.getTimeFinish(), TicketStatus.OPEN);
-                ticketRepository.save(tcktejmpl2);
-                user.getTickets().add(tcktejmpl2);
-                user.getTickets().add(tcktejmpl);
-                user.getComments().add(cmmntejmpl);
-                clientRepository.save(user);
-
-                Comment comment = new Comment("Robert", "Muy guay", 5, shoko.getTitle());
-                comment.setEvent(shoko);
-                Comment comment1 = new Comment("Mar", "Increible", 4, shoko.getTitle());
-                comment1.setEvent(shoko);
-                Comment comment2 = new Comment("Juan", "Impresionante", 3, ohmyclub.getTitle());
-                comment2.setEvent(ohmyclub);
-                Comment comment3 = new Comment("Jose", "Increible", 5, liberata.getTitle());
-                comment3.setEvent(liberata);
-                Comment comment4 = new Comment("Robert", "Nada del otro mundo", 1, madcool.getTitle());
-                comment4.setEvent(madcool);
-                Comment comment5 = new Comment("Martin", "Super interesante", 4, blackworks.getTitle());
-                comment5.setEvent(blackworks);
-                Comment comment6 = new Comment("Ruben", "Muy sorpresivo", 3, blackworks.getTitle());
-                comment6.setEvent(blackworks);
-                Comment comment7 = new Comment("Mar", "Normalito", 2, rioBabel.getTitle());
-                comment7.setEvent(rioBabel);
-                Comment comment8 = new Comment("Alvaro", "Me esperaba más", 2, natosywaor.getTitle());
-                comment8.setEvent(natosywaor);
-                Comment comment9 = new Comment("Mario", "Increiblemente ", 4, alsafir.getTitle());
-                comment9.setEvent(alsafir);
-                Comment comment10 = new Comment("Harry", "Super magico", 4, alsafir.getTitle());
-                comment10.setEvent(alsafir);
-                Comment comment11 = new Comment("Ruslana", "Muy malo", 0, pekeno.getTitle());
-                comment11.setEvent(pekeno);
-                Comment comment12 = new Comment("Daniel", "Espectacular!!!!", 5, cruzzi.getTitle());
-                comment12.setEvent(cruzzi);
-
-                // Add comments to the database
-                shoko.addComments(comment);
-                shoko.addComments(comment1);
-                ohmyclub.addComments(comment2);
-                liberata.addComments(comment3);
-                madcool.addComments(comment4);
-                blackworks.addComments(comment5);
-                blackworks.addComments(comment6);
-                rioBabel.addComments(comment7);
-                natosywaor.addComments(comment8);
-                alsafir.addComments(comment9);
-                alsafir.addComments(comment10);
-                pekeno.addComments(comment11);
-                cruzzi.addComments(comment12);
-
-                // Add events to the database
                 eventRepository.save(shoko);
                 eventRepository.save(ohmyclub);
                 eventRepository.save(liberata);
-
                 eventRepository.save(madcool);
                 eventRepository.save(blackworks);
                 eventRepository.save(madridSalvaje);
                 eventRepository.save(rioBabel);
-
                 eventRepository.save(natosywaor);
                 eventRepository.save(alsafir);
                 eventRepository.save(pekeno);
                 eventRepository.save(cruzzi);
-
-                natosywaor.addComments(cmmntejmpl);
-                eventRepository.save(natosywaor);
-
-                // Add comments to the database (Test) Working
-                Comment testComment = new Comment("User", "text", 5, shoko.getTitle());
-                testComment.setEvent(shoko);
-                commentService.save(testComment);
-                eventService.save(shoko);
-
         }
 
 }
