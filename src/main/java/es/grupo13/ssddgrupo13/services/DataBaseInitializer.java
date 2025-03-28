@@ -194,6 +194,7 @@ public class DataBaseInitializer {
                 ticketRepository.save(tcktejmpl);
                 clientRepository.save(user);
                 Comment cmmntejmpl = new Comment(user.getName(), "Este evento es muy divertido", 4,natosywaor.getTitle());
+                cmmntejmpl.setEvent(natosywaor);
                 Ticket tcktejmpl2 = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio(), natosywaor.getTimeFinish(), TicketStatus.OPEN);
                 ticketRepository.save(tcktejmpl2);
                 user.getTickets().add(tcktejmpl2);

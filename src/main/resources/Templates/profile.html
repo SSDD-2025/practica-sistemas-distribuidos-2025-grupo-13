@@ -161,8 +161,12 @@
                 <div class="comment-post_content"><p>{{text}}</p></div>
                 <div class="comment-post_valoration"><p>{{{rating}}}</p></div>
                 <div class="comment-actions">
-                    <form action="/comment_out/{{id}}/{{title}}" method="POST">
+
+                    <form action="/comment_out/{{id}}" method="POST">
+                        <input type="hidden" name="commentId" value="{{id}}">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
                         <button type="submit" class="delete-comment">Eliminar</button>
+                        
                     </form>
                 </div>
             </div>

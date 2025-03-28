@@ -87,12 +87,11 @@ import jakarta.servlet.http.HttpServletRequest;
      /**
       * Deletes a comment if the user is the author.
       */
-     @PostMapping("/comment_out/{commentId}/{eventTitle}")
+     @PostMapping("/comment_out/{commentId}")
      public String deleteComment(Model model,
                                  HttpServletRequest request,
-                                 @PathVariable Long commentId,
-                                 @PathVariable String eventTitle) {
- 
+                                 @PathVariable Long commentId) {
+         
          Authentication auth = SecurityContextHolder.getContext().getAuthentication();
          boolean isUserLogged = isAuthenticatedUser(auth);
          model.addAttribute("isUserLogged", isUserLogged);
@@ -110,15 +109,15 @@ import jakarta.servlet.http.HttpServletRequest;
          if (comment == null || !comment.getAutor().equals(client.getName())) {
              return "/error";
          }
- 
-         Event event = eventService.findByTitle(eventTitle).stream().findFirst().orElse(null);
+         
+         Event event = comment.getEvent();
          if (event == null) return "/error";
  
          // Remove associations
          client.getComments().remove(comment);
          event.getComments().remove(comment);
          commentService.delete(comment);
-
+         
          // Persist changes
          clientService.save(client);
          eventService.save(event);
@@ -127,7 +126,7 @@ import jakarta.servlet.http.HttpServletRequest;
          model.addAttribute("message", "¡Has borrado este comentario correctamente!");
          model.addAttribute("linkText", "Aceptar");
          model.addAttribute("linkUrl", "/profilePage");
-         return "/commentRemoved";
+         return "notification";
      }
  
      /**

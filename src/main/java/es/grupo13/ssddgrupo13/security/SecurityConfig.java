@@ -130,7 +130,6 @@ public class SecurityConfig {
 
 						.requestMatchers("/event/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/newEvent/**").hasAnyRole("ADMIN")
-						.requestMatchers("/comment_out/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/data/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/profilePage/**").authenticated()
 						.requestMatchers("/buyTicket/**").authenticated()
