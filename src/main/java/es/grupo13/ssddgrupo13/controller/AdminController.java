@@ -65,19 +65,6 @@ public class AdminController {
      */
     @GetMapping("/")
     public String adminPage(HttpServletRequest request, Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = auth != null && auth.isAuthenticated()
-                && !(auth.getPrincipal() instanceof String);
-
-        model.addAttribute("isUserLogged", isUserLogged);
-        if (!isUserLogged) {
-            return "redirect:/login";
-        }
-
-        Client client = extractClientFromPrincipal(auth.getPrincipal());
-        model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-        model.addAttribute("userLogged", client);
-
         Iterable<Event> events = eventService.findAll();
         Iterable<Comment> comments = commentService.findAll();
 
@@ -87,15 +74,4 @@ public class AdminController {
         return "profile_admin";
     }
 
-    /**
-     * Utility method to extract a Client from the authenticated principal.
-     */
-    private Client extractClientFromPrincipal(Object principal) {
-        if (principal instanceof Client client) {
-            return client;
-        } else if (principal instanceof UserDetails userDetails) {
-            return clientService.findByEmail(userDetails.getUsername()).orElse(null);
-        }
-        return null;
-    }
 }

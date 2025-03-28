@@ -104,16 +104,6 @@ public class EventController {
     }
 
     private String showEventsByType(String type, HttpServletRequest request, Model model, String attr, String view) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        boolean isLogged = auth != null && auth.isAuthenticated() && !(auth.getPrincipal() instanceof String);
-        model.addAttribute("isUserLogged", isLogged);
-
-        if (isLogged) {
-            Client client = extractClientFromPrincipal(auth.getPrincipal());
-            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-            model.addAttribute("userLogged", client);
-        }
-
         model.addAttribute(attr, eventService.findByType(type));
         return view;
     }
@@ -123,16 +113,6 @@ public class EventController {
      */
     @GetMapping("/ticket/{id}")
     public String showEventDetailPage(HttpServletRequest request, Model model, @PathVariable long id) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        boolean isLogged = auth != null && auth.isAuthenticated() && !(auth.getPrincipal() instanceof String);
-        model.addAttribute("isUserLogged", isLogged);
-
-        if (isLogged) {
-            Client client = extractClientFromPrincipal(auth.getPrincipal());
-            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-            model.addAttribute("userLogged", client);
-        }
-
         Optional<Event> optionalEvent = eventService.findById(id);
         if (optionalEvent.isEmpty()) return "error";
 

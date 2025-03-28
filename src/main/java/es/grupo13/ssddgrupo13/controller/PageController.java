@@ -9,14 +9,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.services.ClientService;
 import es.grupo13.ssddgrupo13.services.EventService;
-import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Handles navigation between static and dynamic pages.
@@ -26,24 +23,6 @@ public class PageController {
 
     @Autowired private ClientService clientService;
     @Autowired private EventService eventService;
-
-    /**
-     * Adds user/session-related attributes to every model automatically.
-     */
-    @ModelAttribute
-    public void addAttributes(Model model, HttpServletRequest request) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
-                && !(authentication.getPrincipal() instanceof String);
-
-        model.addAttribute("isUserLogged", isUserLogged);
-
-        if (isUserLogged) {
-            Client client = extractClientFromPrincipal(authentication.getPrincipal());
-            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-            model.addAttribute("userLogged", client);
-        }
-    }
 
     @GetMapping("/")
     public String indexForm() {
