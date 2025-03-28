@@ -219,6 +219,9 @@ public class DataBaseInitializer {
                 user.getTickets().add(ticket1);
                 user.getTickets().add(ticket2);
 
+                ticket1.setStatus(TicketStatus.CLOSED);
+                ticket2.setStatus(TicketStatus.CLOSED);
+                
                 // Save tickets
                 ticketRepository.save(ticket1);
                 ticketRepository.save(ticket2);
