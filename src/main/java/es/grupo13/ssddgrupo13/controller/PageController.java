@@ -32,8 +32,13 @@ public class PageController {
     @GetMapping("/profilePage")
     public String profile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!auth.isAuthenticated()) return "redirect:/login";
-
+        if (!auth.isAuthenticated()) {
+            model.addAttribute("title", "❌ Acceso denegado");
+            model.addAttribute("message", "Inicia sesión o regístrate para acceder a tu perfil.");
+            model.addAttribute("linkText", "Aceptar");
+            model.addAttribute("linkUrl", "/");
+            return "notification";
+        }
         Client user = extractClientFromPrincipal(auth.getPrincipal());
         if (user == null) return "error";
 
@@ -65,8 +70,12 @@ public class PageController {
     }
 
     @PostMapping("/contact_recieved")
-    public String contactRecievedLink() {
-        return "contact_recieved";
+    public String contactRecievedLink(Model model) {
+        model.addAttribute("title", "✅ OK");
+        model.addAttribute("message", "Tu pregunta ha sido recibida");
+        model.addAttribute("linkText", "Aceptar");
+        model.addAttribute("linkUrl", "/");
+        return "notification";
     }
 
     @GetMapping("/login")

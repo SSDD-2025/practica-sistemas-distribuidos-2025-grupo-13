@@ -84,7 +84,12 @@ public class EventController {
         if (ticket == null) return "/error";
 
         ticketService.buyTicket(client, event, ticket);
-        return "buyedTicket";
+
+        model.addAttribute("title", "✅ OK");
+        model.addAttribute("message", "¡Se ha comprado el ticket correctamente!");
+        model.addAttribute("linkText", "Aceptar");
+        model.addAttribute("linkUrl", "/");
+        return "notification";
     }
 
     /**
@@ -141,7 +146,8 @@ public class EventController {
                                @RequestParam String timeEnd,
                                @RequestParam String addressEvent,
                                @RequestParam int priceEvent,
-                               @RequestParam MultipartFile image) {
+                               @RequestParam MultipartFile image,
+                               Model model) {
 
         LocalDateTime start = LocalDateTime.parse(timeStart);
         LocalDateTime end = LocalDateTime.parse(timeEnd);
@@ -165,7 +171,12 @@ public class EventController {
         }
 
         eventService.save(event);
-        return "/createdEvent";
+
+        model.addAttribute("title", "✅ OK");
+        model.addAttribute("message", "¡El evento se ha creado con éxito!");
+        model.addAttribute("linkText", "Aceptar");
+        model.addAttribute("linkUrl", "/admin/");
+        return "notification";
     }
 
     /**

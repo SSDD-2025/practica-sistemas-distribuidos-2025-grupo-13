@@ -61,7 +61,8 @@ public class ClientController {
                          @RequestParam String lastName,
                          @RequestParam String email,
                          @RequestParam String password,
-                         HttpServletRequest request) {
+                         HttpServletRequest request,
+                         Model model) {
 
         if (clientRepository.findByName(email).isPresent()) {
             return "redirect:/register?error=user_exists";
@@ -71,7 +72,12 @@ public class ClientController {
         clientRepository.save(newUser);
 
         authenticateUser(newUser, request);
-        return "redirect:/";
+
+        model.addAttribute("title", "✅ OK");
+        model.addAttribute("message", "¡Te has registrado correctamente!");
+        model.addAttribute("linkText", "Aceptar");
+        model.addAttribute("linkUrl", "/");
+        return "notification";
     }
 
     /**
@@ -95,7 +101,8 @@ public class ClientController {
     @PostMapping("/authenticate")
     public String loginUser(@RequestParam String email,
                             @RequestParam String password,
-                            HttpServletRequest request) {
+                            HttpServletRequest request,
+                            Model model) {
 
         Client client = clientService.findByEmail(email)
                  .orElseThrow(() -> new RuntimeException("User not found")); // TODO: Replace with custom exception
@@ -106,8 +113,25 @@ public class ClientController {
 
         authenticateUser(client, request);
  
-        return "redirect:/";
+        model.addAttribute("title", "✅ OK");
+        model.addAttribute("message", "¡Has iniciado sesión correctamente!");
+        model.addAttribute("linkText", "Aceptar");
+        model.addAttribute("linkUrl", "/");
+        return "notification";
     }
+
+    /**
+     * Handles user logout and displays a success message.
+     */
+    @GetMapping("/logoutSucess")
+    public String logoutSuccess(Model model) {
+        model.addAttribute("title", "✅ OK");
+        model.addAttribute("message", "Has cerrado sesión correctamente.");
+        model.addAttribute("linkText", "Aceptar");
+        model.addAttribute("linkUrl", "/");
+        return "notification";
+    }
+
 
     /**
       * Loads the profile editing page with current user info.
@@ -148,8 +172,12 @@ public class ClientController {
                 }
             }
         }
- 
-         return "/profile_edited";
+        
+        model.addAttribute("title", "✅ OK");
+        model.addAttribute("message", "¡Perfil editado con éxito!");
+        model.addAttribute("linkText", "Aceptar");
+        model.addAttribute("linkUrl", "/");
+        return "notification";
     }
 
     /**

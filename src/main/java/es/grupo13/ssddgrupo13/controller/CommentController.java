@@ -47,11 +47,16 @@ import jakarta.servlet.http.HttpServletRequest;
      public String addComment(HttpServletRequest request,
                                @RequestParam String text,
                                @RequestParam(required = false, defaultValue = "0") String rating,
-                               @RequestParam Long eventID) {
+                               @RequestParam Long eventID,
+                               Model model) {
  
          Authentication auth = SecurityContextHolder.getContext().getAuthentication();
          if (!isAuthenticatedUser(auth)) {
-             return "redirect:/login";
+            model.addAttribute("title", "❌ Acceso denegado");
+            model.addAttribute("message", "Necesitas iniciar sesión para comentar.");
+            model.addAttribute("linkText", "Aceptar");
+            model.addAttribute("linkUrl", "/");
+             return "notification";
          }
  
          String email = extractEmailFromPrincipal(auth.getPrincipal());
@@ -117,7 +122,11 @@ import jakarta.servlet.http.HttpServletRequest;
          // Persist changes
          clientService.save(client);
          eventService.save(event);
- 
+         
+         model.addAttribute("title", "✅ OK");
+         model.addAttribute("message", "¡Has borrado este comentario correctamente!");
+         model.addAttribute("linkText", "Aceptar");
+         model.addAttribute("linkUrl", "/profilePage");
          return "/commentRemoved";
      }
  
