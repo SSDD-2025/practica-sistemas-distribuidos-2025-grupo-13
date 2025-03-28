@@ -8,12 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.sql.rowset.serial.SerialBlob;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,222 +24,177 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.grupo13.ssddgrupo13.model.Client;
-import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.model.Ticket;
 import es.grupo13.ssddgrupo13.model.TicketStatus;
 import es.grupo13.ssddgrupo13.services.ClientService;
-import es.grupo13.ssddgrupo13.services.CommentService;
 import es.grupo13.ssddgrupo13.services.EventService;
 import es.grupo13.ssddgrupo13.services.TicketService;
 import es.grupo13.ssddgrupo13.utils.ImageUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * Handles event management and ticket purchasing.
+ */
 @Controller
 public class EventController {
-    @Autowired
-    private EventService eventService;
 
-    @Autowired
-    private TicketService ticketService;
+    @Autowired private EventService eventService;
+    @Autowired private TicketService ticketService;
+    @Autowired private ClientService clientService;
+    @Autowired private ImageUtils imageUtils;
 
-    @Autowired
-    private CommentService commentService;
-
-    @Autowired
-    private ClientService clientService;
-
-    @Autowired
-    private ImageUtils imageUtils;
-
+    /**
+     * Returns the image for a given event.
+     */
     @GetMapping("/event-image/{id}")
     public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
-        Optional<Event> op = eventService.findById(id);
-        if (op.isPresent() && op.get().getImage() != null) {
-            Blob image = op.get().getImage();
-            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-                    .body(new InputStreamResource(op.get().getImage().getBinaryStream()));
+        Optional<Event> event = eventService.findById(id);
+        if (event.isPresent() && event.get().getImage() != null) {
+            Blob image = event.get().getImage();
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+                    .body(new InputStreamResource(image.getBinaryStream()));
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
+    /**
+     * Buys a ticket for a user if available.
+     */
     @PostMapping("/buyTicket")
     public String buyTicket(Model model, HttpServletResponse response, @RequestParam Long eventID) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication.isAuthenticated();
-        if (authentication == null || !isUserLogged || authentication.getPrincipal().equals("anonymousUser")) {
-            return "redirect:/login"; // TODO USER NOT LOGGED IN
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated() || auth.getPrincipal().equals("anonymousUser")) {
+            return "redirect:/login";
         }
 
-        Object principal = authentication.getPrincipal();
-        String username = "";
-        Client client = null;
-
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails) principal).getUsername();
-            client = clientService.findByEmail(username).orElse(null);
-        } else if (principal instanceof Client) {
-            username = ((Client) principal).getEmail();
-            client = ((Client) principal);
-        }
-
-        if (client == null) {
-            return "/error"; // TODO USER NOT FOUND
-        }
+        Client client = extractClientFromPrincipal(auth.getPrincipal());
+        if (client == null) return "/error";
 
         Event event = eventService.findById(eventID).orElse(null);
-        if (event == null) {
-            return "/error";
-        }
-        Ticket ticket = null;
+        if (event == null) return "/error";
 
-        for (Ticket t : eventService.findById(eventID).get().getTickets()) {
-            if (t.getStatus() == TicketStatus.OPEN) {
-                ticket = t;
-                break;
-            }
+        Ticket ticket = event.getTickets().stream()
+                .filter(t -> t.getStatus() == TicketStatus.OPEN)
+                .findFirst().orElse(null);
 
-        }
-        if (ticket == null) {
-            return "/error";
-        }
+        if (ticket == null) return "/error";
 
         ticketService.buyTicket(client, event, ticket);
-
         return "buyedTicket";
     }
 
+    /**
+     * Displays concert events.
+     */
     @GetMapping("/concerts")
-    public String showConciertos(HttpServletRequest request, Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
-                && !(authentication.getPrincipal() instanceof String);
-
-        model.addAttribute("isUserLogged", isUserLogged);
-
-        if (isUserLogged) {
-            Object principal = authentication.getPrincipal();
-            Client client = null;
-
-            if (principal instanceof Client) {
-                client = (Client) principal;
-            } else if (principal instanceof UserDetails) {
-                // Buscar el Client a partir del username
-                String email = ((UserDetails) principal).getUsername();
-                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
-            }
-            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-            model.addAttribute("userLogged", client);
-        }
-
-        List<Event> concerts = eventService.findByType("concierto"); // Obtain the concerts from the database
-        model.addAttribute("conciertos", concerts); // Add the list to the model
-        return "concerts"; // Name of the template with out .html
+    public String showConcerts(HttpServletRequest request, Model model) {
+        return showEventsByType("concierto", request, model, "conciertos", "concerts");
     }
 
+    /**
+     * Displays festival events.
+     */
     @GetMapping("/festivals")
-    public String showFestivales(HttpServletRequest request, Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
-                && !(authentication.getPrincipal() instanceof String);
+    public String showFestivals(HttpServletRequest request, Model model) {
+        return showEventsByType("festival", request, model, "festivales", "festivals");
+    }
 
-        model.addAttribute("isUserLogged", isUserLogged);
+    private String showEventsByType(String type, HttpServletRequest request, Model model, String attr, String view) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        boolean isLogged = auth != null && auth.isAuthenticated() && !(auth.getPrincipal() instanceof String);
+        model.addAttribute("isUserLogged", isLogged);
 
-        if (isUserLogged) {
-            Object principal = authentication.getPrincipal();
-            Client client = null;
-
-            if (principal instanceof Client) {
-                client = (Client) principal;
-            } else if (principal instanceof UserDetails) {
-                // Buscar el Client a partir del username
-                String email = ((UserDetails) principal).getUsername();
-                client = clientService.findByEmail(email).orElseThrow();
-            }
-
+        if (isLogged) {
+            Client client = extractClientFromPrincipal(auth.getPrincipal());
             model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
             model.addAttribute("userLogged", client);
         }
-        List<Event> festivals = eventService.findByType("festival"); // Obtain the festivals from the database
-        model.addAttribute("festivales", festivals); // Add the list to the model
-        return "festivals"; // Name of the template with out .html
+
+        model.addAttribute(attr, eventService.findByType(type));
+        return view;
     }
 
+    /**
+     * Displays event detail page.
+     */
     @GetMapping("/ticket/{id}")
     public String showEventDetailPage(HttpServletRequest request, Model model, @PathVariable long id) {
-        System.out.println("ID: " + id);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
-                && !(authentication.getPrincipal() instanceof String);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        boolean isLogged = auth != null && auth.isAuthenticated() && !(auth.getPrincipal() instanceof String);
+        model.addAttribute("isUserLogged", isLogged);
 
-        model.addAttribute("isUserLogged", isUserLogged);
-
-        if (isUserLogged) {
-            Object principal = authentication.getPrincipal();
-            Client client = null;
-
-            if (principal instanceof Client) {
-                client = (Client) principal;
-            } else if (principal instanceof UserDetails) {
-                // Buscar el Client a partir del username
-                String email = ((UserDetails) principal).getUsername();
-                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
-            }
-            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));            
+        if (isLogged) {
+            Client client = extractClientFromPrincipal(auth.getPrincipal());
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
             model.addAttribute("userLogged", client);
         }
 
         Optional<Event> optionalEvent = eventService.findById(id);
-        if (optionalEvent.isPresent()) {
-            Event event = optionalEvent.get();
-            System.out.println("Event: " + event.getTitle());
-            model.addAttribute("comment", event.getComments());
-            model.addAttribute("event", event);
-            return "eventDetailPage";
-        } else {
-            return "error";
-        }
+        if (optionalEvent.isEmpty()) return "error";
+
+        Event event = optionalEvent.get();
+        model.addAttribute("event", event);
+        model.addAttribute("comment", event.getComments());
+        return "eventDetailPage";
     }
-    
 
-    //Created CommentController to handle the comments
-
-    //Created AdminController to handle the admin functions
-
+    /**
+     * Displays new event creation form.
+     */
     @GetMapping("/newEvent")
     public String getNewEvent() {
         return "newEvent";
     }
+
+    /**
+     * Handles event creation.
+     */
     @PostMapping("/addNewEvent")
-    public String addNewEvent(@RequestParam String titleEvent, @RequestParam String description, @RequestParam String typeOptions, @RequestParam String timeStart, @RequestParam String timeEnd, @RequestParam String addressEvent, @RequestParam int priceEvent, @RequestParam MultipartFile image) {
-        LocalDateTime startEvent = LocalDateTime.parse(timeStart);
-        LocalDateTime finishEvent = LocalDateTime.parse(timeEnd);
+    public String addNewEvent(@RequestParam String titleEvent,
+                               @RequestParam String description,
+                               @RequestParam String typeOptions,
+                               @RequestParam String timeStart,
+                               @RequestParam String timeEnd,
+                               @RequestParam String addressEvent,
+                               @RequestParam int priceEvent,
+                               @RequestParam MultipartFile image) {
+
+        LocalDateTime start = LocalDateTime.parse(timeStart);
+        LocalDateTime end = LocalDateTime.parse(timeEnd);
 
         Blob imageBlob;
         try {
-            // // Converts the MultipartFile to Blob if the image isn´t empty
-            if (image != null && !image.isEmpty()) {
-                imageBlob = new SerialBlob(image.getBytes());
-            } else {
-                imageBlob = imageUtils.loadDefaultImage();
-            }
+            imageBlob = (image != null && !image.isEmpty()) ?
+                    new SerialBlob(image.getBytes()) : imageUtils.loadDefaultImage();
         } catch (IOException | SQLException e) {
             e.printStackTrace();
-            return "error"; // Redirect to the error page
+            return "error";
         }
 
-        Event event = new Event(titleEvent, description, startEvent, finishEvent, addressEvent, typeOptions, priceEvent, imageBlob);
+        Event event = new Event(titleEvent, description, start, end, addressEvent, typeOptions, priceEvent, imageBlob);
         eventService.save(event);
 
         for (int i = 0; i < 10; i++) {
-            Ticket newTicket = new Ticket(event.getTitle(), event.getPrecio(), event.getTimeFinish(), TicketStatus.OPEN);
-            ticketService.save(newTicket);
-            event.getTickets().add(newTicket);
+            Ticket ticket = new Ticket(event.getTitle(), event.getPrecio(), end, TicketStatus.OPEN);
+            ticketService.save(ticket);
+            event.getTickets().add(ticket);
         }
+
         eventService.save(event);
         return "/createdEvent";
     }
 
+    /**
+     * Utility method to extract authenticated client.
+     */
+    private Client extractClientFromPrincipal(Object principal) {
+        if (principal instanceof Client client) return client;
+        if (principal instanceof UserDetails userDetails)
+            return clientService.findByEmail(userDetails.getUsername()).orElse(null);
+        return null;
+    }
 }
