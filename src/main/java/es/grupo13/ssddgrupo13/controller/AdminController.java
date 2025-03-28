@@ -54,7 +54,7 @@ public class AdminController {
         return "/eventRemoved";
     }
 
-    @DeleteMapping("/delete_comment/{commentID}")
+    @PostMapping("/deleteComment/{commentID}")
     public String deleteComment(@RequestParam Long commentID) {
         commentService.deleteById(commentID);
         return "commentRemoved";

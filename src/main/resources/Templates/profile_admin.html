@@ -29,10 +29,11 @@
                 <div class="comment-post_valoration">
                     <p>{{{rating}}}</p>
                 </div>
-                <form action="/admin/delete_comment/{{id}}" method="post">
+                <form action="/admin/deleteComment/{{id}}" method="post">
                     <input type="hidden" name="commentID" value="{{id}}">
-                    <input type="hidden" name="_csrf" value="{{token}}"/>
                     <button type="submit" class="btn">Eliminar</button>
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    
 
                 </form>
             </div>
