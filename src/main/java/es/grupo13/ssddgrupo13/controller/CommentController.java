@@ -71,6 +71,7 @@ import jakarta.servlet.http.HttpServletRequest;
          
          Comment comment = new Comment(client.getName(), text, Integer.parseInt(rating), event.getTitle());
          comment.setEvent(event);
+         comment.setClient(client);
  
          // Associate comment with event and client
          event.getComments().add(comment);
@@ -117,7 +118,7 @@ import jakarta.servlet.http.HttpServletRequest;
          client.getComments().remove(comment);
          event.getComments().remove(comment);
          commentService.delete(comment);
-         
+
          // Persist changes
          clientService.save(client);
          eventService.save(event);
