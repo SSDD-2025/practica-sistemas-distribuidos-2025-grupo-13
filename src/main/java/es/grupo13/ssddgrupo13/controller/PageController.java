@@ -33,7 +33,7 @@ public class PageController {
     private EventService eventService;
 
     @GetMapping("/")
-    public String indexForm(Model model) {
+    public String indexForm(Model model, HttpServletRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication != null && authentication.isAuthenticated()
                 && !(authentication.getPrincipal() instanceof String);
@@ -51,7 +51,7 @@ public class PageController {
                 String email = ((UserDetails) principal).getUsername();
                 client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
             }
-
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
             model.addAttribute("userLogged", client);
         }
 
@@ -93,7 +93,7 @@ public class PageController {
             model.addAttribute("tickets", myTickets);
             model.addAttribute("comments", myComments);
 
-            model.addAttribute("isAdmin", user.getRoles().contains("ADMIN"));
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
            
 
             System.out.println("Usuario autenticado: " + (user != null));
@@ -107,7 +107,7 @@ public class PageController {
 
     //Clubbing method to show the clubs, used to be in the EventController
     @GetMapping("/clubbing")
-    public String clubbingRedirection(Model model) {
+    public String clubbingRedirection(HttpServletRequest request, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication != null && authentication.isAuthenticated()
                 && !(authentication.getPrincipal() instanceof String);
@@ -126,6 +126,7 @@ public class PageController {
                 client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
             }
 
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
             model.addAttribute("userLogged", client);
         }
 
@@ -136,7 +137,7 @@ public class PageController {
     }
 
     @GetMapping("/contact")
-    public String contactanosLink(Model model) {
+    public String contactanosLink(HttpServletRequest request, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication != null && authentication.isAuthenticated()
                 && !(authentication.getPrincipal() instanceof String);
@@ -154,7 +155,7 @@ public class PageController {
                 String email = ((UserDetails) principal).getUsername();
                 client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
             }
-
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
             model.addAttribute("userLogged", client);
         }
         return "contact";

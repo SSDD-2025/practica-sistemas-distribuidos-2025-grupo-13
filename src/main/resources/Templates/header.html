@@ -36,11 +36,20 @@
                 </li>
                 <li class="nav-item-login">
                     {{#isUserLogged}}
-                    <li class="nav-item">
-                        <a class="top-nav-section_5" href="/profilePage">
-                            {{userLogged.name}}
-                        </a>
-                    </li>
+                        {{#isAdmin}}
+                        <li class="nav-item">
+                            <a class="top-nav-section_5" href="/admin">
+                                {{userLogged.name}}
+                            </a>
+                        </li>
+                        {{/isAdmin}}
+                        {{^isAdmin}}
+                        <li class="nav-item">
+                            <a class="top-nav-section_5" href="/profilePage">
+                                {{userLogged.name}}
+                            </a>
+                        </li>
+                        {{/isAdmin}}
                     {{/isUserLogged}}
 
                     {{^isUserLogged}}

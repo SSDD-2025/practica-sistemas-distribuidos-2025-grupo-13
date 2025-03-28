@@ -117,7 +117,7 @@ public class EventController {
     }
 
     @GetMapping("/concerts")
-    public String showConciertos(Model model) {
+    public String showConciertos(HttpServletRequest request, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication != null && authentication.isAuthenticated()
                 && !(authentication.getPrincipal() instanceof String);
@@ -135,7 +135,7 @@ public class EventController {
                 String email = ((UserDetails) principal).getUsername();
                 client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
             }
-
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
             model.addAttribute("userLogged", client);
         }
 
@@ -145,7 +145,7 @@ public class EventController {
     }
 
     @GetMapping("/festivals")
-    public String showFestivales(Model model) {
+    public String showFestivales(HttpServletRequest request, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication != null && authentication.isAuthenticated()
                 && !(authentication.getPrincipal() instanceof String);
@@ -161,9 +161,10 @@ public class EventController {
             } else if (principal instanceof UserDetails) {
                 // Buscar el Client a partir del username
                 String email = ((UserDetails) principal).getUsername();
-                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
+                client = clientService.findByEmail(email).orElseThrow();
             }
 
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
             model.addAttribute("userLogged", client);
         }
         List<Event> festivals = eventService.findByType("festival"); // Obtain the festivals from the database
@@ -172,7 +173,7 @@ public class EventController {
     }
 
     @GetMapping("/ticket/{id}")
-    public String showEventDetailPage(Model model, @PathVariable long id) {
+    public String showEventDetailPage(HttpServletRequest request, Model model, @PathVariable long id) {
         System.out.println("ID: " + id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication != null && authentication.isAuthenticated()
@@ -191,7 +192,7 @@ public class EventController {
                 String email = ((UserDetails) principal).getUsername();
                 client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
             }
-
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));            
             model.addAttribute("userLogged", client);
         }
 
@@ -211,16 +212,27 @@ public class EventController {
       */
         @GetMapping("/admin")
         public String adminPage(HttpServletRequest request,Model model) {
+                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                                && !(authentication.getPrincipal() instanceof String);
+                model.addAttribute("isUserLogged", isUserLogged);
+                if (isUserLogged) {
+                        Object principal = authentication.getPrincipal();
+                        Client client = null;
+                        if (principal instanceof Client) {
+                                client = (Client) principal;
+                        } else if (principal instanceof UserDetails) {
+                                String email = ((UserDetails) principal).getUsername();
+                                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
+                        }
+                        model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
+                        model.addAttribute("userLogged", client);
+                }
                 List<Event> events = (List<Event>) eventService.findAll();
                 List<Comment> comments = (List<Comment>) commentService.findAll();
                 model.addAttribute("comment", comments);
                 model.addAttribute("event", events);
                 return "/profile_admin";
-                
-            
-            
-            
-
         }
 
     //Created CommentController to handle the comments
