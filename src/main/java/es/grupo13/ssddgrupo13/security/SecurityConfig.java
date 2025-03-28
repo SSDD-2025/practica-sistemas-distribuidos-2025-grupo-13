@@ -108,21 +108,22 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(authorize -> authorize
 						// PUBLIC PAGES
-						.requestMatchers("/**", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**", "/event-image/**").permitAll()
-						.requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
+						.requestMatchers("/", "/css/**", "/event-image/**", "/img/**", "/js/**", "/videos/**").permitAll()
+						.requestMatchers("/authenticate", "/favicon/**").permitAll()
 						.requestMatchers("/login", "/loginError").permitAll()
-						.requestMatchers("/clubbing/**").permitAll()
-						.requestMatchers("/events/**").permitAll()
+						.requestMatchers("/clubbing/**", "/events/**", "/festivals/**", "/sign-in/**").permitAll()
 						.requestMatchers("/concerts/**").permitAll()
-						.requestMatchers("/festivals/**").permitAll()
-						.requestMatchers("/sign-in/**").permitAll()
 						.requestMatchers("/logout/**").permitAll()
 						.requestMatchers("/register/**").permitAll()
 						.requestMatchers("/profileTest").permitAll()
 						.requestMatchers("/comment_in").permitAll()
+						.requestMatchers("/comment_out/**").permitAll()
+						.requestMatchers("/contact").permitAll()
+						.requestMatchers("/ticket/**").permitAll()
 						
 						// PRIVATE PAGES
 						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.requestMatchers("/admin/**").hasAuthority("ADMIN") 
 						.requestMatchers("/newEvent/**").hasAnyRole( "ADMIN")
 						.requestMatchers("/comment_out/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/delete_event/**").hasAnyRole("USER", "ADMIN")

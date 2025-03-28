@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,7 +23,7 @@ import es.grupo13.ssddgrupo13.services.EventService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/")
 /**
  * This controller is responsible for handling admin actions such as deleting events and comments.
  * It provides endpoints to delete events and comments from the system.
@@ -61,30 +60,33 @@ public class AdminController {
     }
 
     /**
-      * Loads the admin editing page.
-      */
-        @GetMapping("/")
-        public String adminPage(HttpServletRequest request,Model model) {
-                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-                boolean isUserLogged = authentication != null && authentication.isAuthenticated()
-                                && !(authentication.getPrincipal() instanceof String);
-                model.addAttribute("isUserLogged", isUserLogged);
-                if (isUserLogged) {
-                        Object principal = authentication.getPrincipal();
-                        Client client = null;
-                        if (principal instanceof Client) {
-                                client = (Client) principal;
-                        } else if (principal instanceof UserDetails) {
-                                String email = ((UserDetails) principal).getUsername();
-                                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
-                        }
-                        model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
-                        model.addAttribute("userLogged", client);
-                }
-                List<Event> events = (List<Event>) eventService.findAll();
-                List<Comment> comments = (List<Comment>) commentService.findAll();
-                model.addAttribute("comment", comments);
-                model.addAttribute("event", events);
-                return "/profile_admin";
+     * Loads the admin editing page.
+     */
+    @GetMapping("/")
+    public String adminPage(HttpServletRequest request, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String);
+        model.addAttribute("isUserLogged", isUserLogged);
+        if (!isUserLogged) {
+            return "redirect:/login";
+        } else {
+            Object principal = authentication.getPrincipal();
+            Client client = null;
+            if (principal instanceof Client) {
+                client = (Client) principal;
+            } else if (principal instanceof UserDetails) {
+                String email = ((UserDetails) principal).getUsername();
+                client = clientService.findByEmail(email).orElseThrow(); // <-- Asume que tienes esto
+            }
+            model.addAttribute("isAdmin", request.isUserInRole("ADMIN"));
+            model.addAttribute("userLogged", client);
         }
+        
+        List<Event> events = (List<Event>) eventService.findAll();
+        List<Comment> comments = (List<Comment>) commentService.findAll();
+        model.addAttribute("comment", comments);
+        model.addAttribute("event", events);
+        return "/profile_admin";
+    }
 }
