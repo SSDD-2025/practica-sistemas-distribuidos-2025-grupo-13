@@ -71,8 +71,8 @@ public class DataBaseInitializer {
                 }
 
                 // Load images to the database
-                Blob shokoImage = imageUtils.loadImage("img/shoko.png");
-                Blob ohmyclubImage = imageUtils.loadImage("img/OH MY CLUB.png");
+                Blob shokoImage = imageUtils.loadImage("img/shoko.jpg");
+                Blob ohmyclubImage = imageUtils.loadImage("img/OH MY CLUB.jpg");
                 Blob liberataImage = imageUtils.loadImage("img/liberata.png");
 
                 Blob madcoolImage = imageUtils.loadImage("img/mad cool 2025.jpg");
