@@ -39,13 +39,17 @@ h1 {
 }
 
 .top-navbar {
-    background: transparent;
-    z-index: 9;
-    min-height: 80px;
+    background-color: black;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.445); 
+    z-index: 999;
+    min-height: 60px;
+    display: flex;
     align-items: center;
-    background-color: transparent;
+    width: 100%;
     display: grid;
+
 }
+
 
 .nombre-logo {
     color: white;
@@ -74,7 +78,37 @@ h1 {
 .nav-item {
     padding: 10px;
     color: white;
+    font-weight: 600;
+    font-size: 14px;          
+    text-transform: uppercase;
+    letter-spacing: 0.2px;     
 }
+
+.nav-item a {
+    position: relative;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.nav-item a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px; 
+    width: 0%;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.nav-item a:hover::after {
+    width: 100%;
+}
+
 
 .nav-item-login {
     color: white;
@@ -814,14 +848,7 @@ h1 {
     color: white;
 }
 
-.top-navbar {
-    background: transparent;
-    z-index: 9;
-    min-height: 80px;
-    align-items: center;
-    background-color: transparent;
-    display: grid;
-}
+
 
 .nombre-logo {
     color: white;
@@ -845,11 +872,6 @@ h1 {
     display: flex;
     margin-top: 10px;
     z-index: 3;
-}
-
-.nav-item {
-    padding: 10px;
-    color: white;
 }
 
 .nav-item-login {
@@ -890,33 +912,63 @@ h1 {
     height: 100%;
     object-fit: cover;
     z-index: -10000;
-    /* Asegura que el video esté detrás del contenido */
 }
 
-.line-title {
-    width: 100%;
-    border: 5px#f2f526 solid;
-    background-color: #f2f526;
-    width: 70px;
-    margin: 0 auto;
-    opacity: 1;
-    margin-bottom: 5px;
 
-}
-
-.texto-principal {
+/*******************************************************************************/
+/***** INDEX STYLE *************************************************************/
+/**************************************************************************/
+.hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    padding-top: 60px; /* Antes: 100px */
+    min-height: calc(100vh - 92px);
+    background-size: cover;
+    z-index: 2;
+  }
+  
+  @font-face {
+    font-family: 'HelveticaNeueCondensedBlack';
+    src: url('fonts/HNCB.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .main-title {
     width: 100%;
-    margin-top: auto !important;
     text-align: center;
-    padding: 0 20px;
-}
-
-.texto-principal h1 {
-    font-size: 50px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: rgb(83, 83, 83);
-}
+    padding: 40px 20px 60px; /* Antes: 100px arriba, bajamos a 40px */
+    color: white;
+  }
+  
+  .main-title h1 {
+    font-family: 'HelveticaNeueCondensedBlack', sans-serif;
+    font-size: 100px;
+    letter-spacing: -2px;
+    font-weight: normal;
+    margin: 0;
+    color: white;
+  }
+  
+  .line-title {
+    width: 60px;
+    height: 6px;
+    background-color: #f2f526;
+    margin: 20px auto 15px auto;
+    border: none;
+    opacity: 1;
+  }
+  
+  .main-title p {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 22px;
+    margin: 0;
+    color: white;
+  }
+  
 
 /***** NavBar Local *****/ 
 .navbar-nav .nav-link {
