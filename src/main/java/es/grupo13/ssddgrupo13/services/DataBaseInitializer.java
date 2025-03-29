@@ -126,7 +126,7 @@ public class DataBaseInitializer {
                 Event pekeno = new Event("ILL PEKEÑO & ERGO PRO", "", startConcert, finishConcert, "Sala Changó",
                                 "concierto",
                                 15, pekeImage);
-                Event cruzzi = new Event("CRUZZI", "", startConcert, finishConcert, "Teatro Barceló", "concierto", 58,
+                Event cruzzi = new Event("CRUZ CAFUNE", "", startConcert, finishConcert, "Teatro Barceló", "concierto", 58,
                                 cruzziImage);
 
                 // Save events to the database

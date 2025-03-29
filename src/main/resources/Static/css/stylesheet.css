@@ -333,54 +333,8 @@ h1 {
   .btnclub:hover {
     background-color: #f2f526;
   }
-
-.contenedor-conciertos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.concierto {
-    background: #605f66;
-    border-radius: 10px;
-    overflow: hidden;
-    text-align: center;
-    padding: 15px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.concierto img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.concierto h3 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-top: 10px;
-    font-size: 18px;
-    color: #000000;
-}
-
-.event {
-    background-color:#605f66 ;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-left: 150px;
-    top: 160px;
-    margin-top: 30px;
-    width: 80%;
-    height: 150px;
-    opacity: 1;
-    margin-bottom: 5px; 
-}
-
+  
+  /*
 .event-text {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-left: 20px;
@@ -402,7 +356,7 @@ h1 {
     align-items: left;
     justify-content: left;
     flex-direction:column;
-}
+}*/
 
 .h1.titleEventos {
 

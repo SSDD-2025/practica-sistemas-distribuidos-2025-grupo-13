@@ -9,14 +9,20 @@
     </hr>
 </div>
 
-<div class="contenedor-conciertos">
-    {{#conciertos}}
-    <button class="concierto" onclick="window.location.href='ticket/{{id}}';">
-        <img src="event-image/{{id}}" alt="{{title}}">
-        <h3>{{title}}</h3>
-    </button>
-    {{/conciertos}}
-</div>
+<section class="club-section">
+    <div class="club-grid">
+      {{#conciertos}}
+      <div class="club-card" style="background-image: url('event-image/{{id}}')">
+        <div class="overlay">
+          <div class="club-card-text">
+            <h2>{{title}}</h2>
+          </div>
+          <button type="button" class="btnclub" onclick="window.location.href='ticket/{{id}}';">Ver más</button>
+        </div>
+      </div>
+      {{/conciertos}}
+    </div>
+  </section>
 
 {{>footer}}
 
