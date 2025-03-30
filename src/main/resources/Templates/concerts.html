@@ -10,19 +10,22 @@
 </div>
 
 <section class="club-section">
-    <div class="club-grid">
-      {{#conciertos}}
+  <div class="club-grid">
+    {{#conciertos}}
+    <a href="ticket/{{id}}" class="club-card-link">
       <div class="club-card" style="background-image: url('event-image/{{id}}')">
         <div class="overlay">
           <div class="club-card-text">
             <h2>{{title}}</h2>
+            <p>{{description}}</p>
           </div>
-          <button type="button" class="btnclub" onclick="window.location.href='ticket/{{id}}';">Ver más</button>
+          <div class="link-icon"><i class="bi bi-box-arrow-up-right"></i></div>
         </div>
       </div>
-      {{/conciertos}}
-    </div>
-  </section>
+    </a>
+    {{/conciertos}}
+  </div>
+</section>
 
 {{>footer}}
 

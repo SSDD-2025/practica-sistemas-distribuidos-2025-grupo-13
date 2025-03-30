@@ -9,21 +9,21 @@
   </div>
 
 <section class="club-section">
-    <div class="club-grid">
-      {{#festivales}}
+  <div class="club-grid">
+    {{#festivales}}
+    <a href="ticket/{{id}}" class="club-card-link">
       <div class="club-card" style="background-image: url('event-image/{{id}}')">
         <div class="overlay">
           <div class="club-card-text">
             <h2>{{title}}</h2>
             <p>{{description}}</p>
-            <small>{{address}}</small>
-            <p>{{timeStartFormat}} - {{timeFinishFormat}}</p>
           </div>
-          <button type="button" class="btnclub" onclick="window.location.href='ticket/{{id}}';">Ver más</button>
+          <div class="link-icon"><i class="bi bi-box-arrow-up-right"></i></div>
         </div>
       </div>
-      {{/festivales}}
-    </div>
+    </a>
+    {{/festivales}}
+  </div>
   </section>
 
 {{>footer}}
