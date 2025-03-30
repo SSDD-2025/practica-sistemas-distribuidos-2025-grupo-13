@@ -26,7 +26,7 @@ a:hover {
 
 p {
     color: white;
-    
+
 }
 
 small {
@@ -35,12 +35,12 @@ small {
 
 h1 {
     color: white;
-    
+
 }
 
 .top-navbar {
     background-color: black;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.445); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.445);
     z-index: 999;
     min-height: 60px;
     display: flex;
@@ -79,9 +79,9 @@ h1 {
     padding: 10px;
     color: white;
     font-weight: 600;
-    font-size: 14px;          
+    font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 0.2px;     
+    letter-spacing: 0.2px;
 }
 
 .nav-item a {
@@ -98,7 +98,7 @@ h1 {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -3px; 
+    bottom: -3px;
     width: 0%;
     height: 2px;
     background-color: white;
@@ -134,10 +134,11 @@ h1 {
     background-size: cover;
     z-index: 2;
 }
-.video-container{
+
+.video-container {
     position: relative;
     overflow: hidden;
-    
+
 }
 
 #bg-video {
@@ -183,7 +184,7 @@ h1 {
     color: white;
     min-height: 500px;
     border: 1px solid #000000;
-    background-color: rgb(0,0, 0, 0.7);
+    background-color: rgb(0, 0, 0, 0.7);
 
 }
 
@@ -207,9 +208,11 @@ h1 {
     background-color: black;
     color: white;
 }
-.header{
+
+.header {
     border: solid 5px #ff00ea
 }
+
 .btn-login:hover {
     background-color: #ff00ea;
     color: #000000;
@@ -222,7 +225,7 @@ h1 {
     filter: invert(1);
 }
 
-.linkRegister{
+.linkRegister {
     display: flex;
     align-items: center;
 }
@@ -238,36 +241,37 @@ h1 {
     text-align: center;
     margin-top: 60px;
     margin-bottom: 40px;
-  }
-  
-  .titleClubbing h1 {
+}
+
+.titleClubbing h1 {
     font-family: 'HelveticaNeueCondensedBlack', sans-serif;
     font-size: 60px;
     color: white;
     margin-bottom: 10px;
-  }
-  
-  .line-title-clubbing {
+}
+
+.line-title-clubbing {
     width: 75px;
     height: 6px;
     background-color: #f2f526;
     border: none;
     margin: 0 auto;
-  }
-  
+}
+
 .club-section {
     width: 100%;
     max-width: 1200px;
     margin: 80px auto;
     padding: 0 20px;
-  }
-  
-  .club-grid {
+}
+
+.club-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-  }
+}
+
 .club-card {
     width: 300px;
     height: 400px;
@@ -279,45 +283,46 @@ h1 {
     display: inline-block;
     margin: 15px;
     transition: transform 0.3s ease;
-  }
-  
-  .club-card:hover {
+}
+
+.club-card:hover {
     transform: scale(1.02);
-  }
-  
-  .club-card .overlay {
-    background: rgba(0, 0, 0, 0.5); /* capa negra traslúcida */
+}
+
+.club-card .overlay {
+    background: rgba(0, 0, 0, 0.5);
+    /* capa negra traslúcida */
     width: 100%;
     height: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  
-  .club-card-text {
+}
+
+.club-card-text {
     color: white;
     font-family: 'Outfit', sans-serif;
-  }
-  
-  .club-card-text h2 {
+}
+
+.club-card-text h2 {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
     text-transform: uppercase;
-  }
-  
-  .club-card-text p {
+}
+
+.club-card-text p {
     font-size: 14px;
     margin: 5px 0;
-  }
-  
-  .club-card-text small {
+}
+
+.club-card-text small {
     font-size: 12px;
     color: #ccc;
-  }
-  
-  .btnclub {
+}
+
+.btnclub {
     align-self: flex-start;
     background-color: white;
     color: black;
@@ -328,13 +333,13 @@ h1 {
     border-radius: 4px;
     font-size: 14px;
     transition: background 0.3s;
-  }
-  
-  .btnclub:hover {
+}
+
+.btnclub:hover {
     background-color: #f2f526;
-  }
-  
-  /*
+}
+
+/*
 .event-text {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-left: 20px;
@@ -377,7 +382,7 @@ h1 {
 ************************************/
 
 
-.container-contactanos{
+.container-contactanos {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -389,13 +394,16 @@ form {
     display: flex;
     flex-direction: column;
 }
-input, textarea {
+
+input,
+textarea {
     margin: 10px 0;
     padding: 10px;
     width: 100%;
     border: 1px solid #000000;
     border-radius: 5px;
 }
+
 button {
     background: #ff00ea;
     padding: 10px;
@@ -409,6 +417,7 @@ button {
     text-decoration: none;
     color: #ff00ea;
 }
+
 .social-links a:hover {
     text-decoration: underline;
 }
@@ -440,7 +449,8 @@ button {
 
 @font-face {
     font-family: 'Skrappa-bold';
-    src: url('./fonts/SK.woff') format('woff'); /* Use ./ instead of .. */
+    src: url('./fonts/SK.woff') format('woff');
+    /* Use ./ instead of .. */
     font-weight: bold;
     font-style: normal;
 }
@@ -457,6 +467,7 @@ button {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -471,7 +482,7 @@ button {
 .titleDetailEvent {
     font-family: 'Skrappa-bold', Helvetica, sans-serif;
     line-height: 0.9;
-    font-size: 6.25rem; 
+    font-size: 6.25rem;
     font-weight: 400;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -507,7 +518,7 @@ button {
 .eventDetailLabel {
     font-family: 'Geomanist', Helvetica, sans-serif;
     font-size: 14px;
-    font-weight: bold; 
+    font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 0.3em;
     color: white;
@@ -521,9 +532,10 @@ button {
     line-height: 1.4;
     color: white;
 
-    max-width: 280px;    
+    max-width: 280px;
     word-wrap: break-word;
 }
+
 .containerDetailGrid {
     display: flex;
     justify-content: space-between;
@@ -533,6 +545,10 @@ button {
 }
 
 .leftColumn {
+    position: sticky;
+    top: 100px; /* ajusta este valor si tienes navbar u otros elementos fijos arriba */
+    align-self: flex-start;
+    height: fit-content;
     background-color: #000;
     flex: 1;
     min-width: 300px;
@@ -568,7 +584,7 @@ button {
     font-weight: 400;
     color: white;
     margin-top: 20px;
-    max-width: 480px; 
+    max-width: 480px;
     word-wrap: break-word;
 }
 
@@ -684,60 +700,137 @@ button {
 
 
 
-/***********************************
+/************************************************************************************************************************
             CSS FOR COMMENTS 
 
-************************************/
-
-.section_3 {
-    margin-top: 40px;
+************************************************************************************************************************/
+.comments-section {
+    background-color: black;
+    padding: 60px 50px;
 }
 
-.container-section3{
-    display:flex;
-    flex-direction:column;
-}
-.container-btn-comment{
-    margin-left: 50px;
-}
 
-.btn-comentario{
-    width: fit-content;
+.btn-add-comment {
+    background-color: #ff00ea;
+    color: black;
+    padding: 10px 20px;
     font-weight: bold;
-}
-.comments-title {
-    margin-left: 50px;
-    margin-right: 150px;
-    margin-bottom: 20px;
-    font-size: 50px;
-    font-weight: 300;
-    color: white;
-    font-stretch: extra-condensed !important;
-    font-family: 'Skrappa-bold' , 'Sans Custom', sans-serif;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
-.container-comments {
-    gap: 20px;
+.comments-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0;
+    border-top: 4px dotted white;
+    border-bottom: 4px dotted white;
+}
+
+.comment-item {
     position: relative;
-    overflow: hidden;
-    padding-top: 0px;
-    min-height: calc(100vh - 92px);
-    z-index: 2;
-    margin: 50px; 
+    padding: 25px 30px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: 'Geomanist', sans-serif;
+    min-height: 100px;
 }
 
-.comment-post {
-    padding: 10px;
-    width: 200px;
-    height: 200px;
-    background-color: rgb(75, 75, 75);
+.comment-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-image: repeating-linear-gradient(to right,
+            white,
+            white 2px,
+            transparent 5px,
+            transparent 10px);
+    opacity: 0.3;
 }
 
-.comment-post_user {
+.comment-user {
+    min-width: 180px;
     font-weight: bold;
+    font-size: 1.1rem;
 }
+
+.comment-user small {
+    display: block;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.comment-message {
+    flex: 1;
+    padding: 0 30px;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.comment-score {
+    min-width: 60px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: right;
+    color: #f2f526;
+}
+
+.stars {
+    color: #f2f526;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+}
+
+.comment-item:last-child {
+    border-bottom: none;
+    /* evita doble línea al final */
+}
+
+.comments-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.comments-header h2 {
+    font-family: 'Geomanist', Helvetica, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.1;
+    color: white;
+    margin: 0;
+    text-align: left;
+    letter-spacing: 1px;
+}
+
+.btn-add-comment {
+    background-color: white;
+    color: black;
+    font-family: 'Geomanist', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    font-size: 0.875rem;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-add-comment:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
 
 /***********************************
             CSS FOR MODAL 
@@ -751,7 +844,7 @@ button {
     min-height: 500px;
     border: 1px solid #000000;
     z-index: 11000;
-    background-color: rgb(0, 0, 0,0.7);
+    background-color: rgb(0, 0, 0, 0.7);
 
 }
 
@@ -773,7 +866,7 @@ button {
 
 
 .btn-login {
-    background-color:black;
+    background-color: black;
     color: white;
 }
 
@@ -816,18 +909,18 @@ button {
     filter: invert(1);
 }
 
-.btn-publicar
-{
+.btn-publicar {
     background-color: #ff00ea;
     color: black;
     border-color: #ff00ea;
 }
 
-.btn-publicar:hover{
+.btn-publicar:hover {
     background-color: #ff00ea85;
     color: white;
     border-color: black;
 }
+
 .star-rating {
     direction: rtl;
     display: inline-block;
@@ -867,7 +960,7 @@ button {
     color: white;
 }
 
-.alert.alert-danger.errorMessage{
+.alert.alert-danger.errorMessage {
     margin-top: 20px;
 }
 
@@ -1056,10 +1149,11 @@ h1 {
     background-size: cover;
     z-index: 2;
 }
-.video-container{
+
+.video-container {
     position: relative;
     overflow: hidden;
-    
+
 }
 
 #bg-video {
@@ -1082,78 +1176,86 @@ h1 {
     align-items: flex-start;
     position: relative;
     overflow: hidden;
-    padding-top: 60px; /* Antes: 100px */
+    padding-top: 60px;
+    /* Antes: 100px */
     min-height: calc(100vh - 92px);
     background-size: cover;
     z-index: 2;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'HelveticaNeueCondensedBlack';
     src: url('fonts/HNCB.woff') format('woff');
     font-weight: 900;
     font-style: normal;
-  }
-  
-  .main-title {
+}
+
+.main-title {
     width: 100%;
     text-align: center;
-    padding: 40px 20px 60px; /* Antes: 100px arriba, bajamos a 40px */
+    padding: 40px 20px 60px;
+    /* Antes: 100px arriba, bajamos a 40px */
     color: white;
-  }
-  
-  .main-title h1 {
+}
+
+.main-title h1 {
     font-family: 'HelveticaNeueCondensedBlack', sans-serif;
     font-size: 100px;
     letter-spacing: -2px;
     font-weight: normal;
     margin: 0;
     color: white;
-  }
-  
-  .line-title {
+}
+
+.line-title {
     width: 60px;
     height: 6px;
     background-color: #f2f526;
     margin: 20px auto 15px auto;
     border: none;
     opacity: 1;
-  }
-  
-  .main-title p {
+}
+
+.main-title p {
     font-family: 'Helvetica', 'Arial', sans-serif;
     font-size: 22px;
     margin: 0;
     color: white;
-  }
-  
+}
 
-/***** NavBar Local *****/ 
+
+/***** NavBar Local *****/
 .navbar-nav .nav-link {
-    
+
     position: relative;
     font-weight: normal;
     transition: all 0.3s ease-in-out;
 }
 
 .navbar-nav .nav-link.active {
-    font-weight: bold; /* Poner en negrita */
+    font-weight: bold;
+    /* Poner en negrita */
 }
 
 .navbar-nav .nav-link.active::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -3px; /* Ajusta la distancia de la línea */
+    bottom: -3px;
+    /* Ajusta la distancia de la línea */
     width: 100%;
-    height: 2px; /* Grosor de la línea */
-    background-color: white; /* Color de la línea */
+    height: 2px;
+    /* Grosor de la línea */
+    background-color: white;
+    /* Color de la línea */
 }
 
 .navbar {
-    
-    background-color: black !important; /* Fondo negro */
-    border-bottom: 1px solid gray; /* Línea fina en gris */
+
+    background-color: black !important;
+    /* Fondo negro */
+    border-bottom: 1px solid gray;
+    /* Línea fina en gris */
 }
 
 .container-profile-info {
@@ -1161,20 +1263,22 @@ h1 {
     font-family: 'Outfit', sans-serif;
     height: 100vh;
     width: 30%;
-    margin-top: 35px ;
-    margin-left: 100px;  
+    margin-top: 35px;
+    margin-left: 100px;
     display: flex;
     flex-direction: column;
 
 
 }
+
 .container-profile-img {
     align-items: center;
     justify-content: center;
 }
+
 .profile-img {
-   width: 80%;
-   border-radius: 200%;
+    width: 80%;
+    border-radius: 200%;
 }
 
 .container-profile-data {
@@ -1196,13 +1300,16 @@ h1 {
 .profile-username {
     width: 150px;
     font-weight: 1;
-    font-stretch: condensed !important; /* Asegúrate de que la fuente soporte esta propiedad */
-    font-size: 1.5em; /* Ajusta el tamaño de la fuente */
-    letter-spacing: -0.05em; /* Ajusta el espaciado entre letras */
+    font-stretch: condensed !important;
+    /* Asegúrate de que la fuente soporte esta propiedad */
+    font-size: 1.5em;
+    /* Ajusta el tamaño de la fuente */
+    letter-spacing: -0.05em;
+    /* Ajusta el espaciado entre letras */
 }
 
 .butcontainer {
-    display: flex ; 
+    display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
@@ -1218,7 +1325,7 @@ h1 {
     color: white;
     font-family: 'Outfit', sans-serif;
     height: 100vh;
-    margin-top: 50px ; 
+    margin-top: 50px;
     margin-left: 40px;
 }
 
@@ -1242,7 +1349,7 @@ h1 {
     text-decoration: underline;
 }
 
-.container-tickets{
+.container-tickets {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1265,26 +1372,26 @@ h1 {
 
 
 .card {
-    max-height: 200px; 
+    max-height: 200px;
     overflow: hidden;
-    border-radius: 15px; 
+    border-radius: 15px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .card-img {
-    height: 100%; 
-    max-height: 200px; 
-    object-fit: cover; 
-    filter: brightness(0.7); 
+    height: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    filter: brightness(0.7);
     object-fit: cover;
 }
 
 .card-img-overlay {
-    padding: 10px; 
-    background: rgba(0, 0, 0, 0.4); 
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.4);
     padding: 1.5rem;
     border-radius: 15px;
 }
@@ -1302,17 +1409,17 @@ h1 {
 
 
 .card-title {
-    font-size: 1.8rem; 
-    font-weight: bold; 
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
-    color: #fff; 
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: #fff;
 }
 
 
 .card-text {
     font-size: 1rem;
     font-weight: 500;
-    color: #a0a0a0; 
+    color: #a0a0a0;
 }
 
 .card-text small {
@@ -1321,12 +1428,12 @@ h1 {
 }
 
 .card:hover {
-    transform: scale(1.05); 
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); 
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 .card:hover .card-img {
-    filter: brightness(0.6); 
+    filter: brightness(0.6);
 }
 
 
@@ -1385,4 +1492,3 @@ h1 {
 
 
 *******************************************/
-
