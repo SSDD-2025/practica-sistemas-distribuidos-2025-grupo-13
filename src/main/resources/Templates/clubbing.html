@@ -7,21 +7,23 @@
     <hr class="line-title-clubbing">
 </div>
 <section class="club-section">
-    <div class="club-grid">
-      {{#club}}
+  <div class="club-grid">
+    {{#club}}
+    <a href="ticket/{{id}}" class="club-card-link">
       <div class="club-card" style="background-image: url('event-image/{{id}}')">
+        <div class="darken-layer"></div>
         <div class="overlay">
           <div class="club-card-text">
             <h2>{{title}}</h2>
             <p>{{description}}</p>
-
           </div>
-          <button type="button" class="btnclub" onclick="window.location.href='ticket/{{id}}';">Ver más</button>
+          <div class="link-icon"><i class="bi bi-box-arrow-up-right"></i></div>
         </div>
       </div>
-      {{/club}}
-    </div>
-  </section>
+    </a>
+    {{/club}}
+  </div>
+</section>
 
 {{>footer}}
 

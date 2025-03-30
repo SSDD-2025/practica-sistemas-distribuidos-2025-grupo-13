@@ -59,34 +59,33 @@
 </section>
 
 <!-- SECTION 2 : COMMENTS -->
-<section class="section_3">
-    <div class="container-section3">
-        <div class="comments-title">
-            <h1>Comentarios</h1>
+<section class="comments-section">
+    <div class="comments-container">
+      <div class="comments-header">
+        <h2>Comentarios</h2>
+        <button class="btn-add-comment" type="button" data-bs-toggle="modal" data-bs-target="#modalComentario">
+          Añadir comentario
+        </button>
+      </div>
+  
+      <div class="comments-list">
+        {{#comment}}
+        <div class="comment-item">
+          <div class="comment-user">
+            <small>Usuario</small>
+            <p>{{autor}}</p>
+          </div>
+          <div class="comment-message">
+            <p>{{text}}</p>
+          </div>
+          <div class="comment-score">
+            <span class="stars">{{{rating}}}</span>
+          </div>
         </div>
-        <div class="container-btn-comment">
-            <button class="btn-change8 btn-comentario" type="button" data-bs-toggle="modal"
-                data-bs-target="#modalComentario">Añadir comentario</button>
-            <!-- Modal to add a comment -->
-        </div>
-        <div class="container-comments">
-            {{#comment}}
-            <div class="comment-post">
-                <div class="comment-post_user">
-                    {{autor}}
-                </div>
-                <div class="comment-post_content">
-                    <p>{{text}}</p>
-                </div>
-                <div class="comment-post_valoration">
-                    <p>{{{rating}}}</p>
-                </div>
-            </div>
-            {{/comment}}
-        </div>
+        {{/comment}}
+      </div>
     </div>
-</section>
-
+  </section>
 <!-- MODAL COMMENT -->
 
 <div class="modal fade" id="modalComentario" tabindex="-1" aria-labelledby="modalComentario" aria-hidden="true">
