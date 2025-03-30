@@ -398,15 +398,12 @@ input, textarea {
 }
 button {
     background: #ff00ea;
-    color: white;
     padding: 10px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
 }
-button:hover {
-    background: #ff00ea9a;
-}
+
 .social-links a {
     margin: 10px;
     text-decoration: none;
@@ -420,7 +417,26 @@ button:hover {
             CSS FOR DETAIL 
 
 ************************************/
+@font-face {
+    font-family: 'Calendas Plus';
+    src: url('./fonts/CalPlus.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
+@font-face {
+    font-family: 'Geomanist';
+    src: url('./fonts/GEOR.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist';
+    src: url('./fonts/GEORI.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
 
 @font-face {
     font-family: 'Skrappa-bold';
@@ -436,96 +452,236 @@ button:hover {
     font-style: normal;
 }
 
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-.containerDetail {
+.titleDetailEvent,
+.subtitleDetailEvent {
+    animation: fadeSlideUp 0.6s ease-out both;
+}
+
+.titleDetailEvent {
+    font-family: 'Skrappa-bold', Helvetica, sans-serif;
+    line-height: 0.9;
+    font-size: 6.25rem; 
+    font-weight: 400;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    color: white;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.subtitleDetailEvent {
+    font-family: 'Skrappa-bold', Helvetica, sans-serif;
+    line-height: 1;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+}
+
+.eventDetailsGroup {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    margin-top: 20px ; 
-    margin-left: 40px ; 
+    gap: 1em;
+    margin-top: 30px;
 }
 
-.headDetailEvent {
+.eventDetail {
+    font-family: 'Geomanist', Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1.25;
+    padding-right: 10px;
+    color: white;
+}
+
+.eventDetailLabel {
+    font-family: 'Geomanist', Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold; 
+    text-transform: uppercase;
+    margin-bottom: 0.3em;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.eventDetailValue {
+    font-family: 'Geomanist', Helvetica, sans-serif;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1.4;
+    color: white;
+
+    max-width: 280px;    
+    word-wrap: break-word;
+}
+.containerDetailGrid {
     display: flex;
-    align-items: left;
-    justify-content: left;
-    flex-direction: column;
-    margin-top: 20px;
-}
-
-.titleDetailEvent{
-    font-size: 100px;
-    font-weight: 500;
-    text-shadow: #605f66 3px 3px 3px;
-    color: white;
-    font-stretch: extra-condensed !important;
-    font-family: 'Skrappa-bold' , 'Sans Custom', sans-serif;
-}
-
-.subtitleDetailEvent{
-    font-size: 50px;
-    font-weight: 300;
-    color: white;
-    font-stretch: extra-condensed !important;
-    font-family: 'Skrappa-bold' , 'Sans Custom', sans-serif;
-}
-
-.singleElement.title{
-    font-size: 15px;
-    font-weight: bold;
-    color: white;
-    font-stretch: extra-condensed !important;
-    font-family: Arial, Helvetica, sans-serif
-}
-
-.buttonDetailEvent {
-    width: 100px;
-    background-color: #ff00ea;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-.btn-change8{
-    margin-top:10px ; 
-    font-weight: bold;
-    height: 50px;
-    width: 100px;
-    background: #ff00ea;
-    float: left;
-    border:0px;
-    color: black; 
-    box-shadow: 0 0 1px #ccc;
-    -webkit-transition-duration: 0.5s;
-    -webkit-transition-timing-function: linear;
-    box-shadow:0px 0 0 #ff00ea91 inset;
-}
-.btn-change8:hover{
-    -webkit-box-shadow: -100px 0 0 #ff00ea9a inset;
-}
-
-.detailContent {
-    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    padding: 100px 80px 50px 80px;
     flex-wrap: wrap;
 }
 
-.pictureAndDescription {
+.leftColumn {
+    background-color: #000;
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 150px; 
-    width: 30%;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
 }
 
-.pictureDetailEvent {
-    width: 40%;
+.rightColumn {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.imageDetailEvent {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
     border-radius: 10px;
-    margin-right: 100px;
+    margin-bottom: 20px;
 }
+
+.extendedDescription {
+    font-family: 'Calendas Plus', Georgia, serif;
+    font-size: 24px;
+    line-height: 1.4;
+    font-weight: 400;
+    color: white;
+    margin-top: 20px;
+    max-width: 480px; 
+    word-wrap: break-word;
+}
+
+.practicalInfo {
+    margin-top: 40px;
+    max-width: 480px;
+}
+
+.practicalInfoTitle {
+    font-family: 'Calendas Plus', Georgia, serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-stretch: 0.4;
+    color: white;
+}
+
+.practicalInfoList {
+    font-family: 'Geomanist', Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 400;
+    padding-left: 0;
+}
+
+.practicalInfoList li {
+    position: relative;
+    padding-left: 2.25rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    color: white;
+}
+
+.practicalInfoList li::before {
+    content: "";
+    position: absolute;
+    top: 0.9rem;
+    left: 0;
+    width: 1.25rem;
+    height: 1px;
+    border-bottom: 1px solid white;
+    transform: rotate(-45deg);
+}
+
+.btn-buyTicket {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 35px;
+    font-family: 'Geomanist', Helvetica, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 0;
+    z-index: 1;
+    isolation: isolate;
+}
+
+.btn-buyTicket .btn-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.btn-buyTicket .ticket-icon {
+    margin-left: 10px;
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.btn-buyTicket:hover .ticket-icon {
+    transform: translateX(6px);
+}
+
+.btn-buyTicket::before,
+.btn-buyTicket::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: white;
+    mix-blend-mode: difference;
+    transform: scaleX(0);
+    pointer-events: none;
+}
+
+.btn-buyTicket::before {
+    top: 0;
+    transform-origin: 100% 0;
+    transition: transform 0.6s cubic-bezier(0.37, 0.16, 0.12, 1) 0s;
+}
+
+.btn-buyTicket::after {
+    bottom: 0;
+    transform-origin: 0 100%;
+    transition: transform 0.6s cubic-bezier(0.55, 0.08, 0.68, 0.53) 0.2s;
+}
+
+.btn-buyTicket:hover::before,
+.btn-buyTicket:hover::after {
+    transform: scaleX(1);
+}
+
+
+
 
 
 /***********************************
@@ -917,9 +1073,9 @@ h1 {
 }
 
 
-/*******************************************************************************/
-/***** INDEX STYLE *************************************************************/
-/**************************************************************************/
+/***************************************************************************************************************************/
+/***** INDEX STYLE *********************************************************************************************************/
+/***************************************************************************************************************************/
 .hero-container {
     display: flex;
     justify-content: center;

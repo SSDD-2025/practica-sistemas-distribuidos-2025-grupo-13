@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{{>header}}    
+{{>header}}
 
-<section class="detailContent"> 
-    <div class="containerDetail"> 
-        <li class="headDetailEvent">
+<section class="detailContent">
+    <div class="containerDetailGrid">
+        <!-- Columna izquierda -->
+        <div class="leftColumn">
             <h1 class="titleDetailEvent">{{event.title}}</h1>
             <h2 class="subtitleDetailEvent">{{event.type}}</h2>
-            <li class="columnElementsEvent">
-                <div class="elementDetailEvent">
-                    <i class="singleElement title">Fecha y Hora</i>
-                        <p class="singleElement content">{{event.timeStartFormat}}  ----  {{event.timeFinishFormat}}</p>
+
+            <div class="eventDetailsGroup">
+                <div class="eventDetail">
+                    <p class="eventDetailLabel">Fecha y hora</p>
+                    <p class="eventDetailValue">{{event.timeStartFormat}} — {{event.timeFinishFormat}}</p>
                 </div>
-                <div class="elementDetailEvent">
-                    <i class="singleElement title">Precio</i>
-                        <p>{{event.precio}} &euro;</p>
+
+                <div class="eventDetail">
+                    <p class="eventDetailLabel">Dirección</p>
+                    <p class="eventDetailValue">{{event.address}}</p>
                 </div>
-                <form action="/buyTicket" method="post">
-                    <button class="btn-change8">Comprar</button>
-                    <input type="hidden" name="eventID" value="{{event.id}}">
-                    <input type="hidden" name="_csrf" value="{{token}}"/>
-                </form>        
-            </li>
-    </div>
-    <div class="pictureAndDescription">
-        <div class="pictureDetailEvent"> 
-        <img src="/event-image/{{event.id}}" alt="{{event.title}}" height="250" width="250">
+
+                <div class="eventDetail">
+                    <p class="eventDetailLabel">Precio</p>
+                    <p class="eventDetailValue">Los menores solo podrán acceder acompañados por un adulto responsable.
+                    </p>
+                    <p class="eventDetailValue">{{event.precio}} &euro;</p>
+                </div>
+            </div>
+
+            <form action="/buyTicket" method="post">
+                <button class="btn-buyTicket">
+                    Comprar <i class="bi bi-ticket-perforated-fill ticket-icon"></i>
+                  </button>
+                <input type="hidden" name="eventID" value="{{event.id}}">
+                <input type="hidden" name="_csrf" value="{{token}}" />
+            </form>
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="rightColumn">
+            <p class="extendedDescription">{{event.description}}</p>
+            <div class="practicalInfo">
+                <h3 class="practicalInfoTitle">Información práctica</h3>
+                <ul class="practicalInfoList">
+                    <li>La entrada solamente garantiza el acceso hasta la hora de inicio de la primera actividad.</li>
+                    <li>El acceso de público se realizará exclusivamente por la entrada principal habilitada.</li>
+                    <li>Se establecerá un control de seguridad privada para acceder al recinto.</li>
+                    <li>Habrá un acceso especial para personas con movilidad reducida (PMR).</li>
+                    <li>La salida del recinto se efectuará únicamente por la zona delimitada para ello.</li>
+                </ul>
+            </div>
+
+            <img class="imageDetailEvent" src="/event-image/{{event.id}}" alt="{{event.title}}">
+
         </div>
     </div>
 </section>
@@ -40,7 +67,7 @@
         <div class="container-btn-comment">
             <button class="btn-change8 btn-comentario" type="button" data-bs-toggle="modal"
                 data-bs-target="#modalComentario">Añadir comentario</button>
-        <!-- Modal to add a comment -->
+            <!-- Modal to add a comment -->
         </div>
         <div class="container-comments">
             {{#comment}}
@@ -92,7 +119,7 @@
                         <textarea class="form-control" id="inputComentario" rows="3" name="text"></textarea>
                     </div>
                     <button type="submit" class="btn btn-publicar">Publicar</button>
-                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    <input type="hidden" name="_csrf" value="{{token}}" />
                 </form>
             </div>
         </div>
