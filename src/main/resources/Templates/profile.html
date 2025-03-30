@@ -90,46 +90,48 @@
     </li>
 </ul>
 
-<!-- PROFILE PAGE (changed for profile.html) -->
-<div id="perfil" class="content-tab">
-    <section class="section-1" id="section_1">
-        <div class="container-profile-data">
-            <div class="container-profile-info">
-                <div class="container-profile-img">
-                    <!-- Maybe a profile img -->
-                </div>
-                <div class="container-profile-data">
-                    <h1 class="profile-name">Mi perfil</h1>
-                    <p class="profile-username">Nombre:</p>
-                        <span>{{client.name}}</span>
-                    <p class="profile-username">Apellidos: </p>
-                        <span>{{client.lastName}}</span>
-                    <p class="profile-username">Correo electrónico: </p>
-                        <span>{{client.email}}</span>
-                    <div class="butcontainer">
-                        <form action="/editprofilepage" method="get">
-                            <button type="submit" class="btn btn-login me-2">Editar perfil</button>
-                            <input type="hidden" name="_csrf" value="{{token}}"/>
-                        </form>
-                        <form action="/logout" method="post">
-                            <input type="submit" class="btn btn-login me-2" value="Sign out"/>
-                            <input type="hidden" name="_csrf" value="{{token}}"/>
-                        </form>
-                        {{#isAdmin}}
-                        <form action="/admin" method="get">
-                            <button type="submit" class="btn btn-login me-2">Página de administrador</button>
-                            <input type="hidden" name="_csrf" value="{{token}}"/>
-                            
-                        </form>
-                        {{/isAdmin}}
-                    </div>
-                </div>
-            </div>
+<!-- PROFILE PAGE (reworked) -->
+<div id="perfil" class="profile-container">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <img src="/img/profStd.jpg" alt="Avatar del usuario" />
         </div>
-    </section>
-</div>
-
-
+        <div class="profile-header-info">
+          <h1 class="profile-title">Mi perfil</h1>
+          <p class="profile-email">{{client.email}}</p>
+        </div>
+      </div>
+  
+      <div class="profile-info">
+        <div class="info-row">
+          <span class="info-label">Nombre:</span>
+          <span class="info-value">{{client.name}}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Apellidos:</span>
+          <span class="info-value">{{client.lastName}}</span>
+        </div>
+      </div>
+  
+      <div class="profile-actions">
+        <form action="/editprofilepage" method="get">
+          <button type="submit" class="btn-profile">Editar perfil</button>
+          <input type="hidden" name="_csrf" value="{{token}}" />
+        </form>
+        <form action="/logout" method="post">
+          <input type="submit" class="btn-profile logout" value="Sign out" />
+          <input type="hidden" name="_csrf" value="{{token}}" />
+        </form>
+        {{#isAdmin}}
+        <form action="/admin" method="get">
+          <button type="submit" class="btn-profile">Página de administrador</button>
+          <input type="hidden" name="_csrf" value="{{token}}" />
+        </form>
+        {{/isAdmin}}
+      </div>
+    </div>
+  </div>  
 
 <!-- PESTAÑA ACTIVIDAD (tickets + comentarios) -->
 <div class="container-tickets">

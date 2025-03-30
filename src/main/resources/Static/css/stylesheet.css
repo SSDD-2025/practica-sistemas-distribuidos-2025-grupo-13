@@ -1201,17 +1201,7 @@ h1 {
     min-width: 20px;
 }
 
-.container-profile-data {
-    display: flex;
-    justify-content: left;
-    align-items: flex-start;
-    position: relative;
-    overflow: hidden;
-    padding-top: 10px;
-    min-height: calc(100vh - 92px);
-    background-size: cover;
-    z-index: 2;
-}
+
 
 .video-container {
     position: relative;
@@ -1321,55 +1311,113 @@ h1 {
     /* Línea fina en gris */
 }
 
-.container-profile-info {
-    color: white;
-    font-family: 'Outfit', sans-serif;
-    height: 100vh;
-    width: 30%;
-    margin-top: 35px;
-    margin-left: 100px;
+
+
+/***************************************************************************************************************
+/***** PROFILE STYLE *******************************************************************************************/
+/***************************************************************************************************************/
+.profile-container {
     display: flex;
-    flex-direction: column;
-
-
-}
-
-.container-profile-img {
-    align-items: center;
     justify-content: center;
-}
-
-.profile-img {
-    width: 80%;
-    border-radius: 200%;
-}
-
-.container-profile-data {
-    row-gap: 5px;
+    padding: 100px 20px;
+    background-color: black;
+    font-family: 'Geomanist', sans-serif;
+  }
+  
+  .profile-card {
+    background-color: #111;
+    border: 2px solid white;
+    padding: 40px;
+    border-radius: 20px;
     width: 100%;
-    flex-direction: column;
-    margin-top: 30px;
+    max-width: 600px;
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  
+  .profile-header {
     display: flex;
-    flex-wrap: wrap;
-}
-
-.profile-name {
-    font-size: 1.75em;
-    word-wrap: break-word;
-    word-break: break-word;
-    max-width: 100%;
-}
-
-.profile-username {
-    width: 150px;
-    font-weight: 1;
-    font-stretch: condensed !important;
-    /* Asegúrate de que la fuente soporte esta propiedad */
-    font-size: 1.5em;
-    /* Ajusta el tamaño de la fuente */
-    letter-spacing: -0.05em;
-    /* Ajusta el espaciado entre letras */
-}
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .profile-avatar img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 100px;
+    border: 2px solid white;
+    margin-right: 20px;
+  }
+  
+  .profile-title {
+    font-family: 'Calendas Plus', serif;
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  .profile-email {
+    font-size: 0.95rem;
+    color: #aaa;
+    margin-top: 5px;
+  }
+  
+  .profile-info {
+    border-top: 1px dashed #555;
+    border-bottom: 1px dashed #555;
+    padding: 20px 0;
+    margin-bottom: 30px;
+  }
+  
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .info-label {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .info-value {
+    font-size: 1rem;
+  }
+  
+  .profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn-profile {
+    padding: 10px 20px;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+  
+  .btn-profile:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+  }
+  
+  .logout {
+    background-color: #ff3c3c;
+    color: white;
+  }
+  
+  .logout:hover {
+    background-color: black;
+    color: #ff3c3c;
+    border: 1px solid #ff3c3c;
+  }
+  
 
 .butcontainer {
     display: flex;
@@ -1377,19 +1425,6 @@ h1 {
     align-items: center;
     margin-top: 20px;
     flex-direction: column;
-}
-
-.container-profile-pag1 {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.container-profile-activity {
-    color: white;
-    font-family: 'Outfit', sans-serif;
-    height: 100vh;
-    margin-top: 50px;
-    margin-left: 40px;
 }
 
 .content-tab {
