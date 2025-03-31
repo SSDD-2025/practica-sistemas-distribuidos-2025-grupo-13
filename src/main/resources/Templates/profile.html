@@ -16,26 +16,6 @@
 
 </head>
 
-<script>
-    function showTab(tabId, element) {
-        // Ocultar todas las pestañas
-        document.querySelectorAll('.content-tab').forEach(tab => {
-            tab.style.display = 'none';
-        });
-
-        // Mostrar la pestaña seleccionada
-        document.getElementById(tabId).style.display = 'block';
-
-        // Eliminar la clase activa de todas las pestañas del menú
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-        });
-
-        // Agregar la clase activa a la pestaña actual
-        element.classList.add('active');
-    }
-</script>
-
 <body>
 
     <!--PAGE HEADER (EXTRAPOLABLE)-->
@@ -91,7 +71,7 @@
 </ul>
 
 <!-- PROFILE PAGE (reworked) -->
-<div id="perfil" class="profile-container">
+<div id="perfil" class="profile-center content-tab active-tab">
     <div class="profile-card">
       <div class="profile-header">
         <div class="profile-avatar">
@@ -134,51 +114,59 @@
   </div>  
 
 <!-- PESTAÑA ACTIVIDAD (tickets + comentarios) -->
-<div class="container-tickets">
-    <div id="activity" class="content-tab activity" style="display: none;">
-        <div class="row">
-            {{#tickets}}
-            <div class="col-12 mb-3">
-                <div class="card text-white">
-                    <img class="card-img" src="/img/{{title}}.jpg" alt="{{title}}">
-                    <div class="card-img-overlay d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="card-title">{{title}}</h5>
-                        </div>
+<div id="activity" class="content-tab activity-tab hidden-tab">
+    <div class="row">
+        {{#tickets}}
+        <div class="col-12 mb-3">
+            <div class="card text-white">
+                <img class="card-img" src="/img/{{title}}.jpg" alt="{{title}}">
+                <div class="card-img-overlay d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title">{{title}}</h5>
                     </div>
                 </div>
             </div>
-            {{/tickets}}
-            {{^tickets}}
-            <p>No tienes tickets comprados aún.</p>
-            {{/tickets}}
         </div>
+        {{/tickets}}
+        {{^tickets}}
+        <p>No tienes tickets comprados aún.</p>
+        {{/tickets}}
+    </div>
 
-        <!-- Sección de comentarios -->
-        <div class="container-comments-mydata mt-5">
-            <h3>Mis comentarios</h3>
+    <!-- Sección de comentarios -->
+    <div class="container-comments-mydata mt-5">
+        <div class="comments-header">
+            <h2>Mis comentarios</h2>
+        </div>
+        <div class="comments-list">
             {{#comments}}
-            <div class="comment">
-                <div class="comment-post_user">{{autor}}</div>
-                <div class="comment-post_content"><p>{{text}}</p></div>
-                <div class="comment-post_valoration"><p>{{{rating}}}</p></div>
-                <div class="comment-actions">
-
+            <div class="comment-item">
+                <div class="comment-user">
+                    <small>Usuario</small>
+                    <p>{{autor}}</p>
+                </div>
+                <div class="comment-message">
+                    <p>{{text}}</p>
+                </div>
+                <div class="comment-score-with-delete">
+                    <span class="stars">{{{rating}}}</span>
                     <form action="/comment_out/{{id}}" method="POST">
                         <input type="hidden" name="commentId" value="{{id}}">
-                        <input type="hidden" name="_csrf" value="{{token}}"/>
-                        <button type="submit" class="delete-comment">Eliminar</button>
-                        
+                        <input type="hidden" name="_csrf" value="{{token}}" />
+                        <button type="submit" class="delete-comment" title="Eliminar comentario">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
                     </form>
                 </div>
             </div>
             {{/comments}}
+    
             {{^comments}}
             <p>No has hecho ningún comentario aún.</p>
             {{/comments}}
-            
         </div>
     </div>
+
 </div>
 
 
@@ -186,6 +174,26 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 
+<script>
+    function showTab(tabId, element) {
+        // Ocultar todas las pestañas
+        document.querySelectorAll('.content-tab').forEach(tab => {
+            tab.classList.add('hidden-tab');
+            tab.classList.remove('active-tab');
+        });
+
+        // Mostrar la pestaña seleccionada
+        const selectedTab = document.getElementById(tabId);
+        selectedTab.classList.remove('hidden-tab');
+        selectedTab.classList.add('active-tab');
+
+        // Actualizar clases activas del menú
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        element.classList.add('active');
+    }
+</script>
 
 </body>
 

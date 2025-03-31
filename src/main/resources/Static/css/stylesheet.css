@@ -1319,62 +1319,115 @@ h1 {
 .profile-container {
     display: flex;
     justify-content: center;
-    padding: 100px 20px;
+    align-items: center;
+    min-height: 90vh;
+    padding: 40px 20px;
     background-color: black;
-    font-family: 'Geomanist', sans-serif;
-  }
-  
-  .profile-card {
+}
+
+.profile-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    padding: 40px 20px;
+    background-color: black;
+}
+
+.profile-card {
     background-color: #111;
     border: 2px solid white;
     padding: 40px;
     border-radius: 20px;
     width: 100%;
     max-width: 600px;
+    text-align: center;
     color: white;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  }
-  
-  .profile-header {
+    animation: fadeSlideUp 0.6s ease-out both;
+}
+
+.profile-header {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-bottom: 30px;
-  }
-  
-  .profile-avatar img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 100px;
-    border: 2px solid white;
-    margin-right: 20px;
-  }
-  
-  .profile-title {
-    font-family: 'Calendas Plus', serif;
-    font-size: 2.5rem;
-    margin: 0;
-  }
-  
-  .profile-email {
-    font-size: 0.95rem;
-    color: #aaa;
-    margin-top: 5px;
-  }
-  
-  .profile-info {
-    border-top: 1px dashed #555;
-    border-bottom: 1px dashed #555;
-    padding: 20px 0;
-    margin-bottom: 30px;
-  }
-  
-  .info-row {
+    text-align: center;
+}
+
+.profile-header-info {
+    margin-top: 20px;
+}
+
+.info-row {
+    justify-content: center;
+    gap: 10px;
+}
+
+.profile-actions {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-  
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px; 
+    align-items: center;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid white;
+    margin-bottom: 10px;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.nav-tabs {
+    border-bottom: none;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.nav-tabs .nav-link {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid transparent;
+    border-radius: 30px;
+    padding: 10px 25px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-tabs .nav-link.active {
+    background-color: white;
+    color: black;
+    border-color: white;
+    box-shadow: 0 0 10px #ff00ea80;
+}
+
+.hidden-tab {
+    display: none !important;
+}
+
+.active-tab {
+    display: flex !important;
+}
+
+
+
   .info-label {
     font-weight: bold;
     font-size: 1rem;
@@ -1384,11 +1437,6 @@ h1 {
     font-size: 1rem;
   }
   
-  .profile-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
   
   .btn-profile {
     padding: 10px 20px;
@@ -1460,6 +1508,116 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.activity-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: black;
+}
+
+.activity-tab .row {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.container-comments-mydata {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.container-comments-mydata {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.comment {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #ff00ea;
+    border-radius: 15px;
+    padding: 25px 30px;
+    color: white;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(255, 0, 234, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comment:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 0, 234, 0.4);
+}
+
+.comment-post_user {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #f2f526;
+    font-family: 'Geomanist', sans-serif;
+}
+
+.comment-post_content p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.comment-post_valoration {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #f2f526;
+}
+
+.comment-actions {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.delete-comment {
+    background-color: transparent;
+    color: #ff3c3c;
+    border: 1px solid #ff3c3c;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-comment:hover {
+    background-color: #ff3c3c;
+    color: black;
+}
+
+.comment-score-with-delete {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 100px;
+    justify-content: flex-end;
+}
+
+.comment-score-with-delete .stars {
+    color: #f2f526;
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
 
