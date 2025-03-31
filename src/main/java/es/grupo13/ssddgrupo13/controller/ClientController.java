@@ -64,7 +64,7 @@ public class ClientController {
                          HttpServletRequest request,
                          Model model) {
 
-        if (clientRepository.findByName(email).isPresent()) {
+        if (clientRepository.findByEmail(email).isPresent()) {
             return "redirect:/register?error=user_exists";
         }
 

@@ -122,6 +122,7 @@ public class SecurityConfig {
 						.requestMatchers("/concerts/**").permitAll()
 						.requestMatchers("/logout/**").permitAll()
 						.requestMatchers("/register/**").permitAll()
+						.requestMatchers("/sign-up").permitAll()
 						.requestMatchers("/profileTest").permitAll()
 						.requestMatchers("/comment_in").permitAll()
 						.requestMatchers("/comment_out/**").permitAll()
