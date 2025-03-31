@@ -117,6 +117,7 @@ public class SecurityConfig {
 						.requestMatchers("/", "/css/**", "/event-image/**", "/img/**", "/js/**", "/videos/**")
 						.permitAll()
 						.requestMatchers("/authenticate", "/favicon/**").permitAll()
+						.requestMatchers("/contact_recieved").permitAll()
 						.requestMatchers("/login", "/loginError").permitAll()
 						.requestMatchers("/clubbing/**", "/events/**", "/festivals/**", "/sign-in/**").permitAll()
 						.requestMatchers("/concerts/**").permitAll()
