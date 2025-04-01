@@ -15,6 +15,7 @@ package es.grupo13.ssddgrupo13.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -191,10 +192,15 @@ public class ClientController {
       * Utility method to extract a Client object from the authentication principal.
      */
     private Client extractClientFromPrincipal(Object principal) {
-        if (principal instanceof Client client) {
-            return client;
-        } else if (principal instanceof UserDetails userDetails) {
-            return clientService.findByEmail(userDetails.getUsername()).orElse(null);
+        switch (principal) {
+            case Client client -> {
+                return client;
+            }
+            case UserDetails userDetails -> {
+                return clientService.findByEmail(userDetails.getUsername()).orElse(null);
+            }
+            default -> {
+            }
         }
         return null;
     }
