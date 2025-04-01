@@ -13,5 +13,4 @@ public interface CommentMapper {
     List<CommentDTO> ToDTOs(Collection<Comment> comments);
     Comment ToDomain(CommentDTO commentDTO);
     List<Comment> ToDomains(Collection<CommentDTO> commentDTOs);
-
 }

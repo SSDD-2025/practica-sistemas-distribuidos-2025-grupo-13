@@ -13,5 +13,4 @@ public interface EventMapper {
     Event ToDomain(EventDTO eventDTO);
     List<EventDTO> ToDTOs(Collection<Event> events);
     List<Event> ToDomains(Collection<EventDTO> eventDTOs);
-
 }

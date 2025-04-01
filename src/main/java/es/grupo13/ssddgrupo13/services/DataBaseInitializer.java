@@ -4,7 +4,6 @@ import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import es.grupo13.ssddgrupo13.model.Client;
@@ -24,12 +23,6 @@ import jakarta.annotation.PostConstruct;
 public class DataBaseInitializer {
 
         @Autowired
-        private EventService eventService;
-
-        @Autowired
-        private CommentService commentService;
-
-        @Autowired
         private PasswordEncoder passwordEncoder;
 
         @Autowired
@@ -43,9 +36,6 @@ public class DataBaseInitializer {
 
         @Autowired
         private ClientRepository clientRepository;
-
-        @Autowired
-        private JdbcTemplate jdbcTemplate;
 
         @Autowired
         private ImageUtils imageUtils;

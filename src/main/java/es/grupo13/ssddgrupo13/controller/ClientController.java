@@ -48,7 +48,6 @@ public class ClientController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
     public ClientController(ClientService clientService) {
         this.clientService = clientService;
     }
@@ -112,7 +111,7 @@ public class ClientController {
         }
 
         authenticateUser(client, request);
- 
+
         model.addAttribute("title", "Iniciado sesión");
         model.addAttribute("message", "¡Has iniciado sesión correctamente!");
         model.addAttribute("linkText", "Aceptar");

@@ -27,7 +27,7 @@ public class AdminController {
     private final EventService eventService;
     private final CommentService commentService;
 
-    @Autowired
+    
     public AdminController(EventService eventService, CommentService commentService, ClientService clientService) {
         this.eventService = eventService;
         this.commentService = commentService;

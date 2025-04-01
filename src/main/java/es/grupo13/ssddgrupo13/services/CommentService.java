@@ -19,9 +19,6 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    @Autowired
-    private ClientService clientService;
-
     public Optional<Comment> findById(long id) {
         return commentRepository.findById(id);
     }
