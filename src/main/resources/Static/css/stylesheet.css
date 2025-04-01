@@ -1110,7 +1110,6 @@ button {
     justify-content: right;
     gap: 20px;
     margin-top: 40px;
-    margin-right: 150px;
     clear: both;
 }
 
@@ -1618,6 +1617,123 @@ h1 {
     color: #f2f526;
     font-size: 1.4rem;
     font-weight: bold;
+}
+
+.wallet-style-ticket {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    isolation: isolate; 
+}
+
+
+.wallet-style-ticket:hover {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+}
+
+.wallet-style-ticket:hover .ticket-bg {
+    filter: brightness(1);
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+}
+
+.ticket-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.85); /* Subimos la luz */
+}
+
+.ticket-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)); 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+
+}
+
+.ticket-header {
+    z-index: 2;
+}
+
+.event-title {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: 'Geomanist', sans-serif;
+    margin: 0;
+}
+
+.ticket-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.barcode {
+    z-index: 2;
+    width: 80%;
+    height: 40px;
+    background-image: repeating-linear-gradient(
+        to right,
+        white 0,
+        white 2px,
+        transparent 2px,
+        transparent 5px
+    );
+    opacity: 0.9;
+    border-radius: 4px;
+}
+
+.user-name {
+    margin-top: 5px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 500;
+    font-family: 'Geomanist', sans-serif;
+}
+
+.ticket-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 40px;
+  }
+  
+  .stacked-ticket {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+    cursor: pointer;
+  }
+
+.stacked-ticket:hover {
+    transform: translateY(-10px) scale(1.03);
+    z-index: 5;
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.2);
+}
+
+.stacked-ticket.active {
+    z-index: 10;
+    transform: scale(1.00) translateY(-20px);
+    box-shadow: 0 16px 40px rgba(255, 240, 254, 0.4);
 }
 
 

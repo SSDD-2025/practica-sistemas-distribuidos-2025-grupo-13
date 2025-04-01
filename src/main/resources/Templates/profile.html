@@ -39,161 +39,198 @@
                 </li>
                 <li class="nav-item-login">
                     {{#isUserLogged}}
-                    <li class="nav-item">
-                        <a class="top-nav-section_5" href="/profilePage">
-                            {{userLogged.name}}
-                        </a>
-                    </li>
-                    {{/isUserLogged}}
+                <li class="nav-item">
+                    <a class="top-nav-section_5" href="/profilePage">
+                        {{userLogged.name}}
+                    </a>
+                </li>
+                {{/isUserLogged}}
 
-                    {{^isUserLogged}}
-                    <li class="nav-item-login">
-                        <a href="/login" class="btn" type="button" >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="20" fill="currentColor"class="bi bi-person-circle" viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                            </svg>
-                        </a>
-                    </li>
-                    {{/isUserLogged}}
+                {{^isUserLogged}}
+                <li class="nav-item-login">
+                    <a href="/login" class="btn" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="20" fill="currentColor"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg>
+                    </a>
+                </li>
+                {{/isUserLogged}}
                 </li>
             </ul>
         </div>
     </nav>
 
-<ul class="nav nav-tabs justify-content-center mt-4">
-    <li class="nav-item">
-        <a class="nav-link active" href="#" onclick="showTab('perfil', this)">Perfil</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#" onclick="showTab('activity', this)">Actividad</a>
-    </li>
-</ul>
+    <ul class="nav nav-tabs justify-content-center mt-4">
+        <li class="nav-item">
+            <a class="nav-link active" href="#" onclick="showTab('perfil', this)">Perfil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showTab('activity', this)">Actividad</a>
+        </li>
+    </ul>
 
-<!-- PROFILE PAGE (reworked) -->
-<div id="perfil" class="profile-center content-tab active-tab">
-    <div class="profile-card">
-      <div class="profile-header">
-        <div class="profile-avatar">
-          <img src="/img/profStd.jpg" alt="Avatar del usuario" />
+    <!-- PROFILE PAGE (reworked) -->
+    <div id="perfil" class="profile-center content-tab active-tab">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="/img/profStd.jpg" alt="Avatar del usuario" />
+                </div>
+                <div class="profile-header-info">
+                    <h1 class="profile-title">Mi perfil</h1>
+                    <p class="profile-email">{{client.email}}</p>
+                </div>
+            </div>
+
+            <div class="profile-info">
+                <div class="info-row">
+                    <span class="info-label">Nombre:</span>
+                    <span class="info-value">{{client.name}}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Apellidos:</span>
+                    <span class="info-value">{{client.lastName}}</span>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <form action="/editprofilepage" method="get">
+                    <button type="submit" class="btn-profile">Editar perfil</button>
+                    <input type="hidden" name="_csrf" value="{{token}}" />
+                </form>
+                <form action="/logout" method="post">
+                    <input type="submit" class="btn-profile logout" value="Sign out" />
+                    <input type="hidden" name="_csrf" value="{{token}}" />
+                </form>
+                {{#isAdmin}}
+                <form action="/admin" method="get">
+                    <button type="submit" class="btn-profile">Página de administrador</button>
+                    <input type="hidden" name="_csrf" value="{{token}}" />
+                </form>
+                {{/isAdmin}}
+            </div>
         </div>
-        <div class="profile-header-info">
-          <h1 class="profile-title">Mi perfil</h1>
-          <p class="profile-email">{{client.email}}</p>
-        </div>
-      </div>
-  
-      <div class="profile-info">
-        <div class="info-row">
-          <span class="info-label">Nombre:</span>
-          <span class="info-value">{{client.name}}</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Apellidos:</span>
-          <span class="info-value">{{client.lastName}}</span>
-        </div>
-      </div>
-  
-      <div class="profile-actions">
-        <form action="/editprofilepage" method="get">
-          <button type="submit" class="btn-profile">Editar perfil</button>
-          <input type="hidden" name="_csrf" value="{{token}}" />
-        </form>
-        <form action="/logout" method="post">
-          <input type="submit" class="btn-profile logout" value="Sign out" />
-          <input type="hidden" name="_csrf" value="{{token}}" />
-        </form>
-        {{#isAdmin}}
-        <form action="/admin" method="get">
-          <button type="submit" class="btn-profile">Página de administrador</button>
-          <input type="hidden" name="_csrf" value="{{token}}" />
-        </form>
-        {{/isAdmin}}
-      </div>
     </div>
-  </div>  
 
-<!-- PESTAÑA ACTIVIDAD (tickets + comentarios) -->
-<div id="activity" class="content-tab activity-tab hidden-tab">
-    <div class="row">
-        {{#tickets}}
-        <div class="col-12 mb-3">
-            <div class="card text-white">
-                <img class="card-img" src="/img/{{title}}.jpg" alt="{{title}}">
-                <div class="card-img-overlay d-flex flex-column justify-content-between">
-                    <div>
-                        <h5 class="card-title">{{title}}</h5>
+    <!-- Activity tab (tickets + comments) -->
+    <div id="activity" class="content-tab activity-tab hidden-tab">
+        <div class="row">
+            <div class="ticket-stack">
+                <div class="comments-header">
+                    <h2>Mis tickets</h2>
+                </div>
+                {{#tickets}}
+                <div class="wallet-style-ticket stacked-ticket" onclick="bringToFront(this)">
+                    <img src="/img/{{title}}.jpg" alt="{{title}}" class="ticket-bg" />
+                    <div class="ticket-overlay">
+                        <div class="ticket-header">
+                            <h4 class="event-title">{{title}}</h4>
+                            <p class="user-name">Para: {{userLogged.name}}</p>
+                        </div>
+                        <div class="ticket-footer">
+                            <div class="barcode"></div>
+                        </div>
                     </div>
                 </div>
+                {{/tickets}}
+            </div>
+            {{^tickets}}
+            <p>No tienes tickets comprados aún.</p>
+            {{/tickets}}
+        </div>
+
+        <!-- Comment section -->
+        <div class="container-comments-mydata mt-5">
+            <div class="comments-header">
+                <h2>Mis comentarios</h2>
+            </div>
+            <div class="comments-list">
+                {{#comments}}
+                <div class="comment-item">
+                    <div class="comment-user">
+                        <small>Usuario</small>
+                        <p>{{autor}}</p>
+                    </div>
+                    <div class="comment-message">
+                        <p>{{text}}</p>
+                    </div>
+                    <div class="comment-score-with-delete">
+                        <span class="stars">{{{rating}}}</span>
+                        <form action="/comment_out/{{id}}" method="POST">
+                            <input type="hidden" name="commentId" value="{{id}}">
+                            <input type="hidden" name="_csrf" value="{{token}}" />
+                            <button type="submit" class="delete-comment" title="Eliminar comentario">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {{/comments}}
+
+                {{^comments}}
+                <p>No has hecho ningún comentario aún.</p>
+                {{/comments}}
             </div>
         </div>
-        {{/tickets}}
-        {{^tickets}}
-        <p>No tienes tickets comprados aún.</p>
-        {{/tickets}}
+
     </div>
 
-    <!-- Sección de comentarios -->
-    <div class="container-comments-mydata mt-5">
-        <div class="comments-header">
-            <h2>Mis comentarios</h2>
-        </div>
-        <div class="comments-list">
-            {{#comments}}
-            <div class="comment-item">
-                <div class="comment-user">
-                    <small>Usuario</small>
-                    <p>{{autor}}</p>
-                </div>
-                <div class="comment-message">
-                    <p>{{text}}</p>
-                </div>
-                <div class="comment-score-with-delete">
-                    <span class="stars">{{{rating}}}</span>
-                    <form action="/comment_out/{{id}}" method="POST">
-                        <input type="hidden" name="commentId" value="{{id}}">
-                        <input type="hidden" name="_csrf" value="{{token}}" />
-                        <button type="submit" class="delete-comment" title="Eliminar comentario">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            {{/comments}}
-    
-            {{^comments}}
-            <p>No has hecho ningún comentario aún.</p>
-            {{/comments}}
-        </div>
-    </div>
 
-</div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+    <script>
+        function bringToFront(clickedTicket) {
+            const tickets = document.querySelectorAll('.stacked-ticket');
 
-<script src="/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            tickets.forEach((ticket, index) => {
+                ticket.classList.remove('active');
+                ticket.style.zIndex = index + 1;
+            });
 
+            clickedTicket.classList.add('active');
+            clickedTicket.style.zIndex = 999;
+        }
 
-<script>
-    function showTab(tabId, element) {
-        // Ocultar todas las pestañas
-        document.querySelectorAll('.content-tab').forEach(tab => {
-            tab.classList.add('hidden-tab');
-            tab.classList.remove('active-tab');
+        function applyStacking() {
+            const tickets = document.querySelectorAll('.stacked-ticket');
+            const overlap = 280;
+            tickets.forEach((ticket, index) => {
+                const marginTop = index === 0 ? 0 : -overlap;
+                ticket.style.marginTop = `${marginTop}px`;
+                ticket.style.zIndex = index + 1;
+                ticket.classList.remove('active');
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', applyStacking);
+
+        document.addEventListener('click', function (e) {
+            const clickedInside = e.target.closest('.stacked-ticket');
+            if (!clickedInside) {
+                applyStacking(); 
+            }
         });
 
-        // Mostrar la pestaña seleccionada
-        const selectedTab = document.getElementById(tabId);
-        selectedTab.classList.remove('hidden-tab');
-        selectedTab.classList.add('active-tab');
+        function showTab(tabId, element) {
+            document.querySelectorAll('.content-tab').forEach(tab => {
+                tab.classList.add('hidden-tab');
+                tab.classList.remove('active-tab');
+            });
 
-        // Actualizar clases activas del menú
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-        });
-        element.classList.add('active');
-    }
-</script>
+            const selectedTab = document.getElementById(tabId);
+            selectedTab.classList.remove('hidden-tab');
+            selectedTab.classList.add('active-tab');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+    </script>
 
 </body>
 
