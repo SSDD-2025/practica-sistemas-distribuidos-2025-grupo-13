@@ -16,12 +16,10 @@ public interface EventRepository extends JpaRepository<Event, Long> {
         Optional<Event> eventOpt = findById(id);
         if (eventOpt.isPresent()) {
             Event event = eventOpt.get();
-            
             if (event.getComments() != null) {
                 event.getComments().forEach(c -> c.setEvent(null));
                 event.getComments().clear();
             }
-    
             delete(event);
         }
     }
