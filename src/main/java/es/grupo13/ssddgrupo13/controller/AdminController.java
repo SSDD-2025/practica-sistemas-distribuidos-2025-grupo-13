@@ -1,6 +1,5 @@
 package es.grupo13.ssddgrupo13.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +26,7 @@ public class AdminController {
     private final EventService eventService;
     private final CommentService commentService;
 
-    @Autowired
+    
     public AdminController(EventService eventService, CommentService commentService, ClientService clientService) {
         this.eventService = eventService;
         this.commentService = commentService;

@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.grupo13.ssddgrupo13.controller.CustomExceptions.UserNotFoundException;
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.services.ClientService;
@@ -48,7 +49,6 @@ public class ClientController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
     public ClientController(ClientService clientService) {
         this.clientService = clientService;
     }
@@ -105,14 +105,14 @@ public class ClientController {
                             Model model) {
 
         Client client = clientService.findByEmail(email)
-                 .orElseThrow(() -> new RuntimeException("User not found")); // TODO: Replace with custom exception
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
 
         if (!passwordEncoder.matches(password, client.getEncodedPassword())) {
             return "redirect:/login?error=true";
         }
 
         authenticateUser(client, request);
- 
+
         model.addAttribute("title", "Iniciado sesión");
         model.addAttribute("message", "¡Has iniciado sesión correctamente!");
         model.addAttribute("linkText", "Aceptar");
