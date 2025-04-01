@@ -1,11 +1,14 @@
 package es.grupo13.ssddgrupo13.services;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.grupo13.ssddgrupo13.dto.CommentDTO;
+import es.grupo13.ssddgrupo13.dto.CommentMapperImpl;
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
@@ -18,6 +21,32 @@ public class CommentService {
     
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private CommentMapperImpl commentMapper;
+
+    public Collection<CommentDTO> getComments() {
+        return commentMapper.ToDTOs(commentRepository.findAll());
+    }
+    public CommentDTO getCommentById(long id) {
+        return commentMapper.ToDTO(commentRepository.findById(id).orElse(null));
+    }
+    public CommentDTO createComment(CommentDTO commentDTO) {
+        Comment comment = commentMapper.ToDomain(commentDTO);
+        commentRepository.save(comment);
+        return commentMapper.ToDTO(comment);
+    }
+
+    public CommentDTO deleteComment(long id) {
+    
+        Comment comment = commentRepository.findById(id).orElse(null);
+        if (comment != null) {
+            commentRepository.delete(comment);
+            return commentMapper.ToDTO(comment);
+        }
+        return null;
+    }
+
 
     public Optional<Comment> findById(long id) {
         return commentRepository.findById(id);
