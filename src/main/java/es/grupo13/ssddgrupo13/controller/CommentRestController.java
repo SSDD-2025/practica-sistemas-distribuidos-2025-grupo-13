@@ -24,7 +24,7 @@ public class CommentRestController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/")
+    @GetMapping("/comments/")
     public Collection<CommentDTO> getAllComments() {
         return commentService.getComments();
     }

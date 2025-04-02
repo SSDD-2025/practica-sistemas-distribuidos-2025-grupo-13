@@ -121,6 +121,7 @@ public class SecurityConfig {
 						.requestMatchers("/login", "/loginError").permitAll()
 						.requestMatchers("/clubbing/**", "/events/**", "/festivals/**", "/sign-in/**").permitAll()
 						.requestMatchers("/concerts/**").permitAll()
+						.requestMatchers("/comments/**").permitAll()
 						.requestMatchers("/logout/**").permitAll()
 						.requestMatchers("/register/**").permitAll()
 						.requestMatchers("/sign-up").permitAll()

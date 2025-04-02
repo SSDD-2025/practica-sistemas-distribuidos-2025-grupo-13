@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.grupo13.ssddgrupo13.dto.CommentDTO;
-import es.grupo13.ssddgrupo13.dto.CommentMapperImpl;
+import es.grupo13.ssddgrupo13.dto.CommentMapper;
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
@@ -23,7 +23,7 @@ public class CommentService {
     private CommentRepository commentRepository;
 
     @Autowired
-    private CommentMapperImpl commentMapper;
+    private  CommentMapper commentMapper;
 
     public Collection<CommentDTO> getComments() {
         return commentMapper.ToDTOs(commentRepository.findAll());
