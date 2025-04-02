@@ -68,7 +68,7 @@ public class AdminController {
     @GetMapping("/")
     public String adminPage(HttpServletRequest request, Model model) {
         Iterable<EventDTO> events = eventService.getAllEvents();
-        Iterable<CommentDTO> comments = commentService.getComments();
+        Iterable<CommentDTO> comments = commentService.getAllComments();
 
         model.addAttribute("event", events);
         model.addAttribute("comment", comments);
