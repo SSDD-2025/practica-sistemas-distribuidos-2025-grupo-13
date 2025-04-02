@@ -131,6 +131,7 @@ public class SecurityConfig {
 						.requestMatchers("/ticket/**").permitAll()
 
 						// PRIVATE PAGES
+						.requestMatchers("/comments/**").permitAll()
 						.requestMatchers("/clients/**").permitAll()
 						.requestMatchers("/event/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/newEvent/**").hasAnyRole("ADMIN")
