@@ -8,7 +8,6 @@
         <h1>ALASDOCE</h1>
         <hr class="line-title-clubbing" href="#">
         </hr>
-        
     </div>
 </section>
 
@@ -33,8 +32,6 @@
                     <input type="hidden" name="commentID" value="{{id}}">
                     <input type="hidden" name="_csrf" value="{{token}}"/>
                     <button type="submit" class="btn">Eliminar</button>
-                    
-
                 </form>
             </div>
             {{/comment}}
@@ -57,28 +54,23 @@
             </div>
             <div class="club1-text">
                 <h2>{{title}}</h2>
-                <p>{{address}}</p>
+                {{#address}}
+                    <p>{{address}}</p>
+                {{/address}}
+                {{^address}}
+                    <p>Dirección no disponible</p>
+                {{/address}}
                 <p>{{description}}</p>
-                <p>{{timeStartFormat}}  ----  {{timeFinishFormat}}</p>
+                <p>{{timeStart}}  ----  {{timeFinish}}</p>
             </div>
             <form action="/admin/deleteEvent/{{id}}" method="post">
                 <input type="hidden" name="eventID" value="{{id}}">
                 <input type="hidden" name="_csrf" value="{{token}}"/>
                 <button type="submit" class="btnclub">Eliminar</button>
             </form>
-            
         </div>
         {{/event}}
     </div>
 </section>
 
 <form action="/logout" method="post">
-    <button type="submit" class="btn btn-login me-2">Cerrar sesión</button>
-    <input type="hidden" name="_csrf" value="{{token}}"/>
-</form>  
-
-{{>footer}}
-
-</body>
-
-</html>

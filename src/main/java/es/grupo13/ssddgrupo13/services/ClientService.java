@@ -63,15 +63,15 @@ public class ClientService {
 		return toDTO(client);
     }
     
-    private ClientDTO toDTO(Client client){
+    public ClientDTO toDTO(Client client){
 		return clientMapper.ToDTO(client);
 	}
 
-	private Client toDomain(ClientDTO clientDTO){
+	public Client toDomain(ClientDTO clientDTO){
 		return clientMapper.ToDomain(clientDTO);
 	}
 
-	private Collection<ClientDTO> toDTOs(Collection<Client> clients){
+	public Collection<ClientDTO> toDTOs(Collection<Client> clients){
 		return clientMapper.ToDTOs(clients);
 	}
 }

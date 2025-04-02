@@ -14,6 +14,7 @@
 package es.grupo13.ssddgrupo13.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import es.grupo13.ssddgrupo13.controller.CustomExceptions.UserNotFoundException;
+import es.grupo13.ssddgrupo13.dto.ClientDTO;
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.services.ClientService;
@@ -58,18 +59,15 @@ public class ClientController {
       * Handles user registration (sign-up).
      */
     @PostMapping("/sign-up")
-    public String signUp(@RequestParam String name,
-                         @RequestParam String lastName,
-                         @RequestParam String email,
-                         @RequestParam String password,
-                         HttpServletRequest request,
-                         Model model) {
+    public String signUp(HttpServletRequest request,
+                         Model model, ClientDTO client) {
 
-        if (clientRepository.findByEmail(email).isPresent()) {
+        if (clientRepository.findByEmail(client.email()).isPresent()) {
             return "redirect:/register?error=user_exists";
         }
 
-        Client newUser = new Client(name, lastName, email, passwordEncoder.encode(password), List.of("USER"));
+        Client newUser = clientService.toDomain(client);
+        newUser.setRoles(Arrays.asList("USER"));
         clientRepository.save(newUser);
 
         authenticateUser(newUser, request);
@@ -100,15 +98,14 @@ public class ClientController {
      * Authenticates user through login form.
      */
     @PostMapping("/authenticate")
-    public String loginUser(@RequestParam String email,
-                            @RequestParam String password,
+    public String loginUser(ClientDTO clientDTO,
                             HttpServletRequest request,
                             Model model) {
 
-        Client client = clientService.findByEmail(email)
+        Client client = clientService.findByEmail(clientDTO.email())
                 .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
 
-        if (!passwordEncoder.matches(password, client.getEncodedPassword())) {
+        if (!passwordEncoder.matches(clientDTO.password(), client.getEncodedPassword())) {
             return "redirect:/login?error=true";
         }
 
@@ -154,9 +151,7 @@ public class ClientController {
       * Handles profile updates (name and last name).
      */
     @PostMapping("/edit-profile")
-    public String editProfile(@RequestParam String name,
-                              @RequestParam String lastName,
-                              Model model) {
+    public String editProfile(ClientDTO clientDTO, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         boolean isLoggedIn = isAuthenticatedUser(auth);
         model.addAttribute("isUserLogged", isLoggedIn);
@@ -166,8 +161,8 @@ public class ClientController {
             if (client != null) {
                 Client managedClient = clientService.findByEmail(client.getEmail()).orElse(null);
                 if (managedClient != null) {
-                    managedClient.setName(name);
-                    managedClient.setLastName(lastName);
+                    managedClient.setName(clientDTO.name());
+                    managedClient.setLastName(clientDTO.lastName());
                     clientService.save(managedClient);
                     model.addAttribute("userLogged", managedClient);
                 }

@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import es.grupo13.ssddgrupo13.model.Comment;
-import es.grupo13.ssddgrupo13.model.Event;
+
+import es.grupo13.ssddgrupo13.dto.CommentDTO;
+import es.grupo13.ssddgrupo13.dto.EventDTO;
 import es.grupo13.ssddgrupo13.services.ClientService;
 import es.grupo13.ssddgrupo13.services.CommentService;
 import es.grupo13.ssddgrupo13.services.EventService;
@@ -66,8 +67,8 @@ public class AdminController {
      */
     @GetMapping("/")
     public String adminPage(HttpServletRequest request, Model model) {
-        Iterable<Event> events = eventService.findAll();
-        Iterable<Comment> comments = commentService.findAll();
+        Iterable<EventDTO> events = eventService.getAllEvents();
+        Iterable<CommentDTO> comments = commentService.getComments();
 
         model.addAttribute("event", events);
         model.addAttribute("comment", comments);

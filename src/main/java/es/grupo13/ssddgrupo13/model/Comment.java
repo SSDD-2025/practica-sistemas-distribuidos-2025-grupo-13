@@ -15,7 +15,7 @@ public class Comment {
     private String title;
     private String autor;
     private String text;
-    private String rating;
+    private int rating;
 
     @ManyToOne
     private Client client;
@@ -33,7 +33,7 @@ public class Comment {
         this.autor = autor;
         this.text = text;
         String estrella = " &#9733";
-        this.rating = ""+rating;  // Initialize the string 
+        this.rating = rating;  // Initialize the string 
         // for (int i = 0; i < rating; i++) {
         //     this.rating += estrella;  // Concatenate well
         // }
@@ -64,11 +64,11 @@ public class Comment {
         this.text = text;
     }
 
-    public String getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
