@@ -1,7 +1,5 @@
 package es.grupo13.ssddgrupo13.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,9 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import es.grupo13.ssddgrupo13.model.Client;
-import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.services.ClientService;
-import es.grupo13.ssddgrupo13.services.EventService;
 
 /**
  * Handles navigation between static and dynamic pages.
@@ -22,7 +18,6 @@ import es.grupo13.ssddgrupo13.services.EventService;
 public class PageController {
 
     @Autowired private ClientService clientService;
-    @Autowired private EventService eventService;
 
     @GetMapping("/")
     public String indexForm() {
@@ -50,13 +45,6 @@ public class PageController {
         model.addAttribute("comments", managedClient.getComments());
 
         return "profile";
-    }
-
-    @GetMapping("/clubbing")
-    public String clubbingRedirection(Model model) {
-        List<Event> clubs = eventService.findByType("club");
-        model.addAttribute("club", clubs);
-        return "clubbing";
     }
 
     @GetMapping("/contact")

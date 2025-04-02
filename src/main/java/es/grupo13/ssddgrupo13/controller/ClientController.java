@@ -59,8 +59,7 @@ public class ClientController {
       * Handles user registration (sign-up).
      */
     @PostMapping("/sign-up")
-    public String signUp(HttpServletRequest request,
-                         Model model, ClientDTO client) {
+    public String signUp(HttpServletRequest request, Model model, ClientDTO client) {
 
         if (clientRepository.findByEmail(client.email()).isPresent()) {
             return "redirect:/register?error=user_exists";

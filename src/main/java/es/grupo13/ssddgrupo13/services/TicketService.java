@@ -2,6 +2,7 @@ package es.grupo13.ssddgrupo13.services;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,28 @@ public class TicketService {
     public Optional<Ticket> findById(long id) {
         return ticketRepository.findById(id);
     }
+
     public Ticket save(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
+
+    public TicketDTO createTicket(TicketDTO ticketDTO) {
+        Ticket ticket = toDomain(ticketDTO);
+        ticketRepository.save(ticket);
+        return toDTO(ticket);
+    }
+
+    public TicketDTO replacePost(Long id, TicketDTO updatedTicketDTO) {
+        if (ticketRepository.existsById(id)) {
+            Ticket updatedTicket = toDomain(updatedTicketDTO);
+            updatedTicket.setId(id);
+            ticketRepository.save(updatedTicket);
+            return toDTO(updatedTicket);
+        } else {
+            throw new NoSuchElementException();
+        }
+	}
+
     public TicketDTO deleteTicket(long id) {
         Ticket ticket = ticketRepository.findById(id).orElseThrow();
         ticketRepository.deleteById(id);

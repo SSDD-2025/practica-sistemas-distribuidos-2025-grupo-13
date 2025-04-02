@@ -51,7 +51,7 @@ public class Event {
     private String type;
 
 	@Column(nullable = false)
-    private Integer precio;
+    private Integer price;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
@@ -63,7 +63,7 @@ public class Event {
 
     }
 
-    public Event(String title, String description, LocalDateTime timeStart, LocalDateTime timeFinish, String address, String type, Integer precio, Blob imageFile) {
+    public Event(String title, String description, LocalDateTime timeStart, LocalDateTime timeFinish, String address, String type, Integer price, Blob imageFile) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy, HH:mm");
 		String formattedStart = timeStart.format(formatter);
 		String formattedEnd = timeFinish.format(formatter);
@@ -75,8 +75,7 @@ public class Event {
 		this.timeFinish = timeFinish;
 		this.address = address;
 		this.type = type;
-		this.precio = precio;
-		
+		this.price = price;
 		this.imageFile = imageFile;
     }
 
@@ -88,18 +87,16 @@ public class Event {
 		this.id = id;
 	}
 
-	public Integer getPrecio() {
-		return precio;
+	public Integer getPrice() {
+		return price;
 	}
 
-	public void setPrecio(Integer precio) {
-		this.precio = precio;
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 
 	public void setImage(Blob imageFile) {
-		
-		this.imageFile = imageFile ;
-		
+		this.imageFile = imageFile;
 	}
 
 	public Blob getImage() {

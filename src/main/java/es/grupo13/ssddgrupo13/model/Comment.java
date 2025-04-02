@@ -32,7 +32,7 @@ public class Comment {
         super();
         this.autor = autor;
         this.text = text;
-        String estrella = " &#9733";
+        // String estrella = " &#9733";
         this.rating = rating;  // Initialize the string 
         // for (int i = 0; i < rating; i++) {
         //     this.rating += estrella;  // Concatenate well

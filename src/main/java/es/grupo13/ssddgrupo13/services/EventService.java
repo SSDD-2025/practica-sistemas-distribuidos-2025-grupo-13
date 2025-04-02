@@ -2,6 +2,7 @@ package es.grupo13.ssddgrupo13.services;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,21 +102,32 @@ public class EventService {
 		return toDTO(event);
 	}
 
+    public EventDTO replaceEvent(Long id, EventDTO updatedEventDTO) {
+		if (eventRepository.existsById(id)) {
+			Event updatedEvent = toDomain(updatedEventDTO);
+			updatedEvent.setId(id);
+			eventRepository.save(updatedEvent);
+			return toDTO(updatedEvent);
+		} else {
+			throw new NoSuchElementException();
+		}
+	}
+
     public EventDTO deleteEvent(long id) {
 		Event event = eventRepository.findById(id).orElseThrow();
 		eventRepository.deleteById(id);
 		return toDTO(event);
 	}
 
-    private EventDTO toDTO(Event event){
+    public EventDTO toDTO(Event event){
 		return eventMapper.ToDTO(event);
 	}
 
-	private Event toDomain(EventDTO eventDTO){
+	public Event toDomain(EventDTO eventDTO){
 		return eventMapper.ToDomain(eventDTO);
 	}
 
-	private Collection<EventDTO> toDTOs(Collection<Event> events){
+	public Collection<EventDTO> toDTOs(Collection<Event> events){
 		return eventMapper.ToDTOs(events);
 	}
 

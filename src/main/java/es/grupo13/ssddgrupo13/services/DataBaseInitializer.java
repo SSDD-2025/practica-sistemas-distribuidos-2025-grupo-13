@@ -146,56 +146,56 @@ public class DataBaseInitializer {
                 }
                 // Add tickets to the database
                 for (int i = 0; i < 5; i++) {
-                        Ticket ts = new Ticket(shoko.getTitle(), shoko.getPrecio().floatValue(), shoko.getTimeFinish(),
+                        Ticket ts = new Ticket(shoko.getTitle(), shoko.getPrice().floatValue(), shoko.getTimeFinish(),
                                         TicketStatus.OPEN);
 
                         shoko.getTickets().add(ts);
 
-                        Ticket to = new Ticket(ohmyclub.getTitle(), ohmyclub.getPrecio().floatValue(),
+                        Ticket to = new Ticket(ohmyclub.getTitle(), ohmyclub.getPrice().floatValue(),
                                         ohmyclub.getTimeFinish(), TicketStatus.OPEN);
 
                         ohmyclub.getTickets().add(to);
 
-                        Ticket tl = new Ticket(liberata.getTitle(), liberata.getPrecio().floatValue(),
+                        Ticket tl = new Ticket(liberata.getTitle(), liberata.getPrice().floatValue(),
                                         liberata.getTimeFinish(), TicketStatus.OPEN);
 
                         liberata.getTickets().add(tl);
 
-                        Ticket tm = new Ticket(madcool.getTitle(), madcool.getPrecio().floatValue(),
+                        Ticket tm = new Ticket(madcool.getTitle(), madcool.getPrice().floatValue(),
                                         madcool.getTimeFinish(), TicketStatus.OPEN);
 
                         madcool.getTickets().add(tm);
 
-                        Ticket tb = new Ticket(blackworks.getTitle(), blackworks.getPrecio(),
+                        Ticket tb = new Ticket(blackworks.getTitle(), blackworks.getPrice(),
                                         blackworks.getTimeFinish(), TicketStatus.OPEN);
 
                         blackworks.getTickets().add(tb);
 
-                        Ticket tms = new Ticket(madridSalvaje.getTitle(), madridSalvaje.getPrecio(),
+                        Ticket tms = new Ticket(madridSalvaje.getTitle(), madridSalvaje.getPrice(),
                                         madridSalvaje.getTimeFinish(), TicketStatus.OPEN);
 
                         madridSalvaje.getTickets().add(tms);
-                        Ticket trb = new Ticket(rioBabel.getTitle(), rioBabel.getPrecio().floatValue(),
+                        Ticket trb = new Ticket(rioBabel.getTitle(), rioBabel.getPrice().floatValue(),
                                         rioBabel.getTimeFinish(), TicketStatus.OPEN);
 
                         rioBabel.getTickets().add(trb);
 
-                        Ticket tnw = new Ticket(natosywaor.getTitle(), natosywaor.getPrecio().floatValue(),
+                        Ticket tnw = new Ticket(natosywaor.getTitle(), natosywaor.getPrice().floatValue(),
                                         natosywaor.getTimeFinish(), TicketStatus.OPEN);
 
                         natosywaor.getTickets().add(tnw);
 
-                        Ticket tas = new Ticket(alsafir.getTitle(), alsafir.getPrecio().floatValue(),
+                        Ticket tas = new Ticket(alsafir.getTitle(), alsafir.getPrice().floatValue(),
                                         alsafir.getTimeFinish(), TicketStatus.OPEN);
 
                         alsafir.getTickets().add(tas);
 
-                        Ticket tpk = new Ticket(pekeno.getTitle(), pekeno.getPrecio().floatValue(),
+                        Ticket tpk = new Ticket(pekeno.getTitle(), pekeno.getPrice().floatValue(),
                                         pekeno.getTimeFinish(), TicketStatus.OPEN);
 
                         pekeno.getTickets().add(tpk);
 
-                        Ticket tcz = new Ticket(cruzzi.getTitle(), cruzzi.getPrecio().floatValue(),
+                        Ticket tcz = new Ticket(cruzzi.getTitle(), cruzzi.getPrice().floatValue(),
                                         cruzzi.getTimeFinish(), TicketStatus.OPEN);
 
                         cruzzi.getTickets().add(tcz);
