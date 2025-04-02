@@ -1,6 +1,5 @@
 package es.grupo13.ssddgrupo13.dto;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.mapstruct.Mapper;

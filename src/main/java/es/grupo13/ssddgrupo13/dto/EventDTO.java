@@ -6,6 +6,6 @@ import java.time.LocalDateTime;
 public record EventDTO(Long id, String title, 
         String description, LocalDateTime timeStart, 
         LocalDateTime timeFinish, String address, 
-        String type, Integer precio, Blob imageFile) {
+        String type, Integer price, Blob imageFile) {
 }  
 

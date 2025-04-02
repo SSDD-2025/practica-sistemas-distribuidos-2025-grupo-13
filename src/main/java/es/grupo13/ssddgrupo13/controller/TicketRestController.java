@@ -29,9 +29,9 @@ public class TicketRestController {
     public TicketDTO getAllTickets(@PathVariable long id){
         return ticketService.getTicket(id);
     }
-
     @DeleteMapping("/{id}")
     public TicketDTO deleteTicket(@PathVariable long id){
         return ticketService.deleteTicket(id);
     }
+
 }

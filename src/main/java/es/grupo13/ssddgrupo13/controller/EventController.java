@@ -3,7 +3,6 @@ package es.grupo13.ssddgrupo13.controller;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.grupo13.ssddgrupo13.dto.EventDTO;
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.model.Ticket;
@@ -107,6 +107,14 @@ public class EventController {
         return showEventsByType("festival", request, model, "festivales", "festivals");
     }
 
+    /**
+     * Displays club events.
+     */
+    @GetMapping("/clubbing")
+    public String showClubs(HttpServletRequest request, Model model) {
+        return showEventsByType("club", request, model, "club", "clubbing");
+    }
+
     private String showEventsByType(String type, HttpServletRequest request, Model model, String attr, String view) {
         model.addAttribute(attr, eventService.findByType(type));
         return view;
@@ -135,21 +143,10 @@ public class EventController {
     }
 
     /**
-     * Handles event creation.
+     * Handles new event creation.
      */
     @PostMapping("/addNewEvent")
-    public String addNewEvent(@RequestParam String titleEvent,
-                               @RequestParam String description,
-                               @RequestParam String typeOptions,
-                               @RequestParam String timeStart,
-                               @RequestParam String timeEnd,
-                               @RequestParam String addressEvent,
-                               @RequestParam int priceEvent,
-                               @RequestParam MultipartFile image,
-                               Model model) {
-
-        LocalDateTime start = LocalDateTime.parse(timeStart);
-        LocalDateTime end = LocalDateTime.parse(timeEnd);
+    public String addNewEvent(EventDTO eventDTO, @RequestParam MultipartFile image, Model model) {
 
         Blob imageBlob;
         try {
@@ -160,11 +157,12 @@ public class EventController {
             return "error";
         }
 
-        Event event = new Event(titleEvent, description, start, end, addressEvent, typeOptions, priceEvent, imageBlob);
+        Event event = eventService.toDomain(eventDTO);
+        event.setImage(imageBlob);
         eventService.save(event);
 
         for (int i = 0; i < 10; i++) {
-            Ticket ticket = new Ticket(event.getTitle(), event.getPrecio(), end, TicketStatus.OPEN);
+            Ticket ticket = new Ticket(event.getTitle(), event.getPrice(), event.getTimeFinish(), TicketStatus.OPEN);
             ticketService.save(ticket);
             event.getTickets().add(ticket);
         }
