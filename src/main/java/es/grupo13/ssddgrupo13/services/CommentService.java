@@ -25,12 +25,14 @@ public class CommentService {
     @Autowired
     private  CommentMapper commentMapper;
 
-    public Collection<CommentDTO> getComments() {
+    public Collection<CommentDTO> getAllComments() {
         return commentMapper.ToDTOs(commentRepository.findAll());
     }
+
     public CommentDTO getCommentById(long id) {
         return commentMapper.ToDTO(commentRepository.findById(id).orElse(null));
     }
+
     public CommentDTO createComment(CommentDTO commentDTO) {
         Comment comment = commentMapper.ToDomain(commentDTO);
         commentRepository.save(comment);

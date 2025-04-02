@@ -26,7 +26,7 @@ public class CommentRestController {
 
     @GetMapping("/")
     public Collection<CommentDTO> getAllComments() {
-        return commentService.getComments();
+        return commentService.getAllComments();
     }
 
     @GetMapping("/{id}")
