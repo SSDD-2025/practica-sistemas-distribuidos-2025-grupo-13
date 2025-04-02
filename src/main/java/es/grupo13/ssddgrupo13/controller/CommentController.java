@@ -56,10 +56,10 @@ public class CommentController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!isAuthenticatedUser(auth)) {
-        model.addAttribute("title", "Acceso denegado");
-        model.addAttribute("message", "Necesitas iniciar sesión para comentar.");
-        model.addAttribute("linkText", "Aceptar");
-        model.addAttribute("linkUrl", "/");
+            model.addAttribute("title", "Acceso denegado");
+            model.addAttribute("message", "Necesitas iniciar sesión para comentar.");
+            model.addAttribute("linkText", "Aceptar");
+            model.addAttribute("linkUrl", "/");
             return "notification";
         }
 
