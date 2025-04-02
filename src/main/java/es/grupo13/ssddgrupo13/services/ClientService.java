@@ -32,7 +32,7 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public Collection<ClientDTO> getAll(){
+    public Collection<ClientDTO> getAllClients(){
         return toDTOs(clientRepository.findAll());
     }
 

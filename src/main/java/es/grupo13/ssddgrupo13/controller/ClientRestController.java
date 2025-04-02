@@ -18,11 +18,8 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 import es.grupo13.ssddgrupo13.dto.ClientDTO;
 import es.grupo13.ssddgrupo13.services.ClientService;
 
-
-
-
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/clients")
 public class ClientRestController {
 
     @Autowired
@@ -30,7 +27,7 @@ public class ClientRestController {
 
     @GetMapping("/")
     public Collection<ClientDTO> getAllClients(){
-        return clientService.getAll();
+        return clientService.getAllClients();
     }
 
     @GetMapping("/{id}")
