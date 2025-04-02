@@ -4,7 +4,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import es.grupo13.ssddgrupo13.controller.CustomExceptions.UserNotFoundException;
+import es.grupo13.ssddgrupo13.controller.customExceptions.UserNotFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionController {

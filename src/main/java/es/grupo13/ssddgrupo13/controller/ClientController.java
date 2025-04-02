@@ -30,7 +30,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import es.grupo13.ssddgrupo13.controller.CustomExceptions.UserNotFoundException;
+import es.grupo13.ssddgrupo13.controller.customExceptions.UserNotFoundException;
 import es.grupo13.ssddgrupo13.dto.ClientDTO;
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
