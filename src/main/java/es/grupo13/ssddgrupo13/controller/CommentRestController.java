@@ -18,13 +18,13 @@ import es.grupo13.ssddgrupo13.services.CommentService;
 
 
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/api/comments")
 public class CommentRestController {
 
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/comments/")
+    @GetMapping("/")
     public Collection<CommentDTO> getAllComments() {
         return commentService.getComments();
     }

@@ -18,7 +18,7 @@ import es.grupo13.ssddgrupo13.dto.EventDTO;
 import es.grupo13.ssddgrupo13.services.EventService;
 
 @RestController
-@RequestMapping("/events")
+@RequestMapping("/api/events")
 public class EventRestController {
     
     @Autowired

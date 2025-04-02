@@ -132,8 +132,6 @@ public class SecurityConfig {
 						.requestMatchers("/ticket/**").permitAll()
 
 						// PRIVATE PAGES
-						.requestMatchers("/comments/**").permitAll()
-						.requestMatchers("/clients/**").permitAll()
 						.requestMatchers("/event/**").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/newEvent/**").hasAnyRole("ADMIN")
 						.requestMatchers("/data/**").hasAnyRole("USER", "ADMIN")
@@ -141,6 +139,9 @@ public class SecurityConfig {
 						.requestMatchers("/buyTicket/**").authenticated()
 						.requestMatchers("/editprofilepage").authenticated()
 						.requestMatchers("/edit-profile").authenticated()
+
+						.requestMatchers("/api/**").permitAll()
+						.requestMatchers("/error/**").permitAll()
 				// We have to make an admin page (/admin/**)
 				)
 				.formLogin(formLogin -> formLogin

@@ -19,7 +19,7 @@ import es.grupo13.ssddgrupo13.dto.ClientDTO;
 import es.grupo13.ssddgrupo13.services.ClientService;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/api/clients")
 public class ClientRestController {
 
     @Autowired
