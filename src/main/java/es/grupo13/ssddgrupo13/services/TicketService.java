@@ -38,6 +38,9 @@ public class TicketService {
     public Ticket save(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
+    public void deleteTicket(long id) {
+        ticketRepository.deleteById(id);
+    }
 
     @Transactional
     public void buyTicket(Client client, Event event, Ticket ticket) {

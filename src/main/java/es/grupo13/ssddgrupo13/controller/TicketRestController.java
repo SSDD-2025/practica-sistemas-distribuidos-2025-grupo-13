@@ -3,6 +3,7 @@ package es.grupo13.ssddgrupo13.controller;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +28,9 @@ public class TicketRestController {
     @GetMapping("/{id}")
     public TicketDTO getAllTickets(@PathVariable long id){
         return ticketService.getTicket(id);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteTicket(@PathVariable long id){
+        ticketService.deleteTicket(id);
     }
 }
