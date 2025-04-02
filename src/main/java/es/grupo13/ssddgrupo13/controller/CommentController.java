@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.grupo13.ssddgrupo13.dto.CommentDTO;
+import es.grupo13.ssddgrupo13.dto.CommentMapper;
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.model.Event;
@@ -40,13 +42,15 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private CommentMapper commentMapper;
+
     /**
      * Adds a new comment to the specified event.
     */
     @PostMapping("/comment_in")
     public String addComment(HttpServletRequest request,
-                            @RequestParam String text,
-                            @RequestParam(required = false, defaultValue = "0") String rating,
+                            CommentDTO commentDTO,
                             @RequestParam Long eventID,
                             Model model) {
 
@@ -69,7 +73,8 @@ public class CommentController {
         if (client == null) return "/error";
         
         
-        Comment comment = new Comment(client.getName(), text, Integer.parseInt(rating), event.getTitle());
+        Comment comment = commentMapper.ToDomain(commentDTO);
+        comment.setAutor(client.getName());
         comment.setEvent(event);
         comment.setClient(client);
 
