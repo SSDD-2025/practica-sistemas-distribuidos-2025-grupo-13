@@ -30,7 +30,8 @@ public class TicketRestController {
         return ticketService.getTicket(id);
     }
     @DeleteMapping("/{id}")
-    public void deleteTicket(@PathVariable long id){
-        ticketService.deleteTicket(id);
+    public TicketDTO deleteTicket(@PathVariable long id){
+
+        return ticketService.deleteTicket(id);
     }
 }

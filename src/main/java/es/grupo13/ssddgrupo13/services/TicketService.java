@@ -38,8 +38,10 @@ public class TicketService {
     public Ticket save(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
-    public void deleteTicket(long id) {
+    public TicketDTO deleteTicket(long id) {
+        Ticket ticket = ticketRepository.findById(id).orElseThrow();
         ticketRepository.deleteById(id);
+        return toDTO(ticket);
     }
 
     @Transactional
