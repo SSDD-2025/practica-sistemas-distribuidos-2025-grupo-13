@@ -49,7 +49,7 @@ public class CommentRestController {
     }
 
     @PutMapping("/{id}")
-    public CommentDTO replaceClient(@PathVariable long id, @RequestBody CommentDTO updatedCommentDTO) {
+    public CommentDTO replaceComment(@PathVariable Long id, @RequestBody CommentDTO updatedCommentDTO) {
         return commentService.replaceComment(id, updatedCommentDTO);
     }
 

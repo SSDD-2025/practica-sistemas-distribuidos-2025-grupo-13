@@ -45,7 +45,7 @@ public class TicketService {
         return toDTO(ticket);
     }
 
-    public TicketDTO replacePost(Long id, TicketDTO updatedTicketDTO) {
+    public TicketDTO replaceTicket(Long id, TicketDTO updatedTicketDTO) {
         if (ticketRepository.existsById(id)) {
             Ticket updatedTicket = toDomain(updatedTicketDTO);
             updatedTicket.setId(id);
@@ -65,10 +65,8 @@ public class TicketService {
 
     @Transactional
     public void buyTicket(Client client, Ticket ticket) {
-
         Client managedClient = clientService.findById(client.getId())
             .orElseThrow(() -> new RuntimeException("Client not found"));
-
         ticket.setStatus(TicketStatus.CLOSED);
         ticket.setClient(client);
         managedClient.getTickets().add(ticket);

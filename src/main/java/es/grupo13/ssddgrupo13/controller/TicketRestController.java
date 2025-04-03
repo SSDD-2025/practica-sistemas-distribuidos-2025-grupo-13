@@ -30,8 +30,6 @@ public class TicketRestController {
     @Autowired
     TicketService ticketService;
 
-    
-
     @GetMapping("/")
     public Page<TicketDTO> getAllTickets(Pageable pageable){
         return ticketRepository.findAll(pageable).map(ticketService::toDTO);
@@ -51,7 +49,7 @@ public class TicketRestController {
 
     @PutMapping("/{id}")
 	public TicketDTO replaceTicket(@PathVariable Long id, @RequestBody TicketDTO updatedTicketDTO) {
-		return ticketService.replacePost(id, updatedTicketDTO);
+		return ticketService.replaceTicket(id, updatedTicketDTO);
 	}
 
     @DeleteMapping("/{id}")

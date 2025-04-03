@@ -40,7 +40,7 @@ public class CommentService {
         return commentMapper.ToDTO(comment);
     }
 
-    public CommentDTO replaceComment(long id, CommentDTO updatedCommentDTO) {
+    public CommentDTO replaceComment(Long id, CommentDTO updatedCommentDTO) {
 		if (commentRepository.existsById(id)) {
 			Comment updatedComment = toDomain(updatedCommentDTO);
 			updatedComment.setId(id);
@@ -51,7 +51,7 @@ public class CommentService {
 		}
 	}
 
-    public CommentDTO deleteComment(long id) {
+    public CommentDTO deleteComment(Long id) {
     
         Comment comment = commentRepository.findById(id).orElse(null);
         if (comment != null) {
@@ -61,11 +61,11 @@ public class CommentService {
         return null;
     }
 
-    public Optional<Comment> findById(long id) {
+    public Optional<Comment> findById(Long id) {
         return commentRepository.findById(id);
     }
 
-    public void deleteById(long id) {
+    public void deleteById(Long id) {
         commentRepository.deleteById(id);
     }
 

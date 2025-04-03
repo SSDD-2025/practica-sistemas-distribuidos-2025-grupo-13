@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -69,7 +70,7 @@ public class SecurityConfig {
 						// NO esta bien
 						/*.requestMatchers(HttpMethod.POST, "/api/events/").hasRole("ADMIN")
 						.requestMatchers(HttpMethod.PUT, "/api/events/**").hasRole("ADMIN")
-						.requestMatchers(HttpMethod.DELETE, "/api/events/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.DELETE, "/api/events/**").hasRole("ADMIN")*/
 						// GET de los eventos los puede ver cualquier usuario (permitAll)
 						/*.requestMatchers(HttpMethod.POST, "/api/comments/").hasAnyRole("USER" ,"ADMIN")
 						.requestMatchers(HttpMethod.POST, "/api/clients/").hasAnyRole("USER" ,"ADMIN")
