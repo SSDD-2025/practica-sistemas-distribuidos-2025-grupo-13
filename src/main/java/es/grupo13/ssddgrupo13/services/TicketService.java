@@ -96,4 +96,7 @@ public class TicketService {
 		return ticketMapper.ToDTOs(ticket);
 	}
 
+    public void detachAndDelete(Ticket ticket){
+        //borrar del evento el ticket
+    }
 }
