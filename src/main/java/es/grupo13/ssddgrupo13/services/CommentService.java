@@ -43,7 +43,7 @@ public class CommentService {
     
         Comment comment = commentRepository.findById(id).orElse(null);
         if (comment != null) {
-            commentRepository.delete(comment);
+            detachAndDelete(id);
             return commentMapper.ToDTO(comment);
         }
         return null;
