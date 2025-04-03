@@ -132,6 +132,18 @@ public class DataBaseInitializer {
                 eventRepository.save(pekeno);
                 eventRepository.save(cruzzi);
 
+                setImageURL(shoko);
+                setImageURL(ohmyclub);
+                setImageURL(liberata);
+                setImageURL(madcool);
+                setImageURL(blackworks);
+                setImageURL(madridSalvaje);
+                setImageURL(rioBabel);
+                setImageURL(natosywaor);
+                setImageURL(alsafir);
+                setImageURL(pekeno);
+                setImageURL(cruzzi);
+
                 // Save comments to the database
                 for (Event event : Arrays.asList(shoko, madcool, ohmyclub, liberata, blackworks,
                                 madridSalvaje, rioBabel, natosywaor, alsafir, pekeno, cruzzi)) {
@@ -229,6 +241,11 @@ public class DataBaseInitializer {
                 eventRepository.save(alsafir);
                 eventRepository.save(pekeno);
                 eventRepository.save(cruzzi);
+        }
+
+        public void setImageURL(Event event) {
+                event.setImage("https://localhost:8443/api/events/" + event.getId() + "/image");
+                eventRepository.save(event);
         }
 
 }

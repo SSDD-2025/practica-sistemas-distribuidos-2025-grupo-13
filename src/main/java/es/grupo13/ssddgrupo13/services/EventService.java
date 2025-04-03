@@ -1,11 +1,17 @@
 package es.grupo13.ssddgrupo13.services;
 
+import java.io.InputStream;
+import java.net.URI;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import es.grupo13.ssddgrupo13.dto.EventDTO;
@@ -117,6 +123,22 @@ public class EventService {
 		Event event = eventRepository.findById(id).orElseThrow();
 		eventRepository.deleteById(id);
 		return toDTO(event);
+	}
+
+    public void createEventImage(Long id, URI location, InputStream inputStream, long size) {
+		Event event = eventRepository.findById(id).orElseThrow();
+		event.setImage(location.toString());
+		event.setImageFile(BlobProxy.generateProxy(inputStream, size));
+		eventRepository.save(event);
+	}
+
+    public Resource getEventImage(Long id) throws SQLException {
+		Event event = eventRepository.findById(id).orElseThrow();
+		if (event.getImageFile() != null) {
+			return new InputStreamResource(event.getImageFile().getBinaryStream());
+		} else {
+			throw new NoSuchElementException();
+		}
 	}
 
     public EventDTO toDTO(Event event){
