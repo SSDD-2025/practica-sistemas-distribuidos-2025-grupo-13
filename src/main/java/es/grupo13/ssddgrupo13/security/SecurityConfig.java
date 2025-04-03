@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -66,9 +67,18 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(authorize -> authorize
 						// PRIVATE ENDPOINTS
-						//.requestMatchers(HttpMethod.POST, "/api/books/").hasRole("USER")
-						//.requestMatchers(HttpMethod.PUT, "/api/books/**").hasRole("USER")
-						//.requestMatchers(HttpMethod.DELETE, "/api/books/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.POST, "/api/comments/").hasAnyRole("USER" ,"ADMIN")
+						.requestMatchers(HttpMethod.POST, "/api/clients/").hasAnyRole("USER" ,"ADMIN")
+						.requestMatchers(HttpMethod.POST, "/api/tickets/").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.POST, "/api/events/").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.PUT, "/api/comments/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.PUT, "/api/tickets/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.PUT, "/api/events/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.PUT, "/api/clients/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.DELETE, "/api/comments/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.DELETE, "/api/clients/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.DELETE, "/api/events/**").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.DELETE, "/api/tickets/**").hasRole("ADMIN")
 						// PUBLIC ENDPOINTS
 						.anyRequest().permitAll());
 
@@ -97,7 +107,7 @@ public class SecurityConfig {
 	// webFilterChain,
 	// and we will use the securityMatcher method to separate the endpoints
 	@Bean
-	@Order(1)
+	@Order(2)
 	public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
 
 		http.authenticationProvider(authenticationProvider());
