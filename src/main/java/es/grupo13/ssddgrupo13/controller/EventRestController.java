@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import es.grupo13.ssddgrupo13.dto.EventDTO;
@@ -78,6 +80,13 @@ public class EventRestController {
 				.ok()
 				.header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
 				.body(eventImage);
+	}
+
+    @PostMapping("/{id}/image")
+	public ResponseEntity<Object> createEventImage(@PathVariable Long id, @RequestParam MultipartFile imageFile) throws IOException {
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+		eventService.createEventImage(id, location, imageFile.getInputStream(), imageFile.getSize());
+		return ResponseEntity.created(location).build();
 	}
 
 }

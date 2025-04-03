@@ -19,7 +19,7 @@ import jakarta.persistence.OneToMany;
 public class Event {
     
 	@Lob
-	@Column(nullable = false)
+	// @Column(nullable = false)
 	private Blob imageFile;
 
     @Id
