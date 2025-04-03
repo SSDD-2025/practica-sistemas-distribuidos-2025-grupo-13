@@ -86,4 +86,15 @@ public class CommentService {
         commentRepository.delete(comment);
     }
 
+    public CommentDTO toDTO(Comment comment){
+		return commentMapper.ToDTO(comment);
+	}
+
+	public Comment toDomain(CommentDTO commentDTO){
+		return commentMapper.ToDomain(commentDTO);
+	}
+
+	public Collection<CommentDTO> toDTOs(Collection<Comment> comments){
+		return commentMapper.ToDTOs(comments);
+	}
 }

@@ -1,8 +1,9 @@
 package es.grupo13.ssddgrupo13.controller;
 import java.net.URI;
-import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,19 +15,24 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import es.grupo13.ssddgrupo13.dto.CommentDTO;
+import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.services.CommentService;
 
 
 @RestController
 @RequestMapping("/api/comments")
 public class CommentRestController {
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Autowired
     private CommentService commentService;
 
+
+
     @GetMapping("/")
-    public Collection<CommentDTO> getAllComments() {
-        return commentService.getAllComments();
+    public Page<CommentDTO> getAllComments(Pageable pageable) {
+        return commentRepository.findAll(pageable).map(commentService::toDTO);
     }
 
     @GetMapping("/{id}")

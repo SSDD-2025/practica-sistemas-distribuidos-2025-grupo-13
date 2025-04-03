@@ -1,9 +1,10 @@
 package es.grupo13.ssddgrupo13.controller;
 
 import java.net.URI;
-import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,18 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 import es.grupo13.ssddgrupo13.dto.ClientDTO;
+import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.services.ClientService;
 
 @RestController
 @RequestMapping("/api/clients")
 public class ClientRestController {
-
+    @Autowired
+    private ClientRepository clientRepository;
     @Autowired
     private ClientService clientService;
 
     @GetMapping("/")
-    public Collection<ClientDTO> getAllClients(){
-        return clientService.getAllClients();
+    public Page<ClientDTO> getAllClients(Pageable pageable){
+        return clientRepository.findAll(pageable).map(clientService::toDTO);
     }
 
     @GetMapping("/{id}")
