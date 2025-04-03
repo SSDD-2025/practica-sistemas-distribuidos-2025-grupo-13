@@ -1,6 +1,7 @@
 package es.grupo13.ssddgrupo13.services;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,17 @@ public class CommentService {
         commentRepository.save(comment);
         return commentMapper.ToDTO(comment);
     }
+
+    public CommentDTO replaceComment(long id, CommentDTO updatedCommentDTO) {
+		if (commentRepository.existsById(id)) {
+			Comment updatedComment = toDomain(updatedCommentDTO);
+			updatedComment.setId(id);
+			commentRepository.save(updatedComment);
+			return toDTO(updatedComment);
+		} else {
+			throw new NoSuchElementException();
+		}
+	}
 
     public CommentDTO deleteComment(long id) {
     

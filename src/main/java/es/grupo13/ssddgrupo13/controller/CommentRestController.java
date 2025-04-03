@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +46,11 @@ public class CommentRestController {
         CommentDTO commentDTOC = commentService.createComment(commentDTO);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(commentDTOC.id()).toUri();
 		return ResponseEntity.created(location).body(commentDTOC);
+    }
+
+    @PutMapping("/{id}")
+    public CommentDTO replaceClient(@PathVariable long id, @RequestBody CommentDTO updatedCommentDTO) {
+        return commentService.replaceComment(id, updatedCommentDTO);
     }
 
     @DeleteMapping("/{id}")
