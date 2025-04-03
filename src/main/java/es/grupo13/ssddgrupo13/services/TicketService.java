@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import es.grupo13.ssddgrupo13.dto.TicketDTO;
 import es.grupo13.ssddgrupo13.dto.TicketMapper;
 import es.grupo13.ssddgrupo13.model.Client;
-import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.model.Ticket;
 import es.grupo13.ssddgrupo13.model.TicketStatus;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
@@ -28,8 +27,7 @@ public class TicketService {
 
     @Autowired
     private TicketMapper ticketMapper;
-
-    List<Ticket> findByTitle(String title) {
+        List<Ticket> findByTitle(String title) {
         return ticketRepository.findByTitle(title);
     }
 
@@ -60,17 +58,19 @@ public class TicketService {
 
     public TicketDTO deleteTicket(long id) {
         Ticket ticket = ticketRepository.findById(id).orElseThrow();
+        detachAndDelete(id);
         ticketRepository.deleteById(id);
         return toDTO(ticket);
     }
 
     @Transactional
-    public void buyTicket(Client client, Event event, Ticket ticket) {
+    public void buyTicket(Client client, Ticket ticket) {
 
         Client managedClient = clientService.findById(client.getId())
             .orElseThrow(() -> new RuntimeException("Client not found"));
 
         ticket.setStatus(TicketStatus.CLOSED);
+        ticket.setClient(client);
         managedClient.getTickets().add(ticket);
         clientService.save(managedClient);
         save(ticket);
@@ -96,7 +96,11 @@ public class TicketService {
 		return ticketMapper.ToDTOs(ticket);
 	}
 
-    public void detachAndDelete(Ticket ticket){
-        //borrar del evento el ticket
+    private void detachAndDelete(long id){
+        Ticket ticket = ticketRepository.findById(id).orElseThrow();
+        ticket.getEvent().getTickets().remove(ticket);
+        if (ticket.getStatus().equals(TicketStatus.CLOSED)){
+            ticket.getClient().getTickets().remove(ticket);
+        }
     }
 }

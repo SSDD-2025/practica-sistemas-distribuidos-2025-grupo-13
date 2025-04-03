@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 import javax.sql.rowset.serial.SerialBlob;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -82,7 +83,7 @@ public class EventController {
 
         if (ticket == null) return "/error";
 
-        ticketService.buyTicket(client, event, ticket);
+        ticketService.buyTicket(client, ticket);
 
         model.addAttribute("title", "Ticket comprado");
         model.addAttribute("message", "¡Se ha comprado el ticket correctamente!");
@@ -162,7 +163,7 @@ public class EventController {
         eventService.save(event);
 
         for (int i = 0; i < 10; i++) {
-            Ticket ticket = new Ticket(event.getTitle(), event.getPrice(), event.getTimeFinish(), TicketStatus.OPEN);
+            Ticket ticket = new Ticket(event.getTitle(), event.getPrice(), event.getTimeFinish(), TicketStatus.OPEN, event);
             ticketService.save(ticket);
             event.getTickets().add(ticket);
         }

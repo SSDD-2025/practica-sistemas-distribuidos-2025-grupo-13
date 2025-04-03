@@ -10,6 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Ticket {
@@ -30,6 +31,12 @@ public class Ticket {
     @Column(nullable = false)
     private String timeStartFormat;
 
+    @ManyToOne
+    private Event event;
+
+    @ManyToOne
+    private Client client;
+
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
 
@@ -37,7 +44,7 @@ public class Ticket {
 
     }
 
-    public Ticket(String title, float price, LocalDateTime createdAt, TicketStatus status) {
+    public Ticket(String title, float price, LocalDateTime createdAt, TicketStatus status, Event event) {
         super();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy, HH:mm");
 		String formattedStart = createdAt.format(formatter);
@@ -46,6 +53,7 @@ public class Ticket {
         this.price = price;
         this.createdAt = createdAt;
         this.status = status;
+        this.event = event;
     }
 
     public Long getId() {
@@ -95,5 +103,21 @@ public class Ticket {
 	public void setTimeStartFormat(String timeStartFormat) {
 		this.timeStartFormat = timeStartFormat;
 	}
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
 }

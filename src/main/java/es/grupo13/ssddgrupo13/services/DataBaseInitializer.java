@@ -3,9 +3,11 @@ package es.grupo13.ssddgrupo13.services;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.model.Event;
@@ -16,7 +18,6 @@ import es.grupo13.ssddgrupo13.repository.CommentRepository;
 import es.grupo13.ssddgrupo13.repository.EventRepository;
 import es.grupo13.ssddgrupo13.repository.TicketRepository;
 import es.grupo13.ssddgrupo13.utils.ImageUtils;
-
 import jakarta.annotation.PostConstruct;
 
 @Component
@@ -39,6 +40,9 @@ public class DataBaseInitializer {
 
         @Autowired
         private ImageUtils imageUtils;
+
+        @Autowired
+        private TicketService ticketService;
 
         @PostConstruct
         public void init() {
@@ -159,77 +163,80 @@ public class DataBaseInitializer {
                 // Add tickets to the database
                 for (int i = 0; i < 5; i++) {
                         Ticket ts = new Ticket(shoko.getTitle(), shoko.getPrice().floatValue(), shoko.getTimeFinish(),
-                                        TicketStatus.OPEN);
+                                        TicketStatus.OPEN, shoko);
 
                         shoko.getTickets().add(ts);
+                        ticketRepository.save(ts);
 
                         Ticket to = new Ticket(ohmyclub.getTitle(), ohmyclub.getPrice().floatValue(),
-                                        ohmyclub.getTimeFinish(), TicketStatus.OPEN);
+                                        ohmyclub.getTimeFinish(), TicketStatus.OPEN, ohmyclub);
 
                         ohmyclub.getTickets().add(to);
+                        ticketRepository.save(to);
 
                         Ticket tl = new Ticket(liberata.getTitle(), liberata.getPrice().floatValue(),
-                                        liberata.getTimeFinish(), TicketStatus.OPEN);
+                                        liberata.getTimeFinish(), TicketStatus.OPEN, liberata);
 
                         liberata.getTickets().add(tl);
+                        ticketRepository.save(tl);
 
                         Ticket tm = new Ticket(madcool.getTitle(), madcool.getPrice().floatValue(),
-                                        madcool.getTimeFinish(), TicketStatus.OPEN);
+                                        madcool.getTimeFinish(), TicketStatus.OPEN, madcool);
 
                         madcool.getTickets().add(tm);
+                        ticketRepository.save(tm);
 
                         Ticket tb = new Ticket(blackworks.getTitle(), blackworks.getPrice(),
-                                        blackworks.getTimeFinish(), TicketStatus.OPEN);
+                                        blackworks.getTimeFinish(), TicketStatus.OPEN, blackworks);
 
                         blackworks.getTickets().add(tb);
+                        ticketRepository.save(tb);
 
                         Ticket tms = new Ticket(madridSalvaje.getTitle(), madridSalvaje.getPrice(),
-                                        madridSalvaje.getTimeFinish(), TicketStatus.OPEN);
+                                        madridSalvaje.getTimeFinish(), TicketStatus.OPEN, madridSalvaje);
 
                         madridSalvaje.getTickets().add(tms);
+                        ticketRepository.save(tms);
+
                         Ticket trb = new Ticket(rioBabel.getTitle(), rioBabel.getPrice().floatValue(),
-                                        rioBabel.getTimeFinish(), TicketStatus.OPEN);
+                                        rioBabel.getTimeFinish(), TicketStatus.OPEN, rioBabel);
 
                         rioBabel.getTickets().add(trb);
+                        ticketRepository.save(trb);
 
                         Ticket tnw = new Ticket(natosywaor.getTitle(), natosywaor.getPrice().floatValue(),
-                                        natosywaor.getTimeFinish(), TicketStatus.OPEN);
+                                        natosywaor.getTimeFinish(), TicketStatus.OPEN, natosywaor);
 
                         natosywaor.getTickets().add(tnw);
+                        ticketRepository.save(tnw);
 
                         Ticket tas = new Ticket(alsafir.getTitle(), alsafir.getPrice().floatValue(),
-                                        alsafir.getTimeFinish(), TicketStatus.OPEN);
+                                        alsafir.getTimeFinish(), TicketStatus.OPEN, alsafir);
 
                         alsafir.getTickets().add(tas);
+                        ticketRepository.save(tas);
 
                         Ticket tpk = new Ticket(pekeno.getTitle(), pekeno.getPrice().floatValue(),
-                                        pekeno.getTimeFinish(), TicketStatus.OPEN);
+                                        pekeno.getTimeFinish(), TicketStatus.OPEN, pekeno);
 
                         pekeno.getTickets().add(tpk);
+                        ticketRepository.save(tpk);
 
                         Ticket tcz = new Ticket(cruzzi.getTitle(), cruzzi.getPrice().floatValue(),
-                                        cruzzi.getTimeFinish(), TicketStatus.OPEN);
+                                        cruzzi.getTimeFinish(), TicketStatus.OPEN, cruzzi);
 
                         cruzzi.getTickets().add(tcz);
+                        ticketRepository.save(tcz);
 
                 }
 
                 //Assign tickets to user
-                Ticket ticket1 = natosywaor.getTickets().get(0);
-                Ticket ticket2 = madcool.getTickets().get(0);
-                
-                user.getTickets().add(ticket1);
-                user.getTickets().add(ticket2);
+                Ticket ticket1 = natosywaor.getTickets().getFirst();
+                Ticket ticket2 = madcool.getTickets().getFirst();
 
-                ticket1.setStatus(TicketStatus.CLOSED);
-                ticket2.setStatus(TicketStatus.CLOSED);
-                
-                // Save tickets
-                ticketRepository.save(ticket1);
-                ticketRepository.save(ticket2);
+                ticketService.buyTicket(user, ticket1);
+                ticketService.buyTicket(user, ticket2);
 
-
-                clientRepository.save(user);
                 eventRepository.save(shoko);
                 eventRepository.save(ohmyclub);
                 eventRepository.save(liberata);
