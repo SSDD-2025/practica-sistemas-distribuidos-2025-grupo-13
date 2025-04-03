@@ -53,6 +53,8 @@ public class Event {
 	@Column(nullable = false)
     private Integer price;
 
+    private String image;
+
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
@@ -95,11 +97,19 @@ public class Event {
 		this.price = price;
 	}
 
-	public void setImage(Blob imageFile) {
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public void setImageFile(Blob imageFile) {
 		this.imageFile = imageFile;
 	}
 
-	public Blob getImage() {
+	public Blob getImageFile() {
 		return imageFile;
 	}
 

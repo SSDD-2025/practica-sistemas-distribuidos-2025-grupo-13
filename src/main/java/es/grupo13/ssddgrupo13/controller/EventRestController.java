@@ -1,9 +1,13 @@
 package es.grupo13.ssddgrupo13.controller;
 
+import java.io.IOException;
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,6 +69,15 @@ public class EventRestController {
     @DeleteMapping("/{id}")
 	public EventDTO deleteEvent(@PathVariable long id) {
 		return eventService.deleteEvent(id);
+	}
+    
+    @GetMapping("/{id}/image")
+	public ResponseEntity<Object> getEventImage(@PathVariable Long id) throws SQLException, IOException {
+		Resource eventImage = eventService.getEventImage(id);
+		return ResponseEntity
+				.ok()
+				.header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+				.body(eventImage);
 	}
 
 }

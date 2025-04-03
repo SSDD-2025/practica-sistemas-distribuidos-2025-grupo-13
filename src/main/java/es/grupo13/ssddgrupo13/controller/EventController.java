@@ -51,7 +51,7 @@ public class EventController {
     public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
         Optional<Event> event = eventService.findById(id);
         if (event.isPresent() && event.get().getImage() != null) {
-            Blob image = event.get().getImage();
+            Blob image = event.get().getImageFile();
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
                     .body(new InputStreamResource(image.getBinaryStream()));
@@ -158,7 +158,7 @@ public class EventController {
         }
 
         Event event = eventService.toDomain(eventDTO);
-        event.setImage(imageBlob);
+        event.setImageFile(imageBlob);
         eventService.save(event);
 
         for (int i = 0; i < 10; i++) {
