@@ -19,6 +19,9 @@ public class CommentService {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    private ClientService clientService;
     
     @Autowired
     private CommentRepository commentRepository;
@@ -26,12 +29,29 @@ public class CommentService {
     @Autowired
     private  CommentMapper commentMapper;
 
-    public Collection<CommentDTO> getAllComments() {
-        return commentMapper.ToDTOs(commentRepository.findAll());
+    public Optional<Comment> findById(Long id) {
+        return commentRepository.findById(id);
     }
 
-    public CommentDTO getCommentById(long id) {
-        return commentMapper.ToDTO(commentRepository.findById(id).orElse(null));
+    public Comment save(Comment comment) {
+        return commentRepository.save(comment);
+    }
+
+    public Iterable<Comment> findAll() {
+        return commentRepository.findAll();
+    }
+
+    public Comment delete(Comment comment) {
+        commentRepository.delete(comment);
+        return comment;
+    }
+
+    public CommentDTO getComment(Long id) {
+        return commentMapper.ToDTO(commentRepository.findById(id).orElseThrow());
+    }
+
+    public Collection<CommentDTO> getAllComments() {
+        return commentMapper.ToDTOs(commentRepository.findAll());
     }
 
     public CommentDTO createComment(CommentDTO commentDTO) {
@@ -52,43 +72,17 @@ public class CommentService {
 	}
 
     public CommentDTO deleteComment(Long id) {
-    
-        Comment comment = commentRepository.findById(id).orElse(null);
-        if (comment != null) {
-            detachAndDelete(id);
-            return commentMapper.ToDTO(comment);
-        }
-        return null;
-    }
-
-    public Optional<Comment> findById(Long id) {
-        return commentRepository.findById(id);
-    }
-
-    public void deleteById(Long id) {
-        commentRepository.deleteById(id);
-    }
-
-    public Comment save(Comment comment) {
-        return commentRepository.save(comment);
-    }
-
-    public Iterable<Comment> findAll() {
-        return commentRepository.findAll();
-    }
-
-    public Comment delete(Comment comment) {
-        commentRepository.delete(comment);
-        return comment;
+        Comment comment = commentRepository.findById(id).orElseThrow();
+        detachAndDelete(id);
+        return commentMapper.ToDTO(comment);
     }
 
     @Transactional
     public void detachAndDelete(Long commentId) {
-        Comment comment = commentRepository.findById(commentId).orElse(null);
-        if (comment == null)
-            return;
+        Comment comment = commentRepository.findById(commentId).orElseThrow();
         Client client = comment.getClient();
         client.getComments().remove(comment);
+        clientService.save(client);
         
         if (comment.getEvent() != null) {
             comment.getEvent().getComments().remove(comment);

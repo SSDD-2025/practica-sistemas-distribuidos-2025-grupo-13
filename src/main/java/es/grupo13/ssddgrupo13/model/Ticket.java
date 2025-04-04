@@ -34,7 +34,7 @@ public class Ticket {
     @ManyToOne
     private Event event;
 
-    @ManyToOne
+    @ManyToOne(optional = true)
     private Client client;
 
     @Enumerated(EnumType.STRING)

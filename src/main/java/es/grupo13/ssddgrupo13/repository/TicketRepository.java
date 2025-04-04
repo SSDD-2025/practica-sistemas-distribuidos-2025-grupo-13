@@ -10,5 +10,5 @@ import es.grupo13.ssddgrupo13.model.Ticket;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findByTitle(String title);
-    Optional<Ticket> findById(long id);
+    Optional<Ticket> findById(Long id);
 }

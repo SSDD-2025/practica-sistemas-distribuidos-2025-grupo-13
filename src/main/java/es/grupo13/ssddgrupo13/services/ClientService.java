@@ -16,6 +16,7 @@ import es.grupo13.ssddgrupo13.model.Comment;
 import es.grupo13.ssddgrupo13.model.Ticket;
 import es.grupo13.ssddgrupo13.model.TicketStatus;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ClientService {
@@ -28,9 +29,10 @@ public class ClientService {
     @Autowired
     private CommentService commentService;
 
-    private List<Comment> comments;
+    @Autowired
+    private TicketService ticketService;
 
-    public Optional<Client> findById(long id){
+    public Optional<Client> findById(Long id){
         return clientRepository.findById(id);
     }
 
@@ -46,7 +48,7 @@ public class ClientService {
         return toDTOs(clientRepository.findAll());
     }
 
-    public ClientDTO getEvent(long id){
+    public ClientDTO getClient(Long id){
         return toDTO(clientRepository.findById(id).orElseThrow());
     }
 
@@ -56,7 +58,7 @@ public class ClientService {
 		return toDTO(client);
 	}
 
-    public ClientDTO replaceClient(long id, ClientDTO updatedClientDTO) {
+    public ClientDTO replaceClient(Long id, ClientDTO updatedClientDTO) {
 		if (clientRepository.existsById(id)) {
 			Client updatedClient = toDomain(updatedClientDTO);
 			updatedClient.setId(id);
@@ -67,7 +69,7 @@ public class ClientService {
 		}
 	}
 
-    public ClientDTO deleteClient(long id){
+    public ClientDTO deleteClient(Long id){
         Client client = clientRepository.findById(id).orElseThrow();
         detachAndDelete(client);
 		clientRepository.delete(client);
@@ -86,19 +88,18 @@ public class ClientService {
 		return clientMapper.ToDTOs(clients);
 	}
 
+    @Transactional
     public void detachAndDelete(Client client) {
         List<Comment> comments = new ArrayList<>(client.getComments());
         for (Comment comment : comments) {
             commentService.detachAndDelete(comment.getId());
         }
-    
-        List<Ticket> tickets = new ArrayList<>(client.getTickets()); 
-        for (Ticket ticket : tickets) {
-            ticket.setStatus(TicketStatus.OPEN);
-        }
-    
-        client.getTickets().clear();
-    }
-    
 
+        List<Ticket> tickets = new ArrayList<>(client.getTickets());
+        for (Ticket ticket : tickets) {
+            ticket.setClient(null);
+            ticket.setStatus(TicketStatus.OPEN);
+            ticketService.save(ticket);
+        }
+    }
 }

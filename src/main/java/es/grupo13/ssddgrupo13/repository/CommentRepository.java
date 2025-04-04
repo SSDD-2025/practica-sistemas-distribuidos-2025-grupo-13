@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import es.grupo13.ssddgrupo13.model.Comment;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long>{
-    Optional<Comment> findById(long id);
-    default void deleteById(long id) {
+    Optional<Comment> findById(Long id);
+    default void deleteById(Long id) {
         Optional<Comment> comment = findById(id);
         if(comment.isPresent()) {
             delete(comment.get());

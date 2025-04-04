@@ -15,8 +15,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Page<Event> findByType(String type, Pageable pageable);
 
     List<Event> findByTitle(String title);
-    Optional<Event> findById(long id);
-    default void deleteById(long id) {
+    Optional<Event> findById(Long id);
+    default void deleteById(Long id) {
         Optional<Event> eventOpt = findById(id);
         if (eventOpt.isPresent()) {
             Event event = eventOpt.get();

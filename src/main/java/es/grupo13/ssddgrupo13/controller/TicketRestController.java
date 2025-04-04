@@ -36,7 +36,7 @@ public class TicketRestController {
     }
 
     @GetMapping("/{id}")
-    public TicketDTO getAllTickets(@PathVariable long id){
+    public TicketDTO getAllTickets(@PathVariable Long id){
         return ticketService.getTicket(id);
     }
 
@@ -53,7 +53,7 @@ public class TicketRestController {
 	}
 
     @DeleteMapping("/{id}")
-    public TicketDTO deleteTicket(@PathVariable long id){
+    public TicketDTO deleteTicket(@PathVariable Long id){
         return ticketService.deleteTicket(id);
     }
 

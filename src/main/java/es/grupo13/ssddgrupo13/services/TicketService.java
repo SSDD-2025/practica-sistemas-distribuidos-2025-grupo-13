@@ -18,20 +18,21 @@ import es.grupo13.ssddgrupo13.repository.TicketRepository;
 
 @Service
 public class TicketService {
-    
-    @Autowired 
-    private ClientService clientService;
 
     @Autowired
     private TicketRepository ticketRepository;
 
     @Autowired
     private TicketMapper ticketMapper;
-        List<Ticket> findByTitle(String title) {
+
+    @Autowired
+    private ClientService clientService;
+
+    public List<Ticket> findByTitle(String title) {
         return ticketRepository.findByTitle(title);
     }
 
-    public Optional<Ticket> findById(long id) {
+    public Optional<Ticket> findById(Long id) {
         return ticketRepository.findById(id);
     }
 
@@ -56,7 +57,7 @@ public class TicketService {
         }
 	}
 
-    public TicketDTO deleteTicket(long id) {
+    public TicketDTO deleteTicket(Long id) {
         Ticket ticket = ticketRepository.findById(id).orElseThrow();
         detachAndDelete(id);
         ticketRepository.deleteById(id);
@@ -78,7 +79,7 @@ public class TicketService {
         return toDTOs(ticketRepository.findAll());
     }
 
-    public TicketDTO getTicket(long id){
+    public TicketDTO getTicket(Long id){
         return toDTO(ticketRepository.findById(id).orElseThrow());
     }
 
@@ -94,7 +95,8 @@ public class TicketService {
 		return ticketMapper.ToDTOs(ticket);
 	}
 
-    private void detachAndDelete(long id){
+    @Transactional
+    public void detachAndDelete(Long id){
         Ticket ticket = ticketRepository.findById(id).orElseThrow();
         ticket.getEvent().getTickets().remove(ticket);
         if (ticket.getStatus().equals(TicketStatus.CLOSED)){

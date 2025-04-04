@@ -58,7 +58,7 @@ public class EventService {
         return toDTOs(eventRepository.findAll());
     }
 
-    public EventDTO getEvent(long id) {
+    public EventDTO getEvent(Long id) {
 		return toDTO(eventRepository.findById(id).orElseThrow());
 	}
 
@@ -70,7 +70,7 @@ public class EventService {
         return eventRepository.findByTitle(title);
     }
 
-    public Optional<Event> findById(long id){
+    public Optional<Event> findById(Long id){
         return eventRepository.findById(id);
     }
 
@@ -119,13 +119,13 @@ public class EventService {
 		}
 	}
 
-    public EventDTO deleteEvent(long id) {
+    public EventDTO deleteEvent(Long id) {
 		Event event = eventRepository.findById(id).orElseThrow();
 		eventRepository.deleteById(id);
 		return toDTO(event);
 	}
 
-    public void createEventImage(Long id, URI location, InputStream inputStream, long size) {
+    public void createEventImage(Long id, URI location, InputStream inputStream, Long size) {
 		Event event = eventRepository.findById(id).orElseThrow();
 		event.setImage(location.toString());
 		event.setImageFile(BlobProxy.generateProxy(inputStream, size));

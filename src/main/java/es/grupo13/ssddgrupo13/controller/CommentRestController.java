@@ -29,16 +29,14 @@ public class CommentRestController {
     @Autowired
     private CommentService commentService;
 
-
-
     @GetMapping("/")
     public Page<CommentDTO> getAllComments(Pageable pageable) {
         return commentRepository.findAll(pageable).map(commentService::toDTO);
     }
 
     @GetMapping("/{id}")
-    public CommentDTO getCommentById(@PathVariable Long id) {
-        return commentService.getCommentById(id);
+    public CommentDTO getComment(@PathVariable Long id) {
+        return commentService.getComment(id);
     }
 
     @PostMapping("/")
@@ -54,9 +52,8 @@ public class CommentRestController {
     }
 
     @DeleteMapping("/{id}")
-    public CommentDTO deleteComment(@PathVariable long id) {
+    public CommentDTO deleteComment(@PathVariable Long id) {
         return commentService.deleteComment(id);
     }
-    
     
 }

@@ -49,7 +49,7 @@ public class EventController {
      * Returns the image for a given event.
      */
     @GetMapping("/event-image/{id}")
-    public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+    public ResponseEntity<Object> downloadImage(@PathVariable Long id) throws SQLException {
         Optional<Event> event = eventService.findById(id);
         if (event.isPresent() && event.get().getImage() != null) {
             Blob image = event.get().getImageFile();
@@ -125,7 +125,7 @@ public class EventController {
      * Displays event detail page.
      */
     @GetMapping("/ticket/{id}")
-    public String showEventDetailPage(HttpServletRequest request, Model model, @PathVariable long id) {
+    public String showEventDetailPage(HttpServletRequest request, Model model, @PathVariable Long id) {
         Optional<Event> optionalEvent = eventService.findById(id);
         if (optionalEvent.isEmpty()) return "error";
 

@@ -58,7 +58,7 @@ public class EventRestController {
     }
 
     @GetMapping("/{id}")
-    public EventDTO getEvent(@PathVariable long id) {
+    public EventDTO getEvent(@PathVariable Long id) {
         return eventService.getEvent(id);
     }
 
@@ -75,7 +75,7 @@ public class EventRestController {
 	}
 
     @DeleteMapping("/{id}")
-	public EventDTO deleteEvent(@PathVariable long id) {
+	public EventDTO deleteEvent(@PathVariable Long id) {
 		return eventService.deleteEvent(id);
 	}
     

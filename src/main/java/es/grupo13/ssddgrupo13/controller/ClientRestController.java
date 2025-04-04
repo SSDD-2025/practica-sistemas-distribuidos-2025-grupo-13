@@ -34,8 +34,8 @@ public class ClientRestController {
     }
 
     @GetMapping("/{id}")
-    public ClientDTO getClient(@PathVariable long id){
-        return clientService.getEvent(id);
+    public ClientDTO getClient(@PathVariable Long id){
+        return clientService.getClient(id);
     }
 
     @PostMapping("/")
@@ -46,12 +46,12 @@ public class ClientRestController {
     }
     
     @PutMapping("/{id}")
-    public ClientDTO replaceClient(@PathVariable long id, @RequestBody ClientDTO updatedClientDTO) {
+    public ClientDTO replaceClient(@PathVariable Long id, @RequestBody ClientDTO updatedClientDTO) {
         return clientService.replaceClient(id, updatedClientDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ClientDTO deletePost(@PathVariable long id) {
+    public ClientDTO deleteClient(@PathVariable Long id) {
         return clientService.deleteClient(id);
     }
 
