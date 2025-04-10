@@ -10,6 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -32,9 +33,11 @@ public class Ticket {
     private String timeStartFormat;
 
     @ManyToOne
+    @JoinColumn(name = "event_id")
     private Event event;
 
-    @ManyToOne(optional = true)
+    @ManyToOne //(optional = true)
+    @JoinColumn(name = "client_id")
     private Client client;
 
     @Enumerated(EnumType.STRING)

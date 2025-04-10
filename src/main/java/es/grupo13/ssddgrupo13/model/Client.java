@@ -36,10 +36,10 @@ public class Client {
     @Column(unique = true, nullable = false)
     private String email;
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
