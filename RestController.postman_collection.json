@@ -1,0 +1,549 @@
+{
+	"info": {
+		"_postman_id": "07878258-4f46-4875-87d9-85ead14b7c60",
+		"name": "RestController",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43565447",
+		"_collection_link": "https://robertgabriel-4647695.postman.co/workspace/Robert-Gabriel's-Workspace~c4c1c597-608f-4f09-8b90-ac3ac91c572f/collection/43565447-07878258-4f46-4875-87d9-85ead14b7c60?action=share&source=collection_link&creator=43565447"
+	},
+	"item": [
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Fabrik\",\r\n    \"description\": \"Música hard techno, mucho ambiente\",\r\n    \"timeStart\": \"2025-02-26T23:00:00\",\r\n    \"timeFinish\": \"2025-02-27T06:00:00\",\r\n    \"address\": \"Fuenlabrada\",\r\n    \"type\": \"club\",\r\n    \"price\": 23,\r\n    \"image\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/events/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Events",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/events/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/events/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Image Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": "/C:/VSCODE PROJECTS/practica-sistemas-distribuidos-2025-grupo-13/src/main/resources/Static/img/fabrik.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/events/12/image",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"12",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Image Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/events/1/image",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"events",
+								"1",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/events/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace Event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"DiscotecaMadrid\",\r\n    \"description\": \"Descubre un nuevo universo con el reservado ambiente de nustra discoteca\",\r\n    \"timeStart\": \"2025-02-26T23:00:00\",\r\n    \"timeFinish\": \"2025-02-27T06:00:00\",\r\n    \"address\": \"Madrid\",\r\n    \"type\": \"club\",\r\n    \"price\": 24,\r\n    \"image\": \"https://localhost:8443/api/events/2/image\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/events/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "View Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/comments/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/comments/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"autor\": \"user\",\r\n    \"text\": \"HOLAAAAAA Gran evento\",\r\n    \"rating\": 5,\r\n    \"title\": \"SHOKO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/comments/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/comments/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace Comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"autor\": \"user\",\r\n    \"text\": \"No me ha gustado el evento, habia mucha gente\",\r\n    \"rating\": 5,\r\n    \"title\": \"SHOKO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/comments/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "View Clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/clients/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/clients/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Robert Gabriel\",\r\n    \"lastName\": \"Mihai\",\r\n    \"email\": \"rg.mihai.2022@alumnos.urjc.es\",\r\n    \"password\": \"123\",\r\n    \"roles\": [\r\n        \"USER\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/clients/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/clients/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace Client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Marcos\",\r\n    \"lastName\": \"Alvarez\",\r\n    \"email\": \"mmmmmmaaarrcoos@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"roles\": [\r\n        \"ADMIN\",\r\n        \"USER\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/clients/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tickets",
+			"item": [
+				{
+					"name": "View Tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/tickets/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/tickets/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"ticket1\",\r\n    \"price\": 68.0,\r\n    \"createdAt\": \"2025-02-27T06:00:00\",\r\n    \"status\": \"OPEN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/tickets/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Ticket",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/tickets/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace Ticket",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"ticket2\",\r\n    \"price\": 25.0,\r\n    \"createdAt\": \"2025-02-27T06:00:00\",\r\n    \"status\": \"OPEN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/tickets/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
