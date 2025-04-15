@@ -137,6 +137,9 @@ public class SecurityConfig {
 						.requestMatchers("/comment_out/**").permitAll()
 						.requestMatchers("/contact").permitAll()
 						.requestMatchers("/ticket/**").permitAll()
+						.requestMatchers("/v3/api-docs*/**").permitAll()
+						.requestMatchers("/swagger-ui.html").permitAll()
+						.requestMatchers("/swagger-ui/**").permitAll()
 
 						// PRIVATE PAGES
 						.requestMatchers("/event/**").hasAnyRole("USER", "ADMIN")
