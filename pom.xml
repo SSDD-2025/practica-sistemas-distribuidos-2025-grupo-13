@@ -154,10 +154,7 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			<!-- Removed duplicate spring-boot-maven-plugin declaration -->
 	
 
 <plugin>
@@ -175,6 +172,60 @@
 		</annotationProcessorPaths>
 	</configuration>
 </plugin>
+<plugin>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-maven-plugin</artifactId>
+	<configuration>
+	<!--  Change if error with used port -->
+	<jmxPort>9011</jmxPort>
+	</configuration>
+	<executions>
+	<execution>
+	<id>pre-integration-test</id>
+	<goals>
+	<goal>start</goal>
+	</goals>
+	</execution>
+	<execution>
+	<id>post-integration-test</id>
+	<goals>
+	<goal>stop</goal>
+	</goals>
+	</execution>
+	</executions>
+	</plugin>
+	<plugin>
+	<groupId>org.springdoc</groupId>
+	<artifactId>springdoc-openapi-maven-plugin</artifactId>
+	<version>1.4</version>
+	<executions>
+	<execution>
+	<phase>integration-test</phase>
+	<goals>
+	<goal>generate</goal>
+	</goals>
+	</execution>
+	</executions>
+	<configuration>
+	<apiDocsUrl>https://localhost:8443/v3/api-docs.yaml</apiDocsUrl>
+	<outputFileName>api-docs.yaml</outputFileName>
+	<outputDir>${project.basedir}/api-docs</outputDir>
+	</configuration>
+	</plugin>
+	<plugin>
+		<groupId>org.openapitools</groupId>
+		<artifactId>openapi-generator-maven-plugin</artifactId>
+		<version>7.11.0</version>
+		<executions>
+		</executions>
+	</plugin>
+	<plugin>
+	<groupId>com.coderplus.maven.plugins</groupId>
+	<artifactId>copy-rename-maven-plugin</artifactId>
+	<version>1.0.1</version>
+	<executions>
+	</executions>
+	</plugin>
 </plugins>
 </build>
 
