@@ -119,7 +119,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests(authorize -> authorize
 						// PUBLIC PAGES
 						.requestMatchers("/logoutSuccess").permitAll()
-						.requestMatchers("addNewEvent").hasRole("ADMIN")
+						.requestMatchers("/addNewEvent").hasRole("ADMIN")
 						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.requestMatchers("/", "/css/**", "/event-image/**", "/img/**", "/js/**", "/videos/**")
 						.permitAll()
