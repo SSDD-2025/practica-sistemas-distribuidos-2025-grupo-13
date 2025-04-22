@@ -277,7 +277,7 @@ se ha actualizado todo el código al inglés y  modificado muchos css para que l
    - [contact.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/contact.html)
 
 
-# Proyecto: ALASDOCE
+# Proyecto: ALASDOCE Fase II
 
 ## Diagrama de navegación
 
