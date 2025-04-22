@@ -36,18 +36,20 @@
 
   document.getElementById("moreBTN").addEventListener("click", async () => {
 
-    if (!data.content || data.content.length === 0) {
-        document.getElementById("moreBTN").style.display = "none";
-        document.getElementById("moreBTN").style.visibility = "hidden"; // extra
-        document.getElementById("moreBTN").disabled = true; // extra
-        return;
-      }
+    
 
       const res = await fetch(`/api/events/clubbing/?page=${currentPage}&size=${pageSize}`);
       const data = await res.json();
+     
       
 
       const container = document.querySelector(".club-grid");
+
+      if (!data.content || data.content.length === 0) {
+      console.log("No hay más eventos para mostrar.");
+      document.getElementById("moreBTN").style.display = "none";
+      return;
+    }
       data.events.forEach(event => {
           const dis = document.createElement("a");
           dis.href = `/ticket/${event.id}`;
@@ -68,12 +70,13 @@
       });
 
 
+      
+      currentPage++;
       if (data.page.number >= data.page.totalPages - 1) {
         document.getElementById("moreBTN").style.display = "none";
         document.getElementById("moreBTN").style.visibility = "hidden"; // extra
         document.getElementById("moreBTN").disabled = true; // extra
       }
-      currentPage++;
 
       
   });
