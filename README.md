@@ -281,13 +281,13 @@ se ha actualizado todo el código al inglés y  modificado muchos css para que l
 
 ## Diagrama de navegación
 
-- No ha cambiado con respecto a la anterior fase.
-
-![Diagrama Navegacion](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/diagramaNavegacion.png)
-
 ## Diagrama de Entidades
 
-## Diagrama de clases
+- No ha cambiado con respecto a la anterior fase.
+
+![Diagrama Entidades](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/diagramaEntidades.png)
+
+## Diagrama de clases y templates
 
 ## Configuración del entorno de desarrollo
 
