@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.services.ClientService;
 
@@ -42,7 +43,12 @@ public class PageController {
 
         model.addAttribute("client", managedClient);
         model.addAttribute("tickets", managedClient.getTickets());
-        model.addAttribute("comments", managedClient.getComments());
+        if(managedClient.getComments().size() >= 10){
+            model.addAttribute("comments", managedClient.getComments().subList(0, 10));
+        }else{
+            model.addAttribute("comments", managedClient.getComments().subList(0, managedClient.getComments().size()));
+        }
+        
 
         return "profile";
     }

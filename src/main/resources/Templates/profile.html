@@ -151,7 +151,7 @@
             <div class="comments-header">
                 <h2>Mis comentarios</h2>
             </div>
-            <div class="comments-list">
+            <div id="comments-section"class="comments-list">
                 {{#comments}}
                 <div class="comment-item">
                     <div class="comment-user">
@@ -178,6 +178,12 @@
                 <p>No has hecho ningún comentario aún.</p>
                 {{/comments}}
             </div>
+            <div >
+                <button id="moreBTN2" class="btn-buyTicket" style="margin: 0 auto; background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">
+                    More Comments
+                </button>
+            </div>
+
         </div>
 
     </div>
@@ -234,6 +240,55 @@
             });
             element.classList.add('active');
         }
+    </script>
+    <script>
+        let currentCommentPage = 1;
+        const commentPageSize = 10;
+      
+        document.getElementById("moreBTN2").addEventListener("click", async () => {
+          const res = await fetch(`/api/comments/?page=${currentCommentPage}&size=${commentPageSize}`);
+          const data = await res.json();
+      
+          console.log("COMMENTS DEBUG DATA:", data);
+      
+          const container = document.querySelector("#comments-section");
+
+            if (!data.content || data.content.length === 0) {
+                console.log("No hay más comentarios para mostrar.");
+                document.getElementById("moreBTN2").style.display = "none";
+                return;
+            }
+            data.content.forEach(comment => {
+                const dis = document.createElement("div");
+                dis.className = "comment-item";
+                dis.innerHTML = `
+                    <div class="comment-user">
+                        <small>Usuario</small>
+                        <p>${comment.autor}</p>
+                    </div>
+                    <div class="comment-message">
+                        <p>${comment.text}</p>
+                    </div>
+                    <div class="comment-score-with-delete">
+                        <span class="stars">${comment.rating}</span>
+                        <form action="/comment_out/${comment.id}" method="POST">
+                            <input type="hidden" name="commentId" value="${comment.id}">
+                            <input type="hidden" name="_csrf" value="{{token}}" />
+                            <button type="submit" class="delete-comment" title="Eliminar comentario">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </form>
+                    </div>
+                `;
+                container.appendChild(dis);
+            });
+            currentCommentPage++;
+            if (data.page.number >= data.page.totalPages - 1) {
+                document.getElementById("moreBTN2").style.display = "none";
+                document.getElementById("moreBTN2").style.visibility = "hidden"; // extra
+                document.getElementById("moreBTN2").disabled = true; // extra
+            }
+        });
     </script>
 
 </body>
