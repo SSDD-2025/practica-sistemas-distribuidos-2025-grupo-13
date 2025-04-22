@@ -398,7 +398,7 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Marcos
 
-Tareas: Se implementó la clase ClientRestController.java y se incorporaron nuevos métodos en ClientService.java para habilitar operaciones REST mediante objetos DTO, facilitando pruebas a través de Postman. Se desarrolló también la clase TicketRestController.java, implementando los endpoints GET correspondientes y ampliando la lógica en TicketService.java para soportar estas operaciones utilizando DTOs. Se añadió el método replaceComment en CommentRestController.java para permitir actualizaciones de comentarios mediante peticiones PUT. Finalmente, se refactorizaron los métodos DELETE en las entidades Ticket y Client, ajustando los atributos en sus respectivas clases .java para garantizar una correcta eliminación de recursos.
+- Tareas: Se implementó la clase ClientRestController.java y se incorporaron nuevos métodos en ClientService.java para habilitar operaciones REST mediante objetos DTO, facilitando pruebas a través de Postman. Se desarrolló también la clase TicketRestController.java, implementando los endpoints GET correspondientes y ampliando la lógica en TicketService.java para soportar estas operaciones utilizando DTOs. Se añadió el método replaceComment en CommentRestController.java para permitir actualizaciones de comentarios mediante peticiones PUT. Finalmente, se refactorizaron los métodos DELETE en las entidades Ticket y Client, ajustando los atributos en sus respectivas clases .java para garantizar una correcta eliminación de recursos.
 
 
 - 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
