@@ -276,3 +276,139 @@ se ha actualizado todo el código al inglés y  modificado muchos css para que l
    - [ticket.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/ticket.html)
    - [contact.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/contact.html)
 
+
+# Proyecto: ALASDOCE
+
+## Diagrama de navegación
+
+## Diagrama de Entidades
+
+- No ha cambiado con respecto a la anterior fase.
+
+![Diagrama Entidades](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/diagramaEntidades.png)
+
+## Diagrama de clases y templates
+
+![Diagrama Clases y Templates](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/DiagramaClasesFaseII.png)
+
+## Configuración del entorno de desarrollo
+
+1. **Clonar el repositorio:**
+```sh
+git clone https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13.git
+```
+
+2. **Configurar la base de datos:**  
+Descargar MySQL WorkBench  
+Usuario: `root` | Contraseña: `password` | Puerto: `3306`  
+Crear un esquema llamado: grupo_13  
+```sql
+CREATE SCHEMA grupo_13;
+```
+
+3. **Compilar y ejecutar la aplicación:**  
+   Abrir el MySQL WorkBench y meterse en la conexión creada anteriormente  
+   Run Application en VSCode  
+
+4. **Acceder a la aplicación:**  
+Ve a https://localhost/8443/
+
+### Se necesita
+
+- Java: JDK 21
+   - Windows: https://www.oracle.com/java/technologies/downloads/#jdk21-windows
+   - Linux:  
+      ```sh
+      sudo apt install openjdk-21   
+      ```
+
+- MySQL: v.8.0.33
+   - Windows: https://dev.mysql.com/downloads/installer/
+   - Linux:  
+      ```sh
+      sudo apt install mysql-server=8.0.33
+      ```
+
+- Maven: 4.0.0
+   - Windows: https://maven.apache.org/download.cgi
+
+- Spring Boot 3.4.2
+
+- VSCode + SpringBoot
+
+## Participación de los Miembros
+
+Cada miembro del equipo debe indicar su contribución en la práctica.
+
+### Jon
+
+- Tareas:
+
+- 5 commits más significativos:
+   - [Commit 1]()
+   - [Commit 2]()
+   - [Commit 3]()
+   - [Commit 4]()
+   - [Commit 5]()
+
+- 5 ficheros en los que he participado:
+   - []()
+   - []()
+   - []()
+   - []()
+   - []()
+
+### Robert
+
+- Tareas:
+
+- 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
+   - [Commit 1]()
+   - [Commit 2]()
+   - [Commit 3]()
+   - [Commit 4]()
+   - [Commit 5]()
+
+- 5 ficheros en los que se ha participado:
+   - []()
+   - []()
+   - []()
+   - []()
+   - []() 
+
+### Álvaro
+
+- Tareas: 
+
+- 5 commits más significativos :
+   - [Commit 1]()
+   - [Commit 2]()
+   - [Commit 3]()
+   - [Commit 4]()
+   - [Commit 5]()
+
+- 5 ficheros en los que se ha participado:
+   - []()
+   - []()
+   - []()
+   - []()
+   - []()
+
+### Marcos
+
+- Tareas: 
+
+- 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
+   - [Commit 1]()
+   - [Commit 2]()
+   - [Commit 3]()
+   - [Commit 4]()
+   - [Commit 5]()
+
+- 5 ficheros en los que se ha participado:
+   - []()
+   - []()
+   - []()
+   - []()
+   - []()
+
