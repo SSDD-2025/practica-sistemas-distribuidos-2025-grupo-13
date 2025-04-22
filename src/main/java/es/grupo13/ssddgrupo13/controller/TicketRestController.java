@@ -24,6 +24,7 @@ import es.grupo13.ssddgrupo13.services.TicketService;
 @RestController
 @RequestMapping("/api/tickets")
 public class TicketRestController {
+    
     @Autowired
     private TicketRepository ticketRepository;
     

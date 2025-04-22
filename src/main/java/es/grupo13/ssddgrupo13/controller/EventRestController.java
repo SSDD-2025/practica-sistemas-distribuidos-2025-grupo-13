@@ -33,7 +33,6 @@ public class EventRestController {
     @Autowired
     private EventRepository eventRepository;
     
-    
     @Autowired
     private EventService eventService;
 
