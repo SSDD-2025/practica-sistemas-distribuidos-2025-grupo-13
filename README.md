@@ -77,7 +77,7 @@ CREATE SCHEMA grupo_13;
    Run Application en VSCode  
 
 4. **Acceder a la aplicación:**  
-Ve a https://localhost/8080/
+Ve a https://localhost/8443/
 
 ### Se necesita
 
@@ -241,19 +241,21 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 ### Álvaro
 - Tareas: realizar la sección de clubbing, creación de los principales mapeos. Creación del administrador, con su respectivo cierre de sesión, añadir eventos, mapeado borrar eventos y mapeado borrar comentarios. Creación del cierre de sesión y, por consecuencia, la diferenciación dentro de otras clases de usuario iniciado o no. Primeras creaciones de entidades comentarios. Inicios del Client Controller y página de compra. Diferenciación del header y el footer, es decir, creación de los ficheros y poner el código que se encontraba al inicio y final de todos los htmls. Mapeo de las secciones del header. Ayuda en otros métodos de Event Controller. Funcionalidad completa de Editar Perfil (htmls,métodos,mappings...).
 
+En la Fase II me he encargado de añadir las carencias de la anterior fase(servicios, modelos,..), paginación completa, creacion de los DTOs y mappers, el comments API Rest, trabajo conjunto con compañeros en el Ticket API Rest, trabajo conjunto con compañeros en seguridad Rest, trabajo conjunto del jwt y trabajo conjunto de api-doc configurations.
+
 - 5 commits más significativos :
-   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ab1b7ae2a8f39ea3739c49cc8bd1b818e1b469e5)
-   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/b84971f19f1d9727f6e15e711812358613223f5c)
-   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f5d358fa9db7c2111cefe304dd6ad5e8a3054dc4)
-   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ce9d442f35964173bfee4c2df482a840461235e1)
-   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f0f603b3a351ae113e145b7c054138aeab85be74)
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f86ea6768f654a0b1b71211ab9be7c0fb31865dd)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/0abcf984741a6cb7eba39354fda20e1c3e0a2a99)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/67f16dbde9e2698839cd674d4f2bc08f6a24a959)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/b74e75d90c0cfbf61adb66df1d59bfe21c0278e1)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/9b3fdc0ecae3c6b99353e57219243a3e9ab77d46)
 
 - 5 ficheros en los que se ha participado:
-   - [profile_admin.html](src/main/resources/Templates/profile_admin.html)
-   - [profile.html](src/main/resources/Templates/profile.html)
-   - [clubbing.html](src/main/resources/Templates/clubbing.html)
-   - [ClientController.java](src/main/java/es/grupo13/ssddgrupo13/controller/ClientController.java)
+   - [CommentRestController.java](src/main/java/es/grupo13/ssddgrupo13/controller/CommentRestController.java)
+   - [CommentService.java](src/main/java/es/grupo13/ssddgrupo13/services/CommentService.java)
+   - [SecurityConfig.java](src/main/java/es/grupo13/ssddgrupo13/security/SecurityConfig.java)
    - [EventController.java](src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
+   - [profile_admin.html](src/main/resources/Templates/profile_admin.html)
 
 ### Marcos
 
