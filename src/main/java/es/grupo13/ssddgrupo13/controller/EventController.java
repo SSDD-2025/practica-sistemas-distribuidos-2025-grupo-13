@@ -147,12 +147,12 @@ public class EventController {
      * Handles new event creation.
      */
     @PostMapping("/addNewEvent")
-    public String addNewEvent(EventDTO eventDTO, @RequestParam MultipartFile image, Model model) {
+    public String addNewEvent(EventDTO eventDTO, @RequestParam MultipartFile imageFile, Model model) {
 
         Blob imageBlob;
         try {
-            imageBlob = (image != null && !image.isEmpty()) ?
-                    new SerialBlob(image.getBytes()) : imageUtils.loadDefaultImage();
+            imageBlob = (imageFile != null && !imageFile.isEmpty()) ?
+                    new SerialBlob(imageFile.getBytes()) : imageUtils.loadDefaultImage();
         } catch (IOException | SQLException e) {
             e.printStackTrace();
             return "error";
