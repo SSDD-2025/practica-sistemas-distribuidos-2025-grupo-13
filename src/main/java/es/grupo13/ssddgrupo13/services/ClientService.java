@@ -32,6 +32,10 @@ public class ClientService {
         return clientRepository.findByEmail(email);
     }
 
+    public Optional<Client> findByName(String name){
+        return clientRepository.findByName(name);
+    }
+
     public Client save(Client client){
         return clientRepository.save(client);
     }
