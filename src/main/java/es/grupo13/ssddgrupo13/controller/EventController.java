@@ -3,6 +3,7 @@ package es.grupo13.ssddgrupo13.controller;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -117,7 +118,14 @@ public class EventController {
     }
 
     private String showEventsByType(String type, HttpServletRequest request, Model model, String attr, String view) {
-        model.addAttribute(attr, eventService.findByType(type));
+        List<Event> events = eventService.findByType(type);
+        int numEvents = events.size();
+        if(numEvents <=  10) {
+            model.addAttribute(attr, eventService.findByType(type).subList(0, numEvents));
+        
+        }else{
+        model.addAttribute(attr, eventService.findByType(type).subList(0, 10));
+        }
         return view;
     }
 

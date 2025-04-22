@@ -217,7 +217,7 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Robert
 
-- Tareas: realizar la sección de festivales (en un principio se llamaba eventos), empezar con la creación de la BBDD (en un principio fue h2, luego MySQL) creando los ficheros
+- Tareas: realizar la sección de festivales (en un principio se llamaba eventos), empezar con la creación de la BBDD (en un principio fue h2, luego MySQL) creando los ficheros 
   necesarios de entidades, repositorios y controladores y modificando el pom.xml. Se ha ayudado a construir las entidades de la BBDD (Client, Event, Ticket y Comment). Se ha
   implementado algunas pantallas para aceptar la compra de tickets, publicación de comentarios... Se ha realizado la sección de Mis Datos junto con las operaciones que tiene
   que realizar la base de datos para mostrar esa sección, además se ha implementado que un cliente pueda comprar un ticket y publicar un comentario y que eso se muestre en la BBDD.
@@ -280,6 +280,8 @@ se ha actualizado todo el código al inglés y  modificado muchos css para que l
 # Proyecto: ALASDOCE
 
 ## Diagrama de navegación
+
+![Diagrama de Navegación](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/DiagramaNavegaciónII.png)
 
 ## Diagrama de Entidades
 
@@ -396,19 +398,20 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Marcos
 
-- Tareas: 
+- Tareas: Se implementó la clase ClientRestController.java y se incorporaron nuevos métodos en ClientService.java para habilitar operaciones REST mediante objetos DTO, facilitando pruebas a través de Postman. Se desarrolló también la clase TicketRestController.java, implementando los endpoints GET correspondientes y ampliando la lógica en TicketService.java para soportar estas operaciones utilizando DTOs. Se añadió el método replaceComment en CommentRestController.java para permitir actualizaciones de comentarios mediante peticiones PUT. Finalmente, se refactorizaron los métodos DELETE en las entidades Ticket y Client, ajustando los atributos en sus respectivas clases .java para garantizar una correcta eliminación de recursos.
+
 
 - 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
-   - [Commit 1]()
-   - [Commit 2]()
-   - [Commit 3]()
-   - [Commit 4]()
-   - [Commit 5]()
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/a4c4477276738e6882026ce8fcba85b3dc8e7e68)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/9f660f913eecf7f8593333f79e73eb386e30832c)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/7b170328aa7abf37db78a48a4fbf99ccd657ab2e)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/6abe0e7972fd0561b95792d14492c152ef286287)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/cb45b01ab7cc30a05fd2cca60c8a67db38f9482f)
 
 - 5 ficheros en los que se ha participado:
-   - []()
-   - []()
-   - []()
-   - []()
-   - []()
+   - [ClientRestController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/ClientRestController.java)
+   - [TicketRestController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/TicketRestController.java)
+   - [ClientService.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/services/ClientService.java)
+   - [TicketService.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/services/TicketService.java)
+   - [CommentRestController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/CommentRestController.java)
 
