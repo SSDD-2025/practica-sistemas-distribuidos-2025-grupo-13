@@ -239,9 +239,8 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
    - [Client.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/entities/Client.java) 
 
 ### Álvaro
-- Tareas: realizar la sección de clubbing, creación de los principales mapeos. Creación del administrador, con su respectivo cierre de sesión, añadir eventos, mapeado borrar eventos y mapeado borrar comentarios. Creación del cierre de sesión y, por consecuencia, la diferenciación dentro de otras clases de usuario iniciado o no. Primeras creaciones de entidades comentarios. Inicios del Client Controller y página de compra. Diferenciación del header y el footer, es decir, creación de los ficheros y poner el código que se encontraba al inicio y final de todos los htmls. Mapeo de las secciones del header. Ayuda en otros métodos de Event Controller. Funcionalidad completa de Editar Perfil (htmls,métodos,mappings...).
 
-En la Fase II me he encargado de añadir las carencias de la anterior fase(servicios, modelos,..), paginación completa, creacion de los DTOs y mappers, el comments API Rest, trabajo conjunto con compañeros en el Ticket API Rest, trabajo conjunto con compañeros en seguridad Rest, trabajo conjunto del jwt y trabajo conjunto de api-doc configurations.
+- Tareas: realizar la sección de clubbing, creación de los principales mapeos. Creación del administrador, con su respectivo cierre de sesión, añadir eventos, mapeado borrar eventos y mapeado borrar comentarios. Creación del cierre de sesión y, por consecuencia, la diferenciación dentro de otras clases de usuario iniciado o no. Primeras creaciones de entidades comentarios. Inicios del Client Controller y página de compra. Diferenciación del header y el footer, es decir, creación de los ficheros y poner el código que se encontraba al inicio y final de todos los htmls. Mapeo de las secciones del header. Ayuda en otros métodos de Event Controller. Funcionalidad completa de Editar Perfil (htmls,métodos,mappings...).
 
 - 5 commits más significativos :
    - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f86ea6768f654a0b1b71211ab9be7c0fb31865dd)
@@ -251,11 +250,11 @@ En la Fase II me he encargado de añadir las carencias de la anterior fase(servi
    - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/9b3fdc0ecae3c6b99353e57219243a3e9ab77d46)
 
 - 5 ficheros en los que se ha participado:
-   - [CommentRestController.java](src/main/java/es/grupo13/ssddgrupo13/controller/CommentRestController.java)
-   - [CommentService.java](src/main/java/es/grupo13/ssddgrupo13/services/CommentService.java)
-   - [SecurityConfig.java](src/main/java/es/grupo13/ssddgrupo13/security/SecurityConfig.java)
-   - [EventController.java](src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
    - [profile_admin.html](src/main/resources/Templates/profile_admin.html)
+   - [profile.html](src/main/resources/Templates/profile.html)
+   - [clubbing.html](src/main/resources/Templates/clubbing.html)
+   - [ClientController.java](src/main/java/es/grupo13/ssddgrupo13/controller/ClientController.java)
+   - [EventController.java](src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
 
 ### Marcos
 
@@ -265,12 +264,12 @@ la página, que se añada correctamente a la BBDD junto con las dependencias con
 se ha actualizado todo el código al inglés y  modificado muchos css para que la web tuviese una estandarización adecuada tanto de colores como de tipografías
 
 - 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
-   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/1c32397bba08337940850ace51ba583674cb66ba)
-   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/13a4b0ec47e84b87db2d564646f607a8f52f9922)
-   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/7dbe94a7196fd3862fe8be1b08a920c27b64cc0c)
-   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/221a18e987bc75dd91e4d63efac8c53da8975ecb)
-   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f9da51124394295731186e6964cb183d9dcc1fc2)
-
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ab1b7ae2a8f39ea3739c49cc8bd1b818e1b469e5)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/b84971f19f1d9727f6e15e711812358613223f5c)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f5d358fa9db7c2111cefe304dd6ad5e8a3054dc4)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/ce9d442f35964173bfee4c2df482a840461235e1)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f0f603b3a351ae113e145b7c054138aeab85be74)
+   
 - 5 ficheros en los que se ha participado:
    - [ClientController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/ClientController.java)
    - [EventController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
@@ -346,57 +345,57 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Jon
 
-- Tareas:
+- Tareas: En el proyecto de aplicación web, me encargué de la implementación de Spring Security, desarrollando el sistema de autenticación de usuarios y gestionando el acceso mediante login personalizado. Unifiqué los datos y el proceso de autenticación para ofrecer una experiencia centralizada y segura. Además, creé y configuré los archivos de seguridad necesarios, estableciendo los permisos adecuados para los distintos roles (admin y user), controlando así el acceso a cada URL de la aplicación.
 
 - 5 commits más significativos:
-   - [Commit 1]()
-   - [Commit 2]()
-   - [Commit 3]()
-   - [Commit 4]()
-   - [Commit 5]()
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/73e42e9400b92fe229c247faed0dfb891141f6a9)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/5407357b9e1ea3dbfa5337c1e14944af8edffe70)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/7a006360e4e369029a080f5c970657cb3b1aa15d)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/b7097cbc92a2af90b96b8c723b0fa05499fec872)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/e04119ec4b1c833cf062118c58e3d52f51d7702e)
 
 - 5 ficheros en los que he participado:
-   - []()
-   - []()
-   - []()
-   - []()
-   - []()
+   - [SecurityConfig.java](src/main/java/es/grupo13/ssddgrupo13/security/SecurityConfig.java)
+   - [EventController.java](src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
+   - [EventService.java](src/main/java/es/grupo13/ssddgrupo13/services/EventService.java)
+   - [AdminController.java](src/main/java/es/grupo13/ssddgrupo13/controller/AdminController.java)
+   - [CommentController.java](src/main/java/es/grupo13/ssddgrupo13/controller/CommentController.java)
 
 ### Robert
 
-- Tareas:
+- Tareas: he implementado de la parte de Rest las clases EventRestController.java y algunas funciones de la clase TicketRestController.java, además para realizar bien los controladores Rest he tenido que desarrollar nuevos métodos en la parte de los servicios al igual que tocar algunos DTOs. He utilizado Postman para comprobar que los controladres Rest funcionan correctamente y he metido la colección dentro del proyecto. He conseguido generar la documentación ApiDocs, la cual se puede consultar dentro del proyecto. Por último, he resuelto algunos problemas que han surgido a medida que se iba haciendo la práctica como algunas funciones que no iban del todo bien: eliminar clientes en controladores Rest, eliminar tu cuenta teniendo en cuenta la parte de Seguridad de Spring o añadir un nuevo evento como administrador.
 
 - 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
-   - [Commit 1]()
-   - [Commit 2]()
-   - [Commit 3]()
-   - [Commit 4]()
-   - [Commit 5]()
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/d870326cd77e5affd09a9f439c92de75a88f2730)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/8075209ea5ba401adf49abc404164027c61221bc)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/a7454e331886e5d16a378c24b6626a815f139090)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/bd79ba58b8a7c7d3544da8236596d8a868b58b96)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/0fd0229c3e507d3edb3698e95ffbd17ac5341796)
 
 - 5 ficheros en los que se ha participado:
-   - []()
-   - []()
-   - []()
-   - []()
-   - []() 
+   - [EventRestController.java](src/main/java/es/grupo13/ssddgrupo13/controller/EventRestController.java)
+   - [TicketRestController.java](src/main/java/es/grupo13/ssddgrupo13/controller/TicketRestController.java)
+   - [EventService.java](src/main/java/es/grupo13/ssddgrupo13/services/EventService.java)
+   - [ClientController.java](src/main/java/es/grupo13/ssddgrupo13/controller/ClientController.java)
+   - [ClientService.java](src/main/java/es/grupo13/ssddgrupo13/services/ClientService.java) 
 
 ### Álvaro
 
-- Tareas: 
+- Tareas: En la Fase II me he encargado de añadir las carencias de la anterior fase(servicios, modelos,..), paginación completa, creacion de los DTOs y mappers, el comments API Rest, trabajo conjunto con compañeros en el Ticket API Rest, trabajo conjunto con compañeros en seguridad Rest, trabajo conjunto del jwt y trabajo conjunto de api-doc configurations.
 
 - 5 commits más significativos :
-   - [Commit 1]()
-   - [Commit 2]()
-   - [Commit 3]()
-   - [Commit 4]()
-   - [Commit 5]()
+   - [Commit 1](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/f86ea6768f654a0b1b71211ab9be7c0fb31865dd)
+   - [Commit 2](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/0abcf984741a6cb7eba39354fda20e1c3e0a2a99)
+   - [Commit 3](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/67f16dbde9e2698839cd674d4f2bc08f6a24a959)
+   - [Commit 4](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/b74e75d90c0cfbf61adb66df1d59bfe21c0278e1)
+   - [Commit 5](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/commit/9b3fdc0ecae3c6b99353e57219243a3e9ab77d46)
 
 - 5 ficheros en los que se ha participado:
-   - []()
-   - []()
-   - []()
-   - []()
-   - []()
+   - [CommentRestController.java](src/main/java/es/grupo13/ssddgrupo13/controller/CommentRestController.java)
+   - [CommentService.java](src/main/java/es/grupo13/ssddgrupo13/services/CommentService.java)
+   - [SecurityConfig.java](src/main/java/es/grupo13/ssddgrupo13/security/SecurityConfig.java)
+   - [EventController.java](src/main/java/es/grupo13/ssddgrupo13/controller/EventController.java)
+   - [profile_admin.html](src/main/resources/Templates/profile_admin.html)
 
 ### Marcos
 
