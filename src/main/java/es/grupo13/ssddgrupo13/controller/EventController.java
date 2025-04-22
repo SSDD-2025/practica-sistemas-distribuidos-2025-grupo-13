@@ -139,7 +139,11 @@ public class EventController {
 
         Event event = optionalEvent.get();
         model.addAttribute("event", event);
-        model.addAttribute("comment", event.getComments());
+        if(event.getComments().size() <= 10) {
+            model.addAttribute("comment", event.getComments().subList(0, event.getComments().size()));
+        }else{
+        model.addAttribute("comment", event.getComments().subList(0, 10));
+        }
         return "eventDetailPage";
     }
 

@@ -25,7 +25,63 @@
     </a>
     {{/conciertos}}
   </div>
+  <div >
+    <button id="moreBTN" class="btn-buyTicket" style="margin: 0 auto; background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">
+        More Events
+    </button>
+</div>
 </section>
+<script>
+  let currentPage = 1; 
+  const pageSize = 10;
+
+  document.getElementById("moreBTN").addEventListener("click", async () => {
+
+    
+
+      const res = await fetch(`/api/events/clubbing/?page=${currentPage}&size=${pageSize}`);
+      const data = await res.json();
+     
+      
+
+      const container = document.querySelector(".club-grid");
+
+      if (!data.content || data.content.length === 0) {
+      console.log("No hay más eventos para mostrar.");
+      document.getElementById("moreBTN").style.display = "none";
+      return;
+    }
+      data.events.forEach(event => {
+          const dis = document.createElement("a");
+          dis.href = `/ticket/${event.id}`;
+          dis.className = "club-card-link";
+          dis.innerHTML = `
+              <div class="club-card" style="background-image: url('event-image/${event.id}')">
+                  <div class="darken-layer"></div>
+                  <div class="overlay">
+                      <div class="club-card-text">
+                          <h2>${event.title}</h2>
+                          <p>${event.description}</p>
+                      </div>
+                      <div class="link-icon"><i class="bi bi-box-arrow-up-right"></i></div>
+                  </div>
+              </div>
+          `;
+          container.appendChild(dis);
+      });
+
+
+      
+      currentPage++;
+      if (data.page.number >= data.page.totalPages - 1) {
+        document.getElementById("moreBTN").style.display = "none";
+        document.getElementById("moreBTN").style.visibility = "hidden"; // extra
+        document.getElementById("moreBTN").disabled = true; // extra
+      }
+
+      
+  });
+</script>  
 
 {{>footer}}
 

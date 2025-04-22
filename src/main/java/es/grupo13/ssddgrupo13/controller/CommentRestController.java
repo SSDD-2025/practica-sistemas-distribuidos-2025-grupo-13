@@ -1,5 +1,6 @@
 package es.grupo13.ssddgrupo13.controller;
 import java.net.URI;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,6 +38,10 @@ public class CommentRestController {
     @GetMapping("/{id}")
     public CommentDTO getComment(@PathVariable Long id) {
         return commentService.getComment(id);
+    }
+    @GetMapping("/event/{id}")
+    public Collection<CommentDTO> getEventComment(@PathVariable Long id) {
+        return commentService.getEventComments(id);
     }
 
     @PostMapping("/")

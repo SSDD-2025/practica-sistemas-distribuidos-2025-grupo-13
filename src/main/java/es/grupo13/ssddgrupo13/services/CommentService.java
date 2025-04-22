@@ -53,6 +53,9 @@ public class CommentService {
     public Collection<CommentDTO> getAllComments() {
         return commentMapper.ToDTOs(commentRepository.findAll());
     }
+    public Collection<CommentDTO> getEventComments(Long eventId) {
+        return commentMapper.ToDTOs(eventService.findById(eventId).orElseThrow().getComments());    
+    }
 
     public CommentDTO createComment(CommentDTO commentDTO) {
         Comment comment = commentMapper.ToDomain(commentDTO);

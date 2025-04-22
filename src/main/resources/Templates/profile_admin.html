@@ -37,7 +37,7 @@
         <h2>Comentarios</h2>
     </div>
     <section class="club-section">
-        <div class="club-grid">
+        <div id="comment-grid" class="club-grid">
             {{#comment}}
             <div class="club-card" style="background-image: url('/event-image/{{id}}')">
                 <div class="darken-layer"></div>
@@ -56,6 +56,11 @@
             </div>
             {{/comment}}
         </div>
+        <div >
+            <button id="moreBTN2" class="btn-buyTicket" style="margin: 0 auto; background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">
+                More Comments
+            </button>
+        </div>
     </section>
 
     <div class="subtitleDetailEvent">
@@ -65,7 +70,7 @@
         <div class="addNewEvent">
             <a href="/newEvent" class="btn btn-primary">Agregar Evento</a>
         </div>
-        <div class="club-grid">
+        <div id="event-grid" class="club-grid">
             {{#event}}
             <div class="club-card" style="background-image: url('/event-image/{{id}}')">
                 <div class="darken-layer"></div>
@@ -82,7 +87,112 @@
             </div>
             {{/event}}
         </div>
+        <div >
+            <button id="moreBTN" class="btn-buyTicket" style="margin: 0 auto; background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">
+                More Events
+            </button>
+        </div>
     </section>
+    <script>
+        let currentPage = 1; 
+        const pageSize = 10;
+      
+        document.getElementById("moreBTN").addEventListener("click", async () => {
+      
+          
+      
+            const res = await fetch(`/api/events/?page=${currentPage}&size=${pageSize}`);
+            const data = await res.json();
+           
+            
+      
+            const container = document.querySelector("#event-grid");
+      
+            if (!data.content || data.content.length === 0) {
+            console.log("No hay más eventos para mostrar.");
+            document.getElementById("moreBTN").style.display = "none";
+            return;
+          }
+          console.log("DEBUG DATA:", data);
+          data.content.forEach(event => {
+    const dis = document.createElement("div");
+    dis.innerHTML = `
+        <div class="club-card" style="background-image: url('/event-image/${event.id}')">
+            <div class="darken-layer"></div>
+            <div class="overlay">
+                <div class="club-card-text">
+                    <h2>${event.title}</h2>
+                </div>
+                <form action="/admin/deleteEvent/${event.id}" method="post">
+                    <input type="hidden" name="eventID" value="${event.id}">
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    <button type="submit" class="btn-delete">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    `;
+    container.appendChild(dis);
+});
+
+            
+            currentPage++;
+            if (data.page.number >= data.page.totalPages - 1) {
+              document.getElementById("moreBTN").style.display = "none";
+              document.getElementById("moreBTN").style.visibility = "hidden"; // extra
+              document.getElementById("moreBTN").disabled = true; // extra
+            }
+      
+            
+        });
+      </script> 
+      <script>
+        let currentCommentPage = 1;
+        const commentPageSize = 10;
+      
+        document.getElementById("moreBTN2").addEventListener("click", async () => {
+          const res = await fetch(`/api/comments/?page=${currentCommentPage}&size=${commentPageSize}`);
+          const data = await res.json();
+      
+          console.log("COMMENTS DEBUG DATA:", data);
+      
+          const container = document.querySelector("#comment-grid");
+      
+          if (!data.content || data.content.length === 0) {
+            console.log("No hay más comentarios para mostrar.");
+            document.getElementById("moreBTN2").style.display = "none";
+            return;
+          }
+      
+          data.content.forEach(comment => {
+            const dis = document.createElement("div");
+            dis.innerHTML = `
+              <div class="club-card" style="background-image: url('/event-image/${comment.eventId || comment.id}')">
+                  <div class="darken-layer"></div>
+                  <div class="overlay">
+                      <div class="club-card-text">
+                          <h2>${comment.autor}</h2>
+                          <p>${comment.text}</p>
+                          <span class="rating">${comment.rating || ''}</span>
+                      </div>
+                      <form action="/admin/deleteComment/${comment.id}" method="post">
+                          <input type="hidden" name="commentID" value="${comment.id}">
+                          <input type="hidden" name="_csrf" value="{{token}}"/>
+                          <button type="submit" class="btn-delete">Eliminar</button>
+                      </form>
+                  </div>
+              </div>
+            `;
+            container.appendChild(dis);
+          });
+      
+          currentCommentPage++;
+          if (data.page.number >= data.page.totalPages - 1) {
+            document.getElementById("moreBTN2").style.display = "none";
+            document.getElementById("moreBTN2").disabled = true;
+          }
+        });
+      </script>
+       
 
     <form action="/logout" method="post">
         <input type="submit" class="btn-profile logout" value="Sign out" />

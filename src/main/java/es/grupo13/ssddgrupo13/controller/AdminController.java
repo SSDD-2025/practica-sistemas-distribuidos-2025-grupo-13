@@ -1,5 +1,7 @@
 package es.grupo13.ssddgrupo13.controller;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,11 +69,19 @@ public class AdminController {
      */
     @GetMapping("/")
     public String adminPage(HttpServletRequest request, Model model) {
-        Iterable<EventDTO> events = eventService.getAllEvents();
-        Iterable<CommentDTO> comments = commentService.getAllComments();
+        List<EventDTO> events = (List<EventDTO>) eventService.getAllEvents();
+        List<CommentDTO> comments = (List<CommentDTO>) commentService.getAllComments();
 
-        model.addAttribute("event", events);
-        model.addAttribute("comment", comments);
+        if(events.size() >= 10) {
+            model.addAttribute("event", events.subList(0, 10));
+        } else {
+            model.addAttribute("event", events.subList(0, events.size()));
+        }
+        if(comments.size() >= 10) {
+            model.addAttribute("comment", comments.subList(0, 10));
+        } else {
+            model.addAttribute("comment", comments.subList(0, comments.size()));
+        }
 
         return "profile_admin";
     }
