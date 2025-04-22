@@ -77,7 +77,6 @@ public class UserLoginService {
 		SecurityContextHolder.clearContext();
 		response.addCookie(removeTokenCookie(TokenType.ACCESS));
 		response.addCookie(removeTokenCookie(TokenType.REFRESH));
-
 		return "logout successfully";
 	}
 
@@ -89,7 +88,7 @@ public class UserLoginService {
 		return cookie;
 	}
 
-	private Cookie removeTokenCookie(TokenType type){
+	public Cookie removeTokenCookie(TokenType type){
 		Cookie cookie = new Cookie(type.cookieName, "");
 		cookie.setMaxAge(0);
 		cookie.setHttpOnly(true);

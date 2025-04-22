@@ -149,7 +149,7 @@ public class SecurityConfig {
 						.requestMatchers("/buyTicket/**").authenticated()
 						.requestMatchers("/editprofilepage").authenticated()
 						.requestMatchers("/edit-profile").authenticated()
-
+						.requestMatchers("/deleteAccount").authenticated()
 						.requestMatchers("/api/**").permitAll()
 						.requestMatchers("/error/**").permitAll()
 				// We have to make an admin page (/admin/**)

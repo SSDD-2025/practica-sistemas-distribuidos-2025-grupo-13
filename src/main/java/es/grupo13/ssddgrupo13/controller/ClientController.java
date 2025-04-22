@@ -36,6 +36,7 @@ import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.repository.ClientRepository;
 import es.grupo13.ssddgrupo13.services.ClientService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Handles client registration, authentication, profile editing, and session management.
@@ -129,6 +130,28 @@ public class ClientController {
         return "notification";
     }
 
+    @PostMapping("/deleteAccount")
+    public String deleteAccount(HttpServletRequest request, HttpServletResponse response, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        boolean isLoggedIn = isAuthenticatedUser(auth);
+        model.addAttribute("isUserLogged", isLoggedIn);
+
+        if (isLoggedIn) {
+            Client client = extractClientFromPrincipal(auth.getPrincipal());
+            if (client != null) {
+                clientService.deleteClient(client.getId());
+                // Clear the Spring Security context and invalidate the session
+                SecurityContextHolder.clearContext();
+                request.getSession().invalidate();
+            }
+        }
+        
+        model.addAttribute("title", "Cuenta eliminada");
+        model.addAttribute("message", "Tu cuenta ha sido eliminada correctamente.");
+        model.addAttribute("linkText", "Aceptar");
+        model.addAttribute("linkUrl", "/");
+        return "notification";
+    }
 
     /**
       * Loads the profile editing page with current user info.

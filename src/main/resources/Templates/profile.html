@@ -105,6 +105,10 @@
                     <input type="submit" class="btn-profile logout" value="Sign out" />
                     <input type="hidden" name="_csrf" value="{{token}}" />
                 </form>
+                <form action="/deleteAccount" method="post">
+                    <input type="submit" class="btn-profile logout" value="Eliminar Cuenta" />
+                    <input type="hidden" name="_csrf" value="{{token}}" />
+                </form>
                 {{#isAdmin}}
                 <form action="/admin" method="get">
                     <button type="submit" class="btn-profile">Página de administrador</button>
