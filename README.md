@@ -276,3 +276,94 @@ se ha actualizado todo el código al inglés y  modificado muchos css para que l
    - [ticket.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/ticket.html)
    - [contact.html](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Templates/contact.html)
 
+
+# Proyecto: ALASDOCE
+
+## Diagrama de navegación
+
+- No ha cambiado con respecto a la anterior fase.
+
+![Diagrama Navegacion](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/resources/Static/imagesReadme/diagramaNavegacion.png)
+
+## Diagrama de Entidades
+
+## Diagrama de clases
+
+## Configuración del entorno de desarrollo
+
+## Participación de los Miembros
+
+Cada miembro del equipo debe indicar su contribución en la práctica.
+
+### Jon
+
+- Tareas:
+
+- 5 commits más significativos:
+   - [Commit 1]()
+   - [Commit 2]()
+   - [Commit 3]()
+   - [Commit 4]()
+   - [Commit 5]()
+
+- 5 ficheros en los que he participado:
+   - []()
+   - []()
+   - []()
+   - []()
+   - []()
+
+### Robert
+
+- Tareas:
+
+- 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
+   - [Commit 1]()
+   - [Commit 2]()
+   - [Commit 3]()
+   - [Commit 4]()
+   - [Commit 5]()
+
+- 5 ficheros en los que se ha participado:
+   - []()
+   - []()
+   - []()
+   - []()
+   - []() 
+
+### Álvaro
+
+- Tareas: 
+
+- 5 commits más significativos :
+   - [Commit 1]()
+   - [Commit 2]()
+   - [Commit 3]()
+   - [Commit 4]()
+   - [Commit 5]()
+
+- 5 ficheros en los que se ha participado:
+   - []()
+   - []()
+   - []()
+   - []()
+   - []()
+
+### Marcos
+
+- Tareas: 
+
+- 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
+   - [Commit 1]()
+   - [Commit 2]()
+   - [Commit 3]()
+   - [Commit 4]()
+   - [Commit 5]()
+
+- 5 ficheros en los que se ha participado:
+   - []()
+   - []()
+   - []()
+   - []()
+   - []()
+
