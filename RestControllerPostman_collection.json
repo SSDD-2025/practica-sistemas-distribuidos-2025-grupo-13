@@ -11,7 +11,35 @@
 			"name": "Login",
 			"item": [
 				{
-					"name": "Do Login",
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -33,6 +61,44 @@
 								"api",
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/auth/refresh",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/auth/logout",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
 							]
 						}
 					},
