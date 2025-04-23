@@ -69,8 +69,12 @@ public class CommentService {
 
     public CommentDTO replaceComment(Long id, CommentDTO updatedCommentDTO) {
 		if (commentRepository.existsById(id)) {
+            Comment comment = commentRepository.findById(id).orElseThrow();
 			Comment updatedComment = toDomain(updatedCommentDTO);
 			updatedComment.setId(id);
+            updatedComment.setClient(comment.getClient());
+            List<Event> events = eventService.findByTitle(comment.getTitle());
+            updatedComment.setEvent(events.get(0));
 			commentRepository.save(updatedComment);
 			return toDTO(updatedComment);
 		} else {

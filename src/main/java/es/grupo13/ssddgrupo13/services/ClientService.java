@@ -62,7 +62,9 @@ public class ClientService {
 
     public ClientDTO replaceClient(Long id, ClientDTO updatedClientDTO) {
 		if (clientRepository.existsById(id)) {
-			Client updatedClient = toDomain(updatedClientDTO);
+            Client updatedClient = toDomain(updatedClientDTO);
+            String encodedPassword = passwordEncoder.encode(updatedClientDTO.encodedPassword());
+            updatedClient.setEncodedPassword(encodedPassword);
 			updatedClient.setId(id);
 			clientRepository.save(updatedClient);
 			return toDTO(updatedClient);

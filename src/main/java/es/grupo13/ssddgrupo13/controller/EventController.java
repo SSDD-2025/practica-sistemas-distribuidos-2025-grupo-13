@@ -142,7 +142,7 @@ public class EventController {
         if(event.getComments().size() <= 10) {
             model.addAttribute("comment", event.getComments().subList(0, event.getComments().size()));
         }else{
-        model.addAttribute("comment", event.getComments().subList(0, 10));
+            model.addAttribute("comment", event.getComments().subList(0, 10));
         }
         return "eventDetailPage";
     }

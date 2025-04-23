@@ -456,7 +456,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Robert Gabriel\",\r\n    \"lastName\": \"Mihai\",\r\n    \"email\": \"rg.mihai.2022@alumnos.urjc.es\",\r\n    \"password\": \"123\",\r\n    \"roles\": [\r\n        \"USER\"\r\n    ]\r\n}",
+							"raw": "{\r\n    \"name\": \"Robert Gabriel\",\r\n    \"lastName\": \"Mihai\",\r\n    \"email\": \"rg.mihai.2022@alumnos.urjc.es\",\r\n    \"encodedPassword\": \"123\",\r\n    \"roles\": [\r\n        \"USER\"\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -503,7 +503,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Marcos\",\r\n    \"lastName\": \"Alvarez\",\r\n    \"email\": \"mmmmmmaaarrcoos@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"roles\": [\r\n        \"ADMIN\",\r\n        \"USER\"\r\n    ]\r\n}",
+							"raw": "{\r\n    \"name\": \"robert\",\r\n    \"lastName\": \"mihai\",\r\n    \"email\": \"user@user.com\",\r\n    \"encodedPassword\": \"michelElMejor\",\r\n    \"roles\": [\r\n        \"ADMIN\"\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
