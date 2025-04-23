@@ -7,6 +7,6 @@ public record ClientDTO(
         String name, 
         String lastName, 
         String email, 
-        String password,
+        String encodedPassword,
         List<String> roles) {
 }    

@@ -105,7 +105,7 @@ public class ClientController {
         Client client = clientService.findByEmail(clientDTO.email())
                 .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
 
-        if (!passwordEncoder.matches(clientDTO.password(), client.getEncodedPassword())) {
+        if (!passwordEncoder.matches(clientDTO.encodedPassword(), client.getEncodedPassword())) {
             return "redirect:/login?error=true";
         }
 

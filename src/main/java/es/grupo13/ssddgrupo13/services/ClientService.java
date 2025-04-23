@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.grupo13.ssddgrupo13.dto.ClientDTO;
@@ -20,6 +21,9 @@ import es.grupo13.ssddgrupo13.repository.ClientRepository;
 public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private ClientMapper clientMapper;
@@ -50,6 +54,8 @@ public class ClientService {
 
     public ClientDTO createClient(ClientDTO clientDTO) {
 		Client client = toDomain(clientDTO);
+        String encodedPassword = passwordEncoder.encode(client.getEncodedPassword());
+        client.setEncodedPassword(encodedPassword);
 		clientRepository.save(client);
 		return toDTO(client);
 	}
