@@ -1,6 +1,7 @@
 package es.grupo13.ssddgrupo13.services;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import es.grupo13.ssddgrupo13.dto.CommentDTO;
 import es.grupo13.ssddgrupo13.dto.CommentMapper;
 import es.grupo13.ssddgrupo13.model.Client;
 import es.grupo13.ssddgrupo13.model.Comment;
+import es.grupo13.ssddgrupo13.model.Event;
 import es.grupo13.ssddgrupo13.repository.CommentRepository;
 
 @Service
@@ -59,6 +61,8 @@ public class CommentService {
 
     public CommentDTO createComment(CommentDTO commentDTO) {
         Comment comment = commentMapper.ToDomain(commentDTO);
+        List<Event> events = eventService.findByTitle(comment.getTitle());
+        comment.setEvent(events.get(0));
         commentRepository.save(comment);
         return commentMapper.ToDTO(comment);
     }
