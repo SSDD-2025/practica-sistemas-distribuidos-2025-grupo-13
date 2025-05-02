@@ -67,6 +67,7 @@ public class ClientController {
         }
 
         Client newUser = clientService.toDomain(client);
+        newUser.setEncodedPassword(passwordEncoder.encode(client.encodedPassword()));
         newUser.setRoles(Arrays.asList("USER"));
         clientRepository.save(newUser);
 
