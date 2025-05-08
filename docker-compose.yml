@@ -2,7 +2,7 @@
 services: 
   web:
   #La imagen hay que crearla y cambiarla
-    image: codigusdev/spring-webapp:mysql
+    image: robert0711/grupo13:${project.version}
     ports:
       - 8443:8443
     environment:
