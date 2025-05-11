@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>es.grupo13</groupId>
 	<artifactId>ssddgrupo13</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>ssddgrupo13</name>
 	<description>Demo project for Spring Boot</description>
 	<url />
@@ -89,9 +89,9 @@
 		</dependency>
 
 		<dependency>
-		<groupId>org.mapstruct</groupId>
-		<artifactId>mapstruct</artifactId>
-		<version>1.6.3</version>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.6.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
@@ -150,7 +150,7 @@
 			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
 	</repositories>
-	
+
 
 	<build>
 		<plugins>
@@ -171,7 +171,7 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
-		<!-- Plugin to export REST API doc to files -->
+			<!-- Plugin to export REST API doc to files -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -253,6 +253,14 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 

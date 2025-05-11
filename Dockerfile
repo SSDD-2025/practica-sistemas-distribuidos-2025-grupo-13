@@ -6,12 +6,13 @@ WORKDIR /project
 
 # Copia las dependencias del proyecto
 COPY pom.xml /project/
+COPY keystore.jks /project/keystore.jks
 
 # Descarga las dependencias del proyecto
 RUN mvn dependency:go-offline
 
 # Copia el código del proyecto
-COPY /src /project/src
+COPY . /project/
 
 # Compila proyecto
 RUN mvn -B package -DskipTests
@@ -23,7 +24,9 @@ FROM eclipse-temurin:21-jre
 WORKDIR /usr/src/app/
 
 # Copia el JAR del contenedor de compilación
-COPY --from=builder /project/target/*.jar /usr/src/app/app.jar
+COPY --from=builder /project/target/ssddgrupo13-1.0.0.jar /usr/src/app/app.jar
+COPY --from=builder /project/keystore.jks keystore.jks  
+
 
 # Indica el puerto que expone el contenedor
 EXPOSE 8443
