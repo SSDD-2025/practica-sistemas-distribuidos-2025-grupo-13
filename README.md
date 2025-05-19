@@ -421,7 +421,7 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 # PRÁCTICA 3 : Documentación 
 
 ## Construcción de la imagen docker a través del docker file
-Para construir la imagen de la web app se ha creado un archivo bash para que solo haya que ejecutar este. Se denomina build.sh, y tiene los siguientes comandos:
+Para construir la imagen de la web app se ha creado un archivo bash para que solo haya que ejecutar este. Se denomina createImagen.sh, y tiene los siguientes comandos:
 
 ```
    #!/bin/bash
@@ -436,13 +436,13 @@ Para construir la imagen de la web app se ha creado un archivo bash para que sol
 ## Instrucciones de ejecución con el docker-compose
 A continuación, podemos construir nuestra web en local a través de docker compose, ejecutando el siguiente comando en powershell
 ```
-   docker compose -f docker-compose.prod.yml
+   docker compose -f docker-compose.prod.yml up
 ```
 
 En el caso de que queramos ejecutarla a través del docker compose en local, tendríamos que iniciar la base de datos mysql y a continuación ejecutar este comando:
 
 ```
-   docker compose -f docker.compose.local.yml
+   docker compose -f docker.compose.local.yml up
 ```
 
 Ya que este docker compose tan solo contiene el lanzamiento de la imagen docker de la web.
