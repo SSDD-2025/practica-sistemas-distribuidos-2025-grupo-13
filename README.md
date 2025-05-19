@@ -450,9 +450,15 @@ Ya que este docker compose tan solo contiene el lanzamiento de la imagen docker 
 ## Despliegue de la aplicación en las máquinas virtuales
 Para la explicación de este procedimiento se parte desde la idea de que se nos dan 2 clusters que funcionan como dos partes donde se desplegará, en sidi-1 la web-app (Imagen docker de la web) y en sidi-2 la base de datos.
 
-Primero, se publica la imagen docker de la aplicación a DockerHub con el comando: 
+Primero, se publica la imagen con el archivo bash publishImage.sh, el cuál, ejecuta lo siguiente: 
 ```
-   docker push jonmazzh/grupo13:1.0.0
+#!/bin/bash
+
+set -e
+
+IMAGE_NAME="jonmazzh/grupo13:1.0.0"
+
+docker push $IMAGE_NAME
 ```
 
 Posteriormente, se accede a la máquina sidi13-1 con el comando:
