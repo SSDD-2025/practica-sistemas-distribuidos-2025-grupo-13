@@ -473,24 +473,24 @@ ssh -t -i ssh-keys/sidi13.key vmuser@193.147.60.53 ssh sidi13-2
 
 En este cluster desplegamos la imagen docker de mysql que se recogerá del DockerHub: 
 ```
-   docker run -d \
-     --name mysql-db \
-     -e MYSQL_ROOT_PASSWORD=password \
-     -e MYSQL_DATABASE=grupo_13 \
-     -p 3306:3306 \
-     -v mysql_data:/var/lib/mysql \
-     jonmazzh/mysql:9.2
+docker run -d \
+  --name mysql-db \
+  -e MYSQL_ROOT_PASSWORD=password \
+  -e MYSQL_DATABASE=grupo_13 \
+  -p 3306:3306 \
+  -v mysql_data:/var/lib/mysql \
+  jonmazzh/mysql:9.2
 ```
 
 Después, ejecutamos ```exit``` para volver al cluster 1, y en este ejecutamos el comando:
 ```
-   docker run -d \
-     --name web-app \
-     -e SPRING_DATASOURCE_URL=jdbc:mysql://192.168.110.169:3306/grupo_13 \
-     -e SPRING_DATASOURCE_USERNAME=root \
-     -e SPRING_DATASOURCE_PASSWORD=password \
-     -p 8443:8443 \
-     jonmazzh/grupo13:1.0.0
+docker run -d \
+  --name web-app \
+  -e SPRING_DATASOURCE_URL=jdbc:mysql://192.168.110.169:3306/grupo_13 \
+  -e SPRING_DATASOURCE_USERNAME=root \
+  -e SPRING_DATASOURCE_PASSWORD=password \
+  -p 8443:8443 \
+  jonmazzh/grupo13:1.0.0
 ```
 Con este comando recogemos la imagen de docker de Docker Hub de nuestra web, que lanza y emplea la imagen que hay ejecutando en el otro cluster para escuchar la base de datos.
 
