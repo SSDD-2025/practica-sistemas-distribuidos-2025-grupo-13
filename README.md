@@ -473,7 +473,7 @@ En este cluster desplegamos la imagen docker de mysql que se recogerá del Docke
      -e MYSQL_DATABASE=grupo_13 \
      -p 3306:3306 \
      -v mysql_data:/var/lib/mysql \
-     mysql:9.2
+     jonmazzh/mysql:9.2
 ```
 
 Después, ejecutamos ```exit``` para volver al cluster 1, y en este ejecutamos el comando:
