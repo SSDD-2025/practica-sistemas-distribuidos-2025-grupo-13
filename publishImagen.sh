@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker push jonmazzh/grupo13:1.0.1
+set -e
+
+docker push jonmazzh/grupo13:1.0.0

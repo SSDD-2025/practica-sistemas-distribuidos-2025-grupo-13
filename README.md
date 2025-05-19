@@ -452,7 +452,7 @@ Para la explicación de este procedimiento se parte desde la idea de que se nos 
 
 Primero, se publica la imagen docker de la aplicación a DockerHub con el comando: 
 ```
-   docker push jonmazzh/grupo13:1.0.1
+   docker push jonmazzh/grupo13:1.0.0
 ```
 
 Posteriormente, se accede a la máquina sidi13-1 con el comando:
@@ -484,7 +484,7 @@ Después, ejecutamos ```exit``` para volver al cluster 1, y en este ejecutamos e
      -e SPRING_DATASOURCE_USERNAME=root \
      -e SPRING_DATASOURCE_PASSWORD=password \
      -p 8443:8443 \
-     jonmazzh/grupo13:1.0.1
+     jonmazzh/grupo13:1.0.0
 ```
 Con este comando recogemos la imagen de docker de Docker Hub de nuestra web, que lanza y emplea la imagen que hay ejecutando en el otro cluster para escuchar la base de datos.
 
