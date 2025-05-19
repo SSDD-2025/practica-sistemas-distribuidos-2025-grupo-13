@@ -128,7 +128,7 @@
                 </div>
                 {{#tickets}}
                 <div class="wallet-style-ticket stacked-ticket" onclick="bringToFront(this)">
-                    <img src="/img/{{title}}.jpg" alt="{{title}}" class="ticket-bg" />
+                    <img src="/event-image/{{id}}" alt="{{title}}" class="ticket-bg" />
                     <div class="ticket-overlay">
                         <div class="ticket-header">
                             <h4 class="event-title">{{title}}</h4>
@@ -162,7 +162,7 @@
                         <p>{{text}}</p>
                     </div>
                     <div class="comment-score-with-delete">
-                        <span class="stars">{{{rating}}}</span>
+                        <span class="stars">{{rating}}</span>
                         <form action="/comment_out/{{id}}" method="POST">
                             <input type="hidden" name="commentId" value="{{id}}">
                             <input type="hidden" name="_csrf" value="{{token}}" />
@@ -178,6 +178,7 @@
                 <p>No has hecho ningún comentario aún.</p>
                 {{/comments}}
             </div>
+            
             <div >
                 <button id="moreBTN2" class="btn-buyTicket" style="margin: 0 auto; background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer;">
                     More Comments

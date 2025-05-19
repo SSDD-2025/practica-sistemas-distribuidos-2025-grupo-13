@@ -1,18 +1,18 @@
 #Solo hay que cambiar la imagen--->el resto correcto
 services: 
     web:
-      image: robert0711/grupo13:1.0.0
+      image: jonmazzh/grupo13:1.0.0
       ports:
         - 8443:8443
       environment:
-        - SPRING_DATASOURCE_URL=jdbc:mysql://db/grupo_13
-        - SPRING_DATASOURCE_USERNAME=root
-        - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_DATASOURCE_URL=jdbc:mysql://192.168.110.169:3306/grupo_13
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
       depends_on:
         db:
           condition: service_healthy
     db:
-      image: mysql:9.2
+      image: jonmazzh/mysql:9.2
       environment:
         - MYSQL_ROOT_PASSWORD=password
         - MYSQL_DATABASE=grupo_13
