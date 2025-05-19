@@ -416,3 +416,95 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
    - [TicketService.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/services/TicketService.java)
    - [CommentRestController.java](https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13/blob/main/src/main/java/es/grupo13/ssddgrupo13/controller/CommentRestController.java)
 
+
+
+# PRÁCTICA 3 : Documentación 
+
+## Construcción de la imagen docker a través del docker file
+Para construir la imagen de la web app se ha creado un archivo bash para que solo haya que ejecutar este. Se denomina build.sh, y tiene los siguientes comandos:
+
+```
+   #!/bin/bash
+
+   set -e 
+   
+   IMAGE_NAME="jonmazzh/grupo13:1.0.0"
+   
+   docker build -t $IMAGE_NAME ./.
+```
+
+## Instrucciones de ejecución con el docker-compose
+A continuación, podemos construir nuestra web en local a través de docker compose, ejecutando el siguiente comando en powershell
+```
+   docker compose -f docker-compose.prod.yml
+```
+
+En el caso de que queramos ejecutarla a través del docker compose en local, tendríamos que iniciar la base de datos mysql y a continuación ejecutar este comando:
+
+```
+   docker compose -f docker.compose.local.yml
+```
+
+Ya que este docker compose tan solo contiene el lanzamiento de la imagen docker de la web.
+
+## Despliegue de la aplicación en las máquinas virtuales
+Para la explicación de este procedimiento se parte desde la idea de que se nos dan 2 clusters que funcionan como dos partes donde se desplegará, en sidi-1 la web-app (Imagen docker de la web) y en sidi-2 la base de datos.
+
+Primero, se publica la imagen docker de la aplicación a DockerHub con el comando: 
+```
+   docker push jonmazzh/grupo13:1.0.1
+```
+
+Posteriormente, se accede a la máquina sidi13-1 con el comando:
+```
+ssh -i ssh-keys/sidi13.key vmuser@193.147.60.53
+```
+
+Desde este servidor accedemos al servidor sidi13-2 con el comando:
+```
+ssh -t -i ssh-keys/sidi13.key vmuser@193.147.60.53 ssh sidi13-2
+```
+
+En este cluster desplegamos la imagen docker de mysql que se recogerá del DockerHub: 
+```
+   docker run -d \
+     --name mysql-db \
+     -e MYSQL_ROOT_PASSWORD=password \
+     -e MYSQL_DATABASE=grupo_13 \
+     -p 3306:3306 \
+     -v mysql_data:/var/lib/mysql \
+     mysql:9.2
+```
+
+Después, ejecutamos ```exit``` para volver al cluster 1, y en este ejecutamos el comando:
+```
+   docker run -d \
+     --name web-app \
+     -e SPRING_DATASOURCE_URL=jdbc:mysql://192.168.110.169:3306/grupo_13 \
+     -e SPRING_DATASOURCE_USERNAME=root \
+     -e SPRING_DATASOURCE_PASSWORD=password \
+     -p 8443:8443 \
+     jonmazzh/grupo13:1.0.1
+```
+Con este comando recogemos la imagen de docker de Docker Hub de nuestra web, que lanza y emplea la imagen que hay ejecutando en el otro cluster para escuchar la base de datos.
+
+
+## Construccion de docker con buildpacks
+Para esto, primero hay que instalar buildpacks. En nuestro caso empleamos Windows, por lo que siguiendo la documentación de Packs hay que instalarlo manualmente, descargando la última versión de GitHub y añadiendolo a las variables de entorno del sistema.
+[Instalar pack](https://github.com/buildpacks/pack/releases/tag/v0.37.0)
+
+A continuación, para construir la imagen hay que ejecutar el siguiente comando:
+
+```
+pack build jonmazzh/grupo13:1.0.1 --builder paketobuildpacks/builder:base
+```
+
+## URL de aplicación desplegada
+
+Nuestra URL para la aplicación es la siguiente:
+https://193.147.60.53:8443
+
+
+
+
+
