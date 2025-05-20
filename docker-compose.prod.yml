@@ -11,7 +11,7 @@ services:
         db:
           condition: service_healthy
     db:
-      image: jonmazzh/mysql:9.2
+      image: mysql:9.2
       environment:
         - MYSQL_ROOT_PASSWORD=password
         - MYSQL_DATABASE=grupo_13
