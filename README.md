@@ -479,7 +479,7 @@ docker run -d \
   -e MYSQL_DATABASE=grupo_13 \
   -p 3306:3306 \
   -v mysql_data:/var/lib/mysql \
-  jonmazzh/mysql:9.2
+  mysql:9.2
 ```
 
 Después, ejecutamos ```exit``` para volver al cluster 1, y en este ejecutamos el comando:
