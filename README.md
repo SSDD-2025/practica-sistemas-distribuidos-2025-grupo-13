@@ -435,9 +435,6 @@ Para construir la imagen de la web app se ha creado un archivo bash para que sol
 
 ## Instrucciones de ejecución con el docker-compose
 A continuación, podemos construir nuestra web en local a través de docker compose, ejecutando el siguiente comando en powershell
-```
-   docker compose -f docker-compose.prod.yml up
-```
 
 En el caso de que queramos ejecutarla a través del docker compose en local, tendríamos que iniciar la base de datos mysql y a continuación ejecutar este comando:
 
@@ -445,52 +442,72 @@ En el caso de que queramos ejecutarla a través del docker compose en local, ten
    docker compose -f docker.compose.local.yml up
 ```
 
+En el caso de que queramos desplegar el docker compose de producción, solo tendríamos que emplear uno de clusters usando un OCI artifact. Para esto, ejecutamos el .sh que publica el compose en DockerHub:
+
+```
+   #!/bin/bash
+
+   set -e
+
+   COMPOSE_FILES=" -f docker-compose.prod.yml"
+
+   docker compose $COMPOSE_FILES publish jonmazzh/grupo13:1.0.0 --with-env
+
+```
+
+Una vez está subido a DockerHub, tendríamos que entrar en el cluster 1, a esto no voy a entrar más en detalle porque se explica más abajo, y lanzar el compose como un OCI artifact con el siguiente comando:
+
+```
+   docker compose -f oci://docker.io/jonmazzh/grupo13:1.0.0 up
+
+```
 Ya que este docker compose tan solo contiene el lanzamiento de la imagen docker de la web.
 
 ## Despliegue de la aplicación en las máquinas virtuales
 Para la explicación de este procedimiento se parte desde la idea de que se nos dan 2 clusters que funcionan como dos partes donde se desplegará, en sidi-1 la web-app (Imagen docker de la web) y en sidi-2 la base de datos.
 
 Primero, se publica la imagen con el archivo bash publishImage.sh, el cuál, ejecuta lo siguiente: 
+
 ```
-#!/bin/bash
+   #!/bin/bash
 
-set -e
+   set -e
 
-IMAGE_NAME="jonmazzh/grupo13:1.0.0"
+   IMAGE_NAME="jonmazzh/grupo13:1.0.0"
 
-docker push $IMAGE_NAME
+   docker push $IMAGE_NAME
 ```
 
 Posteriormente, se accede a la máquina sidi13-1 con el comando:
 ```
-ssh -i ssh-keys/sidi13.key vmuser@193.147.60.53
+   ssh -i ssh-keys/sidi13.key vmuser@193.147.60.53
 ```
 
 Desde este servidor accedemos al servidor sidi13-2 con el comando:
 ```
-ssh -t -i ssh-keys/sidi13.key vmuser@193.147.60.53 ssh sidi13-2
+   ssh -t -i ssh-keys/sidi13.key vmuser@193.147.60.53 ssh sidi13-2
 ```
 
 En este cluster desplegamos la imagen docker de mysql que se recogerá del DockerHub: 
 ```
-docker run -d \
-  --name mysql-db \
-  -e MYSQL_ROOT_PASSWORD=password \
-  -e MYSQL_DATABASE=grupo_13 \
-  -p 3306:3306 \
-  -v mysql_data:/var/lib/mysql \
-  mysql:9.2
+   docker run -d \
+   --name mysql-db \
+   -e MYSQL_ROOT_PASSWORD=password \
+   -e MYSQL_DATABASE=grupo_13 \
+   -p 3306:3306 \
+   -v mysql_data:/var/lib/mysql \
+   mysql:9.2
 ```
 
 Después, ejecutamos ```exit``` para volver al cluster 1, y en este ejecutamos el comando:
 ```
-docker run -d \
-  --name web-app \
-  -e SPRING_DATASOURCE_URL=jdbc:mysql://192.168.110.169:3306/grupo_13 \
-  -e SPRING_DATASOURCE_USERNAME=root \
-  -e SPRING_DATASOURCE_PASSWORD=password \
-  -p 8443:8443 \
-  jonmazzh/grupo13:1.0.0
+   docker run -d \
+   --name web-app \
+   -e SPRING_DATASOURCE_URL=jdbc:mysql://192.168.110.169:3306/grupo_13 \
+   -e SPRING_DATASOURCE_USERNAME=root \
+   -e SPRING_DATASOURCE_PASSWORD=password \
+   -p 8443:8443 \
+   jonmazzh/grupo13:1.0.0
 ```
 Con este comando recogemos la imagen de docker de Docker Hub de nuestra web, que lanza y emplea la imagen que hay ejecutando en el otro cluster para escuchar la base de datos.
 
@@ -500,8 +517,8 @@ Con este comando recogemos la imagen de docker de Docker Hub de nuestra web, que
 Para construir la imagen Docker en local con buildpacks hay que ejecutar el siguiente comando:
 
 ```
-mvn spring-boot:build-image \
--Dspring-boot.build-image.imageName=jonmazzh/grupo13:1.0.0
+   mvn spring-boot:build-image \
+   -Dspring-boot.build-image.imageName=jonmazzh/grupo13:1.0.0
 ```
 
 ## URL de aplicación desplegada
