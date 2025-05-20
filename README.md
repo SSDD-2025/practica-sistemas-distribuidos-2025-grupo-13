@@ -496,13 +496,12 @@ Con este comando recogemos la imagen de docker de Docker Hub de nuestra web, que
 
 
 ## Construccion de docker con buildpacks
-Para esto, primero hay que instalar buildpacks. En nuestro caso empleamos Windows, por lo que siguiendo la documentación de Packs hay que instalarlo manualmente, descargando la última versión de GitHub y añadiendolo a las variables de entorno del sistema.
-[Instalar pack](https://github.com/buildpacks/pack/releases/tag/v0.37.0)
 
-A continuación, para construir la imagen hay que ejecutar el siguiente comando:
+Para construir la imagen Docker en local con buildpacks hay que ejecutar el siguiente comando:
 
 ```
-pack build jonmazzh/grupo13:1.0.1 --builder paketobuildpacks/builder:base
+mvn spring-boot:build-image \
+-Dspring-boot.build-image.imageName=jonmazzh/grupo13:1.0.0
 ```
 
 ## URL de aplicación desplegada
