@@ -1,5 +1,5 @@
 
-#Imagen base para el contenedor de compilación
+#Stage 1: Crear .jar 
 FROM maven:3.9.9-eclipse-temurin-21-jammy AS builder
 
 # Define el directorio de trabajo donde ejecutar comandos
@@ -18,7 +18,7 @@ COPY . /project/
 # Compila proyecto
 RUN mvn -B package -DskipTests
 
-# Imagen base para el contenedor de la aplicación
+# Stage 2: Usa eclipse y java para compilar y ejecutar el .jar 
 FROM eclipse-temurin:21-jre
 
 # Define el directorio de trabajo donde se encuentra el JAR
